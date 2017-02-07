@@ -20,22 +20,30 @@
     <PayPal
     amount="10.00"
     currency="USD"
-    :client="{ 
-      sandbox: 'AafIFCEmoOBO_dXxP7W7NPqZEkB3_XU49kTDma2ENaxILPo_jLjS9m-pYktN9hgfPE4OdyE50gbLXIv6',
-      production: 'AafIFCEmoOBO_dXxP7W7NPqZEkB3_XU49kTDma2ENaxILPo_jLjS9m-pYktN9hgfPE4OdyE50gbLXIv6'
-    }">
+    :client="paypal">
     </PayPal>
   </div>
 </template>
 
 <script>
 import PayPal from './PayPal.vue'
+import credentials from './paypal.json'
 
 export default {
   name: 'app',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'
+    }
+  },
+  computed: {
+    paypal: function () {
+      if (credentials) {
+        credentials.env = process.env.NODE_ENV
+        return credentials
+      } else {
+        return null
+      }
     }
   },
   components: {
