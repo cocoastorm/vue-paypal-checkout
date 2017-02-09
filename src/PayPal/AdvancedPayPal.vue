@@ -13,14 +13,14 @@
       }
     },
     mounted: function () {
-      const vm = this
+      const vue = this
       paypal.Button.render({
         payment: function (resolve, reject) {
-          vm.methods.createPayment()
+          vue.methods.createPayment()
             .then((response) => {
               const data = response.data
               console.log('The payment was created!');
-              vm.$emit('paypal-paymentCreated', data)
+              vue.$emit('paypal-paymentCreated', data)
               resolve(data.paymentID)
             }, (err) => {
               reject(err)
@@ -29,22 +29,22 @@
 
         // Pass a function to be called when the customer completes the payment
         onAuthorize: function(data) {
-          vm.$emit('paypal-paymentCompleted', data)
-          vm.methods.executePayment(data.paymentID, data.payerID)
+          vue.$emit('paypal-paymentCompleted', data)
+          vue.methods.executePayment(data.paymentID, data.payerID)
             .then((response) => {
               const data = response.data
               console.log('The payment was successful!');
-              vm.$emit('paypal-paymentSuccess', data)
+              vue.$emit('paypal-paymentSuccess', data)
             }, (err) => {
               console.log('The payment has failed!');
-              vm.$emit('paypal-paymentFail', err)
+              vue.$emit('paypal-paymentFail', err)
             })
         },
 
         // Pass a function to be called when the customer cancels the payment
         onCancel: function(data) {
             console.log('The payment was cancelled!');
-            vm.$emit('paypal-paymentCancelled', data)
+            vue.$emit('paypal-paymentCancelled', data)
         }
       }, '#paypal')
     }
