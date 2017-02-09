@@ -29,23 +29,12 @@
         type: Boolean,
         required: false,
         default: true
-      },
-      locale: {
-        type: String,
-        required: false,
-        default: null
-      },
-      style: {
-        type: Object,
-        required: false,
-        default: null
       }
     },
     mounted: function () {
       const vm = this
       const env = (process.env.NODE_ENV === 'production') ? 'production' : 'sandbox'
-      console.log(env)
-      const options = {
+      paypal.Button.render({
         // Pass the client ids to use to create your transaction on sandbox and production environments
         client: vm.client,
 
@@ -53,7 +42,7 @@
         // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
 
         payment: function () {
-          return paypal.rest.payment.create(env, this.props.client, {
+          return paypal.rest.payment.create(vm.env, this.props.client, {
             transactions: [
               {
                 amount: {
@@ -80,12 +69,7 @@
             console.log('The payment was cancelled!');
             vm.$emit('paypal-paymentCancelled', data)
         }
-      }
-
-      if (vm.locale) { options.locale = vm.locale }
-      if (vm.style) { options.style = vm.style }
-
-      paypal.Button.render(options, '#paypal')
+      }, '#paypal')
     }
   }
 </script>
