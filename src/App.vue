@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import SimplePayPal from './SimplePayPal.vue'
+import SimplePayPal from './PayPal/SimplePayPal.vue'
 import credentials from './paypal.json'
 
 export default {
