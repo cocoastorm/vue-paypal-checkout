@@ -7,11 +7,6 @@
 
   export default {
     props: {
-      advanced: {
-        type: Boolean,
-        required: false,
-        default: false
-      },
       amount: {
         type: String,
         required: true
@@ -34,6 +29,7 @@
     mounted: function () {
       const vm = this
       const env = (process.env.NODE_ENV === 'production') ? 'production' : 'sandbox'
+      
       paypal.Button.render({
         // Pass the client ids to use to create your transaction on sandbox and production environments
         client: vm.client,
@@ -54,7 +50,7 @@
           })
         },
         // Display a "Pay Now" button rather than a "Continue" button
-        commit: vm.commit,
+        commit: true,
 
         // Pass a function to be called when the customer completes the payment
         onAuthorize: function(data, actions) {
