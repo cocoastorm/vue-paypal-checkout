@@ -2,12 +2,12 @@
   <div id="app">
     <img src="./assets/logo.png">
     <h1>{{ msg }}</h1>
-    <h2>PayPal</h2>
-    <PayPal
+    <h2>PayPal (Simple)</h2>
+    <SimplePayPal
     amount="10.00"
     currency="USD"
     :client="paypal">
-    </PayPal>
+    </SimplePayPal>
     
     <h2>PayPal Resources</h2>
     <ul>
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import PayPal from './PayPal.vue'
+import SimplePayPal from './SimplePayPal.vue'
 import credentials from './paypal.json'
 
 export default {
@@ -41,7 +41,7 @@ export default {
     }
   },
   components: {
-    PayPal
+    SimplePayPal
   }
 }
 </script>
@@ -72,5 +72,11 @@ li {
 
 a {
   color: #42b983;
+}
+
+#paypal {
+  display: block;
+  max-width: 150px;
+  margin: 0 auto;
 }
 </style>
