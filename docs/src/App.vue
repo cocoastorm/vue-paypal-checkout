@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <img src="./assets/logo.png"> -->
     <h1>{{ msg }}</h1>
     <h2>PayPal (Simple)</h2>
     <SimplePayPal
@@ -21,7 +21,7 @@
 
 <script>
 import SimplePayPal from '../../src/PayPal/SimplePayPal.vue'
-import credentials from '../../src/paypal.json'
+import credentials from '../config/paypal.json'
 
 export default {
   name: 'app',
