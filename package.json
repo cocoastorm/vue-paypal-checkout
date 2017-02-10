@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "ghpages": "node build/ghpages.js"
   },
   "dependencies": {
     "paypal-checkout": "^4.0.39",
