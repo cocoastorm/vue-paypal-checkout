@@ -1,0 +1,4 @@
+build/*.js
+config/*.js
+docs/config/*js
+docs/config/*json
