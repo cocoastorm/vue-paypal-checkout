@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import SimplePayPal from './PayPal/SimplePayPal.vue'
-import credentials from './paypal.json'
+import SimplePayPal from '../src/PayPal/SimplePayPal.vue'
+import credentials from '../src/paypal.json'
 
 export default {
   name: 'app',
