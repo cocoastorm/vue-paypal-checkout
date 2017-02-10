@@ -1,9 +1,9 @@
-import SimplePaypal from './PayPal/SimplePaypal'
+import SimplePayPal from './PayPal/SimplePaypal'
 import AdvancedPayPal from './PayPal/AdvancedPayPal'
 
 export const components = {
-  SimplePaypal,
-  AdvancedPayPal
+  'paypal-simple': SimplePayPal,
+  'paypal-advanced': AdvancedPayPal
 }
 
 export default {
@@ -14,7 +14,4 @@ export default {
   }
 }
 
-export {
-  SimplePaypal,
-  AdvancedPayPal
-}
+export components

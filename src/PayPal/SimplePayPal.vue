@@ -6,6 +6,7 @@
   import paypal from 'paypal-checkout'
 
   export default {
+    name: 'simplepaypal',
     props: {
       amount: {
         type: String,
