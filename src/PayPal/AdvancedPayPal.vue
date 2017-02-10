@@ -20,7 +20,7 @@
           vue.methods.createPayment()
             .then((response) => {
               const data = response.data
-              console.log('The payment was created!');
+              console.log('The payment was created!')
               vue.$emit('paypal-paymentCreated', data)
               resolve(data.paymentID)
             }, (err) => {
@@ -29,23 +29,23 @@
         },
 
         // Pass a function to be called when the customer completes the payment
-        onAuthorize: function(data) {
+        onAuthorize: function (data) {
           vue.$emit('paypal-paymentCompleted', data)
           vue.methods.executePayment(data.paymentID, data.payerID)
             .then((response) => {
               const data = response.data
-              console.log('The payment was successful!');
+              console.log('The payment was successful!')
               vue.$emit('paypal-paymentSuccess', data)
             }, (err) => {
-              console.log('The payment has failed!');
+              console.log('The payment has failed!')
               vue.$emit('paypal-paymentFail', err)
             })
         },
 
         // Pass a function to be called when the customer cancels the payment
-        onCancel: function(data) {
-            console.log('The payment was cancelled!');
-            vue.$emit('paypal-paymentCancelled', data)
+        onCancel: function (data) {
+          console.log('The payment was cancelled!')
+          vue.$emit('paypal-paymentCancelled', data)
         }
       }, '#paypal')
     }
