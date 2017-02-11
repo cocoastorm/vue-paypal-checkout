@@ -16,11 +16,6 @@ var webpackConfig = merge(baseConfig, {
     loaders: utils.styleLoaders()
   },
   devtool: '#inline-source-map',
-  vue: {
-    loaders: {
-      js: 'babel-loader'
-    }
-  },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../../config/test.env')
