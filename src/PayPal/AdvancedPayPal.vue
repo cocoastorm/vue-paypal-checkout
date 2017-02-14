@@ -1,12 +1,19 @@
 <template>
-<div id="paypal"></div>
+<div :id="id" class="paypal-button"></div>
 </template>
 
 <script>
+  import uuid from 'uuid/v4'
   import paypal from 'paypal-checkout'
 
   export default {
     name: 'advancedpaypal',
+    data: function () {
+      const id = uuid()
+      return {
+        id
+      }
+    },
     props: {
       methods: {
         type: Object,
@@ -47,7 +54,7 @@
           console.log('The payment was cancelled!')
           vue.$emit('paypal-paymentCancelled', data)
         }
-      }, '#paypal')
+      }, vue.id)
     }
   }
 </script>

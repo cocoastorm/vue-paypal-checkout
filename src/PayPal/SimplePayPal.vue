@@ -1,12 +1,19 @@
 <template>
-<div id="paypal"></div>
+<div :id="id" class="paypal-button"></div>
 </template>
 
 <script>
+  import uuid from 'uuid/v4'
   import paypal from 'paypal-checkout'
 
   export default {
     name: 'simplepaypal',
+    data: function () {
+      const id = uuid()
+      return {
+        id
+      }
+    },
     props: {
       amount: {
         type: String,
@@ -68,7 +75,7 @@
           console.log('The payment was cancelled!')
           vm.$emit('paypal-paymentCancelled', data)
         }
-      }, '#paypal')
+      }, vm.id)
     }
   }
 </script>
