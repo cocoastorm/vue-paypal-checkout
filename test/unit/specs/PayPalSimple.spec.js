@@ -1,5 +1,4 @@
 import Vue from 'vue'
-
 import SimplePayPal from 'src/PayPal/SimplePayPal'
 
 const credentials = {
