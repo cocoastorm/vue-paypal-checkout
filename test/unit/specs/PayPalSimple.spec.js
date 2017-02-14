@@ -1,7 +1,11 @@
 import Vue from 'vue'
 
-import credentials from 'docs/config/paypal.json'
-import SimplePayPal from 'src/components/SimplePayPal'
+import SimplePayPal from 'src/PayPal/SimplePayPal'
+
+const credentials = {
+  sandbox: 'AWi18rxt26-hrueMoPZ0tpGEOJnNT4QkiMQst9pYgaQNAfS1FLFxkxQuiaqRBj1vV5PmgHX_jA_c1ncL',
+  production: 'AVZhosFzrnZ5Mf3tiOxAD0M6NHv8pcB2IFNHAfp_h69mmbd-LElFYkJUSII3Y0FPbm7S7lxBuqWImLbl'
+}
 
 let getComponentWithProps = function (Component, propsData) {
   const Ctor = Vue.extend(Component)
@@ -23,9 +27,9 @@ describe('SimplePayPal.vue', () => {
 
     expect(simple).to.have.property('client')
     expect(simple.client).to.be.a('object')
-    expect(simple.client).to.have.property('live')
-    expect(simple.client.live).to.be.a('string')
-    expect(simple.client.live).to.have.length.above(5)
+    expect(simple.client).to.have.property('production')
+    expect(simple.client.production).to.be.a('string')
+    expect(simple.client.production).to.have.length.above(5)
     expect(simple.client).to.have.property('sandbox')
     expect(simple.client.sandbox).to.be.a('string')
     expect(simple.client.sandbox).to.have.length.above(5)

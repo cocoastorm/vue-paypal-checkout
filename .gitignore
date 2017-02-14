@@ -3,3 +3,6 @@ node_modules/
 dist/
 npm-debug.log
 src/paypal.json
+
+# unit tests
+test/unit/coverage
