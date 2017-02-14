@@ -15,7 +15,7 @@ let getComponentWithProps = function (Component, propsData) {
 describe('SimplePayPal.vue', () => {
   it('should have the correct props', () => {
     const simple = getComponentWithProps(SimplePayPal, {
-      amount: '10.00',
+      amount: '1.00',
       client: credentials,
       currency: 'USD',
       commit: true
@@ -23,7 +23,7 @@ describe('SimplePayPal.vue', () => {
 
     expect(simple).to.have.property('amount')
     expect(simple.amount).to.be.a('string')
-    expect(simple.amount).to.equal('10.00')
+    expect(simple.amount).to.equal('1.00')
 
     expect(simple).to.have.property('client')
     expect(simple.client).to.be.a('object')
@@ -40,5 +40,20 @@ describe('SimplePayPal.vue', () => {
 
     expect(simple).to.have.property('commit')
     expect(simple.commit).to.be.a('boolean')
+  })
+
+  it('should render an iframe', () => {
+    const vm = getComponentWithProps(SimplePayPal, {
+      amount: '1.00',
+      client: credentials,
+      currency: 'USD',
+      commit: true
+    })
+
+    // test mounted div
+    const mount = vm
+    expect(mount.$el.textContent).to.eql('')
+    expect(mount.$el.tagName).to.eql('DIV')
+    expect(mount.$el.querySelector('.xcomponent-show-component'))
   })
 })
