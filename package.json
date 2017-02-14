@@ -2,6 +2,7 @@
   "name": "paypal",
   "description": "A Vue.js project",
   "version": "1.0.0",
+  "main": "dist/vue-paypal-checkout.min.js",
   "author": "Khoa Nguyen <khoa.tan.nguyen.96@gmail.com>",
   "license": "MIT",
   "repository": {
