@@ -74,7 +74,7 @@ a {
   color: #42b983;
 }
 
-#paypal {
+.paypal-button {
   display: block;
   max-width: 150px;
   margin: 0 auto;

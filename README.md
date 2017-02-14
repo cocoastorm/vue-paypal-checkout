@@ -14,7 +14,7 @@ Vue.use(vuepaypal)
 ### Using the Simple PayPal component:
 ``` html
 <div id="app">
-  <simple amount="10.00" currency="USD" :client="paypal"></simple>
+  <paypal-simple amount="10.00" currency="USD" :client="paypal"></paypal-simple>
 </div>
 ```
 
@@ -36,7 +36,7 @@ Vue.use(vuepaypal)
 ### Using the Advanced PayPal component:
 ``` html
 <div id="app">
-  <advanced :methods="paypal"></advanced>
+  <paypal-advanced :methods="paypal"></paypal-advanced>
 </div>
 ```
 
