@@ -2,8 +2,12 @@
   "name": "paypal",
   "description": "A Vue.js project",
   "version": "1.0.0",
-  "author": "Khoa Nguyen <khoa@malonetuning.com>",
-  "private": true,
+  "author": "Khoa Nguyen <khoa.tan.nguyen.96@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/khoanguyen96/vue-paypal-checkout.git",
+    "type": "git"
+  },
   "scripts": {
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
