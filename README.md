@@ -1,6 +1,63 @@
 # vue-paypal-checkout
-
 > A simple Vue.js wrapper component for paypal-checkout
+
+## Usage
+include vue-paypal-checkout (main.js):
+``` javascript
+import Vue from 'vue'
+import vuepaypal from 'vue-paypal-checkout'
+
+Vue.use(vuepaypal.default) // or
+Vue.use(vuepaypal)
+```
+
+### Using the Simple PayPal component:
+``` html
+<div id="app">
+  <simple amount="10.00" currency="USD" :client="paypal"></simple>
+</div>
+```
+
+``` javascript
+<script>
+  export default {
+    data () {
+      return {
+        paypal: {
+          sandbox: '<sandbox client id>',
+          production: '<production client id>'
+        }
+      }
+    }
+  }
+</script>
+```
+
+### Using the Advanced PayPal component:
+``` html
+<div id="app">
+  <advanced :methods="paypal"></advanced>
+</div>
+```
+
+``` javascript
+<script>
+  export default {
+    data () {
+      return {
+        paypal: {
+          createPayment: function () {
+            // call to your api to create PayPal payment
+          },
+          executePayment: function () {
+            // call to your api to execute PayPal payment
+          }
+        }
+      }
+    }
+  }
+</script>
+```
 
 ## Build Setup
 
@@ -15,4 +72,6 @@ npm run dev
 npm run build
 ```
 
+# License and Reference
+vue-paypal-checkout is available under the [MIT license](http://opensource.org/licenses/MIT).
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
