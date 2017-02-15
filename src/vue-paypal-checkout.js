@@ -1,5 +1,5 @@
-import SimplePayPal from './components/SimplePaypal'
-import AdvancedPayPal from './components/AdvancedPayPal'
+import SimplePayPal from 'components/SimplePaypal'
+import AdvancedPayPal from 'components/AdvancedPayPal'
 
 export const components = {
   'paypal-simple': SimplePayPal,
