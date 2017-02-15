@@ -5,6 +5,6 @@ node_js:
   - 5
 cache: yarn
 install:
-  - yarn install
+  - npm install
 script:
-  - yarn run test
+  - npm run test
