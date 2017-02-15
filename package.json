@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "paypal-checkout": "^4.0.39",
-    "uuid": "^3.0.1",
+    "shortid": "^2.2.6",
     "vue": "^2.1.0"
   },
   "devDependencies": {
