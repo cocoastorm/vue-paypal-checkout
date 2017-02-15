@@ -33,7 +33,6 @@ export default {
   computed: {
     paypal: function () {
       if (credentials) {
-        credentials.env = process.env.NODE_ENV
         return credentials
       } else {
         return null

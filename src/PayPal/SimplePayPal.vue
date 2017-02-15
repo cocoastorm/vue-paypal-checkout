@@ -10,8 +10,12 @@
     name: 'simplepaypal',
     data: function () {
       const id = uuid()
+      const environment = (process.env.NODE_ENV === 'production')
+      ? 'production'
+      : 'sandbox'
       return {
-        id
+        id,
+        environment
       }
     },
     props: {
@@ -32,17 +36,25 @@
         type: Boolean,
         required: false,
         default: true
+      },
+      development: {
+        type: Boolean,
+        required: false
       }
     },
     mounted: function () {
-      const vm = this
-      const env = (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'testing')
-      ? 'sandbox'
-      : 'production'
+      const vue = this
+
+      // backup env from data ()
+      let env = vue.environment
+
+      if (vue.development) {
+        vue.development = 'sandbox'
+      }
   
       paypal.Button.render({
         // Pass the client ids to use to create your transaction on sandbox and production environments
-        client: vm.client,
+        client: vue.client,
 
         // Pass the payment details for your transaction
         // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
@@ -52,8 +64,8 @@
             transactions: [
               {
                 amount: {
-                  total: vm.amount,
-                  currency: vm.currency
+                  total: vue.amount,
+                  currency: vue.currency
                 }
               }
             ]
@@ -66,16 +78,16 @@
         onAuthorize: function (data, actions) {
           return actions.payment.execute().then(function () {
             console.log('The payment was completed!')
-            vm.$emit('paypal-paymentCompleted', data)
+            vue.$emit('paypal-paymentCompleted', data)
           })
         },
 
         // Pass a function to be called when the customer cancels the payment
         onCancel: function (data) {
           console.log('The payment was cancelled!')
-          vm.$emit('paypal-paymentCancelled', data)
+          vue.$emit('paypal-paymentCancelled', data)
         }
-      }, vm.id)
+      }, vue.id)
     }
   }
 </script>
