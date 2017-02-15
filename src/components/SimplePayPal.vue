@@ -7,7 +7,6 @@
   import paypal from 'paypal-checkout'
 
   export default {
-    name: 'simplepaypal',
     data: function () {
       const id = shortid.generate()
       const environment = (process.env.NODE_ENV === 'production')

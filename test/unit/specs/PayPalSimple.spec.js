@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import SimplePayPal from 'src/PayPal/SimplePayPal'
+import SimplePayPal from 'src/components/SimplePayPal'
 
 const credentials = {
   sandbox: 'AWi18rxt26-hrueMoPZ0tpGEOJnNT4QkiMQst9pYgaQNAfS1FLFxkxQuiaqRBj1vV5PmgHX_jA_c1ncL',

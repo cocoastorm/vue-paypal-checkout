@@ -7,7 +7,6 @@
   import paypal from 'paypal-checkout'
 
   export default {
-    name: 'advancedpaypal',
     data: function () {
       const id = shortid.generate()
       return {
