@@ -1,5 +1,8 @@
 # vue-paypal-checkout
+
 > A simple Vue.js wrapper component for paypal-checkout
+
+[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/khoanguyen96/vue-paypal-checkout)
 
 ## Usage
 include vue-paypal-checkout (main.js):
