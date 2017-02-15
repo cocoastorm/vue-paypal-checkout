@@ -3,13 +3,13 @@
 </template>
 
 <script>
-  import uuid from 'uuid/v4'
+  import shortid from 'shortid'
   import paypal from 'paypal-checkout'
 
   export default {
     name: 'simplepaypal',
     data: function () {
-      const id = uuid()
+      const id = shortid.generate()
       const environment = (process.env.NODE_ENV === 'production')
       ? 'production'
       : 'sandbox'

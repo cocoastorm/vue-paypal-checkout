@@ -39,6 +39,9 @@ describe('SimplePayPal.vue', () => {
 
     expect(simple).to.have.property('commit')
     expect(simple.commit).to.be.a('boolean')
+
+    expect(simple).to.have.property('development')
+    expect(simple.development).to.be.a('boolean')
   })
 
   it('should render an iframe', () => {

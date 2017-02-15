@@ -59,6 +59,15 @@ Vue.use(vuepaypal)
 </script>
 ```
 
+## Specifying the environment
+You can specifically pass a prop `development` which accepts a Boolean if you need to explicitly use the sandbox version of the PayPal Checkout Button. However, if this prop is false or hasn't been set, the component will fallback to `process.env.NODE_ENV` instead.
+
+``` html
+<div id="app">
+  <paypal-simple amount="10.00" currency="USD" :client="paypal" :development="true"></paypal-simple>
+</div>
+```
+
 ## Build Setup
 
 ``` bash

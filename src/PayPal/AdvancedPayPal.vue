@@ -3,13 +3,13 @@
 </template>
 
 <script>
-  import uuid from 'uuid/v4'
+  import shortid from 'shortid'
   import paypal from 'paypal-checkout'
 
   export default {
     name: 'advancedpaypal',
     data: function () {
-      const id = uuid()
+      const id = shortid.generate()
       return {
         id
       }
