@@ -20,9 +20,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.vue', '.json'],
-    modules: [
-      resolve('src')
-    ]
+    alias: {
+      '@': resolve('src')
+    }
   },
   module: {
     rules: [

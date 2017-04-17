@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import SimplePayPal from '../../src/components/SimplePayPal.vue'
+import SimplePayPal from '@/components/SimplePayPal.vue'
 import credentials from '../config/paypal.json'
 
 export default {

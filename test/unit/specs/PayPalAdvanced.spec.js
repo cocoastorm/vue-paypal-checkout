@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import AdvancedPayPal from 'src/components/AdvancedPayPal'
+import AdvancedPayPal from '@/components/AdvancedPayPal'
 
 let getComponentWithProps = function (Component, propsData) {
   const Ctor = Vue.extend(Component)
