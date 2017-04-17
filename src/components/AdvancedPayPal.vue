@@ -17,11 +17,20 @@
       methods: {
         type: Object,
         required: true
+      },
+      development: {
+        type: Boolean,
+        required: false,
+        default: false
       }
     },
     mounted: function () {
       const vue = this
+      const sandbox = vue.development
+
       paypal.Button.render({
+        env: (sandbox) ? 'sandbox' : 'production',
+
         payment: function (resolve, reject) {
           vue.methods.createPayment()
             .then((response) => {
@@ -53,7 +62,7 @@
           console.log('The payment was cancelled!')
           vue.$emit('paypal-paymentCancelled', data)
         }
-      }, vue.id)
+      }, 'paypal_' + vue.id)
     }
   }
 </script>

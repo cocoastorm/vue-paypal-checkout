@@ -38,20 +38,18 @@
       },
       development: {
         type: Boolean,
-        required: false
+        required: false,
+        default: false
       }
     },
     mounted: function () {
       const vue = this
-
-      // backup env from data ()
-      let env = vue.environment
-
-      if (vue.development) {
-        vue.development = 'sandbox'
-      }
+      const sandbox = vue.development
   
       paypal.Button.render({
+        // Pass in env
+        env: (sandbox) ? 'sandbox' : 'production',
+
         // Pass the client ids to use to create your transaction on sandbox and production environments
         client: vue.client,
 
@@ -59,7 +57,7 @@
         // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
 
         payment: function () {
-          return paypal.rest.payment.create(env, this.props.client, {
+          return paypal.rest.payment.create(this.props.env, this.props.client, {
             transactions: [
               {
                 amount: {

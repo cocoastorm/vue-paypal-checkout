@@ -29,6 +29,23 @@ describe('AdvancedPayPal.vue', () => {
     expect(paypal.methods.executePayment).to.be.a('function')
   })
 
+  it('should have a defaul development prop', () => {
+    let paypal = getComponentWithProps(AdvancedPayPal, {
+      methods: {
+        createPayment: function () {
+          Promise.resolve({ paymentID: 'dummyId' })
+        },
+        executePayment: function (paymentID, payerID) {
+          Promise.resolve({ paymentID, payerID })
+        }
+      }
+    })
+
+    expect(paypal).to.have.property('development')
+    expect(paypal.development).to.be.a('boolean')
+    expect(paypal.development).to.equal(false)
+  })
+
   describe('Payments', () => {
     describe('createPayment()', () => {
       it('should return paymentID in a Promise', (done) => {

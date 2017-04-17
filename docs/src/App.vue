@@ -6,7 +6,8 @@
     <SimplePayPal
     amount="10.00"
     currency="USD"
-    :client="paypal">
+    :client="paypal"
+    :development="true">
     </SimplePayPal>
     
     <h2>PayPal Resources</h2>
