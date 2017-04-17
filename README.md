@@ -67,7 +67,7 @@ You can specifically pass a prop `dev` which accepts a Boolean if you need to ex
 
 ``` html
 <div id="app">
-  <paypal-simple amount="10.00" currency="USD" :client="paypal" :development="true"></paypal-simple>
+  <paypal-simple amount="10.00" currency="USD" :client="paypal" :dev="true"></paypal-simple>
 </div>
 ```
 
