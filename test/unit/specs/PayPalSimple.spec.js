@@ -20,32 +20,34 @@ describe('SimplePayPal.vue', () => {
       commit: true
     })
 
-    expect(simple).to.have.property('amount')
-    expect(simple.amount).to.be.a('string')
-    expect(simple.amount).to.equal('1.00')
+    Vue.nextTick(() => {
+      expect(simple).to.have.property('amount')
+      expect(simple.amount).to.be.a('string')
+      expect(simple.amount).to.equal('1.00')
 
-    expect(simple).to.have.property('client')
-    expect(simple.client).to.be.a('object')
-    expect(simple.client).to.have.property('production')
-    expect(simple.client.production).to.be.a('string')
-    expect(simple.client.production).to.have.length.above(5)
-    expect(simple.client).to.have.property('sandbox')
-    expect(simple.client.sandbox).to.be.a('string')
-    expect(simple.client.sandbox).to.have.length.above(5)
+      expect(simple).to.have.property('client')
+      expect(simple.client).to.be.a('object')
+      expect(simple.client).to.have.property('production')
+      expect(simple.client.production).to.be.a('string')
+      expect(simple.client.production).to.have.length.above(5)
+      expect(simple.client).to.have.property('sandbox')
+      expect(simple.client.sandbox).to.be.a('string')
+      expect(simple.client.sandbox).to.have.length.above(5)
 
-    expect(simple).to.have.property('currency')
-    expect(simple.currency).to.be.a('string')
-    expect(simple.currency).to.have.length.within(2, 5)
+      expect(simple).to.have.property('currency')
+      expect(simple.currency).to.be.a('string')
+      expect(simple.currency).to.have.length.within(2, 5)
 
-    expect(simple).to.have.property('commit')
-    expect(simple.commit).to.be.a('boolean')
-    expect(simple.commit).to.equal(true)
+      expect(simple).to.have.property('commit')
+      expect(simple.commit).to.be.a('boolean')
+      expect(simple.commit).to.equal(true)
 
-    expect(simple).to.have.property('dev')
-    expect(simple.dev).to.be.a('boolean')
-    expect(simple.dev).to.equal(process.env.NODE_ENV !== 'production')
+      expect(simple).to.have.property('dev')
+      expect(simple.dev).to.be.a('boolean')
+      expect(simple.dev).to.equal(process.env.NODE_ENV !== 'production')
 
-    done()
+      done()
+    })
   })
 
   it('should render an iframe', (done) => {
@@ -56,12 +58,14 @@ describe('SimplePayPal.vue', () => {
       commit: true
     })
 
-    // test mounted div
-    const mount = vm
-    expect(mount.$el.textContent).to.eql('')
-    expect(mount.$el.tagName).to.eql('DIV')
-    expect(mount.$el.querySelector('.xcomponent-show-component'))
+    Vue.nextTick(() => {
+      // test mounted div
+      const mount = vm
+      expect(mount.$el.textContent).to.eql('')
+      expect(mount.$el.tagName).to.eql('DIV')
+      expect(mount.$el.querySelector('.xcomponent-show-component'))
 
-    done()
+      done()
+    })
   })
 })

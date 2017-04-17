@@ -19,16 +19,18 @@ describe('AdvancedPayPal.vue', () => {
       }
     })
 
-    expect(paypal).to.have.property('methods')
-    expect(paypal.methods).to.be.a('object')
+    Vue.nextTick(() => {
+      expect(paypal).to.have.property('methods')
+      expect(paypal.methods).to.be.a('object')
 
-    expect(paypal.methods).to.have.property('createPayment')
-    expect(paypal.methods.createPayment).to.be.a('function')
+      expect(paypal.methods).to.have.property('createPayment')
+      expect(paypal.methods.createPayment).to.be.a('function')
 
-    expect(paypal.methods).to.have.property('executePayment')
-    expect(paypal.methods.executePayment).to.be.a('function')
+      expect(paypal.methods).to.have.property('executePayment')
+      expect(paypal.methods.executePayment).to.be.a('function')
 
-    done()
+      done()
+    })
   })
 
   it('should have a default dev prop', (done) => {
@@ -43,11 +45,12 @@ describe('AdvancedPayPal.vue', () => {
       }
     })
 
-    expect(paypal).to.have.property('dev')
-    expect(paypal.dev).to.be.a('boolean')
-    expect(paypal.dev).to.equal(process.env.NODE_ENV !== 'production')
-
-    done()
+    Vue.nextTick(() => {
+      expect(paypal).to.have.property('dev')
+      expect(paypal.dev).to.be.a('boolean')
+      expect(paypal.dev).to.equal(process.env.NODE_ENV !== 'production')
+      done()
+    })
   })
 
   describe('Payments', () => {
@@ -64,10 +67,12 @@ describe('AdvancedPayPal.vue', () => {
           }
         })
 
-        paypal.methods.createPayment()
-        .then((response) => {
-          expect(response).to.have.property('paymentID')
-          done()
+        Vue.nextTick(() => {
+          paypal.methods.createPayment()
+          .then((response) => {
+            expect(response).to.have.property('paymentID')
+            done()
+          })
         })
       })
     })
@@ -85,10 +90,11 @@ describe('AdvancedPayPal.vue', () => {
           }
         })
 
-        let executePayment = paypal.methods.executePayment(1, 5)
-        expect(executePayment).to.be.a('object')
-
-        done()
+        Vue.nextTick(() => {
+          let executePayment = paypal.methods.executePayment(1, 5)
+          expect(executePayment).to.be.a('object')
+          done()
+        })
       })
     })
   })

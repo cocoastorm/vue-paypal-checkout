@@ -2,13 +2,20 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <h1>{{ msg }}</h1>
-    <h2>PayPal (Simple)</h2>
+    
+    <h2>PayPal Simple</h2>
     <SimplePayPal
     amount="10.00"
     currency="USD"
     :client="paypal"
     :dev="true">
     </SimplePayPal>
+
+    <h2>PayPal Advanced (Requires PayPal REST Integration)</h2>
+    <AdvancedPayPal
+    :methods="paymentMethods"
+    :dev="true">
+    </AdvancedPayPal>
     
     <h2>PayPal Resources</h2>
     <ul>
@@ -22,13 +29,22 @@
 
 <script>
 import SimplePayPal from '@/components/SimplePayPal.vue'
+import AdvancedPayPal from '@/components/AdvancedPayPal.vue'
 import credentials from '../config/paypal.json'
 
 export default {
   name: 'app',
   data () {
     return {
-      msg: 'PayPal Vue Components'
+      msg: 'PayPal Vue Components',
+      paymentMethods: {
+        createPayment: function () {
+          Promise.resolve({ paymentID: 'dummyId' })
+        },
+        executePayment: function (paymentID, payerID) {
+          Promise.resolve({ paymentID, payerID })
+        }
+      }
     }
   },
   computed: {
@@ -41,7 +57,8 @@ export default {
     }
   },
   components: {
-    SimplePayPal
+    SimplePayPal,
+    AdvancedPayPal
   }
 }
 </script>
