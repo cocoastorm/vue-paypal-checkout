@@ -62,7 +62,7 @@
           console.log('The payment was cancelled!')
           vue.$emit('paypal-paymentCancelled', data)
         }
-      }, 'paypal_' + vue.id)
+      }, vue.id)
     }
   }
 </script>
