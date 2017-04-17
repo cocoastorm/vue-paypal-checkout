@@ -7,7 +7,7 @@ let getComponentWithProps = function (Component, propsData) {
 }
 
 describe('AdvancedPayPal.vue', () => {
-  it('should have a methods prop', () => {
+  it('should have a methods prop', (done) => {
     let paypal = getComponentWithProps(AdvancedPayPal, {
       methods: {
         createPayment: function () {
@@ -27,9 +27,11 @@ describe('AdvancedPayPal.vue', () => {
 
     expect(paypal.methods).to.have.property('executePayment')
     expect(paypal.methods.executePayment).to.be.a('function')
+
+    done()
   })
 
-  it('should have a default dev prop', () => {
+  it('should have a default dev prop', (done) => {
     let paypal = getComponentWithProps(AdvancedPayPal, {
       methods: {
         createPayment: function () {
@@ -43,7 +45,9 @@ describe('AdvancedPayPal.vue', () => {
 
     expect(paypal).to.have.property('dev')
     expect(paypal.dev).to.be.a('boolean')
-    expect(paypal.dev).to.equal(false)
+    expect(paypal.dev).to.equal(process.env.NODE_ENV !== 'production')
+
+    done()
   })
 
   describe('Payments', () => {
@@ -69,7 +73,7 @@ describe('AdvancedPayPal.vue', () => {
     })
 
     describe('executePayment()', () => {
-      it('should take in paymentID and payerID', () => {
+      it('should take in paymentID and payerID', (done) => {
         let paypal = getComponentWithProps(AdvancedPayPal, {
           methods: {
             createPayment: function () {
@@ -83,6 +87,8 @@ describe('AdvancedPayPal.vue', () => {
 
         let executePayment = paypal.methods.executePayment(1, 5)
         expect(executePayment).to.be.a('object')
+
+        done()
       })
     })
   })

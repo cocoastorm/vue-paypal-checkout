@@ -2,7 +2,7 @@ import Vue from 'vue'
 import SimplePayPal from 'src/components/SimplePayPal'
 
 const credentials = {
-  sandbox: 'AWi18rxt26-hrueMoPZ0tpGEOJnNT4QkiMQst9pYgaQNAfS1FLFxkxQuiaqRBj1vV5PmgHX_jA_c1ncL',
+  sandbox: 'Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl',
   production: 'AVZhosFzrnZ5Mf3tiOxAD0M6NHv8pcB2IFNHAfp_h69mmbd-LElFYkJUSII3Y0FPbm7S7lxBuqWImLbl'
 }
 
@@ -12,7 +12,7 @@ let getComponentWithProps = function (Component, propsData) {
 }
 
 describe('SimplePayPal.vue', () => {
-  it('should have the correct props', () => {
+  it('should have the correct props', (done) => {
     const simple = getComponentWithProps(SimplePayPal, {
       amount: '1.00',
       client: credentials,
@@ -43,10 +43,12 @@ describe('SimplePayPal.vue', () => {
 
     expect(simple).to.have.property('dev')
     expect(simple.dev).to.be.a('boolean')
-    expect(simple.dev).to.equal(false)
+    expect(simple.dev).to.equal(process.env.NODE_ENV !== 'production')
+
+    done()
   })
 
-  it('should render an iframe', () => {
+  it('should render an iframe', (done) => {
     const vm = getComponentWithProps(SimplePayPal, {
       amount: '1.00',
       client: credentials,
@@ -59,5 +61,7 @@ describe('SimplePayPal.vue', () => {
     expect(mount.$el.textContent).to.eql('')
     expect(mount.$el.tagName).to.eql('DIV')
     expect(mount.$el.querySelector('.xcomponent-show-component'))
+
+    done()
   })
 })
