@@ -29,7 +29,7 @@ describe('AdvancedPayPal.vue', () => {
     expect(paypal.methods.executePayment).to.be.a('function')
   })
 
-  it('should have a defaul development prop', () => {
+  it('should have a default dev prop', () => {
     let paypal = getComponentWithProps(AdvancedPayPal, {
       methods: {
         createPayment: function () {
@@ -41,9 +41,9 @@ describe('AdvancedPayPal.vue', () => {
       }
     })
 
-    expect(paypal).to.have.property('development')
-    expect(paypal.development).to.be.a('boolean')
-    expect(paypal.development).to.equal(false)
+    expect(paypal).to.have.property('dev')
+    expect(paypal.dev).to.be.a('boolean')
+    expect(paypal.dev).to.equal(false)
   })
 
   describe('Payments', () => {

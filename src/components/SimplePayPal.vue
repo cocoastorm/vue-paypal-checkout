@@ -36,15 +36,15 @@
         required: false,
         default: true
       },
-      development: {
+      dev: {
         type: Boolean,
         required: false,
-        default: false
+        default: process.env.NODE_ENV !== 'production'
       }
     },
     mounted: function () {
       const vue = this
-      const sandbox = vue.development
+      const sandbox = vue.dev
   
       paypal.Button.render({
         // Pass in env
