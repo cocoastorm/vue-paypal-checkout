@@ -45,6 +45,7 @@
     mounted: function () {
       const vue = this
       const sandbox = vue.dev
+
       paypal.Button.render({
         // Pass in env
         env: (sandbox) ? 'sandbox' : 'production',
@@ -67,6 +68,7 @@
             ]
           })
         },
+
         // Display a "Pay Now" button rather than a "Continue" button
         commit: true,
 

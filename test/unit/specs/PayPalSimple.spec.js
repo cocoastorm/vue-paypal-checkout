@@ -11,46 +11,76 @@ let getComponentWithProps = function (Component, propsData) {
   return new Ctor({ propsData }).$mount()
 }
 
-describe('SimplePayPal.vue', () => {
-  it('should have the correct props', (done) => {
-    const simple = getComponentWithProps(SimplePayPal, {
+describe('testComponentPayPal.vue', () => {
+  let testComponent = null
+
+  beforeEach(done => {
+    testComponent = getComponentWithProps(SimplePayPal, {
       amount: '1.00',
       client: credentials,
       currency: 'USD',
       commit: true
     })
 
+    done()
+  })
+
+  it('should have the amount prop', done => {
     Vue.nextTick(() => {
-      expect(simple).to.have.property('amount')
-      expect(simple.amount).to.be.a('string')
-      expect(simple.amount).to.equal('1.00')
-
-      expect(simple).to.have.property('client')
-      expect(simple.client).to.be.a('object')
-      expect(simple.client).to.have.property('production')
-      expect(simple.client.production).to.be.a('string')
-      expect(simple.client.production).to.have.length.above(5)
-      expect(simple.client).to.have.property('sandbox')
-      expect(simple.client.sandbox).to.be.a('string')
-      expect(simple.client.sandbox).to.have.length.above(5)
-
-      expect(simple).to.have.property('currency')
-      expect(simple.currency).to.be.a('string')
-      expect(simple.currency).to.have.length.within(2, 5)
-
-      expect(simple).to.have.property('commit')
-      expect(simple.commit).to.be.a('boolean')
-      expect(simple.commit).to.equal(true)
-
-      expect(simple).to.have.property('dev')
-      expect(simple.dev).to.be.a('boolean')
-      expect(simple.dev).to.equal(process.env.NODE_ENV !== 'production')
+      expect(testComponent).to.have.property('amount')
+      expect(testComponent.amount).to.be.a('string')
+      expect(testComponent.amount).to.equal('1.00')
 
       done()
     })
   })
 
-  it('should render an iframe', (done) => {
+  it('should have the client prop with production and sandbox', done => {
+    Vue.nextTick(() => {
+      expect(testComponent).to.have.property('client')
+      expect(testComponent.client).to.be.a('object')
+      expect(testComponent.client).to.have.property('production')
+      expect(testComponent.client.production).to.be.a('string')
+      expect(testComponent.client.production).to.have.length.above(5)
+      expect(testComponent.client).to.have.property('sandbox')
+      expect(testComponent.client.sandbox).to.be.a('string')
+      expect(testComponent.client.sandbox).to.have.length.above(5)
+
+      done()
+    })
+  })
+
+  it('should have the currency prop', done => {
+    Vue.nextTick(() => {
+      expect(testComponent).to.have.property('currency')
+      expect(testComponent.currency).to.be.a('string')
+      expect(testComponent.currency).to.have.length.within(2, 5)
+
+      done()
+    })
+  })
+
+  it('should have the commit prop', done => {
+    Vue.nextTick(() => {
+      expect(testComponent).to.have.property('commit')
+      expect(testComponent.commit).to.be.a('boolean')
+      expect(testComponent.commit).to.equal(true)
+
+      done()
+    })
+  })
+
+  it('should have the dev prop', done => {
+    Vue.nextTick(() => {
+      expect(testComponent).to.have.property('dev')
+      expect(testComponent.dev).to.be.a('boolean')
+      expect(testComponent.dev).to.equal(process.env.NODE_ENV !== 'production')
+
+      done()
+    })
+  })
+
+  it('should render an iframe', done => {
     const vm = getComponentWithProps(SimplePayPal, {
       amount: '1.00',
       client: credentials,
