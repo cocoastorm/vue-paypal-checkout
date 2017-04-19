@@ -36,6 +36,25 @@ Vue.use(vuepaypal)
 </script>
 ```
 
+#### Events fired from the Simple PayPal component:
+
+Each of these events fired also contain a payload which is essentially the response sent back from PayPal.
+
++ `paypal-paymentCompleted`
++ `paypal-paymentCancelled`
+
+In the instance of `paypal-paymentCompleted`, you will get back an object similar to this:
+
+``` json
+{  
+  "intent": "sale",
+  "payerID": "UVGR8M6W9V7ZA",
+  "paymentID": "PAY-3L661344P7749433KLD2R5ZQ",
+  "paymentToken": "EC-0H346145A8442392H",
+  "returnUrl" :"https://www.sandbox.paypal.com/?paymentId=PAY-3L661344P7749433KLD2R5ZQ&token=EC-0H346145A8442392H&PayerID=UVGR8M6W9V7ZA"
+}
+```
+
 ### Using the Advanced PayPal component:
 ``` html
 <div id="app">
