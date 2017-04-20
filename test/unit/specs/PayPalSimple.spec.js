@@ -11,18 +11,12 @@ let getComponentWithProps = function (Component, propsData) {
   return new Ctor({ propsData }).$mount()
 }
 
-describe('testComponentPayPal.vue', () => {
-  let testComponent = null
-
-  beforeEach(done => {
-    testComponent = getComponentWithProps(SimplePayPal, {
-      amount: '1.00',
-      client: credentials,
-      currency: 'USD',
-      commit: true
-    })
-
-    done()
+describe('SimplePayPal.vue', () => {
+  let testComponent = getComponentWithProps(SimplePayPal, {
+    amount: '1.00',
+    client: credentials,
+    currency: 'USD',
+    commit: true
   })
 
   it('should have the amount prop', done => {

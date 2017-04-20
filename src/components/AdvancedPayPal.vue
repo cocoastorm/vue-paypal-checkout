@@ -14,9 +14,13 @@
       }
     },
     props: {
-      methods: {
-        type: Object,
-        required: true
+      createPayment: {
+        type: Function,
+        required: false
+      },
+      executePayment: {
+        type: Function,
+        required: false
       },
       dev: {
         type: Boolean,
@@ -32,10 +36,10 @@
         env: (sandbox) ? 'sandbox' : 'production',
 
         payment: function (resolve, reject) {
-          vue.methods.createPayment()
+          vue.createPayment()
             .then((response) => {
               const data = response.data
-              console.log('The payment was created!')
+              if (sandbox) console.log('The payment was created!')
               vue.$emit('paypal-paymentCreated', data)
               resolve(data.paymentID)
             }, (err) => {
@@ -46,10 +50,10 @@
         // Pass a function to be called when the customer completes the payment
         onAuthorize: function (data) {
           vue.$emit('paypal-paymentCompleted', data)
-          vue.methods.executePayment(data.paymentID, data.payerID)
+          vue.executePayment(data.paymentID, data.payerID)
             .then((response) => {
               const data = response.data
-              console.log('The payment was successful!')
+              if (sandbox) console.log('The payment was successful!')
               vue.$emit('paypal-paymentSuccess', data)
             }, (err) => {
               console.log('The payment has failed!')
@@ -59,7 +63,7 @@
 
         // Pass a function to be called when the customer cancels the payment
         onCancel: function (data) {
-          console.log('The payment was cancelled!')
+          if (sandbox) console.log('The payment was cancelled!')
           vue.$emit('paypal-paymentCancelled', data)
         }
       }, vue.id)
