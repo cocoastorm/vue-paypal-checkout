@@ -8,7 +8,8 @@
     amount="10.00"
     currency="USD"
     :client="paypal"
-    :dev="true">
+    :dev="true"
+    :invoiceNumber="'201705051001'">
     </SimplePayPal>
 
     <h2>PayPal Advanced (Requires PayPal REST Integration)</h2>

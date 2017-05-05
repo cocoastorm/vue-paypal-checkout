@@ -67,18 +67,20 @@
             transactions: []
           }
           
-          if (invoice !== null) {
-            payment = Object.assign(payment, { invoiceNumber: invoice })
-          }
-
-          payment.transactions.push({
+          let transaction = {
             amount: {
               total: vue.amount,
               currency: vue.currency
             }
-          })
+          }
+
+          if (invoice !== null) {
+            transaction = Object.assign(transaction, { 'invoice_number': invoice })
+          }
           
-          return paypal.rest.payment.create(this.props.env, this.props.client, payment)
+          return paypal.rest.payment.create(this.props.env, this.props.client, {
+            transactions: [ transaction ]
+          })
         },
 
         // Display a "Pay Now" button rather than a "Continue" button
