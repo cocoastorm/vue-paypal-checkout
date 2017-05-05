@@ -17,7 +17,7 @@ Vue.use(vuepaypal)
 ### Using the Simple PayPal component:
 ``` html
 <div id="app">
-  <paypal-simple amount="10.00" currency="USD" :client="paypal"></paypal-simple>
+  <paypal-simple amount="10.00" currency="USD" :client="paypal" invoiceNumber="201701011000"></paypal-simple>
 </div>
 ```
 
