@@ -16,7 +16,8 @@ describe('SimplePayPal.vue', () => {
     amount: '1.00',
     client: credentials,
     currency: 'USD',
-    commit: true
+    commit: true,
+    invoiceNumber: '201705051001'
   })
 
   it('should have the amount prop', done => {
@@ -69,6 +70,15 @@ describe('SimplePayPal.vue', () => {
       expect(testComponent).to.have.property('dev')
       expect(testComponent.dev).to.be.a('boolean')
       expect(testComponent.dev).to.equal(process.env.NODE_ENV !== 'production')
+
+      done()
+    })
+  })
+
+  it('should have the invoiceNumber prop', done => {
+    Vue.nextTick(() => {
+      expect(testComponent).to.have.property('invoiceNumber')
+      expect(testComponent.invoiceNumber).to.be.a('string')
 
       done()
     })

@@ -40,11 +40,17 @@
         type: Boolean,
         required: false,
         default: process.env.NODE_ENV !== 'production'
+      },
+      invoiceNumber: {
+        type: String,
+        required: false,
+        default: null
       }
     },
     mounted: function () {
       const vue = this
       const sandbox = vue.dev
+      const invoice = vue.invoiceNumber
 
       paypal.Button.render({
         // Pass in env
@@ -57,16 +63,22 @@
         // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
 
         payment: function () {
-          return paypal.rest.payment.create(this.props.env, this.props.client, {
-            transactions: [
-              {
-                amount: {
-                  total: vue.amount,
-                  currency: vue.currency
-                }
-              }
-            ]
+          let payment = {
+            transactions: []
+          }
+          
+          if (invoice !== null) {
+            payment = Object.assign(payment, { invoiceNumber: invoice })
+          }
+
+          payment.transactions.push({
+            amount: {
+              total: vue.amount,
+              currency: vue.currency
+            }
           })
+          
+          return paypal.rest.payment.create(this.props.env, this.props.client, payment)
         },
 
         // Display a "Pay Now" button rather than a "Continue" button
