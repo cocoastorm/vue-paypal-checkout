@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Simple PayPal Checkout with Vue</title>
+  <meta name="description" content="PayPal with Vue">
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://cdn.rawgit.com/khoanguyen96/vue-paypal-checkout/master/dist/vue-paypal-checkout.min.js"></script>
+
+  <div id="app">
+    <div class="content">
+      <p>Pay with USD $10.00</p>
+      <SimplePayPal
+        amount="10.00"
+        currency="USD"
+        :client="paypal"
+        :dev="true"
+        :invoiceNumber="'201705051001'">
+      </SimplePayPal>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        paypal: {
+          "sandbox": "Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl",
+          "production": "AVZhosFzrnZ5Mf3tiOxAD0M6NHv8pcB2IFNHAfp_h69mmbd-LElFYkJUSII3Y0FPbm7S7lxBuqWImLbl"
+        }
+      }
+    });
+  </script>
+</body>
+</html>

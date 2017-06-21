@@ -4,21 +4,53 @@
 
 [![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/khoanguyen96/vue-paypal-checkout)
 
-## Usage
-include vue-paypal-checkout (main.js):
-``` javascript
-import Vue from 'vue'
-import vuepaypal from 'vue-paypal-checkout'
+## Usage with Vue itself
+Simply include Vue and `vue-paypal-checkout` into your html file (using unpkg cdn)
 
-Vue.use(vuepaypal.default) // or
-Vue.use(vuepaypal)
+``` html
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-paypal-checkout@2.0.0/dist/vue-paypal-checkout.min.js"></script>
+```
+
+By including vue-paypal-checkout in a script tag, it will automagically register the components into Vue
+``` html
+<div id="app">
+  // Simple PayPal Component
+  <SimplePayPal amount="10.00" currency="USD" :client="paypal" invoiceNumber="201701011000"></SimplePayPal>
+
+  // Advanced PayPal Component
+  <AdvancedPayPal :methods="paypal"></AdvancedPayPal>
+</div>
+```
+
+## Usage with Vue Loader
+Simply import the component you need into your .vue file.
+There are two components `SimplePayPal` and `AdvancedPayPal`. By default the `SimplePayPal` Vue component is exported.
+
+``` javascript
+import PayPal from 'vue-paypal-checkout'
+
+...
+components: {
+  PayPal
+}
+```
+
+However, if you would like to use the `AdvancedPayPal` component instead, simply import it like this:
+
+``` javascript
+import { AdvancedPayPal } from 'vue-paypal-checkout'
+
+export default {
+  components: {
+    AdvancedPayPal
+  }
+}
 ```
 
 ### Using the Simple PayPal component:
 ``` html
-<div id="app">
-  <paypal-simple amount="10.00" currency="USD" :client="paypal" invoiceNumber="201701011000"></paypal-simple>
-</div>
+ <SimplePayPal amount="10.00" currency="USD" :client="paypal" invoiceNumber="201701011000"></SimplePayPal>
 ```
 
 ``` javascript
@@ -36,7 +68,7 @@ Vue.use(vuepaypal)
 </script>
 ```
 
-#### Events fired from the Simple PayPal component:
+#### Events fired by the Simple PayPal component:
 
 Each of these events fired also contain a payload which is essentially the response sent back from PayPal.
 
