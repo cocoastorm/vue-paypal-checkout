@@ -7,6 +7,7 @@
   import paypal from 'paypal-checkout'
 
   export default {
+    name: 'simple-paypal',
     data: function () {
       const id = shortid.generate()
       const environment = (process.env.NODE_ENV === 'production')
@@ -63,10 +64,6 @@
         // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
 
         payment: function () {
-          let payment = {
-            transactions: []
-          }
-          
           let transaction = {
             amount: {
               total: vue.amount,
@@ -77,7 +74,7 @@
           if (invoice !== null) {
             transaction = Object.assign(transaction, { 'invoice_number': invoice })
           }
-          
+
           return paypal.rest.payment.create(this.props.env, this.props.client, {
             transactions: [ transaction ]
           })
