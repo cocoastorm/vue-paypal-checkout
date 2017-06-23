@@ -10,7 +10,7 @@ var chalk = require('chalk')
 var shell = require('shelljs')
 var webpack = require('webpack')
 var config = require('../config')
-var webpackConfig = require('./webpack.ghpages.conf')
+var webpackConfig = require('./webpack.pages.conf')
 
 var spinner = ora('building github pages...')
 spinner.start()

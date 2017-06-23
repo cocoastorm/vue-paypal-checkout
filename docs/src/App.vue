@@ -9,7 +9,7 @@
     currency="USD"
     :client="paypal"
     :dev="true"
-    :invoiceNumber="'201705051001'">
+    :invoiceNumber="invoiceNumber">
     </SimplePayPal>
 
     <h2>PayPal Advanced (Requires PayPal REST Integration)</h2>
@@ -33,11 +33,14 @@ import SimplePayPal from '@/components/SimplePayPal.vue'
 import AdvancedPayPal from '@/components/AdvancedPayPal.vue'
 import credentials from '../config/paypal.json'
 
+import shortid from 'shortid'
+
 export default {
   name: 'app',
   data () {
     return {
       msg: 'PayPal Vue Components',
+      invoiceNumber: shortid.generate(),
       paymentMethods: {
         createPayment: function () {
           Promise.resolve({ paymentID: 'dummyId' })
