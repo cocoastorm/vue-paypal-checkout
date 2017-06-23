@@ -9,13 +9,8 @@
   export default {
     name: 'simple-paypal',
     data: function () {
-      const id = shortid.generate()
-      const environment = (process.env.NODE_ENV === 'production')
-      ? 'production'
-      : 'sandbox'
       return {
-        id,
-        environment
+        id: shortid.generate()
       }
     },
     props: {
@@ -39,8 +34,7 @@
       },
       dev: {
         type: Boolean,
-        required: false,
-        default: process.env.NODE_ENV !== 'production'
+        required: false
       },
       invoiceNumber: {
         type: String,
@@ -48,54 +42,66 @@
         default: null
       }
     },
+    computed: {
+      env: function () {
+        const env = process.env.NODE_ENV
+
+        if (this.dev) {
+          return 'sandbox'
+        }
+
+        return (env !== 'production') ? 'sandbox' : 'production'
+      }
+    },
+    methods: {
+      PayPalPayment: function () {
+        let transaction = {
+          amount: {
+            total: this.amount,
+            currency: this.currency
+          }
+        }
+
+        if (this.invoiceNumber !== null) {
+          transaction = Object.assign({}, transaction, { 'invoice_number': this.invoiceNumber })
+        }
+
+        return paypal.rest.payment.create(this.env, this.client, {
+          transactions: [ transaction ]
+        })
+      },
+      onAuthorize: function (data, actions) {
+        const vue = this
+        return actions.payment.execute().then(() => {
+          vue.$emit('paypal-paymentCompleted', data)
+        })
+      },
+      onCancel: function (data) {
+        const vue = this
+        vue.$emit('paypal-paymentCancelled', data)
+      }
+    },
     mounted: function () {
       const vue = this
-      const sandbox = vue.dev
-      const invoice = vue.invoiceNumber
-
       paypal.Button.render({
         // Pass in env
-        env: (sandbox) ? 'sandbox' : 'production',
+        env: vue.env,
 
-        // Pass the client ids to use to create your transaction on sandbox and production environments
+        // Pass in the client ids to use to create your transaction on sandbox and production environments
         client: vue.client,
 
         // Pass the payment details for your transaction
         // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
-
-        payment: function () {
-          let transaction = {
-            amount: {
-              total: vue.amount,
-              currency: vue.currency
-            }
-          }
-
-          if (invoice !== null) {
-            transaction = Object.assign(transaction, { 'invoice_number': invoice })
-          }
-
-          return paypal.rest.payment.create(this.props.env, this.props.client, {
-            transactions: [ transaction ]
-          })
-        },
+        payment: vue.PayPalPayment,
 
         // Display a "Pay Now" button rather than a "Continue" button
-        commit: true,
+        commit: vue.commit,
 
         // Pass a function to be called when the customer completes the payment
-        onAuthorize: function (data, actions) {
-          return actions.payment.execute().then(function () {
-            console.log('The payment was completed!')
-            vue.$emit('paypal-paymentCompleted', data)
-          })
-        },
+        onAuthorize: vue.onAuthorize,
 
         // Pass a function to be called when the customer cancels the payment
-        onCancel: function (data) {
-          console.log('The payment was cancelled!')
-          vue.$emit('paypal-paymentCancelled', data)
-        }
+        onCancel: vue.onCancel
       }, vue.id)
     }
   }

@@ -17,6 +17,7 @@ describe('SimplePayPal.vue', () => {
     client: credentials,
     currency: 'USD',
     commit: true,
+    dev: true,
     invoiceNumber: '201705051001'
   })
 
@@ -69,7 +70,7 @@ describe('SimplePayPal.vue', () => {
     Vue.nextTick(() => {
       expect(testComponent).to.have.property('dev')
       expect(testComponent.dev).to.be.a('boolean')
-      expect(testComponent.dev).to.equal(process.env.NODE_ENV !== 'production')
+      expect(testComponent.dev).to.equal(true)
 
       done()
     })
@@ -85,16 +86,9 @@ describe('SimplePayPal.vue', () => {
   })
 
   it('should render an iframe', done => {
-    const vm = getComponentWithProps(SimplePayPal, {
-      amount: '1.00',
-      client: credentials,
-      currency: 'USD',
-      commit: true
-    })
-
     Vue.nextTick(() => {
       // test mounted div
-      const mount = vm
+      const mount = testComponent
       expect(mount.$el.textContent).to.eql('')
       expect(mount.$el.tagName).to.eql('DIV')
       expect(mount.$el.querySelector('.xcomponent-show-component'))
