@@ -7,10 +7,3 @@ install:
 script:
   - npm run build
   - npm run test
-deploy:
-  provider: npm
-  email: khoa.tan.nguyen.96@gmail.com
-  api_key:
-    secure: cCOOyphL9WhLhbsoWe15C57MtqUX0fWZtHi3SnJl6BUN6F7dXoSIK0IKQJDYbVfGFrHzd/jyRIPJNgqYTOx6Ol+lrv3/oqxGQeq8KMTJZV7UehEZRheiOC1s7YJEasfIO0Ks3dXgcgt+q6Cf8BlXGAfqb8LUOo0OcZ46NsgdZN3gvykH9IgLGTI+6CTSkHId2P0OYaYhYLoiYqiqa3jAowWqAKz3uUz6+BOAZbG0r1SLRqDDdU/xyQ70HPn1m55vYdjuHMTa7aVUUJ+QDzexWNc9kXVU3k8pqkyfjj2tDQLIluCM5o4jDJ8J0xDV41sl51h2ZHyOHC3JKGmehHgmMhX3tbY78mvhCtvY6UGu6AXrdRdBTvtb9mIoIZB8/2j1uDfNveL1POc6oVOJgW0JkTP9O/hbesjvg4q9JeePid539QPAYUVLqG867KIYnE4YDdE+20JYA2SMCJ+U88QcaCHRV62u6v2vF3oc0wbRmYDfHcZD1HdKfIMY1cPCqElzOuFXd6KELcVEaDeRuSNPe4ymE2uyTKYIvMJUpBxDubV/ubF/2kSRonrnuwLccRj8ZRdTUhC5rrvn5h3qlTTeHovvdzEp6oRB+tecGzGzkZamG+DMQ3zBZItF7+GAD3FA0nBN8B5K4OErVICZHyMqKmHYGr9rJlqVWsr0ZNeDqQo=
-  on:
-    tags: true

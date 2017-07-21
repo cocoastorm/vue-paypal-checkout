@@ -1,9 +1,9 @@
 import SimplePayPal from '@/components/SimplePayPal'
-import AdvancedPayPal from '@/components/AdvancedPayPal'
+// import AdvancedPayPal from '@/components/AdvancedPayPal'
 
 const components = {
   'SimplePayPal': SimplePayPal,
-  'AdvancedPayPal': AdvancedPayPal
+  // 'AdvancedPayPal': AdvancedPayPal
 }
 
 Object.keys(components).forEach((name) => {
