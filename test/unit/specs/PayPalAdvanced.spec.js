@@ -20,7 +20,6 @@ describe('AdvancedPayPal.vue', () => {
     Vue.nextTick(() => {
       expect(advancedPayPal).to.have.property('createPayment')
       expect(advancedPayPal.createPayment).to.be.a('function')
-
       done()
     })
   })
@@ -29,16 +28,15 @@ describe('AdvancedPayPal.vue', () => {
     Vue.nextTick(() => {
       expect(advancedPayPal).to.have.property('executePayment')
       expect(advancedPayPal.executePayment).to.be.a('function')
-
       done()
     })
   })
 
-  it('should have a default dev prop', done => {
+  it('should have a dev prop', done => {
     Vue.nextTick(() => {
       expect(advancedPayPal).to.have.property('dev')
       expect(advancedPayPal.dev).to.be.a('boolean')
-      expect(advancedPayPal.dev).to.equal(process.env.NODE_ENV !== 'production')
+      expect(advancedPayPal.dev).to.equal(false)
       done()
     })
   })

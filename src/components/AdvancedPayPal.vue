@@ -17,16 +17,44 @@
     props: {
       createPayment: {
         type: Function,
-        required: false
+        required: true
       },
       executePayment: {
         type: Function,
-        required: false
+        required: true
       },
       dev: {
         type: Boolean,
-        required: false,
-        default: process.env.NODE_ENV !== 'production'
+        required: false
+      }
+    },
+    computed: {
+      env: function () {
+        const env = process.env.NODE_ENV
+
+        if (this.dev) {
+          return 'sandbox'
+        }
+
+        return (env !== 'production') ? 'sandbox' : 'production'
+      }
+    },
+    methods: {
+      PayPalPayment: function () {
+        const vue = this
+        const method = this.createPayment()
+
+        return method.then((data) => {
+          if (data.hasOwnProperty('paymentId')) {
+            vue.$emit('paypal-paymentCreated', data)
+            return Promise.resolve(data.paymentId)
+          } else {
+            const err = new Error('no paymentId found')
+            return Promise.reject(err)
+          }
+        }).catch((err) => {
+          vue.$emit('paypal-paymentFailed', err)
+        })
       }
     },
     mounted: function () {
@@ -34,7 +62,7 @@
       const sandbox = vue.dev
 
       paypal.Button.render({
-        env: (sandbox) ? 'sandbox' : 'production',
+        env: vue.env,
 
         payment: function (resolve, reject) {
           vue.createPayment()
