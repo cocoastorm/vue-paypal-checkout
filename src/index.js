@@ -1,8 +1,8 @@
-import SimplePayPal from '@/components/SimplePayPal'
+import PayPalCheckout from '@/components/PayPalCheckout'
 // import AdvancedPayPal from '@/components/AdvancedPayPal'
 
 const components = {
-  'SimplePayPal': SimplePayPal,
+  'paypal-checkout': PayPalCheckout,
   // 'AdvancedPayPal': AdvancedPayPal
 }
 
@@ -13,6 +13,4 @@ Object.keys(components).forEach((name) => {
   }
 })
 
-export { SimplePayPal, AdvancedPayPal }
-
-export default SimplePayPal
+export default PayPalCheckout

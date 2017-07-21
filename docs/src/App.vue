@@ -3,21 +3,15 @@
     <!-- <img src="./assets/logo.png"> -->
     <h1>{{ msg }}</h1>
     
-    <h2>PayPal Simple</h2>
-    <SimplePayPal
+    <h2>PayPal Checkout</h2>
+    <PayPal
     amount="30.00"
     currency="USD"
     :client="paypal"
     :dev="true"
     :invoiceNumber="invoiceNumber"
     :items="items">
-    </SimplePayPal>
-
-    <h2>PayPal Advanced (Requires PayPal REST Integration)</h2>
-    <AdvancedPayPal
-    :methods="paymentMethods"
-    :dev="true">
-    </AdvancedPayPal>
+    </PayPal>
     
     <h2>PayPal Resources</h2>
     <ul>
@@ -30,8 +24,7 @@
 </template>
 
 <script>
-import SimplePayPal from '@/components/SimplePayPal.vue'
-import AdvancedPayPal from '@/components/AdvancedPayPal.vue'
+import PayPal from '@/components/SimplePayPal.vue'
 import credentials from '../config/paypal.json'
 
 import shortid from 'shortid'
@@ -40,7 +33,7 @@ export default {
   name: 'app',
   data () {
     return {
-      msg: 'PayPal Vue Components',
+      msg: 'PayPal Checkout Component',
       invoiceNumber: shortid.generate(),
       items: [
         {
@@ -57,15 +50,7 @@ export default {
           "price": "15",
           "currency": "USD"
         }
-      ],
-      paymentMethods: {
-        createPayment: function () {
-          Promise.resolve({ paymentID: 'dummyId' })
-        },
-        executePayment: function (paymentID, payerID) {
-          Promise.resolve({ paymentID, payerID })
-        }
-      }
+      ]
     }
   },
   computed: {
@@ -78,8 +63,7 @@ export default {
     }
   },
   components: {
-    SimplePayPal,
-    AdvancedPayPal
+    PayPal
   }
 }
 </script>

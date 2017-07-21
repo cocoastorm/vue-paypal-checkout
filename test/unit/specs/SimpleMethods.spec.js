@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import SimplePayPal from '@/components/SimplePayPal'
+import PayPalCheckout from '@/components/PayPalCheckout'
 
 const credentials = {
   sandbox: 'Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl',
@@ -30,8 +30,8 @@ let getItems = function () {
   ]
 }
 
-describe('Methods within SimplePayPal.vue', () => {
-  let testComponent = getComponentWithProps(SimplePayPal, {
+describe('Methods within PayPalCheckout.vue', () => {
+  let testComponent = getComponentWithProps(PayPalCheckout, {
     amount: '30.00',
     client: credentials,
     currency: 'USD',
