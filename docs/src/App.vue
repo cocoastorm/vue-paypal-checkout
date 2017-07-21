@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import PayPal from '@/components/SimplePayPal.vue'
+import PayPal from '@/components/PayPalCheckout.vue'
 import credentials from '../config/paypal.json'
 
 import shortid from 'shortid'
