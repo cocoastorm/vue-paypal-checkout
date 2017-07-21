@@ -22,15 +22,15 @@
         type: Object,
         required: true
       },
-      currency: {
-        type: String,
-        required: false,
-        default: 'USD'
-      },
       commit: {
         type: Boolean,
         required: false,
         default: true
+      },
+      currency: {
+        type: String,
+        required: false,
+        default: 'USD'
       },
       dev: {
         type: Boolean,
@@ -38,8 +38,11 @@
       },
       invoiceNumber: {
         type: String,
-        required: false,
-        default: null
+        required: false
+      },
+      items: {
+        type: Array,
+        required: false
       }
     },
     computed: {
@@ -54,6 +57,17 @@
       }
     },
     methods: {
+      item_list: function () {
+        let item_list = {
+          items: []
+        }
+
+        this.items.forEach((item) => {
+          item_list.items.push(item)
+        })
+
+        return item_list
+      },
       PayPalPayment: function () {
         let transaction = {
           amount: {
@@ -62,8 +76,12 @@
           }
         }
 
-        if (this.invoiceNumber !== null) {
-          transaction = Object.assign({}, transaction, { 'invoice_number': this.invoiceNumber })
+        if (this.invoiceNumber !== undefined) {
+          transaction.invoice_number = this.invoiceNumber
+        }
+
+        if (this.items !== undefined) {
+          transaction.item_list = this.item_list()
         }
 
         return paypal.rest.payment.create(this.env, this.client, {
@@ -72,8 +90,9 @@
       },
       onAuthorize: function (data, actions) {
         const vue = this
-        return actions.payment.execute().then(() => {
-          vue.$emit('paypal-paymentCompleted', data)
+        vue.$emit('paypal-paymentAuthorized', data)
+        return actions.payment.execute().then((response) => {
+          vue.$emit('paypal-paymentCompleted', response)
         })
       },
       onCancel: function (data) {

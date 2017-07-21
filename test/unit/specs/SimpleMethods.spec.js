@@ -11,13 +11,33 @@ let getComponentWithProps = function (Component, propsData) {
   return new Ctor({ propsData }).$mount()
 }
 
+let getItems = function () {
+  return [
+    {
+      "name": "hat",
+      "description": "Brown hat.",
+      "quantity": "5",
+      "price": "3",
+      "currency": "USD"
+    },
+    {
+      "name": "handbag",
+      "description": "Black handbag.",
+      "quantity": "1",
+      "price": "15",
+      "currency": "USD"
+    }
+  ]
+}
+
 describe('Methods within SimplePayPal.vue', () => {
   let testComponent = getComponentWithProps(SimplePayPal, {
-    amount: '1.00',
+    amount: '30.00',
     client: credentials,
     currency: 'USD',
     commit: true,
-    invoiceNumber: '201705051001'
+    invoiceNumber: '201705051001',
+    items: getItems()
   })
 
   describe('Environment', () => {
@@ -92,7 +112,7 @@ describe('Methods within SimplePayPal.vue', () => {
       payment.then((p) => {
         const transaction = p.transactions[0]
         expect(transaction).to.have.property('amount')
-        expect(transaction.amount).to.equal(1.00)
+        expect(transaction.amount).to.equal(30.00)
       })
     })
 
@@ -111,6 +131,24 @@ describe('Methods within SimplePayPal.vue', () => {
         const transaction = p.transactions[0]
         expect(transaction).to.have.property('invoice_number')
         expect(transaction.invoice_number).to.equal('201705051001')
+      })
+    })
+
+    it('transaction has a item_list', () => {
+      const payment = testComponent.PayPalPayment()
+      payment.then((p) => {
+        const transaction = p.transactions[0]
+        expect(transaction).to.have.property('item_list')
+        expect(transaction.item_list).to.be('Object')
+      })
+    })
+
+    it('transaction has items array', () => {
+      const payment = testComponent.PayPalPayment()
+      payment.then((p) => {
+        const itemList = p.transactions[0].item_list
+        expect(itemList.items).to.be.instanceOf(Array)
+        expect(itemList.items).to.have.deep.members(getItems())
       })
     })
   })

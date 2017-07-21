@@ -11,21 +11,41 @@ let getComponentWithProps = function (Component, propsData) {
   return new Ctor({ propsData }).$mount()
 }
 
+let getItems = function () {
+  return [
+    {
+      "name": "hat",
+      "description": "Brown hat.",
+      "quantity": "5",
+      "price": "3",
+      "currency": "USD"
+    },
+    {
+      "name": "handbag",
+      "description": "Black handbag.",
+      "quantity": "1",
+      "price": "15",
+      "currency": "USD"
+    }
+  ]
+}
+
 describe('SimplePayPal.vue', () => {
   let testComponent = getComponentWithProps(SimplePayPal, {
-    amount: '1.00',
+    amount: '30.00',
     client: credentials,
-    currency: 'USD',
     commit: true,
+    currency: 'USD',
     dev: true,
-    invoiceNumber: '201705051001'
+    invoiceNumber: '201705051001',
+    items: getItems()
   })
 
   it('should have the amount prop', done => {
     Vue.nextTick(() => {
       expect(testComponent).to.have.property('amount')
       expect(testComponent.amount).to.be.a('string')
-      expect(testComponent.amount).to.equal('1.00')
+      expect(testComponent.amount).to.equal('30.00')
 
       done()
     })
@@ -80,6 +100,15 @@ describe('SimplePayPal.vue', () => {
     Vue.nextTick(() => {
       expect(testComponent).to.have.property('invoiceNumber')
       expect(testComponent.invoiceNumber).to.be.a('string')
+
+      done()
+    })
+  })
+
+  it('should have the items prop', done => {
+    Vue.nextTick(() => {
+      expect(testComponent).to.have.property('items')
+      expect(testComponent.items).to.be.instanceOf(Array)
 
       done()
     })
