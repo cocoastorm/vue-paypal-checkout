@@ -5,11 +5,12 @@
     
     <h2>PayPal Simple</h2>
     <SimplePayPal
-    amount="10.00"
+    amount="30.00"
     currency="USD"
     :client="paypal"
     :dev="true"
-    :invoiceNumber="invoiceNumber">
+    :invoiceNumber="invoiceNumber"
+    :items="items">
     </SimplePayPal>
 
     <h2>PayPal Advanced (Requires PayPal REST Integration)</h2>
@@ -41,6 +42,22 @@ export default {
     return {
       msg: 'PayPal Vue Components',
       invoiceNumber: shortid.generate(),
+      items: [
+        {
+          "name": "hat",
+          "description": "Brown hat.",
+          "quantity": "5",
+          "price": "3",
+          "currency": "USD"
+        },
+        {
+          "name": "handbag",
+          "description": "Black handbag.",
+          "quantity": "1",
+          "price": "15",
+          "currency": "USD"
+        }
+      ],
       paymentMethods: {
         createPayment: function () {
           Promise.resolve({ paymentID: 'dummyId' })
