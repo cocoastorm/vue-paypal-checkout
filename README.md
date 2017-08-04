@@ -2,8 +2,9 @@
 
 > A simple Vue.js wrapper component for `paypal-checkout`
 
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://travis-ci.org/khoanguyen96/vue-paypal-checkout)
-![David](https://david-dm.org/khoanguyen96/vue-paypal.svg)
+[![Travis](https://img.shields.io/travis/khoanguyen96/vue-paypal-checkout.svg)](https://travis-ci.org/khoanguyen96/vue-paypal-checkout)
+[![npm](https://img.shields.io/npm/v/vue-paypal-checkout.svg)](https://www.npmjs.com/package/vue-paypal-checkout)
+[![David](https://img.shields.io/david/khoanguyen96/vue-paypal-checkout.svg)](https://david-dm.org/khoanguyen96/vue-paypal-checkout)
 
 ## Usage with Vue itself
 Simply include Vue and `vue-paypal-checkout` into your html file (using unpkg cdn)
