@@ -10,7 +10,8 @@
     :client="paypal"
     :dev="true"
     :invoiceNumber="invoiceNumber"
-    :items="items">
+    :items="items"
+    :buttonStyle="style">
     </PayPal>
     
     <h2>PayPal Resources</h2>
@@ -35,6 +36,12 @@ export default {
     return {
       msg: 'PayPal Checkout Component',
       invoiceNumber: shortid.generate(),
+      style: {
+        label: 'checkout',
+        size: 'responsive',
+        shape: 'rect',
+        color: 'blue'
+      },
       items: [
         {
           "name": "hat",

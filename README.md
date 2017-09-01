@@ -114,6 +114,43 @@ The items you specify must total up to the be the same amount you specified in t
 </script>
 ```
 
+#### Button Style
+`paypal-checkout` allows changing the style of the button via a style object like so:
+
+``` js
+{
+    label: 'checkout',
+    size:  'responsive',    // small | medium | large | responsive
+    shape: 'pill',         // pill | rect
+    color: 'gold'         // gold | blue | silver | black
+}
+```
+
+Due to a Vue.js restriction, you'll have to pass it as a `buttonStyle` prop to the component instead if you want to style your PayPal Checkout Button.
+
+``` js
+data () {
+  myStyle: {
+    {
+      label: 'checkout',
+      size:  'responsive',
+      shape: 'pill',
+      color: 'gold'
+    }
+  }
+}
+```
+
+``` html
+ <PayPal
+  amount="10.00"
+  :buttonStyle="myStyle"
+  currency="USD"
+  :client="credentials"
+  invoiceNumber="201701011000"
+  :items="myItems">
+</PayPal>
+```
 
 #### Events fired by the Simple PayPal component:
 
@@ -195,6 +232,7 @@ npm run build
 
 ## License and Reference
 vue-paypal-checkout is available under the [MIT license](http://opensource.org/licenses/MIT).
+
 vue-paypal-checkout is a wrapper Vue component that uses `paypal-checkout` which is under the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
