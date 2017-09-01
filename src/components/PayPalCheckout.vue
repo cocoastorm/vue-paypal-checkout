@@ -6,6 +6,42 @@
   import shortid from 'shortid'
   import paypal from 'paypal-checkout'
 
+  const styleOptions = {
+    size: ['tiny', 'small', 'medium', 'responsive'],
+    color:  ['orange', 'blue', 'silver'],
+    shape: ['pill', 'rect']
+  }
+
+  const styleDefault = {
+    size: 'medium',
+    color: 'orange',
+    shape: 'pill'
+  }
+
+  const validator = function (source, options, defaultOptions) {
+    const copy = Object.assign({}, source)
+
+    function isValid (item, options) {
+      return options.some((v) => {
+        return v === item
+      })
+    }
+
+    Object.keys(options).forEach((key) => {
+      const item = copy[key]
+      const temp = defaultOptions[key]
+      const valid = isValid(item, options[key])
+
+      if (!valid) {
+        console.warn(`style.${key} = \'${item}\' isn\'t a valid option`, options[key])
+        console.warn(`style.${key} = \'${item}\' has been replaced with \'${temp}\' instead`)
+        copy[key] = defaultOptions[key]
+      }
+    })
+
+    return copy
+  }
+
   export default {
     name: 'simple-paypal',
     data: function () {
@@ -42,6 +78,10 @@
       },
       items: {
         type: Array,
+        required: false
+      },
+      buttonStyle: {
+        type: Object,
         required: false
       }
     },
@@ -102,9 +142,16 @@
     },
     mounted: function () {
       const vue = this
+
+      // validate style prop
+      const buttonStyle = validator(vue.buttonStyle, styleOptions, styleDefault)
+
       paypal.Button.render({
         // Pass in env
         env: vue.env,
+
+        // Pass in style
+        style: buttonStyle,
 
         // Pass in the client ids to use to create your transaction on sandbox and production environments
         client: vue.client,
