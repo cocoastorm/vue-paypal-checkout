@@ -933,6 +933,10 @@ boom@2.x.x:
   dependencies:
     hoek "2.x.x"
 
+bowser@^1.7.1:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/bowser/-/bowser-1.7.3.tgz#504bdb43118ca8db9cbbadf28fd60f265af96e4f"
+
 brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -4220,14 +4224,15 @@ pathval@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
 
-paypal-checkout@^4.0.85:
-  version "4.0.85"
-  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.85.tgz#44f39d55d6a3572ce98b1dd237362410e22d1c5b"
+paypal-checkout@^4.0.119:
+  version "4.0.119"
+  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.119.tgz#a0f7ea6ee791f4fca560acadb4b2e909e0c4b6bb"
   dependencies:
     Base64 "^1.0.0"
     beaver-logger "^3.0.6"
-    post-robot "^6.0.7"
-    xcomponent "^2.0.60"
+    bowser "^1.7.1"
+    post-robot "^7.0.1"
+    xcomponent "^5.0.0"
     zalgo-promise "^1.0.10"
 
 pbkdf2@^3.0.3:
@@ -4304,9 +4309,9 @@ portfinder@^1.0.9:
     debug "^2.2.0"
     mkdirp "0.5.x"
 
-post-robot@^6.0.0, post-robot@^6.0.7:
-  version "6.0.10"
-  resolved "https://registry.yarnpkg.com/post-robot/-/post-robot-6.0.10.tgz#4036ec3120b301b29f1922d014743ab5de6e2f3b"
+post-robot@^7.0.1:
+  version "7.0.12"
+  resolved "https://registry.yarnpkg.com/post-robot/-/post-robot-7.0.12.tgz#03dc9345addbfd3dc42a4fd8830fa12ec546ae17"
   dependencies:
     cross-domain-safe-weakmap "^1.0.1"
     cross-domain-utils "^1.0.1"
@@ -5995,15 +6000,15 @@ wtf-8@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wtf-8/-/wtf-8-1.0.0.tgz#392d8ba2d0f1c34d1ee2d630f15d0efb68e1048a"
 
-xcomponent@^2.0.60:
-  version "2.0.61"
-  resolved "https://registry.yarnpkg.com/xcomponent/-/xcomponent-2.0.61.tgz#b7fb46453eddf2aff366028aa477f826dbb3dcfd"
+xcomponent@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/xcomponent/-/xcomponent-5.0.0.tgz#dbda9c84afe308070390cf0a1eadc1e55e0f0be0"
   dependencies:
     beaver-logger "^3"
     cross-domain-safe-weakmap "^1.0.8"
     cross-domain-utils "^1.0.5"
     hi-base32 "^0.1.1"
-    post-robot "^6.0.0"
+    post-robot "^7.0.1"
     zalgo-promise "^1.0.4"
 
 xml-char-classes@^1.0.0:
