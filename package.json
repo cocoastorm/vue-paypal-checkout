@@ -1,7 +1,7 @@
 {
   "name": "vue-paypal-checkout",
   "description": "A simple Vue.js wrapper component for paypal-checkout",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "main": "dist/vue-paypal-checkout.min.js",
   "author": "Khoa Nguyen <khoa.tan.nguyen.96@gmail.com>",
   "license": "MIT",
