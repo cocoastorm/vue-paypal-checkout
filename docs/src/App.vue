@@ -40,7 +40,7 @@ export default {
         label: 'checkout',
         size: 'responsive',
         shape: 'rect',
-        color: 'blue'
+        color: 'gold'
       },
       items: [
         {

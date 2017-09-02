@@ -8,19 +8,11 @@
 
   const styleOptions = {
     size: ['tiny', 'small', 'medium', 'responsive'],
-    color:  ['orange', 'blue', 'silver'],
+    color:  ['gold', 'blue', 'silver'],
     shape: ['pill', 'rect']
   }
 
-  const styleDefault = {
-    size: 'medium',
-    color: 'orange',
-    shape: 'pill'
-  }
-
-  const validator = function (source, options, defaultOptions) {
-    const copy = Object.assign({}, source)
-
+  const validator = function (source, options) {
     function isValid (item, options) {
       return options.some((v) => {
         return v === item
@@ -28,18 +20,13 @@
     }
 
     Object.keys(options).forEach((key) => {
-      const item = copy[key]
-      const temp = defaultOptions[key]
+      const item = source[key]
       const valid = isValid(item, options[key])
 
       if (!valid) {
         console.warn(`style.${key} = \'${item}\' isn\'t a valid option`, options[key])
-        console.warn(`style.${key} = \'${item}\' has been replaced with \'${temp}\' instead`)
-        copy[key] = defaultOptions[key]
       }
     })
-
-    return copy
   }
 
   export default {
@@ -144,14 +131,14 @@
       const vue = this
 
       // validate style prop
-      const buttonStyle = validator(vue.buttonStyle, styleOptions, styleDefault)
+      validator(vue.buttonStyle, styleOptions)
 
       paypal.Button.render({
         // Pass in env
         env: vue.env,
 
         // Pass in style
-        style: buttonStyle,
+        style: vue.buttonStyle,
 
         // Pass in the client ids to use to create your transaction on sandbox and production environments
         client: vue.client,
