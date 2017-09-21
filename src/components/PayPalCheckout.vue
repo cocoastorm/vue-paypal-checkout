@@ -6,20 +6,13 @@
   import shortid from 'shortid'
   import paypal from 'paypal-checkout'
 
-  const styleOptions = {
-    size: ['tiny', 'small', 'medium', 'responsive'],
-    color:  ['orange', 'blue', 'silver'],
-    shape: ['pill', 'rect']
-  }
-
-  const styleDefault = {
-    size: 'medium',
-    color: 'orange',
-    shape: 'pill'
-  }
-
-  const validator = function (source, options, defaultOptions) {
+  const validateButtonStyle = function (source) {
     const copy = Object.assign({}, source)
+    const options = {
+      size: ['tiny', 'small', 'medium', 'responsive'],
+      color: ['gold', 'blue', 'silver'],
+      shape: ['pill', 'rect']
+    }
 
     function isValid (item, options) {
       return options.some((v) => {
@@ -29,17 +22,15 @@
 
     Object.keys(options).forEach((key) => {
       const item = copy[key]
-      const temp = defaultOptions[key]
       const valid = isValid(item, options[key])
 
       if (!valid) {
         console.warn(`style.${key} = \'${item}\' isn\'t a valid option`, options[key])
-        console.warn(`style.${key} = \'${item}\' has been replaced with \'${temp}\' instead`)
-        copy[key] = defaultOptions[key]
+        return false
       }
     })
 
-    return copy
+    return true
   }
 
   export default {
@@ -82,7 +73,8 @@
       },
       buttonStyle: {
         type: Object,
-        required: false
+        required: false,
+        validator: validateButtonStyle
       }
     },
     computed: {
@@ -142,16 +134,10 @@
     },
     mounted: function () {
       const vue = this
-
-      // validate style prop
-      const buttonStyle = validator(vue.buttonStyle, styleOptions, styleDefault)
-
-      paypal.Button.render({
+      
+      const buttonObject = {
         // Pass in env
         env: vue.env,
-
-        // Pass in style
-        style: buttonStyle,
 
         // Pass in the client ids to use to create your transaction on sandbox and production environments
         client: vue.client,
@@ -168,7 +154,14 @@
 
         // Pass a function to be called when the customer cancels the payment
         onCancel: vue.onCancel
-      }, vue.id)
+      }
+
+      // validate style prop
+      if (vue.buttonStyle !== undefined) {
+        buttonObject.style = vue.buttonStyle
+      }
+
+      paypal.Button.render(buttonObject, vue.id)
     }
   }
 </script>
