@@ -2,8 +2,8 @@
   "name": "vue-paypal-checkout",
   "description": "A simple Vue.js wrapper component for paypal-checkout",
   "version": "2.1.2",
-  "jsnext": "dist/bundle.js",
-  "main": "dist/bundle.common.js",
+  "jsnext": "dist/vue-paypal-checkout.js",
+  "main": "dist/vue-paypal-checkout.common.js",
   "directories": {
     "test": "test"
   },
@@ -25,21 +25,25 @@
     "src/"
   ],
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": "^4.16.4",
     "paypal-checkout": "^4.0.130",
     "shortid": "^2.2.8",
-    "vue": "^2.3.4"
+    "vue": "latest"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.0",
+    "camelcase": "^4.1.0",
     "eslint": "^3.7.1",
     "eslint-config-airbnb-base": "^8.0.0",
     "eslint-plugin-html": "^1.5.3",
     "eslint-plugin-import": "^1.16.0",
     "node-sass": "^3.10.1",
-    "rollup": "^0.36.3",
-    "rollup-plugin-buble": "^0.14.0",
-    "rollup-plugin-commonjs": "^5.0.5",
-    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "rollup-plugin-vue": "^2.2.6"
   },
   "engines": {

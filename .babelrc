@@ -1,13 +1,11 @@
 {
   "presets": [
-    ["es2015", { "modules": false }],
-    "stage-2"
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["last 2 versions"]
+      }
+    }]
   ],
-  "plugins": ["transform-runtime"],
-  "comments": false,
-  "env": {
-    "test": {
-      "plugins": [ "istanbul" ]
-    }
-  }
+  "plugins": ["external-helpers"]
 }

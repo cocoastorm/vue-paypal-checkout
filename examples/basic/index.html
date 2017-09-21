@@ -13,18 +13,19 @@
 
 <body>
   <script src="https://unpkg.com/vue"></script>
-  <script src="https://cdn.rawgit.com/khoanguyen96/vue-paypal-checkout/master/dist/vue-paypal-checkout.min.js"></script>
+  <!-- <script src="https://cdn.rawgit.com/khoanguyen96/vue-paypal-checkout/master/dist/vue-paypal-checkout.min.js"></script> -->
+  <script src="../../dist/vue-paypal-checkout.min.js"></script>
 
   <div id="app">
     <div class="content">
       <p>Pay with USD $10.00</p>
-      <SimplePayPal
+      <paypal-checkout>
         amount="10.00"
         currency="USD"
         :client="paypal"
         :dev="true"
         :invoiceNumber="'201705051001'">
-      </SimplePayPal>
+      </paypal-checkout>
     </div>
   </div>
 
