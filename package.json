@@ -25,6 +25,7 @@
     "src/"
   ],
   "dependencies": {
+    "lodash": "^4.17.4",
     "paypal-checkout": "^4.0.130",
     "shortid": "^2.2.8",
     "vue": "^2.3.4"

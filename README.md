@@ -205,31 +205,6 @@ In the instance of `paypal-paymentCompleted`, you will get back a response objec
 }
 ```
 
-## Specifying the environment
-You can specifically pass a prop `dev` which accepts a Boolean if you need to explicitly use the sandbox version of the PayPal Checkout Button. However, if this prop is false or hasn't been set, the component will fallback to `process.env.NODE_ENV` instead.
-
-``` html
-<div id="app">
-  <paypal-checkout amount="10.00" currency="USD" :client="paypal" :dev="true"></paypal-checkout>
-</div>
-```
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# run unit tests
-npm run test
-
-# build for production with minification
-npm run build
-```
-
 ## License and Reference
 vue-paypal-checkout is available under the [MIT license](http://opensource.org/licenses/MIT).
 

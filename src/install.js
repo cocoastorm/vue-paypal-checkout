@@ -1,3 +1,4 @@
+import Vue from 'vue';
 import each from 'lodash/each';
 import components from './main';
 
