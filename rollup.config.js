@@ -3,8 +3,10 @@ import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import { rollup } from 'rollup';
+
 import clone from 'lodash/cloneDeep';
 import camelcase from 'camelcase';
+import chalk from 'chalk';
 
 import { default as vueConfig, pack } from './config/rollup-plugin-vue.config';
 import babelConfig from './config/babel.config';
@@ -45,7 +47,14 @@ if (vueConfig.standalone) {
     format: 'iife',
     file: `dist/${pack.name}.min.js`,
     name: camelcase(pack.name),
-  })).catch(err => console.log(err));
+  })).then(() => {
+    console.log(chalk.cyan('Build complete.\n'))
+  }).catch(err => {
+    console.log(
+      chalk.red('Build Failed.\n'),
+      chalk.yellow(err)
+    )
+  });
 }
 
 export default config;
