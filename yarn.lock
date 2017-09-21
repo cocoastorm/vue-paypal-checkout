@@ -4283,9 +4283,9 @@ pathval@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pathval/-/pathval-1.1.0.tgz#b942e6d4bde653005ef6b71361def8727d0645e0"
 
-paypal-checkout@^4.0.119:
-  version "4.0.119"
-  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.119.tgz#a0f7ea6ee791f4fca560acadb4b2e909e0c4b6bb"
+paypal-checkout@^4.0.130:
+  version "4.0.130"
+  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.130.tgz#2446b306b8a6b064936b6a05411ff867ab778b04"
   dependencies:
     Base64 "^1.0.0"
     beaver-logger "^3.0.6"
