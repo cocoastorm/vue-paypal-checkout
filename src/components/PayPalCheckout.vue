@@ -60,6 +60,7 @@ export default {
           const valid = isValid(item, options[key]);
 
           if (!valid) {
+            // eslint-disable-next-line
             console.warn(`style.${key} = '${item}' isn't a valid option`, options[key]);
             return false;
           }
