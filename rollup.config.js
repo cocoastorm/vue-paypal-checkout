@@ -2,6 +2,7 @@ import vue from 'rollup-plugin-vue';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import uglify from 'rollup-plugin-uglify';
 import { rollup } from 'rollup';
 
 import clone from 'lodash/cloneDeep';
@@ -39,6 +40,7 @@ if (vueConfig.standalone) {
       browser: true,
     }),
     commonjs(),
+    uglify(),
   ].concat(options.plugins);
 
   rollup(options).then(bundle => bundle.write({
