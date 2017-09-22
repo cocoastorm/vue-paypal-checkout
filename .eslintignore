@@ -1,4 +1,5 @@
-build/*.js
-config/*.js
-docs/config/*js
-docs/config/*json
+node_modules/
+dist/
+coverage/
+config/
+rollup.config.js

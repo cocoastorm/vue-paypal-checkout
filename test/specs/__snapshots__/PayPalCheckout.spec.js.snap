@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PayPalCheckout.vue iframe rendering has same HTML structure 1`] = `<div id="vue-paypal-test" class="paypal-button"></div>`;

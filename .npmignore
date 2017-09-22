@@ -1,4 +1,10 @@
-build
+rollup-plugin-vue/.gitignore
+*.log
+*.swp
+*.yml
+bower.json
 coverage
+config
+dist/*.map
+lib
 test
-.*
