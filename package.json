@@ -69,7 +69,7 @@
     "not ie <= 8"
   ],
   "jest": {
-    "setupTestFrameworkScriptFile": "./test/setup.test.js",
+    "setupTestFrameworkScriptFile": "./test/setup.js",
     "moduleFileExtensions": [
       "js",
       "vue"
