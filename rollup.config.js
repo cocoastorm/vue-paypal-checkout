@@ -16,7 +16,7 @@ let cache;
 const config = {
   input: 'src/main.js',
   output: [
-    { format: 'es', file: `dist/${pack.name}.js` },
+    { format: 'es', file: `dist/${pack.name}.esm.js` },
     { format: 'cjs', file: `dist/${pack.name}.common.js` },
   ],
   plugins: [
@@ -30,8 +30,6 @@ const config = {
 // --- DO NOT CHANGE BEYOND THIS ---
 if (vueConfig.standalone) {
   const options = clone(config);
-
-  options.input = 'src/install.js';
   options.output = [];
   options.plugins = [
     resolve({
@@ -44,7 +42,7 @@ if (vueConfig.standalone) {
   ].concat(options.plugins);
 
   rollup(options).then(bundle => bundle.write({
-    format: 'iife',
+    format: 'umd',
     file: `dist/${pack.name}.min.js`,
     name: camelcase(pack.name),
   })).then(() => {
