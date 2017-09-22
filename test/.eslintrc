@@ -1,9 +1,14 @@
 {
+  "extends": "airbnb-base",
   "env": {
     "mocha": true
   },
   "globals": {
+    "window": true,
     "expect": true,
     "sinon": true
+  },
+  "rules": {
+    "new-cap": 0
   }
 }

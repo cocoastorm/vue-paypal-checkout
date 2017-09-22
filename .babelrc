@@ -3,9 +3,23 @@
     ["env", {
       "modules": false,
       "targets": {
-        "browsers": ["last 2 versions"]
+        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
       }
-    }]
+    }],
+    "stage-2"
   ],
-  "plugins": ["external-helpers"]
+  "plugins": ["transform-runtime", "external-helpers"],
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2"],
+      "plugins": [
+        ["module-resolver", {
+          "root": ["./src"],
+          "alias": {
+            "@": "./src"
+          }
+        }]
+      ]
+    }
+  }
 }
