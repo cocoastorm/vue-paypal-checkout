@@ -11,6 +11,6 @@
   },
   "rules": {
     "new-cap": 0,
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.js", "**/*.spec.js"] }]
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/setup.js"] }]
   }
 }
