@@ -7,12 +7,14 @@ import shortid from 'shortid';
 import paypal from 'paypal-checkout';
 
 export default {
-  data() {
-    return {
-      id: shortid.generate(),
-    };
-  },
   props: {
+    id: {
+      type: String,
+      required: false,
+      default() {
+        return shortid.generate();
+      },
+    },
     amount: {
       type: String,
       required: true,

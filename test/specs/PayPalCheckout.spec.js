@@ -28,6 +28,7 @@ function getItems() {
 
 function getProps() {
   return {
+    id: 'vue-paypal-test',
     amount: '30.00',
     client: credentials,
     currency: 'USD',
