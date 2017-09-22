@@ -9,6 +9,7 @@
     "sinon": true
   },
   "rules": {
-    "new-cap": 0
+    "new-cap": 0,
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.js", "**/*.spec.js"] }]
   }
 }
