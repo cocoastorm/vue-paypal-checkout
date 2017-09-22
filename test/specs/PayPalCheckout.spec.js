@@ -1,5 +1,5 @@
 import { createLocalVue, shallow } from 'vue-test-utils';
-import { expect } from 'chai';
+import { createRenderer } from 'vue-server-renderer';
 import PayPalCheckout from '../../src/components/PayPalCheckout.vue';
 
 const credentials = {
@@ -86,6 +86,14 @@ describe('PayPalCheckout.vue', () => {
     it('has xcomponent class', () => {
       const html = checkout.html();
       expect(html).contains('xcomponent-visible');
+    });
+
+    it('has same HTML structure', () => {
+      const renderer = createRenderer();
+      renderer.renderToString(checkout.vm, (err, str) => {
+        if (err) throw new Error(err);
+        jestExpect(str).toMatchSnapshot();
+      });
     });
   });
 });

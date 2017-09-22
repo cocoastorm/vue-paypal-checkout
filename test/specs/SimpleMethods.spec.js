@@ -1,5 +1,4 @@
 import { createLocalVue, shallow } from 'vue-test-utils';
-import { expect } from 'chai';
 import PayPalCheckout from '../../src/components/PayPalCheckout.vue';
 
 const credentials = {

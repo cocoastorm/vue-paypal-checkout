@@ -6,7 +6,8 @@
   "globals": {
     "window": true,
     "expect": true,
-    "sinon": true
+    "sinon": true,
+    "jestExpect": true,
   },
   "rules": {
     "new-cap": 0,
