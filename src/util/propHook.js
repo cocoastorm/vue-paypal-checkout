@@ -1,13 +1,11 @@
 export default class PropHook {
-  constructor(name, pName, injectType = 'button') {
+  constructor(name, pName, injectType = 'button', mutateProp = null) {
     this.name = name;
     this.paypalName = pName;
     this.injectType = injectType;
-  }
 
-  // if we need to change the prop before using it...
-  mutateProp(func) {
-    this.mutateProp = func;
+    // if we need to change the prop before using it...
+    this.mutateProp = mutateProp;
   }
 
   // the prop may either be defined as a property
@@ -16,7 +14,7 @@ export default class PropHook {
   inject(vm, obj) {
     let prop = vm[this.name];
     if (prop !== undefined && prop !== null) {
-      if (this.mutateProp !== undefined) {
+      if (this.mutateProp !== null) {
         prop = this.mutateProp(prop);
       }
 

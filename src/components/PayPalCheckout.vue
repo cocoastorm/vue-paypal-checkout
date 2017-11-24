@@ -5,6 +5,14 @@
 <script>
 import paypal from 'paypal-checkout';
 import defaultProps from '../util/defaultProps';
+import PropHook from '../util/propHook';
+import PropHookManager from '../util/propHookManager';
+
+const propHookManager = new PropHookManager([
+  new PropHook('invoiceNumber', 'invoice_number', 'transaction'),
+  new PropHook('items', 'item_list', 'transaction', items => ({ items })),
+  new PropHook('buttonStyle', 'style', 'button'),
+]);
 
 export default {
   props: defaultProps(),
@@ -14,17 +22,6 @@ export default {
     },
   },
   methods: {
-    item_list() {
-      const itemList = {
-        items: [],
-      };
-
-      this.items.forEach((item) => {
-        itemList.items.push(item);
-      });
-
-      return itemList;
-    },
     PayPalPayment() {
       const transaction = {
         amount: {
@@ -33,13 +30,7 @@ export default {
         },
       };
 
-      if (this.invoiceNumber !== undefined) {
-        transaction.invoice_number = this.invoiceNumber;
-      }
-
-      if (this.items !== undefined) {
-        transaction.item_list = this.item_list();
-      }
+      propHookManager.apply('transaction', this, transaction);
 
       return paypal.rest.payment.create(this.env, this.client, {
         transactions: [transaction],
@@ -59,8 +50,7 @@ export default {
   },
   mounted() {
     const vue = this;
-
-    const buttonObject = {
+    const button = {
       // Pass in env
       env: vue.env,
 
@@ -82,12 +72,8 @@ export default {
       onCancel: vue.onCancel,
     };
 
-    // validate style prop
-    if (vue.buttonStyle !== undefined) {
-      buttonObject.style = vue.buttonStyle;
-    }
-
-    paypal.Button.render(buttonObject, vue.id);
+    propHookManager.apply('button', vue, button);
+    paypal.Button.render(button, vue.id);
   },
 };
 </script>
