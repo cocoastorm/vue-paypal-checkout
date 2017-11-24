@@ -1,11 +1,13 @@
+import shortid from 'shortid';
+
 const requiredProps = [
-  'amount',
-  'currency',
+  ['amount'],
+  ['currency', 'USD'],
 ];
 
 const optionalProps = [
-  'id',
-  'invoiceNumber',
+  ['id', shortid.generate()],
+  ['invoiceNumber'],
 ];
 
 const specificProps = [
@@ -19,20 +21,39 @@ const specificProps = [
 export default function () {
   const props = {};
 
-  requiredProps.forEach((prop) => {
-    props[prop] = {
-      type: String,
-      required: true,
-    };
+  // all required props are type String and are required (duh!)
+  requiredProps.forEach(([name, def]) => {
+    if (def !== undefined) {
+      props[name] = {
+        type: String,
+        required: true,
+        default: def,
+      };
+    } else {
+      props[name] = {
+        type: String,
+        required: true,
+      };
+    }
   });
 
-  optionalProps.forEach((prop) => {
-    props[prop] = {
-      type: String,
-      required: false,
-    };
+  // all optional props are type String and aren't required (duh!)
+  optionalProps.forEach(([name, def]) => {
+    if (def !== undefined) {
+      props[name] = {
+        type: String,
+        required: true,
+        default: def,
+      };
+    } else {
+      props[name] = {
+        type: String,
+        required: false,
+      };
+    }
   });
 
+  // all specific props are declared aot
   specificProps.forEach((prop) => {
     props[prop.name] = {
       type: prop.type,

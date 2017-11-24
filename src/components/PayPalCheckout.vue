@@ -3,77 +3,11 @@
 </template>
 
 <script>
-import shortid from 'shortid';
 import paypal from 'paypal-checkout';
+import defaultProps from '../util/defaultProps';
 
 export default {
-  props: {
-    id: {
-      type: String,
-      required: false,
-      default() {
-        return shortid.generate();
-      },
-    },
-    amount: {
-      type: String,
-      required: true,
-    },
-    client: {
-      type: Object,
-      required: true,
-    },
-    commit: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
-    currency: {
-      type: String,
-      required: false,
-      default: 'USD',
-    },
-    dev: {
-      type: Boolean,
-      required: false,
-    },
-    invoiceNumber: {
-      type: String,
-      required: false,
-    },
-    items: {
-      type: Array,
-      required: false,
-    },
-    buttonStyle: {
-      type: Object,
-      required: false,
-      validator: (value) => {
-        const isValid = (item, options) => (options.some(v => (v === item)));
-        const copy = Object.assign({}, value);
-        const options = {
-          size: ['tiny', 'small', 'medium', 'responsive'],
-          color: ['gold', 'blue', 'silver'],
-          shape: ['pill', 'rect'],
-        };
-
-        Object.keys(options).forEach((key) => {
-          const item = copy[key];
-          const valid = isValid(item, options[key]);
-
-          if (!valid) {
-            // eslint-disable-next-line
-            console.warn(`style.${key} = '${item}' isn't a valid option`, options[key]);
-            return false;
-          }
-
-          return true;
-        });
-
-        return true;
-      },
-    },
-  },
+  props: defaultProps(),
   computed: {
     env() {
       return (this.dev) ? 'sandbox' : 'production';
