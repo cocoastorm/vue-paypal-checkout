@@ -37,6 +37,17 @@ function getProps() {
   };
 }
 
+jest.mock('paypal-checkout', () => ({
+  Button: {
+    render: jest.fn(),
+  },
+  rest: {
+    payment: {
+      create: jest.fn((env, client, payment) => Promise.resolve(payment)),
+    },
+  },
+}));
+
 describe('Methods within PayPalCheckout.vue', () => {
   const localVue = createLocalVue();
   const checkout = shallow(PayPalCheckout, {
@@ -81,20 +92,20 @@ describe('Methods within PayPalCheckout.vue', () => {
     it('transaction has the right amount', () => (
       checkout.vm.PayPalPayment().then((p) => {
         const transaction = p.transactions[0];
-        expect(transaction).toEqual(expect.objectContaining({
-          amount: expect.any(String),
+        expect(transaction.amount).toEqual(expect.objectContaining({
+          total: expect.any(String),
         }));
-        expect(transaction.amount).toEqual(30.00);
+        expect(transaction.amount.total).toEqual('30.00');
       })
     ));
 
     it('transaction has the right currency', () => (
       checkout.vm.PayPalPayment().then((p) => {
         const transaction = p.transactions[0];
-        expect(transaction).toEqual(expect.objectContaining({
+        expect(transaction.amount).toEqual(expect.objectContaining({
           currency: expect.any(String),
         }));
-        expect(transaction.currency).toEqual('USD');
+        expect(transaction.amount.currency).toEqual('USD');
       })
     ));
 
@@ -104,7 +115,7 @@ describe('Methods within PayPalCheckout.vue', () => {
         expect(transaction).toEqual(expect.objectContaining({
           invoice_number: expect.any(String),
         }));
-        expect(transaction.invoice_number).toEqual('201705051001');
+        expect(transaction.invoice_number).toEqual('201801011001');
       })
     ));
 
@@ -130,10 +141,10 @@ describe('Methods within PayPalCheckout.vue', () => {
 
   describe('action methods', () => {
     it('has onAuthorize() and onCancel()', () => {
-      expect(checkout.vm).objectContaining({
+      expect(checkout.vm).toEqual(expect.objectContaining({
         onAuthorize: expect.any(Function),
         onCancel: expect.any(Function),
-      });
+      }));
     });
   });
 });
