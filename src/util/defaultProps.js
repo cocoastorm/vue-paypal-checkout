@@ -21,7 +21,8 @@ const specificProps = [
 export default function () {
   const props = {};
 
-  // all required props are type String and are required (duh!)
+  // TODO: make type configurable
+  // all required props are type String for now
   requiredProps.forEach(([name, def]) => {
     if (def !== undefined) {
       props[name] = {
@@ -37,7 +38,8 @@ export default function () {
     }
   });
 
-  // all optional props are type String and aren't required (duh!)
+  // TODO: make type configurable
+  // all optional props are type String for now
   optionalProps.forEach(([name, def]) => {
     if (def !== undefined) {
       props[name] = {
@@ -53,7 +55,7 @@ export default function () {
     }
   });
 
-  // all specific props are declared aot
+  // all specific props are declared ahead of time
   specificProps.forEach((prop) => {
     props[prop.name] = {
       type: prop.type,
