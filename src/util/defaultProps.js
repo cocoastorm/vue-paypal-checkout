@@ -44,7 +44,7 @@ export default function () {
     if (def !== undefined) {
       props[name] = {
         type: String,
-        required: true,
+        required: false,
         default: def,
       };
     } else {
