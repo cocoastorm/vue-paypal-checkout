@@ -1,6 +1,6 @@
 import { createLocalVue, shallow } from 'vue-test-utils';
 import { createRenderer } from 'vue-server-renderer';
-import PayPalCheckout from '../../src/components/PayPalCheckout.vue';
+import PayPalCheckout from '../../../src/components/PayPalCheckout.vue';
 
 const credentials = {
   sandbox: 'Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl',
@@ -48,52 +48,53 @@ describe('PayPalCheckout.vue', () => {
   });
 
   it('should have the amount prop', () => {
-    expect(checkout.hasProp('amount', '30.00')).to.equal(true);
+    expect(checkout.props().amount).toEqual('30.00');
   });
 
   it('should have the client prop with production and sandbox', () => {
-    expect(checkout.vm.client).to.deep.equal(credentials);
+    expect(checkout.vm.client).toEqual(credentials);
   });
 
   it('should have the currency prop', () => {
-    expect(checkout.vm).to.have.property('currency');
-    expect(checkout.vm.currency).to.be.a('string');
-    expect(checkout.vm.currency).to.have.length.within(2, 5);
+    expect(checkout.vm).toEqual(expect.objectContaining({
+      currency: expect.any(String),
+    }));
+    expect(checkout.vm.currency.length).toBeGreaterThan(2);
   });
 
   it('should have the commit prop', () => {
-    expect(checkout.hasProp('commit', true)).to.equal(true);
+    expect(checkout.props().commit).toBe(true);
   });
 
   it('should have the dev prop', () => {
-    expect(checkout.hasProp('dev', true)).to.equal(true);
+    expect(checkout.props().dev).toBe(true);
   });
 
   it('should have the invoiceNumber prop', () => {
-    expect(checkout.hasProp('invoiceNumber', '201705051001')).to.equal(true);
+    expect(checkout.props().invoiceNumber).toEqual('201705051001');
   });
 
   it('should have the items prop', () => {
-    expect(checkout.vm).to.have.property('items');
-    expect(checkout.vm.items).to.be.instanceOf(Array);
+    expect(checkout.vm).toEqual(expect.objectContaining({
+      items: expect.any(Array),
+    }));
   });
 
   describe('iframe rendering', () => {
     it('div', () => {
       const div = checkout.find('div');
-      expect(div.is('div')).to.equal(true);
+      expect(div.is('div')).toBe(true);
     });
 
     it('has xcomponent class', () => {
-      const html = checkout.html();
-      expect(html).contains('xcomponent-visible');
+      expect(checkout.contains('.xcomponent-visible')).toBe(true);
     });
 
     it('has same HTML structure', () => {
       const renderer = createRenderer();
       renderer.renderToString(checkout.vm, (err, str) => {
         if (err) throw new Error(err);
-        jestExpect(str).toMatchSnapshot();
+        expect(str).toMatchSnapshot();
       });
     });
   });
