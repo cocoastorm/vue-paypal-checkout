@@ -31,7 +31,7 @@
   "dependencies": {
     "paypal-checkout": "^4.0.130",
     "shortid": "^2.2.8",
-    "vue": "latest"
+    "vue": "^2.5.11"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
