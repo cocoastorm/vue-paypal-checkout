@@ -1,24 +1,24 @@
 export default class PropHookManager {
-  constructor(propHooks) {
-    this.hooks = propHooks;
-  }
-
-  getTransactionHooks() {
-    return this.hooks.filter(hook => (hook.injectType === 'transaction'));
-  }
-
-  getButtonHooks() {
-    return this.hooks.filter(hook => (hook.injectType === 'button'));
+  constructor(transactionHooks, buttonHooks) {
+    this.hooks = {
+      transactions: transactionHooks,
+      buttons: buttonHooks,
+    };
   }
 
   apply(type, vm, obj) {
-    let hooks = [];
-
-    if (type === 'transaction') hooks = this.getTransactionHooks();
-    if (type === 'button') hooks = this.getButtonHooks();
+    const hooks = this.hooks[type] || [];
 
     hooks.forEach((hook) => {
       hook.inject(vm, obj);
     });
+  }
+
+  applyTransactions(vueData, transactions) {
+    return this.apply('transactions', vueData, transactions);
+  }
+
+  applyButton(vueData, button) {
+    return this.apply('buttons', vueData, button);
   }
 }
