@@ -1,4 +1,4 @@
-import PropHook from "@/util/propHook";
+import PropHook from '@/util/propHook';
 
 describe('PropHook Class', () => {
   it('initializes PropHook object with properties', () => {

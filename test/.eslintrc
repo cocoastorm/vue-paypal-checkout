@@ -3,10 +3,13 @@
   "env": {
     "jest": true
   },
+  "rules": {
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/setup.js"] }]
+  },
   "settings": {
     "import/resolver": {
       "jest": {
-        "jestConfigFile": "./unit/jest.conf.js"
+        "jestConfigFile": "./test/unit/jest.conf.js"
       }
     }
   }
