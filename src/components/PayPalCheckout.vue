@@ -26,7 +26,7 @@ export default {
     },
   },
   methods: {
-    PayPalPayment() {
+    payment() {
       const transaction = {
         amount: {
           total: this.amount,
@@ -64,7 +64,7 @@ export default {
 
       // Pass the payment details for your transaction
       // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
-      payment: vue.PayPalPayment,
+      payment: vue.payment,
 
       // Display a "Pay Now" button rather than a "Continue" button
       commit: vue.commit,
