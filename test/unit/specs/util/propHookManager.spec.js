@@ -17,5 +17,10 @@ const getHooks = () => {
 };
 
 describe('PropHookManager', () => {
-  const hooks = getHooks();
+  const { transactions, buttons } = getHooks();
+
+  it('constructor accepts object with transactions and/or button hooks', () => {
+    const manager = new PropHookManager(transactions, buttons);
+    expect(manager.hooks).toEqual({ transactions, buttons });
+  });
 });
