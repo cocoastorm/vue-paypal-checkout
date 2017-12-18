@@ -4114,9 +4114,9 @@ rollup-plugin-uglify@^2.0.1:
   dependencies:
     uglify-js "^3.0.9"
 
-rollup-plugin-vue@^2.2.6:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-vue/-/rollup-plugin-vue-2.5.4.tgz#218b2d7e00871f20d7c3a474c473c60127193f30"
+rollup-plugin-vue@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-vue/-/rollup-plugin-vue-3.0.0.tgz#4fd08d2cfbb87321d070f016559cb11645e9f544"
   dependencies:
     babel-runtime "^6.22.0"
     camelcase "^4.0.0"
@@ -4135,7 +4135,6 @@ rollup-plugin-vue@^2.2.6:
     posthtml-attrs-parser "^0.1.1"
     rollup-pluginutils "^2.0.1"
     typescript "^2.4.1"
-    vue-template-compiler ">=2.0"
     vue-template-es2015-compiler "^1.6.0"
     vue-template-validator "^1.1.5"
   optionalDependencies:
@@ -4160,9 +4159,9 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@^0.50.0:
-  version "0.50.1"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.50.1.tgz#e4dafcbf8d2bb0d9f5589d0cc6f64d76b8815730"
+rollup@^0.52.2:
+  version "0.52.2"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.52.2.tgz#d75bc6f37be02fd27cbb344e57e77b30042bd2cf"
 
 run-async@^0.1.0:
   version "0.1.0"
@@ -4692,7 +4691,7 @@ vue-server-renderer@^2.4.4:
     serialize-javascript "^1.3.0"
     source-map "0.5.6"
 
-vue-template-compiler@>=2.0, vue-template-compiler@^2.5.11:
+vue-template-compiler@^2.5.11:
   version "2.5.11"
   resolved "https://registry.yarnpkg.com/vue-template-compiler/-/vue-template-compiler-2.5.11.tgz#7dda6905e464ff173c8e70e1dfd1769a7888b7e8"
   dependencies:
