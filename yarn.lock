@@ -3470,8 +3470,8 @@ path-type@^2.0.0:
     pify "^2.0.0"
 
 paypal-checkout@^4.0.130:
-  version "4.0.169"
-  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.169.tgz#e6043c80b05995a40f8146b11c2a3bdfe6230b35"
+  version "4.0.171"
+  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.171.tgz#c4e91ea585614d6af7749c370908bb6feb13d396"
   dependencies:
     Base64 "^1.0.0"
     beaver-logger "^3.0.6"
@@ -4084,8 +4084,8 @@ rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.6.1:
     glob "^7.0.5"
 
 rollup-plugin-babel@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-babel/-/rollup-plugin-babel-3.0.2.tgz#a2765dea0eaa8aece351c983573300d17497495b"
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-babel/-/rollup-plugin-babel-3.0.3.tgz#63adedc863130327512a4a9006efc2241c5b7c15"
   dependencies:
     rollup-pluginutils "^1.5.0"
 
