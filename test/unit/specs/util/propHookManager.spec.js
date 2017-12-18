@@ -9,12 +9,10 @@ const getPropHooks = (type, num) => {
   return hooks;
 };
 
-const getHooks = () => {
-  return {
-    transactions: getPropHooks('transaction', 10),
-    buttons: getPropHooks('button', 10),
-  };
-};
+const getHooks = () => ({
+  transactions: getPropHooks('transaction', 10),
+  buttons: getPropHooks('button', 10),
+});
 
 describe('PropHookManager', () => {
   const { transactions, buttons } = getHooks();
