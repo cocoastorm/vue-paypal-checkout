@@ -15,7 +15,7 @@ const propHookManager = new PropHookManager(
   ],
   [
     new PropHook('buttonStyle', 'style', 'button'),
-  ]
+  ],
 );
 
 export default {

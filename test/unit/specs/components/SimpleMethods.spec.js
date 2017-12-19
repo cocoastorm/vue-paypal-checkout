@@ -72,16 +72,15 @@ describe('Methods within PayPalCheckout.vue', () => {
     it('returns a payment object', () => (
       checkout.vm.payment().then((p) => {
         expect(p).toBeInstanceOf(Object);
-      }))
-    );
+      })
+    ));
 
     it('payment object has transactions array', () => (
       checkout.vm.payment().then((p) => {
         expect(p).toEqual(expect.objectContaining({
           transactions: expect.any(Array),
         }));
-      }))
-    );
+      })));
 
     it('payment object has one single transaction', () => (
       checkout.vm.payment().then((p) => {
