@@ -5,18 +5,6 @@
 <script>
 import paypal from 'paypal-checkout';
 import defaultProps from '../util/defaultProps';
-import PropHook from '../util/propHook';
-import PropHookManager from '../util/propHookManager';
-
-const propHookManager = new PropHookManager(
-  [
-    new PropHook('invoiceNumber', 'invoice_number', 'transaction'),
-    new PropHook('items', 'item_list', 'transaction', items => ({ items })),
-  ],
-  [
-    new PropHook('buttonStyle', 'style', 'button'),
-  ],
-);
 
 export default {
   props: defaultProps(),
@@ -33,8 +21,6 @@ export default {
           currency: this.currency,
         },
       };
-
-      propHookManager.applyTransactions(this, transaction);
 
       return paypal.rest.payment.create(this.env, this.client, {
         transactions: [transaction],
@@ -76,7 +62,6 @@ export default {
       onCancel: vue.onCancel,
     };
 
-    propHookManager.applyButton(vue, button);
     paypal.Button.render(button, vue.id);
   },
 };
