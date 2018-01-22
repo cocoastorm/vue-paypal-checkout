@@ -19,6 +19,15 @@ export default {
     },
   },
   methods: {
+    item_list() {
+      const itemList = {
+        items: [],
+      };
+      this.items.forEach((item) => {
+        itemList.items.push(item);
+      });
+      return itemList;
+    },
     payment() {
       const payment = {
         transactions: [{
@@ -26,6 +35,12 @@ export default {
             total: this.amount,
             currency: this.currency,
           },
+          invoice_number: (typeof this.invoiceNumber !== 'undefined')
+            ? this.invoiceNumber
+            : undefined,
+          item_list: (typeof this.items !== 'undefined')
+            ? this.item_list()
+            : undefined,
         }],
         experience: (typeof this.experience !== 'undefined')
           ? this.experience
