@@ -25,35 +25,25 @@ export default function () {
   // TODO: make type configurable
   // all required props are type String for now
   requiredProps.forEach(([name, def]) => {
-    if (def !== undefined) {
-      props[name] = {
-        type: String,
-        required: true,
-        default: def,
-      };
-    } else {
-      props[name] = {
-        type: String,
-        required: true,
-      };
-    }
+    props[name] = {
+      type: String,
+      required: true,
+      default: (typeof def !== 'undefined')
+        ? def
+        : undefined,
+    };
   });
 
   // TODO: make type configurable
   // all optional props are type String for now
   optionalProps.forEach(([name, def]) => {
-    if (def !== undefined) {
-      props[name] = {
-        type: String,
-        required: false,
-        default: def,
-      };
-    } else {
-      props[name] = {
-        type: String,
-        required: false,
-      };
-    }
+    props[name] = {
+      type: String,
+      required: false,
+      default: (typeof def !== 'undefined')
+        ? def
+        : undefined,
+    };
   });
 
   // all specific props are declared ahead of time
