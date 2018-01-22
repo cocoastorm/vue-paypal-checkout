@@ -5,9 +5,14 @@
 <script>
 import paypal from 'paypal-checkout';
 import defaultProps from '../util/defaultProps';
+import { propTypes } from '../util/paypalProp';
+import additionalProps from '../additionalProps';
 
 export default {
-  props: defaultProps(),
+  props: Object.assign(
+    defaultProps(),
+    additionalProps.vmProps(),
+  ),
   computed: {
     env() {
       return (this.dev) ? 'sandbox' : 'production';
@@ -17,10 +22,10 @@ export default {
     payment() {
       const payment = {
         transactions: [{
-        amount: {
-          total: this.amount,
-          currency: this.currency,
-        },
+          amount: {
+            total: this.amount,
+            currency: this.currency,
+          },
         }],
         experience: (typeof this.experience !== 'undefined')
           ? this.experience
@@ -64,6 +69,8 @@ export default {
       // Pass a function to be called when the customer cancels the payment
       onCancel: vue.onCancel,
     };
+
+    additionalProps.getTypedProps(propTypes.BUTTON).forEach(prop => prop.change(vue, button));
 
     paypal.Button.render(button, vue.id);
   },
