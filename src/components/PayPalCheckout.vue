@@ -15,16 +15,19 @@ export default {
   },
   methods: {
     payment() {
-      const transaction = {
+      const payment = {
+        transactions: [{
         amount: {
           total: this.amount,
           currency: this.currency,
         },
+        }],
+        experience: (typeof this.experience !== 'undefined')
+          ? this.experience
+          : undefined,
       };
 
-      return paypal.rest.payment.create(this.env, this.client, {
-        transactions: [transaction],
-      });
+      return paypal.rest.payment.create(this.env, this.client, payment);
     },
     onAuthorize(data, actions) {
       const vue = this;

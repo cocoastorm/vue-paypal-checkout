@@ -17,6 +17,7 @@ const specificProps = [
   { name: 'dev', type: Boolean, required: false },
   { name: 'items', type: Array, required: false },
   { name: 'buttonStyle', type: Object, required: false },
+  { name: 'experience', type: Object, required: false },
 ];
 
 export default function () {
