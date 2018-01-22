@@ -1,5 +1,6 @@
 import { createLocalVue, shallow } from 'vue-test-utils';
 import PayPalCheckout from '../../../../src/components/PayPalCheckout.vue';
+import mockWindow from '../../mockWindow';
 
 const credentials = {
   sandbox: 'Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl',
@@ -47,6 +48,10 @@ jest.mock('paypal-checkout', () => ({
     },
   },
 }));
+
+beforeEach(() => {
+  mockWindow();
+});
 
 describe('Methods within PayPalCheckout.vue', () => {
   const localVue = createLocalVue();
