@@ -23,4 +23,5 @@ module.exports = {
     '!src/main.js',
     '!**/node_modules/**',
   ],
+  testEnvironment: path.resolve('./test/unit/jest-custom-environment'),
 };
