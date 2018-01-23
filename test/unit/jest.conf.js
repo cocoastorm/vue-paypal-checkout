@@ -13,7 +13,7 @@ module.exports = {
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
     '.*\\.(vue)$': '<rootDir>/node_modules/vue-jest',
-    // '\\.(css|less|scss)$': '<rootDir>/test/__mocks__/styleMock.js',
+    '\\.(css|less)$': '<rootDir>/node_modules/identity-obj-proxy',
   },
   snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
   setupFiles: ['<rootDir>/test/unit/setup'],
