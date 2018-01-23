@@ -16,8 +16,10 @@ function paypalProp(prop) {
 
 paypalProp.prototype.getVmProp = function getVmProp() {
   return {
-    type: Object,
-    required: false,
+    [this.name]: {
+      type: Object,
+      required: false,
+    },
   };
 };
 
