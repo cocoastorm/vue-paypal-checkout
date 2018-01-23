@@ -27,6 +27,7 @@
     "vue": "^2.5.11"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.10",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.1.0",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -56,8 +57,7 @@
     "rollup-plugin-vue": "^3.0.0",
     "vue-jest": "^1.4.0",
     "vue-server-renderer": "^2.4.4",
-    "vue-template-compiler": "^2.5.11",
-    "vue-test-utils": "^1.0.0-beta.8"
+    "vue-template-compiler": "^2.5.11"
   },
   "engines": {
     "node": ">= 4.0.0",

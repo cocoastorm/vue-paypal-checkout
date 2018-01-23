@@ -22,6 +22,12 @@
   version "0.0.30"
   resolved "https://registry.yarnpkg.com/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
+"@vue/test-utils@^1.0.0-beta.10":
+  version "1.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@vue/test-utils/-/test-utils-1.0.0-beta.10.tgz#898881a8cac1c6bf9b1443fd0d7c81cb1fb4a87f"
+  dependencies:
+    lodash "^4.17.4"
+
 Base64@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/Base64/-/Base64-1.0.1.tgz#def45cc50c961bcc9bf2321d0f52bcbfec1f1bb1"
@@ -5333,12 +5339,6 @@ vue-template-validator@^1.1.5:
   resolved "https://registry.yarnpkg.com/vue-template-validator/-/vue-template-validator-1.1.5.tgz#22d1ee77d0647c1ab14ff7eb01865942d9b3c458"
   dependencies:
     chalk "^1.1.1"
-
-vue-test-utils@^1.0.0-beta.8:
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/vue-test-utils/-/vue-test-utils-1.0.0-beta.8.tgz#b4f84ce36f7ae457cdbab9ba21771f4a50d4dabd"
-  dependencies:
-    lodash "^4.17.4"
 
 vue@^2.5.11:
   version "2.5.11"
