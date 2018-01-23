@@ -85,7 +85,14 @@ export default {
       onCancel: vue.onCancel,
     };
 
-    additionalProps.getTypedProps(propTypes.BUTTON).forEach(prop => prop.change(vue, button));
+    additionalProps.getTypedProps(propTypes.BUTTON).forEach((prop) => {
+      const result = prop.getChange(vue);
+
+      if (result !== undefined) {
+        const { name, value } = result;
+        button[name] = value;
+      }
+    });
 
     paypal.Button.render(button, vue.id);
   },

@@ -11,7 +11,7 @@ describe('paypalProp.js', () => {
     expect(paypal).toEqual(expect.objectContaining({
       name: 'some-name',
       propName: 'somePaypal',
-      injectionType: 'someExperience',
+      injection: 'someExperience',
     }));
   });
 
@@ -25,10 +25,8 @@ describe('paypalProp.js', () => {
     const prop = paypal.getVmProp();
 
     expect(prop).toEqual({
-      'some-name': {
-        type: Object,
-        required: false,
-      },
+      type: Object,
+      required: false,
     });
   });
 
@@ -43,12 +41,11 @@ describe('paypalProp.js', () => {
       'some-name': { text: 'paypal is so cool' },
     };
 
-    const p = {};
+    const diff = paypal.getChange(o);
 
-    paypal.change(o, p);
-
-    expect(p).toEqual({
-      somePayPal: { text: 'paypal is so cool' },
+    expect(diff).toEqual({
+      name: 'somePaypal',
+      value: { text: 'paypal is so cool' },
     });
   });
 });

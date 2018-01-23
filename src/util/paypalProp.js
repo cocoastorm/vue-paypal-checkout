@@ -16,24 +16,22 @@ function paypalProp(prop) {
 
 paypalProp.prototype.getVmProp = function getVmProp() {
   return {
-    [this.name]: {
-      type: Object,
-      required: false,
-    },
+    type: Object,
+    required: false,
   };
 };
 
-paypalProp.prototype.change = function change(src, dest) {
+paypalProp.prototype.getChange = function getChange(src) {
   const value = src[this.name];
 
   if (typeof value !== 'undefined') {
-    Object.defineProperty(src, dest[this.propName], {
-      value: src[this.name],
-      writeable: true,
-      configurable: true,
-      enumerable: true,
-    });
+    return {
+      name: this.propName,
+      value,
+    };
   }
+
+  return undefined;
 };
 
 export default paypalProp;
