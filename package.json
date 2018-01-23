@@ -22,7 +22,7 @@
     "unit": "jest --config test/unit/jest.conf.js --coverage"
   },
   "dependencies": {
-    "paypal-checkout": "^4.0.130",
+    "paypal-checkout": "^4.0.173",
     "shortid": "^2.2.8",
     "vue": "^2.5.11"
   },
