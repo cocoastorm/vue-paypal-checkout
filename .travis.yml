@@ -2,9 +2,12 @@ language: node_js
 node_js:
   - node
   - lts/*
-cache: yarn
+cache:
+  yarn: true
+  directories:
+    - node_modules
 install:
-  - npm install
+  - yarn install
 script:
-  - npm run build
-  - npm run test
+  - yarn run build
+  - yarn run test
