@@ -4,7 +4,7 @@
   "version": "2.1.8",
   "main": "dist/vue-paypal-checkout.common.js",
   "module": "dist/vue-paypal-checkout.esm.js",
-  "browser": "dist/vue-paypal-checkout.js",
+  "browser": "dist/vue-paypal-checkout.min.js",
   "author": "Khoa Nguyen <khoa.tan.nguyen.96@gmail.com>",
   "license": "MIT",
   "repository": {
