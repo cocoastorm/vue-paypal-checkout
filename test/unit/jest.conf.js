@@ -24,5 +24,5 @@ module.exports = {
     '!src/main.js',
     '!**/node_modules/**',
   ],
-  testEnvironment: '<rootDir>/node_modules/jest-environment-jsdom-global',
+  testEnvironment: 'jest-environment-jsdom-global',
 };

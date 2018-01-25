@@ -19,7 +19,7 @@
     "lint:fix": "npm run lint -- --fix",
     "purge": "rm -rf dist/",
     "test": "npm run lint && npm run unit",
-    "unit": "jest --config test/unit/jest.conf.js --coverage"
+    "unit": "jest --config test/unit/jest.conf.js"
   },
   "dependencies": {
     "paypal-checkout": "^4.0.173",
