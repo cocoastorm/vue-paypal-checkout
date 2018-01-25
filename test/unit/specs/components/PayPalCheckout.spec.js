@@ -1,5 +1,5 @@
 import { createLocalVue, shallow } from '@vue/test-utils';
-import { createRenderer } from 'vue-server-renderer';
+// import { createRenderer } from 'vue-server-renderer';
 import PayPalCheckout from '../../../../src/components/PayPalCheckout.vue';
 
 const credentials = {
