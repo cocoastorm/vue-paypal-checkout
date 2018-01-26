@@ -1,0 +1,49 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Simple PayPal Checkout with Vue</title>
+  <meta name="description" content="PayPal with Vue">
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue@^2.5/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-paypal-checkout@beta/dist/vue-paypal-checkout.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.11.0/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.11.0/js/paypal-checkout.min.js"></script>
+
+  <div id="app">
+    <div class="content">
+      <p>Pay with USD $10.00</p>
+      <paypal-checkout
+        amount="10.00"
+        currency="USD"
+        :client="paypal"
+        :dev="true"
+        :invoice-number="'201705051001'"
+        :braintree="braintree">
+      </paypal-checkout>
+    </div>
+  </div>
+
+  <script>
+    // eslint-disable-next-line
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          paypal: {
+            sandbox: 'Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl',
+            production: 'AVZhosFzrnZ5Mf3tiOxAD0M6NHv8pcB2IFNHAfp_h69mmbd-LElFYkJUSII3Y0FPbm7S7lxBuqWImLbl',
+          },
+        };
+      },
+    });
+  </script>
+</body>
+</html>
