@@ -1,16 +1,16 @@
 {
   "extends": "airbnb-base",
   "env": {
-    "mocha": true
-  },
-  "globals": {
-    "window": true,
-    "expect": true,
-    "sinon": true,
-    "jestExpect": true,
+    "jest": true
   },
   "rules": {
-    "new-cap": 0,
     "import/no-extraneous-dependencies": ["error", { "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/setup.js"] }]
+  },
+  "settings": {
+    "import/resolver": {
+      "jest": {
+        "jestConfigFile": "./test/unit/jest.conf.js"
+      }
+    }
   }
 }

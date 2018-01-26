@@ -1,5 +1,6 @@
 import vue from 'rollup-plugin-vue';
 import babel from 'rollup-plugin-babel';
+import builtins from 'rollup-plugin-node-builtins';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import uglify from 'rollup-plugin-uglify';
@@ -33,6 +34,7 @@ if (vueConfig.standalone) {
   const options = clone(config);
   options.output = [];
   options.plugins = [
+    builtins(),
     resolve({
       module: true,
       jsnext: true,

@@ -1,4 +1,5 @@
 dist/
+test/unit/coverage/
 
 # Created by https://www.gitignore.io/api/webstorm,phpstorm,osx,linux,node
 

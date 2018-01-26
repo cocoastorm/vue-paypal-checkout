@@ -3,77 +3,16 @@
 </template>
 
 <script>
-import shortid from 'shortid';
 import paypal from 'paypal-checkout';
+import defaultProps from '../util/defaultProps';
+import { propTypes } from '../util/paypalProp';
+import additionalProps from '../additionalProps';
 
 export default {
-  props: {
-    id: {
-      type: String,
-      required: false,
-      default() {
-        return shortid.generate();
-      },
-    },
-    amount: {
-      type: String,
-      required: true,
-    },
-    client: {
-      type: Object,
-      required: true,
-    },
-    commit: {
-      type: Boolean,
-      required: false,
-      default: true,
-    },
-    currency: {
-      type: String,
-      required: false,
-      default: 'USD',
-    },
-    dev: {
-      type: Boolean,
-      required: false,
-    },
-    invoiceNumber: {
-      type: String,
-      required: false,
-    },
-    items: {
-      type: Array,
-      required: false,
-    },
-    buttonStyle: {
-      type: Object,
-      required: false,
-      validator: (value) => {
-        const isValid = (item, options) => (options.some(v => (v === item)));
-        const copy = Object.assign({}, value);
-        const options = {
-          size: ['tiny', 'small', 'medium', 'responsive'],
-          color: ['gold', 'blue', 'silver'],
-          shape: ['pill', 'rect'],
-        };
-
-        Object.keys(options).forEach((key) => {
-          const item = copy[key];
-          const valid = isValid(item, options[key]);
-
-          if (!valid) {
-            // eslint-disable-next-line
-            console.warn(`style.${key} = '${item}' isn't a valid option`, options[key]);
-            return false;
-          }
-
-          return true;
-        });
-
-        return true;
-      },
-    },
-  },
+  props: Object.assign(
+    defaultProps(),
+    additionalProps.vmProps(),
+  ),
   computed: {
     env() {
       return (this.dev) ? 'sandbox' : 'production';
@@ -84,32 +23,31 @@ export default {
       const itemList = {
         items: [],
       };
-
       this.items.forEach((item) => {
         itemList.items.push(item);
       });
-
       return itemList;
     },
-    PayPalPayment() {
-      const transaction = {
-        amount: {
-          total: this.amount,
-          currency: this.currency,
-        },
+    payment() {
+      const payment = {
+        transactions: [{
+          amount: {
+            total: this.amount,
+            currency: this.currency,
+          },
+          invoice_number: (typeof this.invoiceNumber !== 'undefined')
+            ? this.invoiceNumber
+            : undefined,
+          item_list: (typeof this.items !== 'undefined')
+            ? this.item_list()
+            : undefined,
+        }],
+        experience: (typeof this.experience !== 'undefined')
+          ? this.experience
+          : undefined,
       };
 
-      if (this.invoiceNumber !== undefined) {
-        transaction.invoice_number = this.invoiceNumber;
-      }
-
-      if (this.items !== undefined) {
-        transaction.item_list = this.item_list();
-      }
-
-      return paypal.rest.payment.create(this.env, this.client, {
-        transactions: [transaction],
-      });
+      return paypal.rest.payment.create(this.env, this.client, payment);
     },
     onAuthorize(data, actions) {
       const vue = this;
@@ -125,8 +63,7 @@ export default {
   },
   mounted() {
     const vue = this;
-
-    const buttonObject = {
+    const button = {
       // Pass in env
       env: vue.env,
 
@@ -136,7 +73,7 @@ export default {
 
       // Pass the payment details for your transaction
       // See https://developer.paypal.com/docs/api/payments/#payment_create for the expected json parameters
-      payment: vue.PayPalPayment,
+      payment: vue.payment,
 
       // Display a "Pay Now" button rather than a "Continue" button
       commit: vue.commit,
@@ -148,12 +85,16 @@ export default {
       onCancel: vue.onCancel,
     };
 
-    // validate style prop
-    if (vue.buttonStyle !== undefined) {
-      buttonObject.style = vue.buttonStyle;
-    }
+    additionalProps.getTypedProps(propTypes.BUTTON).forEach((prop) => {
+      const result = prop.getChange(vue);
 
-    paypal.Button.render(buttonObject, vue.id);
+      if (result !== undefined) {
+        const { name, value } = result;
+        button[name] = value;
+      }
+    });
+
+    paypal.Button.render(button, vue.id);
   },
 };
 </script>
