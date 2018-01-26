@@ -1,13 +1,21 @@
 language: node_js
 node_js:
-  - node
-  - lts/*
+- node
+- lts/*
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 install:
-  - yarn install
+- yarn install
 script:
-  - yarn run build
-  - yarn run test
+- yarn run build
+- yarn run test
+deploy:
+  provider: npm
+  email: khoa.tan.nguyen.96@gmail.com
+  api_key:
+    secure: e4DYdsRm2y2CJg4haFltXwWwea/LqIncRQRv9QqPrYs8nG2W37+O5yGHcYCBoaNKHLDnWdXr5/DgltWgtlhwUuvd+95fZEUR0yovi4dpaOYxZRueMhlbcKFFI0kdWj8rKXKj5yKtdN4bfFmzsndvZHjegkV+KmpnAQ4Oy6onw69Z5jA3X1wdcW0+uObvuzOegqrqYARn92ZnWT+CjkSgF36zZj68BAudni6Bk6QBkyd+nx3kiDJnturXQseZRV3cIh7Mb7rZXHXmOuaYJU0xFWftF6zUx0T0kyAlx3kdtaYgPNjwM+cuVUDW+STwouskAijsfcYmviPurXuAVI5jK11wyyHzfyPhy6gc9w3UAbRC+vkGhaHDXhysR6BWlKq1LjL8k7kZbvo+5l+hwgJ9j/y+OLVOajyA6a2AiNSBxFgelyr9wa2Y1SbIJ+5utogwhrTqWMjTehZrhldF/HGe8DqhJ1ZPIAiMiAbpJGkLiB2/rn+K24VILYGfBZjcUv4Wfg/Om9papfbV4gLm8cjSVlz4nd2o8iEvgP5xm+M7JEO+u9jRul2+QH+6zXEdnEKuFDp59zP0wOrjhYBlKFt2RTsoYr64fpfbRGO78dnMHksf4mqX0e7GC9Xz9JY7/z5QY71RLC1Ssujo+1Z4aeV9IBlP4LqSMKtxm5JUFaUYXcY=
+  on:
+    tags: true
+    repo: khoanguyen96/vue-paypal-checkout
