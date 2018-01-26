@@ -1,5 +1,5 @@
 <template>
-<div :id="id" class="paypal-button"></div>
+  <div :id="id" class="paypal-button"></div>
 </template>
 
 <script>
@@ -94,7 +94,7 @@ export default {
       }
     });
 
-    paypal.Button.render(button, vue.id);
+    paypal.Button.render(button, vue.$el);
   },
 };
 </script>
