@@ -1,12 +1,10 @@
-import shortid from 'shortid';
-
 const requiredProps = [
   ['amount'],
   ['currency', 'USD'],
 ];
 
 const optionalProps = [
-  ['id', shortid.generate()],
+  ['id'],
   ['invoiceNumber'],
 ];
 

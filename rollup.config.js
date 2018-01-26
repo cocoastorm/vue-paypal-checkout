@@ -54,7 +54,8 @@ if (vueConfig.standalone) {
   }).catch(err => {
     console.log(
       chalk.red('Build Failed.\n'),
-      chalk.yellow(err)
+      chalk.yellow(err),
+      chalk.yellow(err.stack)
     )
   });
 }
