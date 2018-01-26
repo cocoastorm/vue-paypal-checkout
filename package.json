@@ -12,13 +12,13 @@
     "type": "git"
   },
   "scripts": {
-    "beforePublish": "npm run lint && npm run build",
-    "build": "npm run purge && npm run compile",
+    "beforePublish": "yarn run lint && yarn run build",
+    "build": "yarn run purge && yarn run compile",
     "compile": "rollup -c",
     "lint": "eslint --ext .js,.vue src test",
-    "lint:fix": "npm run lint -- --fix",
+    "preversion": "yarn test",
     "purge": "rm -rf dist/",
-    "test": "npm run lint && npm run unit",
+    "test": "yarn run lint && yarn run unit",
     "unit": "jest --config test/unit/jest.conf.js"
   },
   "dependencies": {
