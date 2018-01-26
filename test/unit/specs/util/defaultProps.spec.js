@@ -32,7 +32,6 @@ describe('defaultProps.js', () => {
     expect(props.id).toEqual({
       type: String,
       required: false,
-      default: expect.any(String),
     });
 
     expect(props.invoiceNumber).toEqual({
