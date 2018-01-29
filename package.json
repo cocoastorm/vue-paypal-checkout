@@ -1,7 +1,7 @@
 {
   "name": "vue-paypal-checkout",
   "description": "A simple Vue.js wrapper component for paypal-checkout",
-  "version": "2.2.2",
+  "version": "2.2.0",
   "main": "dist/vue-paypal-checkout.common.js",
   "module": "dist/vue-paypal-checkout.esm.js",
   "browser": "dist/vue-paypal-checkout.min.js",

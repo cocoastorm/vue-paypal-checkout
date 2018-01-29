@@ -14,16 +14,29 @@ Simply include Vue and `vue-paypal-checkout` into your html file (using unpkg cd
 <script src="https://unpkg.com/vue-paypal-checkout@2.0.0/dist/vue-paypal-checkout.min.js"></script>
 ```
 
-By including vue-paypal-checkout in a script tag, it will automagically register the component into Vue
+By including vue-paypal-checkout in a script tag, it will automagically register the component into Vue.js
 ``` html
 <div id="app">
   <paypal-checkout
     amount="10.00"
     currency="USD"
-    :client="paypal"
-    invoiceNumber="201701011000">
+    :client="paypal">
   </paypal-checkout>
 </div>
+```
+
+``` html
+<script>
+var app = new Vue({
+  el: '#app',
+  data: {
+    paypal: {
+      sandbox: '<sandbox client id>',
+      production: '<production client id>'
+    }
+  }
+})
+</script>
 ```
 
 ## Usage with Vue Loader
@@ -32,9 +45,18 @@ Simply import the package into your .vue file.
 ``` javascript
 import PayPal from 'vue-paypal-checkout'
 
-...
-components: {
-  PayPal
+export default {
+  data() {
+    return {
+      paypal: {
+        sandbox: '<sandbox client id>',
+        production: '<production client id>'
+      }
+    }
+  },
+  components: {
+    PayPal
+  }
 }
 ```
 
@@ -43,24 +65,38 @@ components: {
  <PayPal
   amount="10.00"
   currency="USD"
-  :client="credentials"
-  invoiceNumber="201701011000">
+  :client="credentials">
 </PayPal>
 ```
 
-``` javascript
+``` html
 <script>
-  export default {
-    data () {
-      return {
-        credentials: {
-          sandbox: '<sandbox client id>',
-          production: '<production client id>'
-        }
+export default {
+  data () {
+    return {
+      credentials: {
+        sandbox: '<sandbox client id>',
+        production: '<production client id>'
       }
     }
   }
+}
 </script>
+```
+
+Further examples will be using the format for VueJS Single File Components with Vue Loader. There really shouldn't be any major changes required to get it to work in a basic HTML + Vue template.
+
+### Specifying an Invoice Number
+
+You can also specify a specific invoice number if you need so:
+
+``` html
+ <PayPal
+  amount="10.00"
+  currency="USD"
+  :client="credentials"
+  invoice-number="<some invoice number>">
+</PayPal>
 ```
 
 ### Specifying Items
@@ -78,39 +114,123 @@ The items you specify must total up to the be the same amount you specified in t
   amount="10.00"
   currency="USD"
   :client="credentials"
-  invoiceNumber="201701011000"
   :items="myItems">
 </PayPal>
 ```
 
-``` javascript
+``` html
 <script>
-  export default {
-    data () {
-      return {
-        credentials: {
-          sandbox: '<sandbox client id>',
-          production: '<production client id>'
-        },
-        myItems: [
+export default {
+  data () {
+    return {
+      credentials: {
+        sandbox: '<sandbox client id>',
+        production: '<production client id>'
+      },
+      myItems: [
+        {
+          "name": "hat",
+          "description": "Brown hat.",
+          "quantity": "1",
+          "price": "5",
+          "currency": "USD"
+          },
           {
-            "name": "hat",
-            "description": "Brown hat.",
-            "quantity": "1",
-            "price": "5",
-            "currency": "USD"
-            },
-            {
-            "name": "handbag",
-            "description": "Black handbag.",
-            "quantity": "1",
-            "price": "5",
-            "currency": "USD"
-            }
-        ]
+          "name": "handbag",
+          "description": "Black handbag.",
+          "quantity": "1",
+          "price": "5",
+          "currency": "USD"
+          }
+      ]
+    }
+  }
+}
+</script>
+```
+
+#### Using PayPal Experience Options (v2.2.0+)
+
+Just pass a valid object with the [Experience options](https://developer.paypal.com/docs/api/payment-experience/) you require in the `experience` prop:
+
+Kudos to @ilrock for mentioning the PayPal Experience options!
+
+``` html
+ <PayPal
+  amount="10.00"
+  currency="USD"
+  :client="credentials"
+  :experience="experienceOptions">
+</PayPal>
+```
+
+``` html
+<script>
+export default {
+  data () {
+    return {
+      credentials: {
+        sandbox: '<sandbox client id>',
+        production: '<production client id>'
+      },
+      experienceOptions: {
+        input_fields: {
+          no_shipping: 1
+        }
       }
     }
   }
+}
+</script>
+```
+
+#### Using Braintree SDK (v2.2.0+)
+
+Using Braintree with the PayPal Button is possible as well. Just pass in the Braintree (Web) SDK via the `braintree` prop:
+
+Kudos to @portwatcher for suggesting Braintree support!
+
+``` html
+ <PayPal
+  amount="10.00"
+  currency="USD"
+  :client="credentials"
+  :braintree="braintreeSdk">
+</PayPal>
+```
+
+``` html
+<script>
+export default {
+  data () {
+    return {
+      credentials: {
+        sandbox: '<sandbox client id>',
+        production: '<production client id>'
+      },
+      braintreeSdk: window.braintree
+    }
+  }
+}
+</script>
+```
+
+``` html
+<script>
+import braintree from 'braintree-web'
+
+export default {
+  data () {
+    return {
+      credentials: {
+        sandbox: '<sandbox client id>',
+        production: '<production client id>'
+      },
+      braintreeSdk: braintree
+    }
+  }
+}
+
 </script>
 ```
 
@@ -144,11 +264,9 @@ data () {
 ``` html
  <PayPal
   amount="10.00"
-  :buttonStyle="myStyle"
   currency="USD"
-  :client="credentials"
-  invoiceNumber="201701011000"
-  :items="myItems">
+  :buttonStyle="myStyle"
+  :client="credentials">
 </PayPal>
 ```
 
