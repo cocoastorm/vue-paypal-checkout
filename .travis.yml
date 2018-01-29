@@ -11,11 +11,3 @@ install:
 script:
 - yarn run build
 - yarn run test
-deploy:
-  provider: npm
-  email: khoa.tan.nguyen.96@gmail.com
-  api_key:
-    secure: OhqbuXddiA12aUK2s07yQoRqGA/CUhNqcXdq2N53DxhgR8FyKsU5CsPKUmO4oIWadjMiJxTpQL3ear1N1gi78NGf8COvLpkQK4RRYtV9PKtPhJgAbmEp3wJ5JOgvR0tTOMfQ3+vxwnOnwh2BFLBSN1H48WGJcE98Ulggd1+U7I4/afSEntIp52OcOp24UpkO7T7QB5bbKyAEqokUFtS89dMdNNXhvn8EvOh3kuyyC33ca9/DZ1FNrYUb2t/4mkfWWG5Md1ZNb+hi1aC8XCmuRUd5Sgirwz+nKJYmvXgb9PV3iF4z3a2bxSETPyPdUMhdEPy8EQw4hNXQN1BMzpzrVjY1/LSvIH4dLgNF4hQuSA6l0QeKNF7HTQPOAXhQczztDaHkAqyATYErYhwQvQ17GiONlowgRRyUCdGBLmOCehOipqJaDpUtxRwguYS5MmudQgT6o4qye0R4M622dOOLUwKUSNZHJI3P4f84ayyx39ZxhaKA7mA3UTaCTWW4B8OELzB8NsccXbVmlSbUqZd5ZVfeO0/cbJMD8XKIsLWei0ygZjB2RIul1rA/AuHclpvlgfzZTa+l8gex6eFkt8/Ifeus7CwuO41Xe4IGoxzLt2ZnXRgSwZ6lHlPmUv7ynl3XbdMtmrn1U0HpTGRCgZAlZAbyzU8lUD5RkpNzRwJWtmQ=
-  on:
-    tags: true
-    repo: khoanguyen96/vue-paypal-checkout

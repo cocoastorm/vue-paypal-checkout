@@ -1,7 +1,6 @@
-dist/
-test/unit/coverage/
-
 # Created by https://www.gitignore.io/api/webstorm,phpstorm,osx,linux,node
+
+test/unit/coverage/
 
 ### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
