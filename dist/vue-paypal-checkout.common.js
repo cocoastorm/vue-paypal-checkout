@@ -11,9 +11,17 @@ var requiredProps = [['amount'], ['currency', 'USD']];
 
 var optionalProps = [['id'], ['invoiceNumber']];
 
-var specificProps = [{ name: 'client', type: Object, required: true },
+var specificProps = [{
+  name: 'env',
+  type: String,
+  required: false,
+  default: 'production',
+  validator: function validator(value) {
+    return ['sandbox', 'production'].indexOf(value) !== -1;
+  }
+}, { name: 'client', type: Object, required: true },
 // eslint-disable-next-line
-{ name: 'commit', type: Boolean, required: false, default: true }, { name: 'dev', type: Boolean, required: false }, { name: 'items', type: Array, required: false }, { name: 'buttonStyle', type: Object, required: false }, { name: 'experience', type: Object, required: false }];
+{ name: 'commit', type: Boolean, required: false, default: true }, { name: 'items', type: Array, required: false }, { name: 'buttonStyle', type: Object, required: false }, { name: 'experience', type: Object, required: false }];
 
 function defaultProps () {
   var props = {};
@@ -129,11 +137,6 @@ var PayPalCheckout = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "paypal-button", attrs: { "id": _vm.id } });
   }, staticRenderFns: [],
   props: _Object$assign(defaultProps(), additionalProps.vmProps()),
-  computed: {
-    env: function env() {
-      return this.dev ? 'sandbox' : 'production';
-    }
-  },
   methods: {
     item_list: function item_list() {
       var itemList = {
