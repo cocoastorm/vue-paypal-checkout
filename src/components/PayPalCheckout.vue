@@ -13,11 +13,6 @@ export default {
     defaultProps(),
     additionalProps.vmProps(),
   ),
-  computed: {
-    env() {
-      return (this.dev) ? 'sandbox' : 'production';
-    },
-  },
   methods: {
     item_list() {
       const itemList = {

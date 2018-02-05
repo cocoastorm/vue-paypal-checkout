@@ -33,7 +33,7 @@ function getProps() {
     client: credentials,
     currency: 'USD',
     commit: true,
-    dev: true,
+    env: 'sandbox',
     invoiceNumber: '201705051001',
     items: getItems(),
   };
@@ -66,8 +66,8 @@ describe('PayPalCheckout.vue', () => {
     expect(checkout.props().commit).toBe(true);
   });
 
-  it('should have the dev prop', () => {
-    expect(checkout.props().dev).toBe(true);
+  it('should have the env prop', () => {
+    expect(checkout.props().env).toBe(true);
   });
 
   it('should have the invoiceNumber prop', () => {

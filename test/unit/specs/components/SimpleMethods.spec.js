@@ -31,7 +31,7 @@ function getProps() {
     client: credentials,
     currency: 'USD',
     commit: true,
-    dev: true,
+    env: 'sandbox',
     invoiceNumber: '201801011001',
     items: getItems(),
   };
@@ -57,8 +57,8 @@ describe('Methods within PayPalCheckout.vue', () => {
   });
 
   describe('Environment', () => {
-    it('dev prop is true', () => {
-      expect(checkout.props().dev).toBe(true);
+    it('env prop is true', () => {
+      expect(checkout.props().env).toEqual('sandbox');
     });
   });
 
