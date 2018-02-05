@@ -67,7 +67,7 @@ describe('PayPalCheckout.vue', () => {
   });
 
   it('should have the env prop', () => {
-    expect(checkout.props().env).toBe(true);
+    expect(checkout.props().env).toBeTruthy();
   });
 
   it('should have the invoiceNumber prop', () => {

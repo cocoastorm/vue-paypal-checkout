@@ -46,7 +46,7 @@ describe('defaultProps.js', () => {
     expect(props).toEqual(expect.objectContaining({
       client: expect.any(Object),
       commit: expect.any(Object),
-      dev: expect.any(Object),
+      env: expect.any(Object),
       items: expect.any(Object),
       buttonStyle: expect.any(Object),
     }));
@@ -62,9 +62,10 @@ describe('defaultProps.js', () => {
       default: true,
     });
 
-    expect(props.dev).toEqual({
-      type: Boolean,
+    expect(props.env).toEqual({
+      type: String,
       required: false,
+      default: 'production',
     });
 
     expect(props.items).toEqual({
