@@ -12,7 +12,8 @@ const specificProps = [
   {
     name: 'env',
     type: String,
-    required: true,
+    required: false,
+    default: 'production',
     validator: function (value) {
       return [
         'sandbox',
