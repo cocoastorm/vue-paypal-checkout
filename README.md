@@ -84,6 +84,20 @@ export default {
 </script>
 ```
 
+### Specifying the PayPal environment
+
+For testing purposes, just pass in the `env` prop as `sandbox`:
+``` html
+ <PayPal
+  amount="10.00"
+  currency="USD"
+  :client="credentials"
+  env="sandbox">
+</PayPal>
+```
+
+By default, the environment is for `production`...
+
 Further examples will be using the format for VueJS Single File Components with Vue Loader. There really shouldn't be any major changes required to get it to work in a basic HTML + Vue template.
 
 ### Specifying an Invoice Number
