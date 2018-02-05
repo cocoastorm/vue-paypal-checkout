@@ -14,10 +14,10 @@ const specificProps = [
     type: String,
     required: false,
     default: 'production',
-    validator: function (value) {
+    validator(value) {
       return [
         'sandbox',
-        'production'
+        'production',
       ].indexOf(value) !== -1;
     },
   },
