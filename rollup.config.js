@@ -42,14 +42,23 @@ if (vueConfig.standalone) {
       browser: true,
     }),
     commonjs(),
-    uglify(),
   ].concat(options.plugins);
 
-  rollup(options).then(bundle => bundle.write({
+  let promise = Promise.resolve();
+
+  promise.then(() => rollup(options).then(bundle => bundle.write({
     format: 'umd',
-    file: `dist/${pack.name}.min.js`,
+    file: `dist/${pack.name}.umd.js`,
     name: camelcase(pack.name),
-  })).then(() => {
+  }))).then(() => {
+    options.plugins.push(uglify());
+
+    return rollup(options).then(bundle => bundle.write({
+      format: 'umd',
+      file: `dist/${pack.name}.min.js`,
+      name: camelcase(pack.name),
+    }));
+  }).then(() => {
     console.log(chalk.cyan('Build complete.\n'))
   }).catch(err => {
     console.log(
