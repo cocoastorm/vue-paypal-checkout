@@ -1,6 +1,7 @@
 import PayPalProp, { propTypes } from './util/paypalProp';
 
 const props = [
+  new PayPalProp({ name: 'buttonStyle', paypalName: 'style', type: propTypes.BUTTON }),
   new PayPalProp({ name: 'braintree', type: propTypes.BUTTON }),
 ];
 
