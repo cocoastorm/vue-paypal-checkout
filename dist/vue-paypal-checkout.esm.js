@@ -106,7 +106,7 @@ var propTypes = {
   TRANSACTION: 'transaction'
 };
 
-var props = [new paypalProp({ name: 'braintree', type: propTypes.BUTTON })];
+var props = [new paypalProp({ name: 'buttonStyle', paypalName: 'style', type: propTypes.BUTTON }), new paypalProp({ name: 'braintree', type: propTypes.BUTTON })];
 
 function vmProps() {
   var vm = {};
