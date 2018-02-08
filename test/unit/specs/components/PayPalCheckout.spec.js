@@ -1,5 +1,5 @@
 import { createLocalVue, shallow } from '@vue/test-utils';
-// import { createRenderer } from 'vue-server-renderer';
+import { createRenderer } from 'vue-server-renderer';
 import PayPalCheckout from '../../../../src/components/PayPalCheckout.vue';
 
 const credentials = {
@@ -81,22 +81,22 @@ describe('PayPalCheckout.vue', () => {
   });
 
   // TODO: renable after jsdom fixes css parsing
-  // describe('iframe rendering', () => {
-  //   it('div', () => {
-  //     const div = checkout.find('div');
-  //     expect(div.is('div')).toBe(true);
-  //   });
+  describe('iframe rendering', () => {
+    it('div', () => {
+      const div = checkout.find('div');
+      expect(div.is('div')).toBe(true);
+    });
 
-  //   it('has xcomponent class', () => {
-  //     expect(checkout.contains('.xcomponent-visible')).toBe(true);
-  //   });
+    it('has xcomponent class', () => {
+      expect(checkout.contains('.xcomponent-visible')).toBe(true);
+    });
 
-  //   it('has same HTML structure', () => {
-  //     const renderer = createRenderer();
-  //     renderer.renderToString(checkout.vm, (err, str) => {
-  //       if (err) throw new Error(err);
-  //       expect(str).toMatchSnapshot();
-  //     });
-  //   });
-  // });
+    it('has same HTML structure', () => {
+      const renderer = createRenderer();
+      renderer.renderToString(checkout.vm, (err, str) => {
+        if (err) throw new Error(err);
+        expect(str).toMatchSnapshot();
+      });
+    });
+  });
 });
