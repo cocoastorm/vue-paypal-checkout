@@ -25,6 +25,7 @@ const specificProps = [
   // eslint-disable-next-line
   { name: 'commit', type: Boolean, required: false, default: true },
   { name: 'items', type: Array, required: false },
+  { name: 'locale', type: String, required: false },
   { name: 'buttonStyle', type: Object, required: false },
   { name: 'experience', type: Object, required: false },
 ];
