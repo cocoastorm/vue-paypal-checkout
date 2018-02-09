@@ -21,10 +21,10 @@
     <div class="content">
       <p>Pay with USD $10.00</p>
       <paypal-checkout
+        env="sandbox"
         amount="10.00"
         currency="USD"
         :client="paypal"
-        :dev="true"
         :invoice-number="'201705051001'"
         :braintree="paypal.braintree">
       </paypal-checkout>

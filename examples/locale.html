@@ -13,7 +13,7 @@
 
 <body>
   <script src="https://unpkg.com/vue@^2.5/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-paypal-checkout/dist/vue-paypal-checkout.min.js"></script>
+  <script src="../dist/vue-paypal-checkout.min.js"></script>
 
   <div id="app">
     <div class="content">
@@ -22,8 +22,8 @@
         env="sandbox"
         amount="10.00"
         currency="USD"
+        locale="fr_FR"
         :client="paypal"
-        :button-style="aStyle"
         :invoice-number="'201705051001'">
       </paypal-checkout>
     </div>
@@ -38,12 +38,6 @@
           paypal: {
             sandbox: 'Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl',
             production: '',
-          },
-          aStyle: {
-            label: 'pay',
-            size: 'small',
-            shape: 'rect',
-            color: 'blue',
           },
         };
       },
