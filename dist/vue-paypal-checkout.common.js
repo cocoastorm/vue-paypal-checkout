@@ -21,7 +21,7 @@ var specificProps = [{
   }
 }, { name: 'client', type: Object, required: true },
 // eslint-disable-next-line
-{ name: 'commit', type: Boolean, required: false, default: true }, { name: 'items', type: Array, required: false }, { name: 'buttonStyle', type: Object, required: false }, { name: 'experience', type: Object, required: false }];
+{ name: 'commit', type: Boolean, required: false, default: true }, { name: 'items', type: Array, required: false }, { name: 'locale', type: String, required: false }, { name: 'buttonStyle', type: Object, required: false }, { name: 'experience', type: Object, required: false }];
 
 function defaultProps () {
   var props = {};
@@ -110,7 +110,7 @@ var propTypes = {
   TRANSACTION: 'transaction'
 };
 
-var props = [new paypalProp({ name: 'buttonStyle', paypalName: 'style', type: propTypes.BUTTON }), new paypalProp({ name: 'braintree', type: propTypes.BUTTON })];
+var props = [new paypalProp({ name: 'buttonStyle', paypalName: 'style', type: propTypes.BUTTON }), new paypalProp({ name: 'braintree', type: propTypes.BUTTON }), new paypalProp({ name: 'locale', type: propTypes.BUTTON })];
 
 function vmProps() {
   var vm = {};
@@ -201,7 +201,7 @@ var PayPalCheckout = { render: function render() {
     additionalProps.getTypedProps(propTypes.BUTTON).forEach(function (prop) {
       var result = prop.getChange(vue);
 
-      if (result !== undefined) {
+      if (result !== undefined && result !== null) {
         var name = result.name,
             value = result.value;
 
