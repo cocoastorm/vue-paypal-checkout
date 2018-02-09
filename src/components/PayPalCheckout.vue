@@ -83,7 +83,7 @@ export default {
     additionalProps.getTypedProps(propTypes.BUTTON).forEach((prop) => {
       const result = prop.getChange(vue);
 
-      if (result !== undefined) {
+      if (result !== undefined && result !== null) {
         const { name, value } = result;
         button[name] = value;
       }
