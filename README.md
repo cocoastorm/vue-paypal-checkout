@@ -248,6 +248,17 @@ export default {
 </script>
 ```
 
+#### Changing Locale (v2.3.3+)
+`paypal-checkout` allows changing the locale of the button via a `locale` parameter. There's a `locale` prop you can use to accomplish the same:
+
+``` html
+ <PayPal
+  amount="10.00"
+  currency="USD"
+  locale="en_US"
+  :client="credentials">
+</PayPal>
+```
 #### Button Style
 `paypal-checkout` allows changing the style of the button via a style object like so:
 

@@ -73,6 +73,11 @@ describe('defaultProps.js', () => {
       required: false,
     });
 
+    expect(props.locale).toEqual({
+      type: String,
+      required: false,
+    });
+
     expect(props.buttonStyle).toEqual({
       type: Object,
       required: false,
