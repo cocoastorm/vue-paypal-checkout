@@ -47,8 +47,8 @@ describe('defaultProps.js', () => {
       client: expect.any(Object),
       commit: expect.any(Object),
       env: expect.any(Object),
+      experience: expect.any(Object),
       items: expect.any(Object),
-      buttonStyle: expect.any(Object),
     }));
 
     expect(props.client).toEqual({
@@ -68,18 +68,13 @@ describe('defaultProps.js', () => {
       default: 'production',
     });
 
+    expect(props.experience).toEqual({
+      type: Object,
+      required: false,
+    });
+
     expect(props.items).toEqual({
       type: Array,
-      required: false,
-    });
-
-    expect(props.locale).toEqual({
-      type: String,
-      required: false,
-    });
-
-    expect(props.buttonStyle).toEqual({
-      type: Object,
       required: false,
     });
   });
