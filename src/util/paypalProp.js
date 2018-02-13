@@ -18,6 +18,7 @@ function paypalProp(prop) {
   define('injection', prop.injection, 'button');
   define('type', prop.type, Object);
   define('required', prop.required, false);
+  define('validator', prop.validator, undefined);
 
   this.transforms = [];
 }
@@ -26,6 +27,7 @@ paypalProp.prototype.getVmProp = function getVmProp() {
   return {
     type: this.type,
     required: this.required,
+    validator: this.validator,
   };
 };
 
