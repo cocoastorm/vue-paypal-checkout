@@ -17,7 +17,7 @@ var specificProps = [{
   }
 }, { name: 'client', type: Object, required: true },
 // eslint-disable-next-line
-{ name: 'commit', type: Boolean, required: false, default: true }, { name: 'items', type: Array, required: false }, { name: 'locale', type: String, required: false }, { name: 'buttonStyle', type: Object, required: false }, { name: 'experience', type: Object, required: false }];
+{ name: 'commit', type: Boolean, required: false, default: true }, { name: 'items', type: Array, required: false }, { name: 'experience', type: Object, required: false }];
 
 function defaultProps () {
   var props = {};
@@ -66,25 +66,27 @@ function defaultProps () {
 }
 
 function paypalProp(prop) {
-  this.name = prop.name;
+  /* eslint-disable no-param-reassign */
+  var define = function getDefine(object) {
+    return function def(name, param, defaultParam) {
+      var isDefined = typeof param !== 'undefined' && param !== null;
+      var hasDefault = typeof defaultParam !== 'undefined' && defaultParam !== null;
 
-  if (typeof prop.paypalName !== 'undefined') {
-    this.propName = prop.paypalName;
-  } else {
-    this.propName = this.name;
-  }
+      if (isDefined) object[name] = param;else if (hasDefault) object[name] = defaultParam;else object[name] = null; // TODO: throw err?
+    };
+  }(this);
 
-  if (typeof prop.injectionType !== 'undefined') {
-    this.injection = prop.injectionType;
-  } else {
-    this.injection = 'button';
-  }
+  define('name', prop.name);
+  define('propName', prop.paypalName, prop.name);
+  define('injection', prop.injection, 'button');
+  define('type', prop.type, Object);
+  define('required', prop.required, false);
 }
 
 paypalProp.prototype.getVmProp = function getVmProp() {
   return {
-    type: Object,
-    required: false
+    type: this.type,
+    required: this.required
   };
 };
 
@@ -106,7 +108,7 @@ var propTypes = {
   TRANSACTION: 'transaction'
 };
 
-var props = [new paypalProp({ name: 'buttonStyle', paypalName: 'style', type: propTypes.BUTTON }), new paypalProp({ name: 'braintree', type: propTypes.BUTTON }), new paypalProp({ name: 'locale', type: propTypes.BUTTON })];
+var props = [new paypalProp({ name: 'buttonStyle', paypalName: 'style', injection: propTypes.BUTTON }), new paypalProp({ name: 'braintree', injection: propTypes.BUTTON }), new paypalProp({ name: 'locale', type: String, injection: propTypes.BUTTON })];
 
 function vmProps() {
   var vm = {};
