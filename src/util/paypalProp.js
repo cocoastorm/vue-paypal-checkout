@@ -18,6 +18,8 @@ function paypalProp(prop) {
   define('injection', prop.injection, 'button');
   define('type', prop.type, Object);
   define('required', prop.required, false);
+
+  this.transforms = [];
 }
 
 paypalProp.prototype.getVmProp = function getVmProp() {
@@ -27,22 +29,46 @@ paypalProp.prototype.getVmProp = function getVmProp() {
   };
 };
 
-paypalProp.prototype.getChange = function getChange(src) {
-  const value = src[this.name];
+paypalProp.prototype.addChangeTransform = function addChangeTransform(callable) {
+  this.transforms.push(callable);
+};
 
-  if (typeof value !== 'undefined') {
-    return {
-      name: this.propName,
-      value,
-    };
+paypalProp.prototype.getChange = function getChange(src) {
+  let value = src[this.name];
+
+  // change the value if necessary...
+  if (value !== undefined && value !== null) {
+    this.transforms.forEach((transform) => {
+      value = transform(value);
+    });
   }
 
-  return undefined;
+  return {
+    name: this.propName,
+    value,
+  };
 };
 
 export default paypalProp;
 
 export const propTypes = {
   BUTTON: 'button',
+  PAYMENT: 'payment',
   TRANSACTION: 'transaction',
 };
+
+export function assignToPropertyObject(props) {
+  return function assignTo(vm, type) {
+    const obj = {};
+
+    props.getTypedProps(type).forEach((item) => {
+      const { name, value } = item.getChange(vm);
+
+      if (name !== undefined && value !== undefined) {
+        obj[name] = value;
+      }
+    });
+
+    return obj;
+  };
+}
