@@ -1,23 +1,29 @@
 function paypalProp(prop) {
-  this.name = prop.name;
+  /* eslint-disable no-param-reassign */
+  const define = (function getDefine(object) {
+    return function def(name, param, defaultParam) {
+      const isDefined = typeof param !== 'undefined'
+        && param !== null;
+      const hasDefault = typeof defaultParam !== 'undefined'
+        && defaultParam !== null;
 
-  if (typeof prop.paypalName !== 'undefined') {
-    this.propName = prop.paypalName;
-  } else {
-    this.propName = this.name;
-  }
+      if (isDefined) object[name] = param;
+      else if (hasDefault) object[name] = defaultParam;
+      else object[name] = null; // TODO: throw err?
+    };
+  }(this));
 
-  if (typeof prop.injectionType !== 'undefined') {
-    this.injection = prop.injectionType;
-  } else {
-    this.injection = 'button';
-  }
+  define('name', prop.name);
+  define('propName', prop.paypalName, prop.name);
+  define('injection', prop.injection, 'button');
+  define('type', prop.type, Object);
+  define('required', prop.required, false);
 }
 
 paypalProp.prototype.getVmProp = function getVmProp() {
   return {
-    type: Object,
-    required: false,
+    type: this.type,
+    required: this.required,
   };
 };
 

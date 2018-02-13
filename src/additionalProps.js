@@ -1,9 +1,9 @@
 import PayPalProp, { propTypes } from './util/paypalProp';
 
 const props = [
-  new PayPalProp({ name: 'buttonStyle', paypalName: 'style', type: propTypes.BUTTON }),
-  new PayPalProp({ name: 'braintree', type: propTypes.BUTTON }),
-  new PayPalProp({ name: 'locale', type: propTypes.BUTTON }),
+  new PayPalProp({ name: 'buttonStyle', paypalName: 'style', injection: propTypes.BUTTON }),
+  new PayPalProp({ name: 'braintree', injection: propTypes.BUTTON }),
+  new PayPalProp({ name: 'locale', type: String, injection: propTypes.BUTTON }),
 ];
 
 function vmProps() {
