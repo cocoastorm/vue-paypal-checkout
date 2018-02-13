@@ -18,6 +18,7 @@ export default {
   methods: {
     payment() {
       const vue = this;
+
       const transaction = Object.assign({
         amount: {
           total: this.amount,
@@ -25,9 +26,11 @@ export default {
         },
       }, assignTo(vue, propTypes.TRANSACTION));
 
-      return paypal.rest.payment.create(this.env, this.client, Object.assign({
+      const payment = Object.assign({
         transactions: [transaction],
-      }, assignTo(vue, propTypes.PAYMENT)));
+      }, assignTo(vue, propTypes.PAYMENT));
+
+      return paypal.rest.payment.create(this.env, this.client, payment);
     },
     onAuthorize(data, actions) {
       const vue = this;
