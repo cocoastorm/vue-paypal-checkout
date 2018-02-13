@@ -1,5 +1,6 @@
 import PayPalProp, { propTypes } from './paypalProp';
 
+// TODO: add item validator thanks
 const itemsPayPalProp = new PayPalProp({
   name: 'items',
   paypalName: 'item_list',
