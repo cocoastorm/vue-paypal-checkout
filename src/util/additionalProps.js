@@ -29,6 +29,7 @@ const props = [
     name: 'notifyUrl',
     paypalName: 'notify_url',
     type: String,
+    validator: value => (/^https?:\/\//.test(value)),
     injection: propTypes.TRANSACTION,
   }),
   itemsPayPalProp,
