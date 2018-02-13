@@ -25,6 +25,12 @@ const props = [
     type: String,
     injection: propTypes.TRANSACTION,
   }),
+  new PayPalProp({
+    name: 'notifyUrl',
+    paypalName: 'notify_url',
+    type: String,
+    injection: propTypes.TRANSACTION,
+  }),
   itemsPayPalProp,
 ];
 
@@ -39,8 +45,7 @@ function vmProps() {
 }
 
 function getTypedProps(type) {
-  return props
-    .filter(prop => prop.injection === type);
+  return props.filter(prop => prop.injection === type);
 }
 
 export default {
