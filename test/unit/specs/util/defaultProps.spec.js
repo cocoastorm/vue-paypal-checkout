@@ -47,8 +47,6 @@ describe('defaultProps.js', () => {
       client: expect.any(Object),
       commit: expect.any(Object),
       env: expect.any(Object),
-      experience: expect.any(Object),
-      items: expect.any(Object),
     }));
 
     expect(props.client).toEqual({
@@ -66,16 +64,6 @@ describe('defaultProps.js', () => {
       type: String,
       required: false,
       default: 'production',
-    });
-
-    expect(props.experience).toEqual({
-      type: Object,
-      required: false,
-    });
-
-    expect(props.items).toEqual({
-      type: Array,
-      required: false,
     });
   });
 });
