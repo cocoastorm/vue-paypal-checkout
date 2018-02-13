@@ -9,7 +9,7 @@ function paypalProp(prop) {
 
       if (isDefined) object[name] = param;
       else if (hasDefault) object[name] = defaultParam;
-      else object[name] = null; // TODO: throw err?
+      else object[name] = undefined; // TODO: throw err?
     };
   }(this));
 
