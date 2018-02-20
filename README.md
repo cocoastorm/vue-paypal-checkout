@@ -259,6 +259,23 @@ export default {
   :client="credentials">
 </PayPal>
 ```
+
+#### Setting UP IPN Notifications (v2.3.5+)
+According to the Payments API of PayPal, setting a `notify_url` on the transaction object will allow notifications to be sent to an IPN Listener.
+
+There's a `notify_url` prop you can use to accomplish the same.
+
+``` html
+<PayPal
+  amount="10.00"
+  currency="USD"
+  :client="credentials"
+  notify-url="<your-ipn-url>">
+</PayPal>
+```
+
+For more information on implementing IPN, take a look at the [PayPal docs](https://developer.paypal.com/docs/classic/ipn/integration-guide/IPNIntro/).
+
 #### Button Style
 `paypal-checkout` allows changing the style of the button via a style object like so:
 
