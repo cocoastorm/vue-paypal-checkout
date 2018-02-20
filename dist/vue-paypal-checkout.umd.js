@@ -16190,7 +16190,7 @@ var specificProps = [{
   }
 }, { name: 'client', type: Object, required: true },
 // eslint-disable-next-line
-{ name: 'commit', type: Boolean, required: false, default: true }, { name: 'items', type: Array, required: false }, { name: 'experience', type: Object, required: false }];
+{ name: 'commit', type: Boolean, required: false, default: true }];
 
 function defaultProps () {
   var props = {};
@@ -16245,7 +16245,7 @@ function paypalProp(prop) {
       var isDefined = typeof param !== 'undefined' && param !== null;
       var hasDefault = typeof defaultParam !== 'undefined' && defaultParam !== null;
 
-      if (isDefined) object[name] = param;else if (hasDefault) object[name] = defaultParam;else object[name] = null; // TODO: throw err?
+      if (isDefined) object[name] = param;else if (hasDefault) object[name] = defaultParam;else object[name] = undefined; // TODO: throw err?
     };
   }(this);
 
@@ -16254,34 +16254,98 @@ function paypalProp(prop) {
   define('injection', prop.injection, 'button');
   define('type', prop.type, Object);
   define('required', prop.required, false);
+  define('validator', prop.validator, undefined);
+
+  this.transforms = [];
 }
 
 paypalProp.prototype.getVmProp = function getVmProp() {
   return {
     type: this.type,
-    required: this.required
+    required: this.required,
+    validator: this.validator
   };
+};
+
+paypalProp.prototype.addChangeTransform = function addChangeTransform(callable) {
+  this.transforms.push(callable);
 };
 
 paypalProp.prototype.getChange = function getChange(src) {
   var value = src[this.name];
 
-  if (typeof value !== 'undefined') {
-    return {
-      name: this.propName,
-      value: value
-    };
+  // change the value if necessary...
+  if (value !== undefined && value !== null) {
+    this.transforms.forEach(function (transform) {
+      value = transform(value);
+    });
   }
 
-  return undefined;
+  return {
+    name: this.propName,
+    value: value
+  };
 };
 
 var propTypes = {
   BUTTON: 'button',
+  PAYMENT: 'payment',
   TRANSACTION: 'transaction'
 };
 
-var props = [new paypalProp({ name: 'buttonStyle', paypalName: 'style', injection: propTypes.BUTTON }), new paypalProp({ name: 'braintree', injection: propTypes.BUTTON }), new paypalProp({ name: 'locale', type: String, injection: propTypes.BUTTON })];
+function assignToPropertyObject(props) {
+  return function assignTo(vm, type) {
+    var obj = {};
+
+    props.getTypedProps(type).forEach(function (item) {
+      var _item$getChange = item.getChange(vm),
+          name = _item$getChange.name,
+          value = _item$getChange.value;
+
+      if (name !== undefined && value !== undefined) {
+        obj[name] = value;
+      }
+    });
+
+    return obj;
+  };
+}
+
+// TODO: add item validator thanks
+var itemsPayPalProp = new paypalProp({
+  name: 'items',
+  paypalName: 'item_list',
+  type: Array,
+  injection: propTypes.TRANSACTION
+});
+
+itemsPayPalProp.addChangeTransform(function (items) {
+  return { items: items };
+});
+
+var props = [
+// Button Props
+new paypalProp({ name: 'buttonStyle', paypalName: 'style', injection: propTypes.BUTTON }), new paypalProp({ name: 'braintree', injection: propTypes.BUTTON }), new paypalProp({ name: 'locale', type: String, injection: propTypes.BUTTON }),
+
+// Payment Props
+new paypalProp({ name: 'experience', injection: propTypes.PAYMENT }),
+
+// Transaction Props
+new paypalProp({
+  name: 'invoiceNumber',
+  paypalName: 'invoice_number',
+  type: String,
+  injection: propTypes.TRANSACTION
+}), new paypalProp({
+  name: 'notifyUrl',
+  paypalName: 'notify_url',
+  type: String,
+  validator: function validator(value) {
+    return (/^https?:\/\//.test(value)
+    );
+  },
+  injection: propTypes.TRANSACTION
+}), itemsPayPalProp];
 
 function vmProps() {
   var vm = {};
@@ -16304,32 +16368,26 @@ var additionalProps = {
   getTypedProps: getTypedProps
 };
 
+var assignTo = assignToPropertyObject(additionalProps);
+
 var PayPalCheckout = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;return _c('div', { staticClass: "paypal-button", attrs: { "id": _vm.id } });
   }, staticRenderFns: [],
   props: _Object$assign(defaultProps(), additionalProps.vmProps()),
   methods: {
-    item_list: function item_list() {
-      var itemList = {
-        items: []
-      };
-      this.items.forEach(function (item) {
-        itemList.items.push(item);
-      });
-      return itemList;
-    },
     payment: function payment() {
-      var payment = {
-        transactions: [{
-          amount: {
-            total: this.amount,
-            currency: this.currency
-          },
-          invoice_number: typeof this.invoiceNumber !== 'undefined' ? this.invoiceNumber : undefined,
-          item_list: typeof this.items !== 'undefined' ? this.item_list() : undefined
-        }],
-        experience: typeof this.experience !== 'undefined' ? this.experience : undefined
-      };
+      var vue = this;
+
+      var transaction = _Object$assign({
+        amount: {
+          total: this.amount,
+          currency: this.currency
+        }
+      }, assignTo(vue, propTypes.TRANSACTION));
+
+      var payment = _Object$assign({
+        transactions: [transaction]
+      }, assignTo(vue, propTypes.PAYMENT));
 
       return paypalCheckout.rest.payment.create(this.env, this.client, payment);
     },
@@ -16347,7 +16405,7 @@ var PayPalCheckout = { render: function render() {
   },
   mounted: function mounted() {
     var vue = this;
-    var button = {
+    var button = _Object$assign({
       // Pass in env
       env: vue.env,
 
@@ -16367,18 +16425,7 @@ var PayPalCheckout = { render: function render() {
 
       // Pass a function to be called when the customer cancels the payment
       onCancel: vue.onCancel
-    };
-
-    additionalProps.getTypedProps(propTypes.BUTTON).forEach(function (prop) {
-      var result = prop.getChange(vue);
-
-      if (result !== undefined && result !== null) {
-        var name = result.name,
-            value = result.value;
-
-        button[name] = value;
-      }
-    });
+    }, assignTo(vue, propTypes.BUTTON));
 
     paypalCheckout.Button.render(button, vue.$el);
   }

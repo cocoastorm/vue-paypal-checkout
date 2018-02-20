@@ -5,8 +5,10 @@
 <script>
 import paypal from 'paypal-checkout';
 import defaultProps from '../util/defaultProps';
-import { propTypes } from '../util/paypalProp';
-import additionalProps from '../additionalProps';
+import additionalProps from '../util/additionalProps';
+import { propTypes, assignToPropertyObject } from '../util/paypalProp';
+
+const assignTo = assignToPropertyObject(additionalProps);
 
 export default {
   props: Object.assign(
@@ -14,33 +16,19 @@ export default {
     additionalProps.vmProps(),
   ),
   methods: {
-    item_list() {
-      const itemList = {
-        items: [],
-      };
-      this.items.forEach((item) => {
-        itemList.items.push(item);
-      });
-      return itemList;
-    },
     payment() {
-      const payment = {
-        transactions: [{
-          amount: {
-            total: this.amount,
-            currency: this.currency,
-          },
-          invoice_number: (typeof this.invoiceNumber !== 'undefined')
-            ? this.invoiceNumber
-            : undefined,
-          item_list: (typeof this.items !== 'undefined')
-            ? this.item_list()
-            : undefined,
-        }],
-        experience: (typeof this.experience !== 'undefined')
-          ? this.experience
-          : undefined,
-      };
+      const vue = this;
+
+      const transaction = Object.assign({
+        amount: {
+          total: this.amount,
+          currency: this.currency,
+        },
+      }, assignTo(vue, propTypes.TRANSACTION));
+
+      const payment = Object.assign({
+        transactions: [transaction],
+      }, assignTo(vue, propTypes.PAYMENT));
 
       return paypal.rest.payment.create(this.env, this.client, payment);
     },
@@ -58,7 +46,7 @@ export default {
   },
   mounted() {
     const vue = this;
-    const button = {
+    const button = Object.assign({
       // Pass in env
       env: vue.env,
 
@@ -78,16 +66,7 @@ export default {
 
       // Pass a function to be called when the customer cancels the payment
       onCancel: vue.onCancel,
-    };
-
-    additionalProps.getTypedProps(propTypes.BUTTON).forEach((prop) => {
-      const result = prop.getChange(vue);
-
-      if (result !== undefined && result !== null) {
-        const { name, value } = result;
-        button[name] = value;
-      }
-    });
+    }, assignTo(vue, propTypes.BUTTON));
 
     paypal.Button.render(button, vue.$el);
   },
