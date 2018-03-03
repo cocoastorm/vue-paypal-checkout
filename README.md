@@ -1,5 +1,7 @@
 # vue-paypal-checkout
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/khoanguyen96/vue-paypal-checkout.svg)](https://greenkeeper.io/)
+
 > A simple Vue.js wrapper component for `paypal-checkout`
 
 [![Travis](https://img.shields.io/travis/khoanguyen96/vue-paypal-checkout.svg)](https://travis-ci.org/khoanguyen96/vue-paypal-checkout)
