@@ -5,10 +5,12 @@ module.exports = {
   moduleFileExtensions: [
     'js',
     'json',
+    'jsx',
+    'node',
     'vue',
   ],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(.*)$': 'src/$1',
   },
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',
