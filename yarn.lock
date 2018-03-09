@@ -1691,12 +1691,13 @@ eslint-config-airbnb-base@^12.1.0:
   dependencies:
     eslint-restricted-globals "^0.1.1"
 
-eslint-import-resolver-jest@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-jest/-/eslint-import-resolver-jest-1.1.0.tgz#89ac58ec5228cbcf082560d2d2308155fad0c349"
+eslint-import-resolver-jest@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-jest/-/eslint-import-resolver-jest-2.0.1.tgz#fe1b821c05d296fe16729234c8784c428e419a17"
   dependencies:
     find-root "^1.0.0"
     micromatch "^2.3.11"
+    resolve "^1.5.0"
 
 eslint-import-resolver-node@^0.3.1:
   version "0.3.2"
@@ -4734,9 +4735,9 @@ rollup-pluginutils@^2.0.1:
     estree-walker "^0.3.0"
     micromatch "^2.3.11"
 
-rollup@^0.55.3:
-  version "0.55.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.55.3.tgz#0af082a766d51c3058430c8372442ff5207d8736"
+rollup@^0.56.3:
+  version "0.56.5"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.56.5.tgz#40fe3cf0cd1659d469baad11f4d5b6336c14ce84"
 
 run-async@^2.2.0:
   version "2.3.0"
