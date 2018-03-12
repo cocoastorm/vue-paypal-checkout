@@ -34,14 +34,14 @@ export default {
     },
     onAuthorize(data, actions) {
       const vue = this;
-      vue.$emit('paypal-paymentAuthorized', data);
+      vue.$emit('payment-authorized', data);
       return actions.payment.execute().then((response) => {
-        vue.$emit('paypal-paymentCompleted', response);
+        vue.$emit('payment-completed', response);
       });
     },
     onCancel(data) {
       const vue = this;
-      vue.$emit('paypal-paymentCancelled', data);
+      vue.$emit('payment-cancelled', data);
     },
   },
   mounted() {

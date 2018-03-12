@@ -8,6 +8,9 @@
 [![npm](https://img.shields.io/npm/v/vue-paypal-checkout.svg)](https://www.npmjs.com/package/vue-paypal-checkout)
 [![David](https://img.shields.io/david/khoanguyen96/vue-paypal-checkout.svg)](https://david-dm.org/khoanguyen96/vue-paypal-checkout)
 
+## BREAKING CHANGES
+Recently changed [event names](#events-fired-by-the-simple-paypal-component) due to handlers not firing in HTML.
+
 ## Usage with Vue itself
 Simply include Vue and `vue-paypal-checkout` into your html file (using unpkg cdn)
 
@@ -318,11 +321,19 @@ data () {
 
 Each of these events fired also contain a payload which is essentially the response sent back from PayPal.
 
+v3.0.0+:
+
++ `payment-authorized`
++ `payment-completed`
++ `payment-cancelled`
+
+v2.3.5 and below:
+
 + `paypal-paymentAuthorized`
 + `paypal-paymentCompleted`
 + `paypal-paymentCancelled`
 
-In the instance of `paypal-paymentAuthorized`, you will get back a response object similar to this:
+In the instance of `payment-authorized` or `paypal-paymentAuthorized` (v2.3.5 and below), you will get back a response object similar to this:
 
 ``` json
 {  
@@ -334,7 +345,7 @@ In the instance of `paypal-paymentAuthorized`, you will get back a response obje
 }
 ```
 
-In the instance of `paypal-paymentCompleted`, you will get back a response object similar to this:
+In the instance of `payment-completed` or `paypal-paymentCompleted` (v2.3.5 and below), you will get back a response object similar to this:
 
 [Sample Payment Execute Response](https://developer.paypal.com/docs/integration/direct/payments/paypal-payments/#execute-payment)
 
