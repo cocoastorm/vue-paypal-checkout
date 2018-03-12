@@ -293,7 +293,7 @@ For more information on implementing IPN, take a look at the [PayPal docs](https
 }
 ```
 
-Due to a Vue.js restriction, you'll have to pass it as a `buttonStyle` prop to the component instead if you want to style your PayPal Checkout Button.
+Due to a Vue.js restriction, you'll have to pass it as a `button-style` prop to the component instead if you want to style your PayPal Checkout Button.
 
 ``` js
 data () {
@@ -312,7 +312,7 @@ data () {
  <PayPal
   amount="10.00"
   currency="USD"
-  :buttonStyle="myStyle"
+  :button-style="myStyle"
   :client="credentials">
 </PayPal>
 ```
