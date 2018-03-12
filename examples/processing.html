@@ -13,7 +13,8 @@
 
 <body>
   <script src="https://unpkg.com/vue@^2.5/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-paypal-checkout/dist/vue-paypal-checkout.min.js"></script>
+  <!-- <script src="https://unpkg.com/vue-paypal-checkout/dist/vue-paypal-checkout.min.js"></script> -->
+  <script src="../dist/vue-paypal-checkout.min.js"></script>
 
   <div id="app">
     <div class="content">
@@ -44,7 +45,6 @@
       },
       methods: {
         paymentAuthorized: function (data) {
-          console.log('anything');
           console.log(data);
         },
         paymentCompleted: function (data) {
