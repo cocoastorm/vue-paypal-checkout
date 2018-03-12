@@ -9,7 +9,7 @@
 [![David](https://img.shields.io/david/khoanguyen96/vue-paypal-checkout.svg)](https://david-dm.org/khoanguyen96/vue-paypal-checkout)
 
 ## BREAKING CHANGES
-Recently changed [event names](#events-fired-by-the-Simple-PayPal-component) due to handlers not firing in HTML.
+Recently changed [event names](#events-fired-by-the-simple-paypal-component) due to handlers not firing in HTML.
 
 ## Usage with Vue itself
 Simply include Vue and `vue-paypal-checkout` into your html file (using unpkg cdn)
