@@ -220,14 +220,14 @@ var PayPalCheckout = { render: function render() {
     },
     onAuthorize: function onAuthorize(data, actions) {
       var vue = this;
-      vue.$emit('paypal-paymentAuthorized', data);
+      vue.$emit('payment-authorized', data);
       return actions.payment.execute().then(function (response) {
-        vue.$emit('paypal-paymentCompleted', response);
+        vue.$emit('payment-completed', response);
       });
     },
     onCancel: function onCancel(data) {
       var vue = this;
-      vue.$emit('paypal-paymentCancelled', data);
+      vue.$emit('payment-cancelled', data);
     }
   },
   mounted: function mounted() {
