@@ -318,11 +318,19 @@ data () {
 
 Each of these events fired also contain a payload which is essentially the response sent back from PayPal.
 
+v2.3.5 and below:
+
 + `paypal-paymentAuthorized`
 + `paypal-paymentCompleted`
 + `paypal-paymentCancelled`
 
-In the instance of `paypal-paymentAuthorized`, you will get back a response object similar to this:
+v3.0.0+:
+
++ `payment-authorized`
++ `payment-completed`
++ `payment-cancelled`
+
+In the instance of `payment-authorized` or `paypal-paymentAuthorized` (v2.3.5 and below), you will get back a response object similar to this:
 
 ``` json
 {  
@@ -334,7 +342,7 @@ In the instance of `paypal-paymentAuthorized`, you will get back a response obje
 }
 ```
 
-In the instance of `paypal-paymentCompleted`, you will get back a response object similar to this:
+In the instance of `payment-completed` or `paypal-paymentCompleted` (v2.3.5 and below), you will get back a response object similar to this:
 
 [Sample Payment Execute Response](https://developer.paypal.com/docs/integration/direct/payments/paypal-payments/#execute-payment)
 
