@@ -32,6 +32,11 @@ function getProps() {
     currency: 'USD',
     commit: true,
     env: 'sandbox',
+    experience: {
+      input_fields: {
+        no_shipping: 1,
+      },
+    },
     invoiceNumber: '201801011001',
     items: getItems(),
   };
@@ -74,6 +79,12 @@ describe('Methods within PayPalCheckout.vue', () => {
         expect(p).toBeInstanceOf(Object);
       })
     ));
+
+    it('payment object has experience object', () => {
+      checkout.vm.payment().then((p) => {
+        expect(p.experience).toEqual(checkout.vm.experience);
+      });
+    });
 
     it('payment object has transactions array', () => (
       checkout.vm.payment().then((p) => {
