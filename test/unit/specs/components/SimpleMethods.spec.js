@@ -77,20 +77,20 @@ describe('Methods within PayPalCheckout.vue', () => {
 
     it('payment object has transactions array', () => (
       checkout.vm.payment().then((p) => {
-        expect(p).toEqual(expect.objectContaining({
+        expect(p.payment).toEqual(expect.objectContaining({
           transactions: expect.any(Array),
         }));
       })));
 
     it('payment object has one single transaction', () => (
       checkout.vm.payment().then((p) => {
-        expect(p.transactions.length).toBe(1);
+        expect(p.payment.transactions.length).toBe(1);
       })
     ));
 
     it('transaction has the right amount', () => (
       checkout.vm.payment().then((p) => {
-        const transaction = p.transactions[0];
+        const transaction = p.payment.transactions[0];
         expect(transaction.amount).toEqual(expect.objectContaining({
           total: expect.any(String),
         }));
@@ -100,7 +100,7 @@ describe('Methods within PayPalCheckout.vue', () => {
 
     it('transaction has the right currency', () => (
       checkout.vm.payment().then((p) => {
-        const transaction = p.transactions[0];
+        const transaction = p.payment.transactions[0];
         expect(transaction.amount).toEqual(expect.objectContaining({
           currency: expect.any(String),
         }));
@@ -110,7 +110,7 @@ describe('Methods within PayPalCheckout.vue', () => {
 
     it('transaction has the right invoice number', () => (
       checkout.vm.payment().then((p) => {
-        const transaction = p.transactions[0];
+        const transaction = p.payment.transactions[0];
         expect(transaction).toEqual(expect.objectContaining({
           invoice_number: expect.any(String),
         }));
@@ -120,7 +120,7 @@ describe('Methods within PayPalCheckout.vue', () => {
 
     it('transaction has a item_list', () => (
       checkout.vm.payment().then((p) => {
-        const transaction = p.transactions[0];
+        const transaction = p.payment.transactions[0];
         expect(transaction).toEqual(expect.objectContaining({
           item_list: expect.any(Object),
         }));
@@ -129,7 +129,7 @@ describe('Methods within PayPalCheckout.vue', () => {
 
     it('transaction has items array', () => (
       checkout.vm.payment().then((p) => {
-        const itemList = p.transactions[0].item_list;
+        const itemList = p.payment.transactions[0].item_list;
         expect(itemList).toEqual(expect.objectContaining({
           items: expect.any(Array),
         }));
