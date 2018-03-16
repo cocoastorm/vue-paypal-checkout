@@ -10,7 +10,7 @@ module.exports = {
     'vue',
   ],
   moduleNameMapper: {
-    '^@/(.*)$': 'src/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
   transform: {
     '^.+\\.js$': '<rootDir>/node_modules/babel-jest',

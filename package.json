@@ -38,7 +38,7 @@
     "camelcase": "^4.1.0",
     "eslint": "^4.16.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-import-resolver-jest": "^2.0.1",
+    "eslint-import-resolver-jest": "^2.1.1",
     "eslint-plugin-html": "^4.0.2",
     "eslint-plugin-import": "^2.8.0",
     "identity-obj-proxy": "^3.0.0",
