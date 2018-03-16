@@ -26,11 +26,15 @@ export default {
         },
       }, assignTo(vue, propTypes.TRANSACTION));
 
-      const payment = Object.assign({
+      const payment = {
         transactions: [transaction],
-      }, assignTo(vue, propTypes.PAYMENT));
+      };
 
-      return paypal.rest.payment.create(this.env, this.client, payment);
+      return paypal.rest.payment.create(
+        this.env,
+        this.client,
+        Object.assign({ payment }, assignTo(vue, propTypes.PAYMENT)),
+      );
     },
     onAuthorize(data, actions) {
       const vue = this;

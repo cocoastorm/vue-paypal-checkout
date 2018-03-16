@@ -212,11 +212,11 @@ var PayPalCheckout = { render: function render() {
         }
       }, assignTo(vue, propTypes.TRANSACTION));
 
-      var payment = _Object$assign({
+      var payment = {
         transactions: [transaction]
-      }, assignTo(vue, propTypes.PAYMENT));
+      };
 
-      return paypal.rest.payment.create(this.env, this.client, payment);
+      return paypal.rest.payment.create(this.env, this.client, _Object$assign({ payment: payment }, assignTo(vue, propTypes.PAYMENT)));
     },
     onAuthorize: function onAuthorize(data, actions) {
       var vue = this;
