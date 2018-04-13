@@ -25,7 +25,6 @@ const config = {
     vue(vueConfig),
     babel(babelConfig),
   ],
-  strict: false,
   cache,
 };
 
