@@ -22,7 +22,7 @@
     "postversion": "git push --tags origin master"
   },
   "dependencies": {
-    "paypal-checkout": "^4.0.173",
+    "paypal-checkout": "^4.0.191",
     "vue": "^2.5.16"
   },
   "devDependencies": {

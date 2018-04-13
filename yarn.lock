@@ -2577,9 +2577,9 @@ hi-base32@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.1.1.tgz#a30fcb56e7362cf5ef6f543e4c280d50647e5e80"
 
-hi-base32@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.3.0.tgz#2a6bc75c2c938bdec59ddeca47baaa28371ec8bc"
+hi-base32@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.5.0.tgz#61329f76a31f31008533f1c36f2473e259d64571"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -4327,16 +4327,23 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
-paypal-checkout@^4.0.173:
-  version "4.0.173"
-  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.173.tgz#1e0118ce6d7c43bc6b9357d92e28ef7ced2ccd4c"
+paypal-braintree-web-client@^1.0.7:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/paypal-braintree-web-client/-/paypal-braintree-web-client-1.0.10.tgz#72576415641c734eaf140c2b66c86c49a971546e"
+  dependencies:
+    zalgo-promise "^1.0.22"
+
+paypal-checkout@^4.0.191:
+  version "4.0.191"
+  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.191.tgz#9f3aef44bd977af1524198e6f1c46d2108181e93"
   dependencies:
     Base64 "^1.0.0"
     beaver-logger "^3.0.6"
     bowser "^1.7.1"
     braintree-paypal-client-config "^1.0.2"
     cross-domain-utils "^2.0.1"
-    hi-base32 "^0.3.0"
+    hi-base32 "^0.5.0"
+    paypal-braintree-web-client "^1.0.7"
     post-robot "^8.0.0"
     xcomponent "^6.0.0"
     zalgo-promise "^1.0.10"
