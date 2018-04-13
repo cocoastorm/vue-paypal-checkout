@@ -23,10 +23,10 @@
   },
   "dependencies": {
     "paypal-checkout": "^4.0.173",
-    "vue": "^2.5.11"
+    "vue": "^2.5.16"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.11",
+    "@vue/test-utils": "^1.0.0-beta.14",
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
     "babel-plugin-external-helpers": "^6.22.0",
@@ -56,8 +56,8 @@
     "rollup-plugin-uglify": "^3.0.0",
     "rollup-plugin-vue": "^3.0.0",
     "vue-jest": "^2.4.1",
-    "vue-server-renderer": "^2.4.4",
-    "vue-template-compiler": "^2.5.11"
+    "vue-server-renderer": "^2.5.16",
+    "vue-template-compiler": "^2.5.16"
   },
   "engines": {
     "node": ">= 4.0.0",
