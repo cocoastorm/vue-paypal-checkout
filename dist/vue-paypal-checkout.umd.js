@@ -20,16 +20,33 @@
 	  return it;
 	};
 
+	var _defined$1 = /*#__PURE__*/Object.freeze({
+		default: _defined,
+		__moduleExports: _defined
+	});
+
+	var defined = ( _defined$1 && _defined ) || _defined$1;
+
 	// 7.1.13 ToObject(argument)
 
 	var _toObject = function (it) {
-	  return Object(_defined(it));
+	  return Object(defined(it));
 	};
+
+	var _toObject$1 = /*#__PURE__*/Object.freeze({
+		default: _toObject,
+		__moduleExports: _toObject
+	});
 
 	var hasOwnProperty = {}.hasOwnProperty;
 	var _has = function (it, key) {
 	  return hasOwnProperty.call(it, key);
 	};
+
+	var _has$1 = /*#__PURE__*/Object.freeze({
+		default: _has,
+		__moduleExports: _has
+	});
 
 	var toString = {}.toString;
 
@@ -37,19 +54,38 @@
 	  return toString.call(it).slice(8, -1);
 	};
 
+	var _cof$1 = /*#__PURE__*/Object.freeze({
+		default: _cof,
+		__moduleExports: _cof
+	});
+
+	var cof = ( _cof$1 && _cof ) || _cof$1;
+
 	// fallback for non-array-like ES3 and non-enumerable old V8 strings
 
 	// eslint-disable-next-line no-prototype-builtins
 	var _iobject = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
-	  return _cof(it) == 'String' ? it.split('') : Object(it);
+	  return cof(it) == 'String' ? it.split('') : Object(it);
 	};
+
+	var _iobject$1 = /*#__PURE__*/Object.freeze({
+		default: _iobject,
+		__moduleExports: _iobject
+	});
+
+	var IObject = ( _iobject$1 && _iobject ) || _iobject$1;
 
 	// to indexed object, toObject with fallback for non-array-like ES3 strings
 
 
 	var _toIobject = function (it) {
-	  return _iobject(_defined(it));
+	  return IObject(defined(it));
 	};
+
+	var _toIobject$1 = /*#__PURE__*/Object.freeze({
+		default: _toIobject,
+		__moduleExports: _toIobject
+	});
 
 	// 7.1.4 ToInteger
 	var ceil = Math.ceil;
@@ -58,19 +94,42 @@
 	  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
 	};
 
+	var _toInteger$1 = /*#__PURE__*/Object.freeze({
+		default: _toInteger,
+		__moduleExports: _toInteger
+	});
+
+	var toInteger = ( _toInteger$1 && _toInteger ) || _toInteger$1;
+
 	// 7.1.15 ToLength
 
 	var min = Math.min;
 	var _toLength = function (it) {
-	  return it > 0 ? min(_toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+	  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 	};
+
+	var _toLength$1 = /*#__PURE__*/Object.freeze({
+		default: _toLength,
+		__moduleExports: _toLength
+	});
 
 	var max = Math.max;
 	var min$1 = Math.min;
 	var _toAbsoluteIndex = function (index, length) {
-	  index = _toInteger(index);
+	  index = toInteger(index);
 	  return index < 0 ? max(index + length, 0) : min$1(index, length);
 	};
+
+	var _toAbsoluteIndex$1 = /*#__PURE__*/Object.freeze({
+		default: _toAbsoluteIndex,
+		__moduleExports: _toAbsoluteIndex
+	});
+
+	var toIObject = ( _toIobject$1 && _toIobject ) || _toIobject$1;
+
+	var toLength = ( _toLength$1 && _toLength ) || _toLength$1;
+
+	var toAbsoluteIndex = ( _toAbsoluteIndex$1 && _toAbsoluteIndex ) || _toAbsoluteIndex$1;
 
 	// false -> Array#indexOf
 	// true  -> Array#includes
@@ -79,9 +138,9 @@
 
 	var _arrayIncludes = function (IS_INCLUDES) {
 	  return function ($this, el, fromIndex) {
-	    var O = _toIobject($this);
-	    var length = _toLength(O.length);
-	    var index = _toAbsoluteIndex(fromIndex, length);
+	    var O = toIObject($this);
+	    var length = toLength(O.length);
+	    var index = toAbsoluteIndex(fromIndex, length);
 	    var value;
 	    // Array#includes uses SameValueZero equality algorithm
 	    // eslint-disable-next-line no-self-compare
@@ -96,6 +155,11 @@
 	  };
 	};
 
+	var _arrayIncludes$1 = /*#__PURE__*/Object.freeze({
+		default: _arrayIncludes,
+		__moduleExports: _arrayIncludes
+	});
+
 	var _global = createCommonjsModule(function (module) {
 	// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 	var global = module.exports = typeof window != 'undefined' && window.Math == Math
@@ -105,11 +169,23 @@
 	if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
 	});
 
+	var _global$1 = /*#__PURE__*/Object.freeze({
+		default: _global,
+		__moduleExports: _global
+	});
+
+	var require$$0 = ( _global$1 && _global ) || _global$1;
+
 	var SHARED = '__core-js_shared__';
-	var store = _global[SHARED] || (_global[SHARED] = {});
+	var store = require$$0[SHARED] || (require$$0[SHARED] = {});
 	var _shared = function (key) {
 	  return store[key] || (store[key] = {});
 	};
+
+	var _shared$1 = /*#__PURE__*/Object.freeze({
+		default: _shared,
+		__moduleExports: _shared
+	});
 
 	var id = 0;
 	var px = Math.random();
@@ -117,40 +193,79 @@
 	  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 	};
 
-	var shared = _shared('keys');
+	var _uid$1 = /*#__PURE__*/Object.freeze({
+		default: _uid,
+		__moduleExports: _uid
+	});
+
+	var require$$0$1 = ( _shared$1 && _shared ) || _shared$1;
+
+	var uid = ( _uid$1 && _uid ) || _uid$1;
+
+	var shared = require$$0$1('keys');
 
 	var _sharedKey = function (key) {
-	  return shared[key] || (shared[key] = _uid(key));
+	  return shared[key] || (shared[key] = uid(key));
 	};
 
-	var arrayIndexOf = _arrayIncludes(false);
-	var IE_PROTO = _sharedKey('IE_PROTO');
+	var _sharedKey$1 = /*#__PURE__*/Object.freeze({
+		default: _sharedKey,
+		__moduleExports: _sharedKey
+	});
+
+	var has = ( _has$1 && _has ) || _has$1;
+
+	var require$$0$2 = ( _arrayIncludes$1 && _arrayIncludes ) || _arrayIncludes$1;
+
+	var require$$0$3 = ( _sharedKey$1 && _sharedKey ) || _sharedKey$1;
+
+	var arrayIndexOf = require$$0$2(false);
+	var IE_PROTO = require$$0$3('IE_PROTO');
 
 	var _objectKeysInternal = function (object, names) {
-	  var O = _toIobject(object);
+	  var O = toIObject(object);
 	  var i = 0;
 	  var result = [];
 	  var key;
-	  for (key in O) if (key != IE_PROTO) _has(O, key) && result.push(key);
+	  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
 	  // Don't enum bug & hidden keys
-	  while (names.length > i) if (_has(O, key = names[i++])) {
+	  while (names.length > i) if (has(O, key = names[i++])) {
 	    ~arrayIndexOf(result, key) || result.push(key);
 	  }
 	  return result;
 	};
+
+	var _objectKeysInternal$1 = /*#__PURE__*/Object.freeze({
+		default: _objectKeysInternal,
+		__moduleExports: _objectKeysInternal
+	});
 
 	// IE 8- don't enum bug keys
 	var _enumBugKeys = (
 	  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
 	).split(',');
 
+	var _enumBugKeys$1 = /*#__PURE__*/Object.freeze({
+		default: _enumBugKeys,
+		__moduleExports: _enumBugKeys
+	});
+
+	var $keys = ( _objectKeysInternal$1 && _objectKeysInternal ) || _objectKeysInternal$1;
+
+	var enumBugKeys = ( _enumBugKeys$1 && _enumBugKeys ) || _enumBugKeys$1;
+
 	// 19.1.2.14 / 15.2.3.14 Object.keys(O)
 
 
 
 	var _objectKeys = Object.keys || function keys(O) {
-	  return _objectKeysInternal(O, _enumBugKeys);
+	  return $keys(O, enumBugKeys);
 	};
+
+	var _objectKeys$1 = /*#__PURE__*/Object.freeze({
+		default: _objectKeys,
+		__moduleExports: _objectKeys
+	});
 
 	var _core = createCommonjsModule(function (module) {
 	var core = module.exports = { version: '2.5.5' };
@@ -158,15 +273,28 @@
 	});
 	var _core_1 = _core.version;
 
+	var _core$1 = /*#__PURE__*/Object.freeze({
+		default: _core,
+		__moduleExports: _core,
+		version: _core_1
+	});
+
 	var _aFunction = function (it) {
 	  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
 	  return it;
 	};
 
+	var _aFunction$1 = /*#__PURE__*/Object.freeze({
+		default: _aFunction,
+		__moduleExports: _aFunction
+	});
+
+	var aFunction = ( _aFunction$1 && _aFunction ) || _aFunction$1;
+
 	// optional / simple context binding
 
 	var _ctx = function (fn, that, length) {
-	  _aFunction(fn);
+	  aFunction(fn);
 	  if (that === undefined) return fn;
 	  switch (length) {
 	    case 1: return function (a) {
@@ -184,14 +312,31 @@
 	  };
 	};
 
+	var _ctx$1 = /*#__PURE__*/Object.freeze({
+		default: _ctx,
+		__moduleExports: _ctx
+	});
+
 	var _isObject = function (it) {
 	  return typeof it === 'object' ? it !== null : typeof it === 'function';
 	};
 
+	var _isObject$1 = /*#__PURE__*/Object.freeze({
+		default: _isObject,
+		__moduleExports: _isObject
+	});
+
+	var isObject = ( _isObject$1 && _isObject ) || _isObject$1;
+
 	var _anObject = function (it) {
-	  if (!_isObject(it)) throw TypeError(it + ' is not an object!');
+	  if (!isObject(it)) throw TypeError(it + ' is not an object!');
 	  return it;
 	};
+
+	var _anObject$1 = /*#__PURE__*/Object.freeze({
+		default: _anObject,
+		__moduleExports: _anObject
+	});
 
 	var _fails = function (exec) {
 	  try {
@@ -201,20 +346,46 @@
 	  }
 	};
 
+	var _fails$1 = /*#__PURE__*/Object.freeze({
+		default: _fails,
+		__moduleExports: _fails
+	});
+
+	var require$$1 = ( _fails$1 && _fails ) || _fails$1;
+
 	// Thank's IE8 for his funny defineProperty
-	var _descriptors = !_fails(function () {
+	var _descriptors = !require$$1(function () {
 	  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
 	});
 
-	var document$1 = _global.document;
+	var _descriptors$1 = /*#__PURE__*/Object.freeze({
+		default: _descriptors,
+		__moduleExports: _descriptors
+	});
+
+	var document$1 = require$$0.document;
 	// typeof document.createElement is 'object' in old IE
-	var is = _isObject(document$1) && _isObject(document$1.createElement);
+	var is = isObject(document$1) && isObject(document$1.createElement);
 	var _domCreate = function (it) {
 	  return is ? document$1.createElement(it) : {};
 	};
 
-	var _ie8DomDefine = !_descriptors && !_fails(function () {
-	  return Object.defineProperty(_domCreate('div'), 'a', { get: function () { return 7; } }).a != 7;
+	var _domCreate$1 = /*#__PURE__*/Object.freeze({
+		default: _domCreate,
+		__moduleExports: _domCreate
+	});
+
+	var require$$0$4 = ( _descriptors$1 && _descriptors ) || _descriptors$1;
+
+	var require$$1$1 = ( _domCreate$1 && _domCreate ) || _domCreate$1;
+
+	var _ie8DomDefine = !require$$0$4 && !require$$1(function () {
+	  return Object.defineProperty(require$$1$1('div'), 'a', { get: function () { return 7; } }).a != 7;
+	});
+
+	var _ie8DomDefine$1 = /*#__PURE__*/Object.freeze({
+		default: _ie8DomDefine,
+		__moduleExports: _ie8DomDefine
 	});
 
 	// 7.1.1 ToPrimitive(input [, PreferredType])
@@ -222,21 +393,32 @@
 	// instead of the ES6 spec version, we didn't implement @@toPrimitive case
 	// and the second argument - flag - preferred type is a string
 	var _toPrimitive = function (it, S) {
-	  if (!_isObject(it)) return it;
+	  if (!isObject(it)) return it;
 	  var fn, val;
-	  if (S && typeof (fn = it.toString) == 'function' && !_isObject(val = fn.call(it))) return val;
-	  if (typeof (fn = it.valueOf) == 'function' && !_isObject(val = fn.call(it))) return val;
-	  if (!S && typeof (fn = it.toString) == 'function' && !_isObject(val = fn.call(it))) return val;
+	  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+	  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+	  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
 	  throw TypeError("Can't convert object to primitive value");
 	};
 
+	var _toPrimitive$1 = /*#__PURE__*/Object.freeze({
+		default: _toPrimitive,
+		__moduleExports: _toPrimitive
+	});
+
+	var anObject = ( _anObject$1 && _anObject ) || _anObject$1;
+
+	var IE8_DOM_DEFINE = ( _ie8DomDefine$1 && _ie8DomDefine ) || _ie8DomDefine$1;
+
+	var toPrimitive = ( _toPrimitive$1 && _toPrimitive ) || _toPrimitive$1;
+
 	var dP = Object.defineProperty;
 
-	var f = _descriptors ? Object.defineProperty : function defineProperty(O, P, Attributes) {
-	  _anObject(O);
-	  P = _toPrimitive(P, true);
-	  _anObject(Attributes);
-	  if (_ie8DomDefine) try {
+	var f = require$$0$4 ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+	  anObject(O);
+	  P = toPrimitive(P, true);
+	  anObject(Attributes);
+	  if (IE8_DOM_DEFINE) try {
 	    return dP(O, P, Attributes);
 	  } catch (e) { /* empty */ }
 	  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
@@ -248,6 +430,12 @@
 		f: f
 	};
 
+	var _objectDp$1 = /*#__PURE__*/Object.freeze({
+		default: _objectDp,
+		__moduleExports: _objectDp,
+		f: f
+	});
+
 	var _propertyDesc = function (bitmap, value) {
 	  return {
 	    enumerable: !(bitmap & 1),
@@ -257,12 +445,32 @@
 	  };
 	};
 
-	var _hide = _descriptors ? function (object, key, value) {
-	  return _objectDp.f(object, key, _propertyDesc(1, value));
+	var _propertyDesc$1 = /*#__PURE__*/Object.freeze({
+		default: _propertyDesc,
+		__moduleExports: _propertyDesc
+	});
+
+	var dP$1 = ( _objectDp$1 && _objectDp ) || _objectDp$1;
+
+	var descriptor = ( _propertyDesc$1 && _propertyDesc ) || _propertyDesc$1;
+
+	var _hide = require$$0$4 ? function (object, key, value) {
+	  return dP$1.f(object, key, descriptor(1, value));
 	} : function (object, key, value) {
 	  object[key] = value;
 	  return object;
 	};
+
+	var _hide$1 = /*#__PURE__*/Object.freeze({
+		default: _hide,
+		__moduleExports: _hide
+	});
+
+	var core = ( _core$1 && _core ) || _core$1;
+
+	var ctx = ( _ctx$1 && _ctx ) || _ctx$1;
+
+	var require$$0$5 = ( _hide$1 && _hide ) || _hide$1;
 
 	var PROTOTYPE = 'prototype';
 
@@ -273,21 +481,21 @@
 	  var IS_PROTO = type & $export.P;
 	  var IS_BIND = type & $export.B;
 	  var IS_WRAP = type & $export.W;
-	  var exports = IS_GLOBAL ? _core : _core[name] || (_core[name] = {});
+	  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
 	  var expProto = exports[PROTOTYPE];
-	  var target = IS_GLOBAL ? _global : IS_STATIC ? _global[name] : (_global[name] || {})[PROTOTYPE];
+	  var target = IS_GLOBAL ? require$$0 : IS_STATIC ? require$$0[name] : (require$$0[name] || {})[PROTOTYPE];
 	  var key, own, out;
 	  if (IS_GLOBAL) source = name;
 	  for (key in source) {
 	    // contains in native
 	    own = !IS_FORCED && target && target[key] !== undefined;
-	    if (own && _has(exports, key)) continue;
+	    if (own && has(exports, key)) continue;
 	    // export native or passed
 	    out = own ? target[key] : source[key];
 	    // prevent global pollution for namespaces
 	    exports[key] = IS_GLOBAL && typeof target[key] != 'function' ? source[key]
 	    // bind timers to global for call from export context
-	    : IS_BIND && own ? _ctx(out, _global)
+	    : IS_BIND && own ? ctx(out, require$$0)
 	    // wrap global constructors for prevent change them in library
 	    : IS_WRAP && target[key] == out ? (function (C) {
 	      var F = function (a, b, c) {
@@ -302,12 +510,12 @@
 	      F[PROTOTYPE] = C[PROTOTYPE];
 	      return F;
 	    // make static versions for prototype methods
-	    })(out) : IS_PROTO && typeof out == 'function' ? _ctx(Function.call, out) : out;
+	    })(out) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
 	    // export proto methods to core.%CONSTRUCTOR%.methods.%NAME%
 	    if (IS_PROTO) {
 	      (exports.virtual || (exports.virtual = {}))[key] = out;
 	      // export proto methods to core.%CONSTRUCTOR%.prototype.%NAME%
-	      if (type & $export.R && expProto && !expProto[key]) _hide(expProto, key, out);
+	      if (type & $export.R && expProto && !expProto[key]) require$$0$5(expProto, key, out);
 	    }
 	  }
 	};
@@ -322,34 +530,59 @@
 	$export.R = 128; // real proto method for `library`
 	var _export = $export;
 
+	var _export$1 = /*#__PURE__*/Object.freeze({
+		default: _export,
+		__moduleExports: _export
+	});
+
+	var $export$1 = ( _export$1 && _export ) || _export$1;
+
 	// most Object methods by ES6 should accept primitives
 
 
 
 	var _objectSap = function (KEY, exec) {
-	  var fn = (_core.Object || {})[KEY] || Object[KEY];
+	  var fn = (core.Object || {})[KEY] || Object[KEY];
 	  var exp = {};
 	  exp[KEY] = exec(fn);
-	  _export(_export.S + _export.F * _fails(function () { fn(1); }), 'Object', exp);
+	  $export$1($export$1.S + $export$1.F * require$$1(function () { fn(1); }), 'Object', exp);
 	};
+
+	var _objectSap$1 = /*#__PURE__*/Object.freeze({
+		default: _objectSap,
+		__moduleExports: _objectSap
+	});
+
+	var toObject = ( _toObject$1 && _toObject ) || _toObject$1;
+
+	var getKeys = ( _objectKeys$1 && _objectKeys ) || _objectKeys$1;
+
+	var require$$0$6 = ( _objectSap$1 && _objectSap ) || _objectSap$1;
 
 	// 19.1.2.14 Object.keys(O)
 
 
 
-	_objectSap('keys', function () {
+	require$$0$6('keys', function () {
 	  return function keys(it) {
-	    return _objectKeys(_toObject(it));
+	    return getKeys(toObject(it));
 	  };
 	});
 
-	var keys = _core.Object.keys;
+	var keys = core.Object.keys;
 
-	var keys$1 = createCommonjsModule(function (module) {
-	module.exports = { "default": keys, __esModule: true };
+	var keys$1 = /*#__PURE__*/Object.freeze({
+		default: keys,
+		__moduleExports: keys
 	});
 
-	var _Object$keys = unwrapExports(keys$1);
+	var require$$0$7 = ( keys$1 && keys ) || keys$1;
+
+	var keys$2 = createCommonjsModule(function (module) {
+	module.exports = { "default": require$$0$7, __esModule: true };
+	});
+
+	var _Object$keys = unwrapExports(keys$2);
 
 	var f$1 = Object.getOwnPropertySymbols;
 
@@ -357,11 +590,27 @@
 		f: f$1
 	};
 
+	var _objectGops$1 = /*#__PURE__*/Object.freeze({
+		default: _objectGops,
+		__moduleExports: _objectGops,
+		f: f$1
+	});
+
 	var f$2 = {}.propertyIsEnumerable;
 
 	var _objectPie = {
 		f: f$2
 	};
+
+	var _objectPie$1 = /*#__PURE__*/Object.freeze({
+		default: _objectPie,
+		__moduleExports: _objectPie,
+		f: f$2
+	});
+
+	var gOPS = ( _objectGops$1 && _objectGops ) || _objectGops$1;
+
+	var pIE = ( _objectPie$1 && _objectPie ) || _objectPie$1;
 
 	// 19.1.2.1 Object.assign(target, source, ...)
 
@@ -372,7 +621,7 @@
 	var $assign = Object.assign;
 
 	// should work with symbols and should have deterministic property order (V8 bug)
-	var _objectAssign = !$assign || _fails(function () {
+	var _objectAssign = !$assign || require$$1(function () {
 	  var A = {};
 	  var B = {};
 	  // eslint-disable-next-line no-undef
@@ -382,14 +631,14 @@
 	  K.split('').forEach(function (k) { B[k] = k; });
 	  return $assign({}, A)[S] != 7 || Object.keys($assign({}, B)).join('') != K;
 	}) ? function assign(target, source) { // eslint-disable-line no-unused-vars
-	  var T = _toObject(target);
+	  var T = toObject(target);
 	  var aLen = arguments.length;
 	  var index = 1;
-	  var getSymbols = _objectGops.f;
-	  var isEnum = _objectPie.f;
+	  var getSymbols = gOPS.f;
+	  var isEnum = pIE.f;
 	  while (aLen > index) {
-	    var S = _iobject(arguments[index++]);
-	    var keys = getSymbols ? _objectKeys(S).concat(getSymbols(S)) : _objectKeys(S);
+	    var S = IObject(arguments[index++]);
+	    var keys = getSymbols ? getKeys(S).concat(getSymbols(S)) : getKeys(S);
 	    var length = keys.length;
 	    var j = 0;
 	    var key;
@@ -397,18 +646,32 @@
 	  } return T;
 	} : $assign;
 
+	var _objectAssign$1 = /*#__PURE__*/Object.freeze({
+		default: _objectAssign,
+		__moduleExports: _objectAssign
+	});
+
+	var require$$0$8 = ( _objectAssign$1 && _objectAssign ) || _objectAssign$1;
+
 	// 19.1.3.1 Object.assign(target, source)
 
 
-	_export(_export.S + _export.F, 'Object', { assign: _objectAssign });
+	$export$1($export$1.S + $export$1.F, 'Object', { assign: require$$0$8 });
 
-	var assign = _core.Object.assign;
+	var assign = core.Object.assign;
 
-	var assign$1 = createCommonjsModule(function (module) {
-	module.exports = { "default": assign, __esModule: true };
+	var assign$1 = /*#__PURE__*/Object.freeze({
+		default: assign,
+		__moduleExports: assign
 	});
 
-	var _Object$assign = unwrapExports(assign$1);
+	var require$$0$9 = ( assign$1 && assign ) || assign$1;
+
+	var assign$2 = createCommonjsModule(function (module) {
+	module.exports = { "default": require$$0$9, __esModule: true };
+	});
+
+	var _Object$assign = unwrapExports(assign$2);
 
 	var checkout_lib = createCommonjsModule(function (module, exports) {
 	!function(root, factory) {
@@ -460,7 +723,8 @@
 	                InvalidCharacterError.prototype = new Error();
 	                InvalidCharacterError.prototype.name = "InvalidCharacterError";
 	                object.btoa || (object.btoa = function(input) {
-	                    for (var block, charCode, str = String(input), idx = 0, map = chars, output = ""; str.charAt(0 | idx) || (map = "=", idx % 1); output += map.charAt(63 & block >> 8 - idx % 1 * 8)) {
+	                    for (var block, charCode, str = String(input), idx = 0, map = chars, output = ""; str.charAt(0 | idx) || (map = "=", 
+	                    idx % 1); output += map.charAt(63 & block >> 8 - idx % 1 * 8)) {
 	                        charCode = str.charCodeAt(idx += .75);
 	                        if (charCode > 255) throw new InvalidCharacterError("'btoa' failed: The string to be encoded contains characters outside of the Latin1 range.");
 	                        block = block << 8 | charCode;
@@ -470,7 +734,8 @@
 	                object.atob || (object.atob = function(input) {
 	                    var str = String(input).replace(/[=]+$/, "");
 	                    if (str.length % 4 == 1) throw new InvalidCharacterError("'atob' failed: The string to be decoded is not correctly encoded.");
-	                    for (var bs, buffer, bc = 0, idx = 0, output = ""; buffer = str.charAt(idx++); ~buffer && (bs = bc % 4 ? 64 * bs + buffer : buffer, bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0) buffer = chars.indexOf(buffer);
+	                    for (var bs, buffer, bc = 0, idx = 0, output = ""; buffer = str.charAt(idx++); ~buffer && (bs = bc % 4 ? 64 * bs + buffer : buffer, 
+	                    bc++ % 4) ? output += String.fromCharCode(255 & bs >> (-2 * bc & 6)) : 0) buffer = chars.indexOf(buffer);
 	                    return output;
 	                });
 	            }();
@@ -1109,7 +1374,8 @@
 	                        var n = t.match(e);
 	                        return n && n.length > 1 && n[2] || "";
 	                    }
-	                    var T, i = n(/(ipod|iphone|ipad)/i).toLowerCase(), s = /like android/i.test(t), o = !s && /android/i.test(t), u = /nexus\s*[0-6]\s*/i.test(t), a = !u && /nexus\s*[0-9]+/i.test(t), f = /CrOS/.test(t), l = /silk/i.test(t), c = /sailfish/i.test(t), h = /tizen/i.test(t), p = /(web|hpw)os/i.test(t), d = /windows phone/i.test(t), m = (/SamsungBrowser/i.test(t), !d && /windows/i.test(t)), g = !i && !l && /macintosh/i.test(t), y = !o && !c && !h && !p && /linux/i.test(t), b = r(/edg([ea]|ios)\/(\d+(\.\d+)?)/i), w = n(/version\/(\d+(\.\d+)?)/i), E = /tablet/i.test(t) && !/tablet pc/i.test(t), S = !E && /[^-]mobi/i.test(t), x = /xbox/i.test(t);
+	                    var T, i = n(/(ipod|iphone|ipad)/i).toLowerCase(), s = /like android/i.test(t), o = !s && /android/i.test(t), u = /nexus\s*[0-6]\s*/i.test(t), a = !u && /nexus\s*[0-9]+/i.test(t), f = /CrOS/.test(t), l = /silk/i.test(t), c = /sailfish/i.test(t), h = /tizen/i.test(t), p = /(web|hpw)os/i.test(t), d = /windows phone/i.test(t), m = (/SamsungBrowser/i.test(t), 
+	                    !d && /windows/i.test(t)), g = !i && !l && /macintosh/i.test(t), y = !o && !c && !h && !p && /linux/i.test(t), b = r(/edg([ea]|ios)\/(\d+(\.\d+)?)/i), w = n(/version\/(\d+(\.\d+)?)/i), E = /tablet/i.test(t) && !/tablet pc/i.test(t), S = !E && /[^-]mobi/i.test(t), x = /xbox/i.test(t);
 	                    /opera/i.test(t) ? T = {
 	                        name: "Opera",
 	                        opera: e,
@@ -1249,7 +1515,12 @@
 	                    } : {
 	                        name: n(/^(.*)\/(.*) /),
 	                        version: r(/^(.*)\/(.*) /)
-	                    }, !T.msedge && /(apple)?webkit/i.test(t) ? (/(apple)?webkit\/537\.36/i.test(t) ? (T.name = T.name || "Blink", T.blink = e) : (T.name = T.name || "Webkit", T.webkit = e), !T.version && w && (T.version = w)) : !T.opera && /gecko\//i.test(t) && (T.name = T.name || "Gecko", T.gecko = e, T.version = T.version || n(/gecko\/(\d+(\.\d+)?)/i)), T.windowsphone || !o && !T.silk ? !T.windowsphone && i ? (T[i] = e, T.ios = e, T.osname = "iOS") : g ? (T.mac = e, T.osname = "macOS") : x ? (T.xbox = e, T.osname = "Xbox") : m ? (T.windows = e, T.osname = "Windows") : y && (T.linux = e, T.osname = "Linux") : (T.android = e, T.osname = "Android");
+	                    }, !T.msedge && /(apple)?webkit/i.test(t) ? (/(apple)?webkit\/537\.36/i.test(t) ? (T.name = T.name || "Blink", 
+	                    T.blink = e) : (T.name = T.name || "Webkit", T.webkit = e), !T.version && w && (T.version = w)) : !T.opera && /gecko\//i.test(t) && (T.name = T.name || "Gecko", 
+	                    T.gecko = e, T.version = T.version || n(/gecko\/(\d+(\.\d+)?)/i)), T.windowsphone || !o && !T.silk ? !T.windowsphone && i ? (T[i] = e, 
+	                    T.ios = e, T.osname = "iOS") : g ? (T.mac = e, T.osname = "macOS") : x ? (T.xbox = e, 
+	                    T.osname = "Xbox") : m ? (T.windows = e, T.osname = "Windows") : y && (T.linux = e, 
+	                    T.osname = "Linux") : (T.android = e, T.osname = "Android");
 	                    var C = "";
 	                    T.windows ? C = function(e) {
 	                        switch (e) {
@@ -1286,10 +1557,14 @@
 	                          default:
 	                            return;
 	                        }
-	                    }(n(/Windows ((NT|XP)( \d\d?.\d)?)/i)) : T.windowsphone ? C = n(/windows phone (?:os)?\s?(\d+(\.\d+)*)/i) : T.mac ? (C = n(/Mac OS X (\d+([_\.\s]\d+)*)/i), C = C.replace(/[_\s]/g, ".")) : i ? (C = n(/os (\d+([_\s]\d+)*) like mac os x/i), C = C.replace(/[_\s]/g, ".")) : o ? C = n(/android[ \/-](\d+(\.\d+)*)/i) : T.webos ? C = n(/(?:web|hpw)os\/(\d+(\.\d+)*)/i) : T.blackberry ? C = n(/rim\stablet\sos\s(\d+(\.\d+)*)/i) : T.bada ? C = n(/bada\/(\d+(\.\d+)*)/i) : T.tizen && (C = n(/tizen[\/\s](\d+(\.\d+)*)/i)), C && (T.osversion = C);
+	                    }(n(/Windows ((NT|XP)( \d\d?.\d)?)/i)) : T.windowsphone ? C = n(/windows phone (?:os)?\s?(\d+(\.\d+)*)/i) : T.mac ? (C = n(/Mac OS X (\d+([_\.\s]\d+)*)/i), 
+	                    C = C.replace(/[_\s]/g, ".")) : i ? (C = n(/os (\d+([_\s]\d+)*) like mac os x/i), 
+	                    C = C.replace(/[_\s]/g, ".")) : o ? C = n(/android[ \/-](\d+(\.\d+)*)/i) : T.webos ? C = n(/(?:web|hpw)os\/(\d+(\.\d+)*)/i) : T.blackberry ? C = n(/rim\stablet\sos\s(\d+(\.\d+)*)/i) : T.bada ? C = n(/bada\/(\d+(\.\d+)*)/i) : T.tizen && (C = n(/tizen[\/\s](\d+(\.\d+)*)/i)), 
+	                    C && (T.osversion = C);
 	                    var k = !T.windows && C.split(".")[0];
 	                    E || a || "ipad" == i || o && (3 == k || k >= 4 && !S) || T.silk ? T.tablet = e : (S || "iphone" == i || "ipod" == i || o || u || T.blackberry || T.webos || T.bada) && (T.mobile = e);
-	                    return T.msedge || T.msie && T.version >= 10 || T.yandexbrowser && T.version >= 15 || T.vivaldi && T.version >= 1 || T.chrome && T.version >= 20 || T.samsungBrowser && T.version >= 4 || T.firefox && T.version >= 20 || T.safari && T.version >= 6 || T.opera && T.version >= 10 || T.ios && T.osversion && T.osversion.split(".")[0] >= 6 || T.blackberry && T.version >= 10.1 || T.chromium && T.version >= 20 ? T.a = e : T.msie && T.version < 10 || T.chrome && T.version < 20 || T.firefox && T.version < 20 || T.safari && T.version < 6 || T.opera && T.version < 10 || T.ios && T.osversion && T.osversion.split(".")[0] < 6 || T.chromium && T.version < 20 ? T.c = e : T.x = e, T;
+	                    return T.msedge || T.msie && T.version >= 10 || T.yandexbrowser && T.version >= 15 || T.vivaldi && T.version >= 1 || T.chrome && T.version >= 20 || T.samsungBrowser && T.version >= 4 || T.firefox && T.version >= 20 || T.safari && T.version >= 6 || T.opera && T.version >= 10 || T.ios && T.osversion && T.osversion.split(".")[0] >= 6 || T.blackberry && T.version >= 10.1 || T.chromium && T.version >= 20 ? T.a = e : T.msie && T.version < 10 || T.chrome && T.version < 20 || T.firefox && T.version < 20 || T.safari && T.version < 6 || T.opera && T.version < 10 || T.ios && T.osversion && T.osversion.split(".")[0] < 6 || T.chromium && T.version < 20 ? T.c = e : T.x = e, 
+	                    T;
 	                }
 	                function r(e) {
 	                    return e.split(".").length;
@@ -1332,221 +1607,9 @@
 	                        if ("string" == typeof r && r in n) return !0;
 	                    }
 	                    return !1;
-	                }, n.isUnsupportedBrowser = o, n.compareVersions = s, n.check = u, n._detect = t, n.detect = t, n;
+	                }, n.isUnsupportedBrowser = o, n.compareVersions = s, n.check = u, n._detect = t, 
+	                n.detect = t, n;
 	            });
-	        },
-	        "./node_modules/braintree-paypal-client-config/dist/braintree-paypal-client-config.js": function(module, exports, __webpack_require__) {
-	            (function(module) {
-	                var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__, _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
-	                    return typeof obj;
-	                } : function(obj) {
-	                    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-	                };
-	                !function(root, factory) {
-	                    "object" == _typeof(exports) && "object" == _typeof(module) ? module.exports = factory() : (__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_FACTORY__ = factory, void 0 !== (__WEBPACK_AMD_DEFINE_RESULT__ = "function" == typeof __WEBPACK_AMD_DEFINE_FACTORY__ ? __WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__) : __WEBPACK_AMD_DEFINE_FACTORY__) && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	                }("undefined" != typeof self && self, function() {
-	                    return function(modules) {
-	                        function __webpack_require__(moduleId) {
-	                            if (installedModules[moduleId]) return installedModules[moduleId].exports;
-	                            var module = installedModules[moduleId] = {
-	                                i: moduleId,
-	                                l: !1,
-	                                exports: {}
-	                            };
-	                            modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-	                            module.l = !0;
-	                            return module.exports;
-	                        }
-	                        var installedModules = {};
-	                        __webpack_require__.m = modules;
-	                        __webpack_require__.c = installedModules;
-	                        __webpack_require__.d = function(exports, name, getter) {
-	                            __webpack_require__.o(exports, name) || Object.defineProperty(exports, name, {
-	                                configurable: !1,
-	                                enumerable: !0,
-	                                get: getter
-	                            });
-	                        };
-	                        __webpack_require__.n = function(module) {
-	                            var getter = module && module.__esModule ? function() {
-	                                return module.default;
-	                            } : function() {
-	                                return module;
-	                            };
-	                            __webpack_require__.d(getter, "a", getter);
-	                            return getter;
-	                        };
-	                        __webpack_require__.o = function(object, property) {
-	                            return Object.prototype.hasOwnProperty.call(object, property);
-	                        };
-	                        __webpack_require__.p = "";
-	                        return __webpack_require__(__webpack_require__.s = "./src/index.js");
-	                    }({
-	                        "./src/config.js": function(module, __webpack_exports__, __webpack_require__) {
-	                            function get(key, def) {
-	                                return __WEBPACK_IMPORTED_MODULE_0__store__.a.has(key) ? __WEBPACK_IMPORTED_MODULE_0__store__.a.get(key) : def;
-	                            }
-	                            function set(key, value) {
-	                                __WEBPACK_IMPORTED_MODULE_0__store__.a.set(key, value);
-	                                if (listeners[key]) for (var _iterator = listeners[key], _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
-	                                    var _ref;
-	                                    if (_isArray) {
-	                                        if (_i >= _iterator.length) break;
-	                                        _ref = _iterator[_i++];
-	                                    } else {
-	                                        _i = _iterator.next();
-	                                        if (_i.done) break;
-	                                        _ref = _i.value;
-	                                    }
-	                                    var listener = _ref;
-	                                    listener(value);
-	                                }
-	                                return value;
-	                            }
-	                            function get_or_set(key, value) {
-	                                return __WEBPACK_IMPORTED_MODULE_0__store__.a.has(key) ? get(key) : set(key, value);
-	                            }
-	                            function on(key, handler) {
-	                                listeners[key] = listeners[key] || [];
-	                                listeners[key].push(handler);
-	                                return {
-	                                    cancel: function() {
-	                                        listeners[key].splice(listeners[key].indexOf(handler), 1);
-	                                    }
-	                                };
-	                            }
-	                            __webpack_exports__.a = get;
-	                            __webpack_exports__.d = set;
-	                            __webpack_exports__.b = get_or_set;
-	                            __webpack_exports__.c = on;
-	                            var __WEBPACK_IMPORTED_MODULE_0__store__ = __webpack_require__("./src/store.js"), listeners = {};
-	                        },
-	                        "./src/constants.js": function(module, __webpack_exports__, __webpack_require__) {
-	                            __webpack_require__.d(__webpack_exports__, "a", function() {
-	                                return CONFIG_KEY;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "d", function() {
-	                                return STORE;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "b", function() {
-	                                return KEY;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "c", function() {
-	                                return PAYPAL_FUNDING;
-	                            });
-	                            var CONFIG_KEY = "__braintree_paypal_config__", STORE = {
-	                                SESSIONSTORAGE: "sessionstorage",
-	                                GLOBAL: "global"
-	                            }, KEY = {
-	                                LOGGER_SESSION_ID: "logger_session_id",
-	                                PAYPAL_FUNDING_DISALLOW: "paypal_funding_disallow"
-	                            }, PAYPAL_FUNDING = {
-	                                PAYPAL: "paypal",
-	                                VENMO: "venmo",
-	                                CREDIT: "credit",
-	                                CARD: "card",
-	                                IDEAL: "ideal",
-	                                ELV: "elv"
-	                            };
-	                        },
-	                        "./src/index.js": function(module, __webpack_exports__, __webpack_require__) {
-	                            Object.defineProperty(__webpack_exports__, "__esModule", {
-	                                value: !0
-	                            });
-	                            var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__("./src/config.js");
-	                            __webpack_require__.d(__webpack_exports__, "get", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_0__config__.a;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "set", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_0__config__.d;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "get_or_set", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_0__config__.b;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "on", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_0__config__.c;
-	                            });
-	                            var __WEBPACK_IMPORTED_MODULE_1__constants__ = __webpack_require__("./src/constants.js");
-	                            __webpack_require__.d(__webpack_exports__, "CONFIG_KEY", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_1__constants__.a;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "STORE", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_1__constants__.d;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "KEY", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_1__constants__.b;
-	                            });
-	                            __webpack_require__.d(__webpack_exports__, "PAYPAL_FUNDING", function() {
-	                                return __WEBPACK_IMPORTED_MODULE_1__constants__.c;
-	                            });
-	                        },
-	                        "./src/store.js": function(module, __webpack_exports__, __webpack_require__) {
-	                            function _defineProperty(obj, key, value) {
-	                                key in obj ? Object.defineProperty(obj, key, {
-	                                    value: value,
-	                                    enumerable: !0,
-	                                    configurable: !0,
-	                                    writable: !0
-	                                }) : obj[key] = value;
-	                                return obj;
-	                            }
-	                            __webpack_require__.d(__webpack_exports__, "a", function() {
-	                                return store;
-	                            });
-	                            var _stores, __WEBPACK_IMPORTED_MODULE_0__constants__ = __webpack_require__("./src/constants.js"), __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__("./src/util.js"), stores = (_stores = {}, _defineProperty(_stores, __WEBPACK_IMPORTED_MODULE_0__constants__.d.GLOBAL, {
-	                                get: function(key) {
-	                                    return (window[__WEBPACK_IMPORTED_MODULE_0__constants__.a] || {})[key];
-	                                },
-	                                set: function(key, value) {
-	                                    var storage = window[__WEBPACK_IMPORTED_MODULE_0__constants__.a] || {};
-	                                    storage[key] = value;
-	                                    window[__WEBPACK_IMPORTED_MODULE_0__constants__.a] = storage;
-	                                    return value;
-	                                },
-	                                has: function(key) {
-	                                    return (window[__WEBPACK_IMPORTED_MODULE_0__constants__.a] || {}).hasOwnProperty(key);
-	                                }
-	                            }), _defineProperty(_stores, __WEBPACK_IMPORTED_MODULE_0__constants__.d.SESSIONSTORAGE, {
-	                                get: function(key) {
-	                                    var storage = window.sessionStorage.getItem(__WEBPACK_IMPORTED_MODULE_0__constants__.a);
-	                                    storage = storage ? JSON.parse(storage) : {};
-	                                    return storage[key];
-	                                },
-	                                set: function(key, value) {
-	                                    var storage = window.sessionStorage.getItem(__WEBPACK_IMPORTED_MODULE_0__constants__.a);
-	                                    storage = storage ? JSON.parse(storage) : {};
-	                                    storage[key] = value;
-	                                    window.sessionStorage.setItem(__WEBPACK_IMPORTED_MODULE_0__constants__.a, JSON.stringify(storage));
-	                                    return value;
-	                                },
-	                                has: function(key) {
-	                                    var storage = window.sessionStorage.getItem(__WEBPACK_IMPORTED_MODULE_0__constants__.a);
-	                                    storage = storage ? JSON.parse(storage) : {};
-	                                    return storage.hasOwnProperty(key);
-	                                }
-	                            }), _stores), store = Object(__WEBPACK_IMPORTED_MODULE_1__util__.a)() ? stores[__WEBPACK_IMPORTED_MODULE_0__constants__.d.SESSIONSTORAGE] : stores[__WEBPACK_IMPORTED_MODULE_0__constants__.d.GLOBAL];
-	                        },
-	                        "./src/util.js": function(module, __webpack_exports__, __webpack_require__) {
-	                            function isSessionStorageEnabled() {
-	                                try {
-	                                    if (window.sessionStorage) {
-	                                        var value = Math.random().toString();
-	                                        window.sessionStorage.setItem("__test__sessionStorage__", value);
-	                                        var result = window.sessionStorage.getItem("__test__sessionStorage__");
-	                                        window.sessionStorage.removeItem("__test__sessionStorage__");
-	                                        if (value === result) return !0;
-	                                    }
-	                                } catch (err) {}
-	                                return !1;
-	                            }
-	                            __webpack_exports__.a = isSessionStorageEnabled;
-	                        }
-	                    });
-	                });
-	            }).call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module));
-	        },
-	        "./node_modules/braintree-paypal-client-config/index.js": function(module, exports, __webpack_require__) {
-	            module.exports = __webpack_require__("./node_modules/braintree-paypal-client-config/dist/braintree-paypal-client-config.js");
 	        },
 	        "./node_modules/cross-domain-safe-weakmap/src/index.js": function(module, __webpack_exports__, __webpack_require__) {
 	            function hasNativeWeakMap() {
@@ -2081,7 +2144,8 @@
 	                var allFrames1 = getAllFramesInWindow(win1), allFrames2 = getAllFramesInWindow(win2);
 	                if (anyMatch(allFrames1, allFrames2)) return !0;
 	                var opener1 = getOpener(top1), opener2 = getOpener(top2);
-	                return (!opener1 || !anyMatch(getAllFramesInWindow(opener1), allFrames2)) && (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1), !1);
+	                return (!opener1 || !anyMatch(getAllFramesInWindow(opener1), allFrames2)) && (opener2 && anyMatch(getAllFramesInWindow(opener2), allFrames1), 
+	                !1);
 	            }
 	            function matchDomain(pattern, origin) {
 	                if ("string" == typeof pattern) {
@@ -2984,7 +3048,9 @@
 	                ACK_TIMEOUT: -1 !== window.navigator.userAgent.match(/MSIE/i) ? 2e3 : 1e3,
 	                RES_TIMEOUT: 1 / 0,
 	                LOG_TO_PAGE: !1,
-	                ALLOWED_POST_MESSAGE_METHODS: (_ALLOWED_POST_MESSAGE = {}, _ALLOWED_POST_MESSAGE[CONSTANTS.SEND_STRATEGIES.POST_MESSAGE] = !0, _ALLOWED_POST_MESSAGE[CONSTANTS.SEND_STRATEGIES.BRIDGE] = !0, _ALLOWED_POST_MESSAGE[CONSTANTS.SEND_STRATEGIES.GLOBAL] = !0, _ALLOWED_POST_MESSAGE),
+	                ALLOWED_POST_MESSAGE_METHODS: (_ALLOWED_POST_MESSAGE = {}, _ALLOWED_POST_MESSAGE[CONSTANTS.SEND_STRATEGIES.POST_MESSAGE] = !0, 
+	                _ALLOWED_POST_MESSAGE[CONSTANTS.SEND_STRATEGIES.BRIDGE] = !0, _ALLOWED_POST_MESSAGE[CONSTANTS.SEND_STRATEGIES.GLOBAL] = !0, 
+	                _ALLOWED_POST_MESSAGE),
 	                ALLOW_SAME_ORIGIN: !1
 	            };
 	            0 === window.location.href.indexOf(CONSTANTS.FILE_PROTOCOL) && (CONFIG.ALLOW_POSTMESSAGE_POPUP = !0);
@@ -3027,7 +3093,8 @@
 	                    if (win === window && !conf.a.ALLOW_SAME_ORIGIN) throw new Error("Attemping to send message to self");
 	                    if (Object(src.y)(win)) throw new Error("Window is closed");
 	                    lib.i.debug("Running send message strategies", message);
-	                    var messages = [], serializedMessage = Object(lib.g)((_jsonStringify = {}, _jsonStringify[conf.b.WINDOW_PROPS.POSTROBOT] = message, _jsonStringify), null, 2);
+	                    var messages = [], serializedMessage = Object(lib.g)((_jsonStringify = {}, _jsonStringify[conf.b.WINDOW_PROPS.POSTROBOT] = message, 
+	                    _jsonStringify), null, 2);
 	                    return zalgo_promise_src.a.map(Object.keys(SEND_MESSAGE_STRATEGIES), function(strategyName) {
 	                        return zalgo_promise_src.a.try(function() {
 	                            if (!conf.a.ALLOWED_POST_MESSAGE_METHODS[strategyName]) throw new Error("Strategy disallowed: " + strategyName);
@@ -4064,7 +4131,7 @@
 	                    setTimeout(function() {
 	                        try {
 	                            var logLevel = window.LOG_LEVEL || conf.a.LOG_LEVEL;
-	                            if (LOG_LEVELS.indexOf(level) < LOG_LEVELS.indexOf(logLevel)) return;
+	                            if ("disabled" === logLevel || LOG_LEVELS.indexOf(level) < LOG_LEVELS.indexOf(logLevel)) return;
 	                            args = Array.prototype.slice.call(args);
 	                            args.unshift("" + window.location.host + window.location.pathname);
 	                            args.unshift("::");
@@ -4349,7 +4416,7 @@
 	                return this;
 	            }();
 	            try {
-	                g = g || Function("return this")() || (eval)("this");
+	                g = g || Function("return this")() || (0, eval)("this");
 	            } catch (e) {
 	                "object" === ("undefined" == typeof window ? "undefined" : _typeof(window)) && (g = window);
 	            }
@@ -4377,6 +4444,316 @@
 	                }
 	                return module;
 	            };
+	        },
+	        "./node_modules/xcomponent/node_modules/hi-base32/src/base32.js": function(module, exports, __webpack_require__) {
+	            (function(process, global, module) {
+	                var __WEBPACK_AMD_DEFINE_RESULT__, _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(obj) {
+	                    return typeof obj;
+	                } : function(obj) {
+	                    return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+	                };
+	                /*
+	 * [hi-base32]{@link https://github.com/emn178/hi-base32}
+	 *
+	 * @version 0.5.0
+	 * @author Chen, Yi-Cyuan [emn178@gmail.com]
+	 * @copyright Chen, Yi-Cyuan 2015-2018
+	 * @license MIT
+	 */
+	                !function() {
+	                    var root = "object" === ("undefined" == typeof window ? "undefined" : _typeof(window)) ? window : {};
+	                    !root.HI_BASE32_NO_NODE_JS && "object" === (void 0 === process ? "undefined" : _typeof(process)) && process.versions && process.versions.node && (root = global);
+	                    var COMMON_JS = !root.HI_BASE32_NO_COMMON_JS && "object" === _typeof(module) && module.exports, AMD = __webpack_require__("./node_modules/webpack/buildin/amd-options.js"), BASE32_ENCODE_CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567".split(""), BASE32_DECODE_CHAR = {
+	                        A: 0,
+	                        B: 1,
+	                        C: 2,
+	                        D: 3,
+	                        E: 4,
+	                        F: 5,
+	                        G: 6,
+	                        H: 7,
+	                        I: 8,
+	                        J: 9,
+	                        K: 10,
+	                        L: 11,
+	                        M: 12,
+	                        N: 13,
+	                        O: 14,
+	                        P: 15,
+	                        Q: 16,
+	                        R: 17,
+	                        S: 18,
+	                        T: 19,
+	                        U: 20,
+	                        V: 21,
+	                        W: 22,
+	                        X: 23,
+	                        Y: 24,
+	                        Z: 25,
+	                        "2": 26,
+	                        "3": 27,
+	                        "4": 28,
+	                        "5": 29,
+	                        "6": 30,
+	                        "7": 31
+	                    }, blocks = [ 0, 0, 0, 0, 0, 0, 0, 0 ], throwInvalidUtf8 = function(position, partial) {
+	                        partial.length > 10 && (partial = "..." + partial.substr(-10));
+	                        var err = new Error("Decoded data is not valid UTF-8. Maybe try base32.decode.asBytes()? Partial data after reading " + position + " bytes: " + partial + " <-");
+	                        err.position = position;
+	                        throw err;
+	                    }, toUtf8String = function(bytes) {
+	                        for (var b, c, str = "", length = bytes.length, i = 0, followingChars = 0; i < length; ) {
+	                            b = bytes[i++];
+	                            if (b <= 127) str += String.fromCharCode(b); else {
+	                                if (b > 191 && b <= 223) {
+	                                    c = 31 & b;
+	                                    followingChars = 1;
+	                                } else if (b <= 239) {
+	                                    c = 15 & b;
+	                                    followingChars = 2;
+	                                } else if (b <= 247) {
+	                                    c = 7 & b;
+	                                    followingChars = 3;
+	                                } else throwInvalidUtf8(i, str);
+	                                for (var j = 0; j < followingChars; ++j) {
+	                                    b = bytes[i++];
+	                                    (b < 128 || b > 191) && throwInvalidUtf8(i, str);
+	                                    c <<= 6;
+	                                    c += 63 & b;
+	                                }
+	                                c >= 55296 && c <= 57343 && throwInvalidUtf8(i, str);
+	                                c > 1114111 && throwInvalidUtf8(i, str);
+	                                if (c <= 65535) str += String.fromCharCode(c); else {
+	                                    c -= 65536;
+	                                    str += String.fromCharCode(55296 + (c >> 10));
+	                                    str += String.fromCharCode(56320 + (1023 & c));
+	                                }
+	                            }
+	                        }
+	                        return str;
+	                    }, decodeAsBytes = function(base32Str) {
+	                        if (!/^[A-Z2-7=]+$/.test(base32Str)) throw new Error("Invalid base32 characters");
+	                        base32Str = base32Str.replace(/=/g, "");
+	                        for (var v1, v2, v3, v4, v5, v6, v7, v8, bytes = [], index = 0, length = base32Str.length, i = 0, count = length >> 3 << 3; i < count; ) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v8 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            bytes[index++] = 255 & (v1 << 3 | v2 >>> 2);
+	                            bytes[index++] = 255 & (v2 << 6 | v3 << 1 | v4 >>> 4);
+	                            bytes[index++] = 255 & (v4 << 4 | v5 >>> 1);
+	                            bytes[index++] = 255 & (v5 << 7 | v6 << 2 | v7 >>> 3);
+	                            bytes[index++] = 255 & (v7 << 5 | v8);
+	                        }
+	                        var remain = length - count;
+	                        if (2 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            bytes[index++] = 255 & (v1 << 3 | v2 >>> 2);
+	                        } else if (4 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            bytes[index++] = 255 & (v1 << 3 | v2 >>> 2);
+	                            bytes[index++] = 255 & (v2 << 6 | v3 << 1 | v4 >>> 4);
+	                        } else if (5 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            bytes[index++] = 255 & (v1 << 3 | v2 >>> 2);
+	                            bytes[index++] = 255 & (v2 << 6 | v3 << 1 | v4 >>> 4);
+	                            bytes[index++] = 255 & (v4 << 4 | v5 >>> 1);
+	                        } else if (7 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            bytes[index++] = 255 & (v1 << 3 | v2 >>> 2);
+	                            bytes[index++] = 255 & (v2 << 6 | v3 << 1 | v4 >>> 4);
+	                            bytes[index++] = 255 & (v4 << 4 | v5 >>> 1);
+	                            bytes[index++] = 255 & (v5 << 7 | v6 << 2 | v7 >>> 3);
+	                        }
+	                        return bytes;
+	                    }, encodeAscii = function(str) {
+	                        for (var v1, v2, v3, v4, v5, base32Str = "", length = str.length, i = 0, count = 5 * parseInt(length / 5); i < count; ) {
+	                            v1 = str.charCodeAt(i++);
+	                            v2 = str.charCodeAt(i++);
+	                            v3 = str.charCodeAt(i++);
+	                            v4 = str.charCodeAt(i++);
+	                            v5 = str.charCodeAt(i++);
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[31 & (v3 << 1 | v4 >>> 7)] + BASE32_ENCODE_CHAR[v4 >>> 2 & 31] + BASE32_ENCODE_CHAR[31 & (v4 << 3 | v5 >>> 5)] + BASE32_ENCODE_CHAR[31 & v5];
+	                        }
+	                        var remain = length - count;
+	                        if (1 === remain) {
+	                            v1 = str.charCodeAt(i);
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[v1 << 2 & 31] + "======";
+	                        } else if (2 === remain) {
+	                            v1 = str.charCodeAt(i++);
+	                            v2 = str.charCodeAt(i);
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[v2 << 4 & 31] + "====";
+	                        } else if (3 === remain) {
+	                            v1 = str.charCodeAt(i++);
+	                            v2 = str.charCodeAt(i++);
+	                            v3 = str.charCodeAt(i);
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[v3 << 1 & 31] + "===";
+	                        } else if (4 === remain) {
+	                            v1 = str.charCodeAt(i++);
+	                            v2 = str.charCodeAt(i++);
+	                            v3 = str.charCodeAt(i++);
+	                            v4 = str.charCodeAt(i);
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[31 & (v3 << 1 | v4 >>> 7)] + BASE32_ENCODE_CHAR[v4 >>> 2 & 31] + BASE32_ENCODE_CHAR[v4 << 3 & 31] + "=";
+	                        }
+	                        return base32Str;
+	                    }, encodeUtf8 = function(str) {
+	                        var v1, v2, v3, v4, v5, code, i, end = !1, base32Str = "", index = 0, start = 0, length = str.length;
+	                        do {
+	                            blocks[0] = blocks[5];
+	                            blocks[1] = blocks[6];
+	                            blocks[2] = blocks[7];
+	                            for (i = start; index < length && i < 5; ++index) {
+	                                code = str.charCodeAt(index);
+	                                if (code < 128) blocks[i++] = code; else if (code < 2048) {
+	                                    blocks[i++] = 192 | code >> 6;
+	                                    blocks[i++] = 128 | 63 & code;
+	                                } else if (code < 55296 || code >= 57344) {
+	                                    blocks[i++] = 224 | code >> 12;
+	                                    blocks[i++] = 128 | code >> 6 & 63;
+	                                    blocks[i++] = 128 | 63 & code;
+	                                } else {
+	                                    code = 65536 + ((1023 & code) << 10 | 1023 & str.charCodeAt(++index));
+	                                    blocks[i++] = 240 | code >> 18;
+	                                    blocks[i++] = 128 | code >> 12 & 63;
+	                                    blocks[i++] = 128 | code >> 6 & 63;
+	                                    blocks[i++] = 128 | 63 & code;
+	                                }
+	                            }
+	                            start = i - 5;
+	                            index === length && ++index;
+	                            index > length && i < 6 && (end = !0);
+	                            v1 = blocks[0];
+	                            if (i > 4) {
+	                                v2 = blocks[1];
+	                                v3 = blocks[2];
+	                                v4 = blocks[3];
+	                                v5 = blocks[4];
+	                                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[31 & (v3 << 1 | v4 >>> 7)] + BASE32_ENCODE_CHAR[v4 >>> 2 & 31] + BASE32_ENCODE_CHAR[31 & (v4 << 3 | v5 >>> 5)] + BASE32_ENCODE_CHAR[31 & v5];
+	                            } else if (1 === i) base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[v1 << 2 & 31] + "======"; else if (2 === i) {
+	                                v2 = blocks[1];
+	                                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[v2 << 4 & 31] + "====";
+	                            } else if (3 === i) {
+	                                v2 = blocks[1];
+	                                v3 = blocks[2];
+	                                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[v3 << 1 & 31] + "===";
+	                            } else {
+	                                v2 = blocks[1];
+	                                v3 = blocks[2];
+	                                v4 = blocks[3];
+	                                base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[31 & (v3 << 1 | v4 >>> 7)] + BASE32_ENCODE_CHAR[v4 >>> 2 & 31] + BASE32_ENCODE_CHAR[v4 << 3 & 31] + "=";
+	                            }
+	                        } while (!end);
+	                        return base32Str;
+	                    }, encodeBytes = function(bytes) {
+	                        for (var v1, v2, v3, v4, v5, base32Str = "", length = bytes.length, i = 0, count = 5 * parseInt(length / 5); i < count; ) {
+	                            v1 = bytes[i++];
+	                            v2 = bytes[i++];
+	                            v3 = bytes[i++];
+	                            v4 = bytes[i++];
+	                            v5 = bytes[i++];
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[31 & (v3 << 1 | v4 >>> 7)] + BASE32_ENCODE_CHAR[v4 >>> 2 & 31] + BASE32_ENCODE_CHAR[31 & (v4 << 3 | v5 >>> 5)] + BASE32_ENCODE_CHAR[31 & v5];
+	                        }
+	                        var remain = length - count;
+	                        if (1 === remain) {
+	                            v1 = bytes[i];
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[v1 << 2 & 31] + "======";
+	                        } else if (2 === remain) {
+	                            v1 = bytes[i++];
+	                            v2 = bytes[i];
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[v2 << 4 & 31] + "====";
+	                        } else if (3 === remain) {
+	                            v1 = bytes[i++];
+	                            v2 = bytes[i++];
+	                            v3 = bytes[i];
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[v3 << 1 & 31] + "===";
+	                        } else if (4 === remain) {
+	                            v1 = bytes[i++];
+	                            v2 = bytes[i++];
+	                            v3 = bytes[i++];
+	                            v4 = bytes[i];
+	                            base32Str += BASE32_ENCODE_CHAR[v1 >>> 3] + BASE32_ENCODE_CHAR[31 & (v1 << 2 | v2 >>> 6)] + BASE32_ENCODE_CHAR[v2 >>> 1 & 31] + BASE32_ENCODE_CHAR[31 & (v2 << 4 | v3 >>> 4)] + BASE32_ENCODE_CHAR[31 & (v3 << 1 | v4 >>> 7)] + BASE32_ENCODE_CHAR[v4 >>> 2 & 31] + BASE32_ENCODE_CHAR[v4 << 3 & 31] + "=";
+	                        }
+	                        return base32Str;
+	                    }, encode = function(input, asciiOnly) {
+	                        var notString = "string" != typeof input;
+	                        notString && input.constructor === ArrayBuffer && (input = new Uint8Array(input));
+	                        return notString ? encodeBytes(input) : asciiOnly ? encodeAscii(input) : encodeUtf8(input);
+	                    }, decode = function(base32Str, asciiOnly) {
+	                        if (!asciiOnly) return toUtf8String(decodeAsBytes(base32Str));
+	                        if (!/^[A-Z2-7=]+$/.test(base32Str)) throw new Error("Invalid base32 characters");
+	                        var v1, v2, v3, v4, v5, v6, v7, v8, str = "", length = base32Str.indexOf("=");
+	                        -1 === length && (length = base32Str.length);
+	                        for (var i = 0, count = length >> 3 << 3; i < count; ) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v8 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            str += String.fromCharCode(255 & (v1 << 3 | v2 >>> 2)) + String.fromCharCode(255 & (v2 << 6 | v3 << 1 | v4 >>> 4)) + String.fromCharCode(255 & (v4 << 4 | v5 >>> 1)) + String.fromCharCode(255 & (v5 << 7 | v6 << 2 | v7 >>> 3)) + String.fromCharCode(255 & (v7 << 5 | v8));
+	                        }
+	                        var remain = length - count;
+	                        if (2 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            str += String.fromCharCode(255 & (v1 << 3 | v2 >>> 2));
+	                        } else if (4 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            str += String.fromCharCode(255 & (v1 << 3 | v2 >>> 2)) + String.fromCharCode(255 & (v2 << 6 | v3 << 1 | v4 >>> 4));
+	                        } else if (5 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            str += String.fromCharCode(255 & (v1 << 3 | v2 >>> 2)) + String.fromCharCode(255 & (v2 << 6 | v3 << 1 | v4 >>> 4)) + String.fromCharCode(255 & (v4 << 4 | v5 >>> 1));
+	                        } else if (7 === remain) {
+	                            v1 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v2 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v3 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v4 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v5 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v6 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            v7 = BASE32_DECODE_CHAR[base32Str.charAt(i++)];
+	                            str += String.fromCharCode(255 & (v1 << 3 | v2 >>> 2)) + String.fromCharCode(255 & (v2 << 6 | v3 << 1 | v4 >>> 4)) + String.fromCharCode(255 & (v4 << 4 | v5 >>> 1)) + String.fromCharCode(255 & (v5 << 7 | v6 << 2 | v7 >>> 3));
+	                        }
+	                        return str;
+	                    }, exports = {
+	                        encode: encode,
+	                        decode: decode
+	                    };
+	                    decode.asBytes = decodeAsBytes;
+	                    if (COMMON_JS) module.exports = exports; else {
+	                        root.base32 = exports;
+	                        AMD && void 0 !== (__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+	                            return exports;
+	                        }.call(exports, __webpack_require__, exports, module)) && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__);
+	                    }
+	                }();
+	            }).call(exports, __webpack_require__("./node_modules/process/browser.js"), __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/webpack/buildin/module.js")(module));
 	        },
 	        "./node_modules/xcomponent/src/component/base.js": function(module, __webpack_exports__, __webpack_require__) {
 	            function _classCallCheck(instance, Constructor) {
@@ -5045,7 +5422,7 @@
 	                    if (options.dimensions && !Object(lib.E)(options.dimensions.height) && !Object(lib.D)(options.dimensions.height)) throw new Error("Expected options.dimensions.height to be a px or % string value");
 	                }
 	                if (options.contexts) {
-	                    
+	                    if (options.contexts.popup, !1) throw new Error("Popups not supported in this build -- please use the full xcomponent.js build");
 	                    for (var anyEnabled = !1, _iterator2 = Object.keys(options.contexts), _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator](); ;) {
 	                        var _ref2;
 	                        if (_isArray2) {
@@ -5552,7 +5929,8 @@
 	                    desc = null;
 	                }
 	                return desc;
-	            }(_class.prototype, "getPropNames", [ lib.G ], Object.getOwnPropertyDescriptor(_class.prototype, "getPropNames"), _class.prototype), _class);
+	            }(_class.prototype, "getPropNames", [ lib.G ], Object.getOwnPropertyDescriptor(_class.prototype, "getPropNames"), _class.prototype), 
+	            _class);
 	            component_Component.components = {};
 	        },
 	        "./node_modules/xcomponent/src/component/parent/drivers.js": function(module, __webpack_exports__, __webpack_require__) {
@@ -6764,7 +7142,24 @@
 	                    }
 	                } ]);
 	                return ParentComponent;
-	            }(base.a), _applyDecoratedDescriptor(_class.prototype, "getOutlet", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "getOutlet"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "prefetch", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "prefetch"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "loadHTML", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "loadHTML"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "buildUrl", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "buildUrl"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "open", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "open"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "openPrerender", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "openPrerender"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "switchPrerender", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "switchPrerender"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "close", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "close"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "closeContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "closeContainer"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "destroyContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "destroyContainer"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "closeComponent", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "closeComponent"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "showContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "showContainer"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "showComponent", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "showComponent"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "hideContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "hideContainer"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "hideComponent", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "hideComponent"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "createPrerenderTemplate", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "createPrerenderTemplate"), _class.prototype), _applyDecoratedDescriptor(_class.prototype, "openContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "openContainer"), _class.prototype), _class);
+	            }(base.a), _applyDecoratedDescriptor(_class.prototype, "getOutlet", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "getOutlet"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "prefetch", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "prefetch"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "loadHTML", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "loadHTML"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "buildUrl", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "buildUrl"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "open", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "open"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "openPrerender", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "openPrerender"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "switchPrerender", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "switchPrerender"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "close", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "close"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "closeContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "closeContainer"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "destroyContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "destroyContainer"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "closeComponent", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "closeComponent"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "showContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "showContainer"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "showComponent", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "showComponent"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "hideContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "hideContainer"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "hideComponent", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "hideComponent"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "createPrerenderTemplate", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "createPrerenderTemplate"), _class.prototype), 
+	            _applyDecoratedDescriptor(_class.prototype, "openContainer", [ lib.H ], Object.getOwnPropertyDescriptor(_class.prototype, "openContainer"), _class.prototype), 
+	            _class);
 	            parent_ParentComponent.activeComponents = [];
 	        },
 	        "./node_modules/xcomponent/src/component/window.js": function(module, __webpack_exports__, __webpack_require__) {
@@ -6832,7 +7227,7 @@
 	                return getParentRenderWindow;
 	            });
 	            __webpack_exports__.f = getPosition;
-	            var __WEBPACK_IMPORTED_MODULE_0_cross_domain_utils_src__ = __webpack_require__("./node_modules/cross-domain-utils/src/index.js"), __WEBPACK_IMPORTED_MODULE_1_hi_base32__ = __webpack_require__("./node_modules/hi-base32/src/base32.js"), __WEBPACK_IMPORTED_MODULE_1_hi_base32___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_hi_base32__), __WEBPACK_IMPORTED_MODULE_2__lib__ = __webpack_require__("./node_modules/xcomponent/src/lib/index.js"), __WEBPACK_IMPORTED_MODULE_3__constants__ = __webpack_require__("./node_modules/xcomponent/src/constants.js"), isXComponentWindow = Object(__WEBPACK_IMPORTED_MODULE_2__lib__.G)(function() {
+	            var __WEBPACK_IMPORTED_MODULE_0_cross_domain_utils_src__ = __webpack_require__("./node_modules/cross-domain-utils/src/index.js"), __WEBPACK_IMPORTED_MODULE_1_hi_base32__ = __webpack_require__("./node_modules/xcomponent/node_modules/hi-base32/src/base32.js"), __WEBPACK_IMPORTED_MODULE_1_hi_base32___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_hi_base32__), __WEBPACK_IMPORTED_MODULE_2__lib__ = __webpack_require__("./node_modules/xcomponent/src/lib/index.js"), __WEBPACK_IMPORTED_MODULE_3__constants__ = __webpack_require__("./node_modules/xcomponent/src/constants.js"), isXComponentWindow = Object(__WEBPACK_IMPORTED_MODULE_2__lib__.G)(function() {
 	                return !!window.name && window.name.split("__")[0] === __WEBPACK_IMPORTED_MODULE_3__constants__.XCOMPONENT;
 	            }), getComponentMeta = Object(__WEBPACK_IMPORTED_MODULE_2__lib__.G)(function() {
 	                if (!window.name) throw new Error("Can not get component meta without window name");
@@ -7384,7 +7779,9 @@
 	            __webpack_require__.d(interface_namespaceObject, "RenderError", function() {
 	                return error.c;
 	            });
-	            var component = (__webpack_require__("./node_modules/zalgo-promise/src/index.js"), __webpack_require__("./node_modules/xcomponent/src/component/component/index.js")), component_parent = __webpack_require__("./node_modules/xcomponent/src/component/parent/index.js"), lib = (__webpack_require__("./node_modules/xcomponent/src/component/child/index.js"), __webpack_require__("./node_modules/xcomponent/src/lib/index.js")), post_robot_src = __webpack_require__("./node_modules/post-robot/src/index.js"), error = __webpack_require__("./node_modules/xcomponent/src/error.js"), constants = __webpack_require__("./node_modules/xcomponent/src/constants.js"), postRobot = post_robot_src, CONSTANTS = constants;
+	            var component = (__webpack_require__("./node_modules/zalgo-promise/src/index.js"), 
+	            __webpack_require__("./node_modules/xcomponent/src/component/component/index.js")), component_parent = __webpack_require__("./node_modules/xcomponent/src/component/parent/index.js"), lib = (__webpack_require__("./node_modules/xcomponent/src/component/child/index.js"), 
+	            __webpack_require__("./node_modules/xcomponent/src/lib/index.js")), post_robot_src = __webpack_require__("./node_modules/post-robot/src/index.js"), error = __webpack_require__("./node_modules/xcomponent/src/error.js"), constants = __webpack_require__("./node_modules/xcomponent/src/constants.js"), postRobot = post_robot_src, CONSTANTS = constants;
 	            __webpack_require__.d(__webpack_exports__, "c", function() {
 	                return create;
 	            });
@@ -9082,7 +9479,8 @@
 	            function addHeader(name, value) {
 	                if (window.$Api) return window.$Api.addHeader ? window.$Api.addHeader(name, value) : void 0;
 	            }
-	            var src = __webpack_require__("./node_modules/zalgo-promise/src/index.js"), beaver_logger_client = __webpack_require__("./node_modules/beaver-logger/client/index.js"), xcomponent_src = __webpack_require__("./node_modules/xcomponent/src/index.js"), lib = (__webpack_require__("./node_modules/xcomponent/src/component/component/index.js"), __webpack_require__("./src/lib/index.js")), config = __webpack_require__("./src/config/index.js"), constants = __webpack_require__("./src/constants/index.js"), post_robot_src = __webpack_require__("./node_modules/post-robot/src/index.js"), onAuthorize = void 0;
+	            var src = __webpack_require__("./node_modules/zalgo-promise/src/index.js"), beaver_logger_client = __webpack_require__("./node_modules/beaver-logger/client/index.js"), xcomponent_src = __webpack_require__("./node_modules/xcomponent/src/index.js"), lib = (__webpack_require__("./node_modules/xcomponent/src/component/component/index.js"), 
+	            __webpack_require__("./src/lib/index.js")), config = __webpack_require__("./src/config/index.js"), constants = __webpack_require__("./src/constants/index.js"), post_robot_src = __webpack_require__("./node_modules/post-robot/src/index.js"), onAuthorize = void 0;
 	            Object(lib.G)() && Object(post_robot_src.on)("onLegacyPaymentAuthorize", {
 	                window: window.parent
 	            }, function(_ref) {
@@ -9143,7 +9541,9 @@
 	                }, 100);
 	            };
 	            window.onLegacyFallback = window.watchForLegacyFallback;
-	            var _LOGO_COLOR, integrations = __webpack_require__("./src/integrations/index.js"), checkoutComponentStyle = "\n\n    body {\n        width: 100%;\n        height: 100%;\n        overflow: hidden;\n        position: fixed;\n        top: 0;\n        left: 0;\n        margin: 0;\n    }\n\n    .spinner {\n        height: 100%;\n        width: 100%;\n        position: absolute;\n        z-index: 10\n    }\n\n    .spinner .spinWrap {\n        width: 200px;\n        height: 100px;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        margin-left: -100px;\n        margin-top: -50px\n    }\n\n    .spinner .loader,\n    .spinner .spinnerImage {\n        height: 100px;\n        width: 100px;\n        position: absolute;\n        top: 0;\n        left: 50%;\n        opacity: 1;\n        filter: alpha(opacity=100)\n    }\n\n    .spinner .spinnerImage {\n        margin: 28px 0 0 -25px;\n        background: url(https://www.paypalobjects.com/images/checkout/hermes/icon_ot_spin_lock_skinny.png) no-repeat\n    }\n\n    .spinner .loader {\n        margin: 0 0 0 -55px;\n        background-color: transparent;\n        -webkit-animation: rotation .7s infinite linear;\n        -moz-animation: rotation .7s infinite linear;\n        -o-animation: rotation .7s infinite linear;\n        animation: rotation .7s infinite linear;\n        border-left: 5px solid #cbcbca;\n        border-right: 5px solid #cbcbca;\n        border-bottom: 5px solid #cbcbca;\n        border-top: 5px solid #2380be;\n        border-radius: 100%\n    }\n\n    @-webkit-keyframes rotation {\n        from {\n            -webkit-transform: rotate(0deg)\n        }\n        to {\n            -webkit-transform: rotate(359deg)\n        }\n    }\n    @-moz-keyframes rotation {\n        from {\n            -moz-transform: rotate(0deg)\n        }\n        to {\n            -moz-transform: rotate(359deg)\n        }\n    }\n    @-o-keyframes rotation {\n        from {\n            -o-transform: rotate(0deg)\n        }\n        to {\n            -o-transform: rotate(359deg)\n        }\n    }\n    @keyframes rotation {\n        from {\n            transform: rotate(0deg)\n        }\n        to {\n            transform: rotate(359deg)\n        }\n    }\n", base64 = __webpack_require__("./node_modules/Base64/base64.js"), resources = __webpack_require__("./src/resources/index.js"), containerContent = __webpack_require__("./src/checkout/template/containerContent.json"), containerContent_default = __webpack_require__.n(containerContent), componentContent = JSON.parse(containerContent_default.a), LOGO_COLOR = (_LOGO_COLOR = {}, _LOGO_COLOR[constants.q.BLACK] = constants.i.WHITE, _LOGO_COLOR[constants.q.WHITE] = constants.i.BLACK, _LOGO_COLOR), _extends = Object.assign || function(target) {
+	            var _LOGO_COLOR, integrations = __webpack_require__("./src/integrations/index.js"), checkoutComponentStyle = "\n\n    body {\n        width: 100%;\n        height: 100%;\n        overflow: hidden;\n        position: fixed;\n        top: 0;\n        left: 0;\n        margin: 0;\n    }\n\n    .spinner {\n        height: 100%;\n        width: 100%;\n        position: absolute;\n        z-index: 10\n    }\n\n    .spinner .spinWrap {\n        width: 200px;\n        height: 100px;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        margin-left: -100px;\n        margin-top: -50px\n    }\n\n    .spinner .loader,\n    .spinner .spinnerImage {\n        height: 100px;\n        width: 100px;\n        position: absolute;\n        top: 0;\n        left: 50%;\n        opacity: 1;\n        filter: alpha(opacity=100)\n    }\n\n    .spinner .spinnerImage {\n        margin: 28px 0 0 -25px;\n        background: url(https://www.paypalobjects.com/images/checkout/hermes/icon_ot_spin_lock_skinny.png) no-repeat\n    }\n\n    .spinner .loader {\n        margin: 0 0 0 -55px;\n        background-color: transparent;\n        -webkit-animation: rotation .7s infinite linear;\n        -moz-animation: rotation .7s infinite linear;\n        -o-animation: rotation .7s infinite linear;\n        animation: rotation .7s infinite linear;\n        border-left: 5px solid #cbcbca;\n        border-right: 5px solid #cbcbca;\n        border-bottom: 5px solid #cbcbca;\n        border-top: 5px solid #2380be;\n        border-radius: 100%\n    }\n\n    @-webkit-keyframes rotation {\n        from {\n            -webkit-transform: rotate(0deg)\n        }\n        to {\n            -webkit-transform: rotate(359deg)\n        }\n    }\n    @-moz-keyframes rotation {\n        from {\n            -moz-transform: rotate(0deg)\n        }\n        to {\n            -moz-transform: rotate(359deg)\n        }\n    }\n    @-o-keyframes rotation {\n        from {\n            -o-transform: rotate(0deg)\n        }\n        to {\n            -o-transform: rotate(359deg)\n        }\n    }\n    @keyframes rotation {\n        from {\n            transform: rotate(0deg)\n        }\n        to {\n            transform: rotate(359deg)\n        }\n    }\n", base64 = __webpack_require__("./node_modules/Base64/base64.js"), resources = __webpack_require__("./src/resources/index.js"), containerContent = __webpack_require__("./src/checkout/template/containerContent.json"), containerContent_default = __webpack_require__.n(containerContent), componentContent = JSON.parse(containerContent_default.a), LOGO_COLOR = (_LOGO_COLOR = {}, 
+	            _LOGO_COLOR[constants.q.BLACK] = constants.i.WHITE, _LOGO_COLOR[constants.q.WHITE] = constants.i.BLACK, 
+	            _LOGO_COLOR), _extends = Object.assign || function(target) {
 	                for (var i = 1; i < arguments.length; i++) {
 	                    var source = arguments[i];
 	                    for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
@@ -9166,7 +9566,8 @@
 	                },
 	                get domain() {
 	                    var _extends2;
-	                    return _extends({}, config.a.paypalDomains, (_extends2 = {}, _extends2[constants.t.LOCAL] = /^http:\/\/localhost.paypal.com:\d+$/, _extends2));
+	                    return _extends({}, config.a.paypalDomains, (_extends2 = {}, _extends2[constants.t.LOCAL] = /^http:\/\/localhost.paypal.com:\d+$/, 
+	                    _extends2));
 	                },
 	                get bridgeUrl() {
 	                    return config.a.metaFrameUrls;
@@ -9390,7 +9791,10 @@
 	                            return function(data) {
 	                                var _track;
 	                                Object(beaver_logger_client.j)("checkout_init");
-	                                Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CHECKOUT_INIT, _track[constants.u.KEY.CONTEXT_TYPE] = constants.u.CONTEXT_TYPE[constants.A.EC_TOKEN], _track[constants.u.KEY.TOKEN] = data.paymentToken, _track[constants.u.KEY.SELLER_ID] = data.merchantID, _track[constants.u.KEY.CONTEXT_ID] = data.paymentToken, _track));
+	                                Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, 
+	                                _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CHECKOUT_INIT, _track[constants.u.KEY.CONTEXT_TYPE] = constants.u.CONTEXT_TYPE[constants.A.EC_TOKEN], 
+	                                _track[constants.u.KEY.TOKEN] = data.paymentToken, _track[constants.u.KEY.SELLER_ID] = data.merchantID, 
+	                                _track[constants.u.KEY.CONTEXT_ID] = data.paymentToken, _track));
 	                                Object(beaver_logger_client.g)();
 	                                this.paymentToken = data.paymentToken;
 	                                this.cancelUrl = data.cancelUrl;
@@ -9515,14 +9919,16 @@
 	                                    var _throttle$logStart, payButton = document.querySelector(".buttons.reviewButton"), topPayButton = document.querySelector(".buttons.reviewButton.topReviewButton"), reviewSection = document.querySelector("section.review"), throttle = Object(lib.x)("top_pay_button", 50), hash = window.location.hash, logComplete = function() {
 	                                        if (experimentActive && !loggedComplete && hash && -1 !== hash.indexOf("checkout/review")) {
 	                                            var _throttle$logComplete;
-	                                            throttle.logComplete((_throttle$logComplete = {}, _throttle$logComplete[constants.u.KEY.FEED] = "hermesnodeweb", _throttle$logComplete));
+	                                            throttle.logComplete((_throttle$logComplete = {}, _throttle$logComplete[constants.u.KEY.FEED] = "hermesnodeweb", 
+	                                            _throttle$logComplete));
 	                                            loggedComplete = !0;
 	                                        }
 	                                    };
 	                                    payButton && payButton.addEventListener("click", logComplete);
 	                                    if (reviewSection && reviewSection.firstChild && payButton && !topPayButton && !(payButton.getBoundingClientRect().bottom < window.innerHeight)) {
 	                                        experimentActive = !0;
-	                                        throttle.logStart((_throttle$logStart = {}, _throttle$logStart[constants.u.KEY.FEED] = "hermesnodeweb", _throttle$logStart));
+	                                        throttle.logStart((_throttle$logStart = {}, _throttle$logStart[constants.u.KEY.FEED] = "hermesnodeweb", 
+	                                        _throttle$logStart));
 	                                        if (throttle.isEnabled()) {
 	                                            topPayButton = payButton.cloneNode(!0);
 	                                            topPayButton.className += " topReviewButton";
@@ -9572,7 +9978,7 @@
 	            var _checkoutUris, _altpayUris, _guestUris, _billingUris, _buttonUris, _postBridgeUris, _legacyCheckoutUris, _buttonJSUrls, _locales, constants = __webpack_require__("./src/constants/index.js"), config = {
 	                scriptUrl: "//www.paypalobjects.com/api/checkout.lib.js",
 	                paypal_domain_regex: /^(https?|mock):\/\/[a-zA-Z0-9_.-]+\.paypal\.com(:\d+)?$/,
-	                version: "4.0.191",
+	                version: "4.0.195",
 	                cors: !0,
 	                env: constants.t.PRODUCTION,
 	                state: "checkoutjs",
@@ -9691,32 +10097,79 @@
 	                },
 	                get paypalUrls() {
 	                    var _ref;
-	                    return _ref = {}, _ref[constants.t.LOCAL] = "http://localhost.paypal.com:" + config.ports.default, _ref[constants.t.STAGE] = "https://www." + config.stage + ".qa.paypal.com", _ref[constants.t.SANDBOX] = "https://www.sandbox.paypal.com", _ref[constants.t.PRODUCTION] = "https://www.paypal.com", _ref[constants.t.TEST] = window.location.protocol + "//" + window.location.host, _ref[constants.t.DEMO] = window.location.protocol + "//localhost.paypal.com:" + window.location.port, _ref;
+	                    return _ref = {}, _ref[constants.t.LOCAL] = "http://localhost.paypal.com:" + config.ports.default, 
+	                    _ref[constants.t.STAGE] = "https://www." + config.stage + ".qa.paypal.com", _ref[constants.t.SANDBOX] = "https://www.sandbox.paypal.com", 
+	                    _ref[constants.t.PRODUCTION] = "https://www.paypal.com", _ref[constants.t.TEST] = window.location.protocol + "//" + window.location.host, 
+	                    _ref[constants.t.DEMO] = window.location.protocol + "//localhost.paypal.com:" + window.location.port, 
+	                    _ref;
 	                },
 	                get paypalDomains() {
 	                    var _ref2;
-	                    return _ref2 = {}, _ref2[constants.t.LOCAL] = "http://localhost.paypal.com:" + config.ports.default, _ref2[constants.t.STAGE] = "https://www." + config.stage + ".qa.paypal.com", _ref2[constants.t.SANDBOX] = "https://www.sandbox.paypal.com", _ref2[constants.t.PRODUCTION] = "https://www.paypal.com", _ref2[constants.t.TEST] = "mock://www.paypal.com", _ref2[constants.t.DEMO] = window.location.protocol + "//localhost.paypal.com:" + window.location.port, _ref2;
+	                    return _ref2 = {}, _ref2[constants.t.LOCAL] = "http://localhost.paypal.com:" + config.ports.default, 
+	                    _ref2[constants.t.STAGE] = "https://www." + config.stage + ".qa.paypal.com", _ref2[constants.t.SANDBOX] = "https://www.sandbox.paypal.com", 
+	                    _ref2[constants.t.PRODUCTION] = "https://www.paypal.com", _ref2[constants.t.TEST] = "mock://www.paypal.com", 
+	                    _ref2[constants.t.DEMO] = window.location.protocol + "//localhost.paypal.com:" + window.location.port, 
+	                    _ref2;
 	                },
 	                get wwwApiUrls() {
 	                    var _ref3;
-	                    return _ref3 = {}, _ref3[constants.t.LOCAL] = "https://www." + config.stage + ".qa.paypal.com", _ref3[constants.t.STAGE] = "https://www." + config.stage + ".qa.paypal.com", _ref3[constants.t.SANDBOX] = "https://www.sandbox.paypal.com", _ref3[constants.t.PRODUCTION] = "https://www.paypal.com", _ref3[constants.t.TEST] = window.location.protocol + "//" + window.location.host, _ref3;
+	                    return _ref3 = {}, _ref3[constants.t.LOCAL] = "https://www." + config.stage + ".qa.paypal.com", 
+	                    _ref3[constants.t.STAGE] = "https://www." + config.stage + ".qa.paypal.com", _ref3[constants.t.SANDBOX] = "https://www.sandbox.paypal.com", 
+	                    _ref3[constants.t.PRODUCTION] = "https://www.paypal.com", _ref3[constants.t.TEST] = window.location.protocol + "//" + window.location.host, 
+	                    _ref3;
 	                },
 	                get corsApiUrls() {
 	                    var _ref4;
-	                    return _ref4 = {}, _ref4[constants.t.LOCAL] = "https://" + config.apiStage + ".qa.paypal.com:11888", _ref4[constants.t.STAGE] = "https://" + config.apiStage + ".qa.paypal.com:11888", _ref4[constants.t.SANDBOX] = "https://cors.api.sandbox.paypal.com", _ref4[constants.t.PRODUCTION] = "https://cors.api.paypal.com", _ref4[constants.t.TEST] = window.location.protocol + "//" + window.location.host, _ref4;
+	                    return _ref4 = {}, _ref4[constants.t.LOCAL] = "https://" + config.apiStage + ".qa.paypal.com:12326", 
+	                    _ref4[constants.t.STAGE] = "https://" + config.apiStage + ".qa.paypal.com:12326", 
+	                    _ref4[constants.t.SANDBOX] = "https://cors.api.sandbox.paypal.com", _ref4[constants.t.PRODUCTION] = "https://cors.api.paypal.com", 
+	                    _ref4[constants.t.TEST] = window.location.protocol + "//" + window.location.host, 
+	                    _ref4;
 	                },
 	                get apiUrls() {
 	                    var _ref5, domain = window.location.protocol + "//" + window.location.host, corsApiUrls = config.corsApiUrls, wwwApiUrls = config.wwwApiUrls;
-	                    return _ref5 = {}, _ref5[constants.t.LOCAL] = domain === wwwApiUrls.local ? wwwApiUrls.local : corsApiUrls.local, _ref5[constants.t.STAGE] = domain === wwwApiUrls.stage ? wwwApiUrls.stage : corsApiUrls.stage, _ref5[constants.t.SANDBOX] = domain === wwwApiUrls.sandbox ? wwwApiUrls.sandbox : corsApiUrls.sandbox, _ref5[constants.t.PRODUCTION] = domain === wwwApiUrls.production ? wwwApiUrls.production : corsApiUrls.production, _ref5[constants.t.TEST] = domain === wwwApiUrls.test ? wwwApiUrls.test : corsApiUrls.test, _ref5;
+	                    return _ref5 = {}, _ref5[constants.t.LOCAL] = domain === wwwApiUrls.local ? wwwApiUrls.local : corsApiUrls.local, 
+	                    _ref5[constants.t.STAGE] = domain === wwwApiUrls.stage ? wwwApiUrls.stage : corsApiUrls.stage, 
+	                    _ref5[constants.t.SANDBOX] = domain === wwwApiUrls.sandbox ? wwwApiUrls.sandbox : corsApiUrls.sandbox, 
+	                    _ref5[constants.t.PRODUCTION] = domain === wwwApiUrls.production ? wwwApiUrls.production : corsApiUrls.production, 
+	                    _ref5[constants.t.TEST] = domain === wwwApiUrls.test ? wwwApiUrls.test : corsApiUrls.test, 
+	                    _ref5;
 	                },
-	                checkoutUris: (_checkoutUris = {}, _checkoutUris[constants.t.LOCAL] = "/webapps/hermes?ul=0", _checkoutUris[constants.t.STAGE] = "/webapps/hermes", _checkoutUris[constants.t.SANDBOX] = "/checkoutnow", _checkoutUris[constants.t.PRODUCTION] = "/checkoutnow", _checkoutUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?checkouturl=true", _checkoutUris[constants.t.DEMO] = "/demo/dev/checkout.htm", _checkoutUris),
-	                altpayUris: (_altpayUris = {}, _altpayUris[constants.t.LOCAL] = "/latinumcheckout", _altpayUris[constants.t.STAGE] = "/latinumcheckout", _altpayUris[constants.t.SANDBOX] = "/latinumcheckout", _altpayUris[constants.t.PRODUCTION] = "/latinumcheckout", _altpayUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?checkouturl=true", _altpayUris[constants.t.DEMO] = "/demo/dev/checkout.htm", _altpayUris),
-	                guestUris: (_guestUris = {}, _guestUris[constants.t.LOCAL] = "/webapps/xoonboarding", _guestUris[constants.t.STAGE] = "/webapps/xoonboarding", _guestUris[constants.t.SANDBOX] = "/webapps/xoonboarding", _guestUris[constants.t.PRODUCTION] = "/webapps/xoonboarding", _guestUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?guesturl=true", _guestUris[constants.t.DEMO] = "/demo/dev/guest.htm", _guestUris),
-	                billingUris: (_billingUris = {}, _billingUris[constants.t.LOCAL] = "/webapps/hermes/agreements?ul=0", _billingUris[constants.t.STAGE] = "/webapps/hermes/agreements", _billingUris[constants.t.SANDBOX] = "/agreements/approve", _billingUris[constants.t.PRODUCTION] = "/agreements/approve", _billingUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?billingurl=true", _billingUris[constants.t.DEMO] = "/demo/dev/checkout.htm", _billingUris),
-	                buttonUris: (_buttonUris = {}, _buttonUris[constants.t.LOCAL] = "/webapps/hermes/button", _buttonUris[constants.t.STAGE] = "/webapps/hermes/button", _buttonUris[constants.t.SANDBOX] = "/webapps/hermes/button", _buttonUris[constants.t.PRODUCTION] = "/webapps/hermes/button", _buttonUris[constants.t.TEST] = "/base/test/windows/button/index.htm", _buttonUris[constants.t.DEMO] = "/demo/dev/button.htm", _buttonUris),
-	                postBridgeUris: (_postBridgeUris = {}, _postBridgeUris[constants.t.LOCAL] = "/webapps/hermes/component-meta", _postBridgeUris[constants.t.STAGE] = "/webapps/hermes/component-meta", _postBridgeUris[constants.t.SANDBOX] = "/webapps/hermes/component-meta", _postBridgeUris[constants.t.PRODUCTION] = "/webapps/hermes/component-meta", _postBridgeUris[constants.t.TEST] = "/base/test/windows/component-meta/index.htm", _postBridgeUris[constants.t.DEMO] = "/demo/dev/bridge.htm", _postBridgeUris),
-	                legacyCheckoutUris: (_legacyCheckoutUris = {}, _legacyCheckoutUris[constants.t.LOCAL] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", _legacyCheckoutUris[constants.t.STAGE] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", _legacyCheckoutUris[constants.t.SANDBOX] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", _legacyCheckoutUris[constants.t.PRODUCTION] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", _legacyCheckoutUris[constants.t.TEST] = "#fallback", _legacyCheckoutUris),
-	                buttonJSUrls: (_buttonJSUrls = {}, _buttonJSUrls[constants.t.LOCAL] = "https://www.paypalobjects.com/api/button.js", _buttonJSUrls[constants.t.STAGE] = "https://www.paypalobjects.com/api/button.js", _buttonJSUrls[constants.t.SANDBOX] = "https://www.paypalobjects.com/api/button.js", _buttonJSUrls[constants.t.PRODUCTION] = "https://www.paypalobjects.com/api/button.js", _buttonJSUrls[constants.t.TEST] = "/base/test/lib/button.js", _buttonJSUrls[constants.t.DEMO] = "https://www.paypalobjects.com/api/button.js", _buttonJSUrls),
+	                checkoutUris: (_checkoutUris = {}, _checkoutUris[constants.t.LOCAL] = "/webapps/hermes?ul=0", 
+	                _checkoutUris[constants.t.STAGE] = "/webapps/hermes", _checkoutUris[constants.t.SANDBOX] = "/checkoutnow", 
+	                _checkoutUris[constants.t.PRODUCTION] = "/checkoutnow", _checkoutUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?checkouturl=true", 
+	                _checkoutUris[constants.t.DEMO] = "/demo/dev/checkout.htm", _checkoutUris),
+	                altpayUris: (_altpayUris = {}, _altpayUris[constants.t.LOCAL] = "/latinumcheckout", 
+	                _altpayUris[constants.t.STAGE] = "/latinumcheckout", _altpayUris[constants.t.SANDBOX] = "/latinumcheckout", 
+	                _altpayUris[constants.t.PRODUCTION] = "/latinumcheckout", _altpayUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?checkouturl=true", 
+	                _altpayUris[constants.t.DEMO] = "/demo/dev/checkout.htm", _altpayUris),
+	                guestUris: (_guestUris = {}, _guestUris[constants.t.LOCAL] = "/webapps/xoonboarding", 
+	                _guestUris[constants.t.STAGE] = "/webapps/xoonboarding", _guestUris[constants.t.SANDBOX] = "/webapps/xoonboarding", 
+	                _guestUris[constants.t.PRODUCTION] = "/webapps/xoonboarding", _guestUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?guesturl=true", 
+	                _guestUris[constants.t.DEMO] = "/demo/dev/guest.htm", _guestUris),
+	                billingUris: (_billingUris = {}, _billingUris[constants.t.LOCAL] = "/webapps/hermes/agreements?ul=0", 
+	                _billingUris[constants.t.STAGE] = "/webapps/hermes/agreements", _billingUris[constants.t.SANDBOX] = "/agreements/approve", 
+	                _billingUris[constants.t.PRODUCTION] = "/agreements/approve", _billingUris[constants.t.TEST] = "/base/test/windows/checkout/index.htm?billingurl=true", 
+	                _billingUris[constants.t.DEMO] = "/demo/dev/checkout.htm", _billingUris),
+	                buttonUris: (_buttonUris = {}, _buttonUris[constants.t.LOCAL] = "/webapps/hermes/button", 
+	                _buttonUris[constants.t.STAGE] = "/webapps/hermes/button", _buttonUris[constants.t.SANDBOX] = "/webapps/hermes/button", 
+	                _buttonUris[constants.t.PRODUCTION] = "/webapps/hermes/button", _buttonUris[constants.t.TEST] = "/base/test/windows/button/index.htm", 
+	                _buttonUris[constants.t.DEMO] = "/demo/dev/button.htm", _buttonUris),
+	                postBridgeUris: (_postBridgeUris = {}, _postBridgeUris[constants.t.LOCAL] = "/webapps/hermes/component-meta", 
+	                _postBridgeUris[constants.t.STAGE] = "/webapps/hermes/component-meta", _postBridgeUris[constants.t.SANDBOX] = "/webapps/hermes/component-meta", 
+	                _postBridgeUris[constants.t.PRODUCTION] = "/webapps/hermes/component-meta", _postBridgeUris[constants.t.TEST] = "/base/test/windows/component-meta/index.htm", 
+	                _postBridgeUris[constants.t.DEMO] = "/demo/dev/bridge.htm", _postBridgeUris),
+	                legacyCheckoutUris: (_legacyCheckoutUris = {}, _legacyCheckoutUris[constants.t.LOCAL] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", 
+	                _legacyCheckoutUris[constants.t.STAGE] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", 
+	                _legacyCheckoutUris[constants.t.SANDBOX] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", 
+	                _legacyCheckoutUris[constants.t.PRODUCTION] = "/cgi-bin/webscr?cmd=_express-checkout&xo_node_fallback=true", 
+	                _legacyCheckoutUris[constants.t.TEST] = "#fallback", _legacyCheckoutUris),
+	                buttonJSUrls: (_buttonJSUrls = {}, _buttonJSUrls[constants.t.LOCAL] = "https://www.paypalobjects.com/api/button.js", 
+	                _buttonJSUrls[constants.t.STAGE] = "https://www.paypalobjects.com/api/button.js", 
+	                _buttonJSUrls[constants.t.SANDBOX] = "https://www.paypalobjects.com/api/button.js", 
+	                _buttonJSUrls[constants.t.PRODUCTION] = "https://www.paypalobjects.com/api/button.js", 
+	                _buttonJSUrls[constants.t.TEST] = "/base/test/lib/button.js", _buttonJSUrls[constants.t.DEMO] = "https://www.paypalobjects.com/api/button.js", 
+	                _buttonJSUrls),
 	                get buttonJSUrl() {
 	                    return config.buttonJSUrls[config.env];
 	                },
@@ -9735,63 +10188,118 @@
 	                trackingApiUri: "/v1/risk/transaction-contexts",
 	                get checkoutUrls() {
 	                    var _ref6, paypalUrls = config.paypalUrls;
-	                    return _ref6 = {}, _ref6[constants.t.LOCAL] = "" + paypalUrls.local + config.checkoutUris.local.replace(":" + config.ports.default, ":" + config.ports.checkout), _ref6[constants.t.STAGE] = "" + paypalUrls.stage + config.checkoutUris.stage, _ref6[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.checkoutUris.sandbox, _ref6[constants.t.PRODUCTION] = "" + paypalUrls.production + config.checkoutUris.production, _ref6[constants.t.TEST] = "" + paypalUrls.test + config.checkoutUris.test, _ref6[constants.t.DEMO] = "" + paypalUrls.test + config.checkoutUris.demo, _ref6;
+	                    return _ref6 = {}, _ref6[constants.t.LOCAL] = "" + paypalUrls.local + config.checkoutUris.local.replace(":" + config.ports.default, ":" + config.ports.checkout), 
+	                    _ref6[constants.t.STAGE] = "" + paypalUrls.stage + config.checkoutUris.stage, _ref6[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.checkoutUris.sandbox, 
+	                    _ref6[constants.t.PRODUCTION] = "" + paypalUrls.production + config.checkoutUris.production, 
+	                    _ref6[constants.t.TEST] = "" + paypalUrls.test + config.checkoutUris.test, _ref6[constants.t.DEMO] = "" + paypalUrls.test + config.checkoutUris.demo, 
+	                    _ref6;
 	                },
 	                get guestUrls() {
 	                    var _ref7, paypalUrls = config.paypalUrls;
-	                    return _ref7 = {}, _ref7[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.guest) + config.guestUris.local, _ref7[constants.t.STAGE] = "" + paypalUrls.stage + config.guestUris.stage, _ref7[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.guestUris.sandbox, _ref7[constants.t.PRODUCTION] = "" + paypalUrls.production + config.guestUris.production, _ref7[constants.t.TEST] = "" + paypalUrls.test + config.guestUris.test, _ref7[constants.t.DEMO] = "" + paypalUrls.test + config.guestUris.demo, _ref7;
+	                    return _ref7 = {}, _ref7[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.guest) + config.guestUris.local, 
+	                    _ref7[constants.t.STAGE] = "" + paypalUrls.stage + config.guestUris.stage, _ref7[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.guestUris.sandbox, 
+	                    _ref7[constants.t.PRODUCTION] = "" + paypalUrls.production + config.guestUris.production, 
+	                    _ref7[constants.t.TEST] = "" + paypalUrls.test + config.guestUris.test, _ref7[constants.t.DEMO] = "" + paypalUrls.test + config.guestUris.demo, 
+	                    _ref7;
 	                },
 	                get altpayUrls() {
 	                    var _ref8, paypalUrls = config.paypalUrls;
-	                    return _ref8 = {}, _ref8[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.altpay) + config.altpayUris.local, _ref8[constants.t.STAGE] = "" + paypalUrls.stage + config.altpayUris.stage, _ref8[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.altpayUris.sandbox, _ref8[constants.t.PRODUCTION] = "" + paypalUrls.production + config.altpayUris.production, _ref8[constants.t.TEST] = "" + paypalUrls.test + config.altpayUris.test, _ref8[constants.t.DEMO] = "" + paypalUrls.test + config.altpayUris.demo, _ref8;
+	                    return _ref8 = {}, _ref8[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.altpay) + config.altpayUris.local, 
+	                    _ref8[constants.t.STAGE] = "" + paypalUrls.stage + config.altpayUris.stage, _ref8[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.altpayUris.sandbox, 
+	                    _ref8[constants.t.PRODUCTION] = "" + paypalUrls.production + config.altpayUris.production, 
+	                    _ref8[constants.t.TEST] = "" + paypalUrls.test + config.altpayUris.test, _ref8[constants.t.DEMO] = "" + paypalUrls.test + config.altpayUris.demo, 
+	                    _ref8;
 	                },
 	                get billingUrls() {
 	                    var _ref9, paypalUrls = config.paypalUrls;
-	                    return _ref9 = {}, _ref9[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.checkout) + config.billingUris.local, _ref9[constants.t.STAGE] = "" + paypalUrls.stage + config.billingUris.stage, _ref9[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.billingUris.sandbox, _ref9[constants.t.PRODUCTION] = "" + paypalUrls.production + config.billingUris.production, _ref9[constants.t.TEST] = "" + paypalUrls.test + config.billingUris.test, _ref9[constants.t.DEMO] = "" + paypalUrls.test + config.billingUris.demo, _ref9;
+	                    return _ref9 = {}, _ref9[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.checkout) + config.billingUris.local, 
+	                    _ref9[constants.t.STAGE] = "" + paypalUrls.stage + config.billingUris.stage, _ref9[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.billingUris.sandbox, 
+	                    _ref9[constants.t.PRODUCTION] = "" + paypalUrls.production + config.billingUris.production, 
+	                    _ref9[constants.t.TEST] = "" + paypalUrls.test + config.billingUris.test, _ref9[constants.t.DEMO] = "" + paypalUrls.test + config.billingUris.demo, 
+	                    _ref9;
 	                },
 	                get buttonUrls() {
 	                    var _ref10, paypalUrls = config.paypalUrls;
-	                    return _ref10 = {}, _ref10[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.button) + config.buttonUris.local, _ref10[constants.t.STAGE] = "" + paypalUrls.stage + config.buttonUris.stage, _ref10[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.buttonUris.sandbox, _ref10[constants.t.PRODUCTION] = "" + paypalUrls.production + config.buttonUris.production, _ref10[constants.t.TEST] = "" + paypalUrls.test + config.buttonUris.test, _ref10[constants.t.DEMO] = "" + paypalUrls.demo + config.buttonUris.demo, _ref10;
+	                    return _ref10 = {}, _ref10[constants.t.LOCAL] = "" + paypalUrls.local.replace(":" + config.ports.default, ":" + config.ports.button) + config.buttonUris.local, 
+	                    _ref10[constants.t.STAGE] = "" + paypalUrls.stage + config.buttonUris.stage, _ref10[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.buttonUris.sandbox, 
+	                    _ref10[constants.t.PRODUCTION] = "" + paypalUrls.production + config.buttonUris.production, 
+	                    _ref10[constants.t.TEST] = "" + paypalUrls.test + config.buttonUris.test, _ref10[constants.t.DEMO] = "" + paypalUrls.demo + config.buttonUris.demo, 
+	                    _ref10;
 	                },
 	                get loginUrls() {
 	                    var _ref11, paypalUrls = config.paypalUrls;
-	                    return _ref11 = {}, _ref11[constants.t.LOCAL] = "" + paypalUrls.stage + config.loginUri, _ref11[constants.t.STAGE] = "" + paypalUrls.stage + config.loginUri, _ref11[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.loginUri, _ref11[constants.t.PRODUCTION] = "" + paypalUrls.production + config.loginUri, _ref11[constants.t.TEST] = "" + paypalUrls.test + config.loginUri, _ref11;
+	                    return _ref11 = {}, _ref11[constants.t.LOCAL] = "" + paypalUrls.stage + config.loginUri, 
+	                    _ref11[constants.t.STAGE] = "" + paypalUrls.stage + config.loginUri, _ref11[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.loginUri, 
+	                    _ref11[constants.t.PRODUCTION] = "" + paypalUrls.production + config.loginUri, _ref11[constants.t.TEST] = "" + paypalUrls.test + config.loginUri, 
+	                    _ref11;
 	                },
 	                get paymentsStandardUrls() {
 	                    var _ref12, paypalUrls = config.paypalUrls;
-	                    return _ref12 = {}, _ref12[constants.t.LOCAL] = "" + paypalUrls.local + config.paymentStandardUri, _ref12[constants.t.STAGE] = "" + paypalUrls.stage + config.paymentStandardUri, _ref12[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.paymentStandardUri, _ref12[constants.t.PRODUCTION] = "" + paypalUrls.production + config.paymentStandardUri, _ref12[constants.t.TEST] = "" + paypalUrls.test + config.paymentStandardUri, _ref12;
+	                    return _ref12 = {}, _ref12[constants.t.LOCAL] = "" + paypalUrls.local + config.paymentStandardUri, 
+	                    _ref12[constants.t.STAGE] = "" + paypalUrls.stage + config.paymentStandardUri, _ref12[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.paymentStandardUri, 
+	                    _ref12[constants.t.PRODUCTION] = "" + paypalUrls.production + config.paymentStandardUri, 
+	                    _ref12[constants.t.TEST] = "" + paypalUrls.test + config.paymentStandardUri, _ref12;
 	                },
 	                get metaFrameUrls() {
 	                    var _ref13, paypalUrls = config.paypalUrls;
-	                    return _ref13 = {}, _ref13[constants.t.LOCAL] = "" + paypalUrls.local + config.postBridgeUri + "&env=local", _ref13[constants.t.STAGE] = "" + paypalUrls.stage + config.postBridgeUri + "&env=stage&stage=" + config.stage, _ref13[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.postBridgeUri + "&env=sandbox", _ref13[constants.t.PRODUCTION] = "" + paypalUrls.production + config.postBridgeUri + "&env=production", _ref13[constants.t.TEST] = "" + paypalUrls.test + config.postBridgeUri + "&env=test", _ref13[constants.t.DEMO] = "" + paypalUrls.demo + config.postBridgeUri + "&env=demo", _ref13;
+	                    return _ref13 = {}, _ref13[constants.t.LOCAL] = "" + paypalUrls.local + config.postBridgeUri + "&env=local", 
+	                    _ref13[constants.t.STAGE] = "" + paypalUrls.stage + config.postBridgeUri + "&env=stage&stage=" + config.stage, 
+	                    _ref13[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.postBridgeUri + "&env=sandbox", 
+	                    _ref13[constants.t.PRODUCTION] = "" + paypalUrls.production + config.postBridgeUri + "&env=production", 
+	                    _ref13[constants.t.TEST] = "" + paypalUrls.test + config.postBridgeUri + "&env=test", 
+	                    _ref13[constants.t.DEMO] = "" + paypalUrls.demo + config.postBridgeUri + "&env=demo", 
+	                    _ref13;
 	                },
 	                get legacyCheckoutUrls() {
 	                    var _ref14, paypalUrls = config.paypalUrls;
-	                    return _ref14 = {}, _ref14[constants.t.LOCAL] = "" + paypalUrls.stage + config.legacyCheckoutUris.local, _ref14[constants.t.STAGE] = "" + paypalUrls.stage + config.legacyCheckoutUris.stage, _ref14[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.legacyCheckoutUris.sandbox, _ref14[constants.t.PRODUCTION] = "" + paypalUrls.production + config.legacyCheckoutUris.production, _ref14[constants.t.TEST] = "" + paypalUrls.test + config.legacyCheckoutUris.test, _ref14;
+	                    return _ref14 = {}, _ref14[constants.t.LOCAL] = "" + paypalUrls.stage + config.legacyCheckoutUris.local, 
+	                    _ref14[constants.t.STAGE] = "" + paypalUrls.stage + config.legacyCheckoutUris.stage, 
+	                    _ref14[constants.t.SANDBOX] = "" + paypalUrls.sandbox + config.legacyCheckoutUris.sandbox, 
+	                    _ref14[constants.t.PRODUCTION] = "" + paypalUrls.production + config.legacyCheckoutUris.production, 
+	                    _ref14[constants.t.TEST] = "" + paypalUrls.test + config.legacyCheckoutUris.test, 
+	                    _ref14;
 	                },
 	                get authApiUrls() {
 	                    var _ref15, apiUrls = config.apiUrls, authApiUri = config.authApiUri;
-	                    return _ref15 = {}, _ref15[constants.t.LOCAL] = "" + apiUrls.local + authApiUri, _ref15[constants.t.STAGE] = "" + apiUrls.stage + authApiUri, _ref15[constants.t.SANDBOX] = "" + apiUrls.sandbox + authApiUri, _ref15[constants.t.PRODUCTION] = "" + apiUrls.production + authApiUri, _ref15[constants.t.TEST] = "" + apiUrls.test + authApiUri, _ref15;
+	                    return _ref15 = {}, _ref15[constants.t.LOCAL] = "" + apiUrls.local + authApiUri, 
+	                    _ref15[constants.t.STAGE] = "" + apiUrls.stage + authApiUri, _ref15[constants.t.SANDBOX] = "" + apiUrls.sandbox + authApiUri, 
+	                    _ref15[constants.t.PRODUCTION] = "" + apiUrls.production + authApiUri, _ref15[constants.t.TEST] = "" + apiUrls.test + authApiUri, 
+	                    _ref15;
 	                },
 	                get paymentApiUrls() {
 	                    var _ref16, apiUrls = config.apiUrls, paymentApiUri = config.paymentApiUri;
-	                    return _ref16 = {}, _ref16[constants.t.LOCAL] = "" + apiUrls.local + paymentApiUri, _ref16[constants.t.STAGE] = "" + apiUrls.stage + paymentApiUri, _ref16[constants.t.SANDBOX] = "" + apiUrls.sandbox + paymentApiUri, _ref16[constants.t.PRODUCTION] = "" + apiUrls.production + paymentApiUri, _ref16[constants.t.TEST] = "" + apiUrls.test + paymentApiUri, _ref16;
+	                    return _ref16 = {}, _ref16[constants.t.LOCAL] = "" + apiUrls.local + paymentApiUri, 
+	                    _ref16[constants.t.STAGE] = "" + apiUrls.stage + paymentApiUri, _ref16[constants.t.SANDBOX] = "" + apiUrls.sandbox + paymentApiUri, 
+	                    _ref16[constants.t.PRODUCTION] = "" + apiUrls.production + paymentApiUri, _ref16[constants.t.TEST] = "" + apiUrls.test + paymentApiUri, 
+	                    _ref16;
 	                },
 	                get orderApiUrls() {
 	                    var _ref17, apiUrls = config.apiUrls, orderApiUri = config.orderApiUri;
-	                    return _ref17 = {}, _ref17[constants.t.LOCAL] = "" + apiUrls.local + orderApiUri, _ref17[constants.t.STAGE] = "" + apiUrls.stage + orderApiUri, _ref17[constants.t.SANDBOX] = "" + apiUrls.sandbox + orderApiUri, _ref17[constants.t.PRODUCTION] = "" + apiUrls.production + orderApiUri, _ref17[constants.t.TEST] = "" + apiUrls.test + orderApiUri, _ref17;
+	                    return _ref17 = {}, _ref17[constants.t.LOCAL] = "" + apiUrls.local + orderApiUri, 
+	                    _ref17[constants.t.STAGE] = "" + apiUrls.stage + orderApiUri, _ref17[constants.t.SANDBOX] = "" + apiUrls.sandbox + orderApiUri, 
+	                    _ref17[constants.t.PRODUCTION] = "" + apiUrls.production + orderApiUri, _ref17[constants.t.TEST] = "" + apiUrls.test + orderApiUri, 
+	                    _ref17;
 	                },
 	                get billingApiUrls() {
 	                    var _ref18, apiUrls = config.apiUrls, billingApiUri = config.billingApiUri;
-	                    return _ref18 = {}, _ref18[constants.t.LOCAL] = "" + apiUrls.local + billingApiUri, _ref18[constants.t.STAGE] = "" + apiUrls.stage + billingApiUri, _ref18[constants.t.SANDBOX] = "" + apiUrls.sandbox + billingApiUri, _ref18[constants.t.PRODUCTION] = "" + apiUrls.production + billingApiUri, _ref18[constants.t.TEST] = "" + apiUrls.test + billingApiUri, _ref18;
+	                    return _ref18 = {}, _ref18[constants.t.LOCAL] = "" + apiUrls.local + billingApiUri, 
+	                    _ref18[constants.t.STAGE] = "" + apiUrls.stage + billingApiUri, _ref18[constants.t.SANDBOX] = "" + apiUrls.sandbox + billingApiUri, 
+	                    _ref18[constants.t.PRODUCTION] = "" + apiUrls.production + billingApiUri, _ref18[constants.t.TEST] = "" + apiUrls.test + billingApiUri, 
+	                    _ref18;
 	                },
 	                get experienceApiUrls() {
 	                    var _ref19, apiUrls = config.apiUrls, experienceApiUri = config.experienceApiUri;
-	                    return _ref19 = {}, _ref19[constants.t.LOCAL] = "" + apiUrls.local + experienceApiUri, _ref19[constants.t.STAGE] = "" + apiUrls.stage + experienceApiUri, _ref19[constants.t.SANDBOX] = "" + apiUrls.sandbox + experienceApiUri, _ref19[constants.t.PRODUCTION] = "" + apiUrls.production + experienceApiUri, _ref19[constants.t.TEST] = "" + apiUrls.test + experienceApiUri, _ref19;
+	                    return _ref19 = {}, _ref19[constants.t.LOCAL] = "" + apiUrls.local + experienceApiUri, 
+	                    _ref19[constants.t.STAGE] = "" + apiUrls.stage + experienceApiUri, _ref19[constants.t.SANDBOX] = "" + apiUrls.sandbox + experienceApiUri, 
+	                    _ref19[constants.t.PRODUCTION] = "" + apiUrls.production + experienceApiUri, _ref19[constants.t.TEST] = "" + apiUrls.test + experienceApiUri, 
+	                    _ref19;
 	                },
 	                get trackingApiUrls() {
 	                    var _ref20, apiUrls = config.apiUrls, trackingApiUri = config.trackingApiUri;
-	                    return _ref20 = {}, _ref20[constants.t.LOCAL] = "" + apiUrls.local + trackingApiUri, _ref20[constants.t.STAGE] = "" + apiUrls.stage + trackingApiUri, _ref20[constants.t.SANDBOX] = "" + apiUrls.sandbox + trackingApiUri, _ref20[constants.t.PRODUCTION] = "" + apiUrls.production + trackingApiUri, _ref20[constants.t.TEST] = "" + apiUrls.test + trackingApiUri, _ref20;
+	                    return _ref20 = {}, _ref20[constants.t.LOCAL] = "" + apiUrls.local + trackingApiUri, 
+	                    _ref20[constants.t.STAGE] = "" + apiUrls.stage + trackingApiUri, _ref20[constants.t.SANDBOX] = "" + apiUrls.sandbox + trackingApiUri, 
+	                    _ref20[constants.t.PRODUCTION] = "" + apiUrls.production + trackingApiUri, _ref20[constants.t.TEST] = "" + apiUrls.test + trackingApiUri, 
+	                    _ref20;
 	                },
 	                _paypalUrl: "",
 	                get paypalUrl() {
@@ -9856,7 +10364,160 @@
 	                    country: constants.r.US,
 	                    lang: constants.x.EN
 	                },
-	                locales: (_locales = {}, _locales[constants.r.AD] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.AE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH, constants.x.AR ], _locales[constants.r.AG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.AI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.AL] = [ constants.x.EN ], _locales[constants.r.AM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.AN] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.AO] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.AR] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.AT] = [ constants.x.DE, constants.x.EN ], _locales[constants.r.AU] = [ constants.x.EN ], _locales[constants.r.AW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.AZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.BA] = [ constants.x.EN ], _locales[constants.r.BB] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.BE] = [ constants.x.EN, constants.x.NL, constants.x.FR ], _locales[constants.r.BF] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.BG] = [ constants.x.EN ], _locales[constants.r.BH] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.BI] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.BJ] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.BM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.BN] = [ constants.x.EN ], _locales[constants.r.BO] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.BR] = [ constants.x.PT, constants.x.EN ], _locales[constants.r.BS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.BT] = [ constants.x.EN ], _locales[constants.r.BW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.BY] = [ constants.x.EN ], _locales[constants.r.BZ] = [ constants.x.EN, constants.x.ES, constants.x.FR, constants.x.ZH ], _locales[constants.r.C2] = [ constants.x.ZH, constants.x.EN ], _locales[constants.r.CA] = [ constants.x.EN, constants.x.FR ], _locales[constants.r.CD] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.CG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.CH] = [ constants.x.DE, constants.x.FR, constants.x.EN ], _locales[constants.r.CI] = [ constants.x.FR, constants.x.EN ], _locales[constants.r.CK] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.CL] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.CM] = [ constants.x.FR, constants.x.EN ], _locales[constants.r.CN] = [ constants.x.ZH ], _locales[constants.r.CO] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.CR] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.CV] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.CY] = [ constants.x.EN ], _locales[constants.r.CZ] = [ constants.x.CS, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.DE] = [ constants.x.DE, constants.x.EN ], _locales[constants.r.DJ] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.DK] = [ constants.x.DA, constants.x.EN ], _locales[constants.r.DM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.DO] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.DZ] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.EC] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.EE] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.EG] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.ER] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.ES] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.ET] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.FI] = [ constants.x.FI, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.FJ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.FK] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.FM] = [ constants.x.EN ], _locales[constants.r.FO] = [ constants.x.DA, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.FR] = [ constants.x.FR, constants.x.EN ], _locales[constants.r.GA] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.GB] = [ constants.x.EN ], _locales[constants.r.GD] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GL] = [ constants.x.DA, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GN] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.GP] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GR] = [ constants.x.EL, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GT] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.GW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.GY] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.HK] = [ constants.x.EN, constants.x.ZH ], _locales[constants.r.HN] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.HR] = [ constants.x.EN ], _locales[constants.r.HU] = [ constants.x.HU, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.ID] = [ constants.x.ID, constants.x.EN ], _locales[constants.r.IE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.IL] = [ constants.x.HE, constants.x.EN ], _locales[constants.r.IN] = [ constants.x.EN ], _locales[constants.r.IS] = [ constants.x.EN ], _locales[constants.r.IT] = [ constants.x.IT, constants.x.EN ], _locales[constants.r.JM] = [ constants.x.EN, constants.x.ES, constants.x.FR, constants.x.ZH ], _locales[constants.r.JO] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.JP] = [ constants.x.JA, constants.x.EN ], _locales[constants.r.KE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.KG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.KH] = [ constants.x.EN ], _locales[constants.r.KI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.KM] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.KN] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.KR] = [ constants.x.KO, constants.x.EN ], _locales[constants.r.KW] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.KY] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.KZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.LA] = [ constants.x.EN ], _locales[constants.r.LC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.LI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.LK] = [ constants.x.EN ], _locales[constants.r.LS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.LT] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.LU] = [ constants.x.EN, constants.x.DE, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.LV] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MA] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MC] = [ constants.x.FR, constants.x.EN ], _locales[constants.r.MD] = [ constants.x.EN ], _locales[constants.r.ME] = [ constants.x.EN ], _locales[constants.r.MG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MH] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MK] = [ constants.x.EN ], _locales[constants.r.ML] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.MN] = [ constants.x.EN ], _locales[constants.r.MQ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MR] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MT] = [ constants.x.EN ], _locales[constants.r.MU] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MV] = [ constants.x.EN ], _locales[constants.r.MW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.MX] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.MY] = [ constants.x.EN ], _locales[constants.r.MZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.NA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.NC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.NE] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.NF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.NG] = [ constants.x.EN ], _locales[constants.r.NI] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.NL] = [ constants.x.NL, constants.x.EN ], _locales[constants.r.NO] = [ constants.x.NO, constants.x.EN ], _locales[constants.r.NP] = [ constants.x.EN ], _locales[constants.r.NR] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.NU] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.NZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.OM] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.PA] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.PE] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.PF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.PG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.PH] = [ constants.x.EN ], _locales[constants.r.PL] = [ constants.x.PL, constants.x.EN ], _locales[constants.r.PM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.PN] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.PT] = [ constants.x.PT, constants.x.EN ], _locales[constants.r.PW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.PY] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.QA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH, constants.x.AR ], _locales[constants.r.RE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.RO] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.RS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.RU] = [ constants.x.RU, constants.x.EN ], _locales[constants.r.RW] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.SA] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SB] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SC] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.SE] = [ constants.x.SV, constants.x.EN ], _locales[constants.r.SG] = [ constants.x.EN ], _locales[constants.r.SH] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SJ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SK] = [ constants.x.SK, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SL] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SN] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.SO] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SR] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.ST] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.SV] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.SZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.TC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.TD] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.TG] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], _locales[constants.r.TH] = [ constants.x.TH, constants.x.EN ], _locales[constants.r.TJ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.TM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.TN] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.TO] = [ constants.x.EN ], _locales[constants.r.TR] = [ constants.x.TR, constants.x.EN ], _locales[constants.r.TT] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.TV] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.TW] = [ constants.x.ZH, constants.x.EN ], _locales[constants.r.TZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.UA] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.UG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.US] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.UY] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.VA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.VC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.VE] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], _locales[constants.r.VG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.VN] = [ constants.x.EN ], _locales[constants.r.VU] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.WF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.WS] = [ constants.x.EN ], _locales[constants.r.YE] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.YT] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.ZA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.ZM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], _locales[constants.r.ZW] = [ constants.x.EN ], _locales)
+	                locales: (_locales = {}, _locales[constants.r.AD] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.AE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH, constants.x.AR ], 
+	                _locales[constants.r.AG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.AI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.AL] = [ constants.x.EN ], _locales[constants.r.AM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.AN] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.AO] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.AR] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.AT] = [ constants.x.DE, constants.x.EN ], 
+	                _locales[constants.r.AU] = [ constants.x.EN ], _locales[constants.r.AW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.AZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BA] = [ constants.x.EN ], _locales[constants.r.BB] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BE] = [ constants.x.EN, constants.x.NL, constants.x.FR ], _locales[constants.r.BF] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BG] = [ constants.x.EN ], _locales[constants.r.BH] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BI] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BJ] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BN] = [ constants.x.EN ], _locales[constants.r.BO] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.BR] = [ constants.x.PT, constants.x.EN ], _locales[constants.r.BS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BT] = [ constants.x.EN ], _locales[constants.r.BW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.BY] = [ constants.x.EN ], _locales[constants.r.BZ] = [ constants.x.EN, constants.x.ES, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.C2] = [ constants.x.ZH, constants.x.EN ], _locales[constants.r.CA] = [ constants.x.EN, constants.x.FR ], 
+	                _locales[constants.r.CD] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.CG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.CH] = [ constants.x.DE, constants.x.FR, constants.x.EN ], _locales[constants.r.CI] = [ constants.x.FR, constants.x.EN ], 
+	                _locales[constants.r.CK] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.CL] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.CM] = [ constants.x.FR, constants.x.EN ], _locales[constants.r.CN] = [ constants.x.ZH ], 
+	                _locales[constants.r.CO] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.CR] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.CV] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.CY] = [ constants.x.EN ], _locales[constants.r.CZ] = [ constants.x.CS, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.DE] = [ constants.x.DE, constants.x.EN ], _locales[constants.r.DJ] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.DK] = [ constants.x.DA, constants.x.EN ], _locales[constants.r.DM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.DO] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.DZ] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.EC] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.EE] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.EG] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.ER] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.ES] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.ET] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.FI] = [ constants.x.FI, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.FJ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.FK] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.FM] = [ constants.x.EN ], _locales[constants.r.FO] = [ constants.x.DA, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.FR] = [ constants.x.FR, constants.x.EN ], _locales[constants.r.GA] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GB] = [ constants.x.EN ], _locales[constants.r.GD] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GL] = [ constants.x.DA, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GN] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GP] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GR] = [ constants.x.EL, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GT] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.GW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.GY] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.HK] = [ constants.x.EN, constants.x.ZH ], _locales[constants.r.HN] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.HR] = [ constants.x.EN ], _locales[constants.r.HU] = [ constants.x.HU, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.ID] = [ constants.x.ID, constants.x.EN ], _locales[constants.r.IE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.IL] = [ constants.x.HE, constants.x.EN ], _locales[constants.r.IN] = [ constants.x.EN ], 
+	                _locales[constants.r.IS] = [ constants.x.EN ], _locales[constants.r.IT] = [ constants.x.IT, constants.x.EN ], 
+	                _locales[constants.r.JM] = [ constants.x.EN, constants.x.ES, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.JO] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.JP] = [ constants.x.JA, constants.x.EN ], _locales[constants.r.KE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.KG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.KH] = [ constants.x.EN ], _locales[constants.r.KI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.KM] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.KN] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.KR] = [ constants.x.KO, constants.x.EN ], _locales[constants.r.KW] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.KY] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.KZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.LA] = [ constants.x.EN ], _locales[constants.r.LC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.LI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.LK] = [ constants.x.EN ], _locales[constants.r.LS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.LT] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.LU] = [ constants.x.EN, constants.x.DE, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.LV] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MA] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MC] = [ constants.x.FR, constants.x.EN ], _locales[constants.r.MD] = [ constants.x.EN ], 
+	                _locales[constants.r.ME] = [ constants.x.EN ], _locales[constants.r.MG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MH] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MK] = [ constants.x.EN ], _locales[constants.r.ML] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MN] = [ constants.x.EN ], _locales[constants.r.MQ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MR] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MT] = [ constants.x.EN ], _locales[constants.r.MU] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MV] = [ constants.x.EN ], _locales[constants.r.MW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.MX] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.MY] = [ constants.x.EN ], 
+	                _locales[constants.r.MZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.NA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.NC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.NE] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.NF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.NG] = [ constants.x.EN ], _locales[constants.r.NI] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.NL] = [ constants.x.NL, constants.x.EN ], _locales[constants.r.NO] = [ constants.x.NO, constants.x.EN ], 
+	                _locales[constants.r.NP] = [ constants.x.EN ], _locales[constants.r.NR] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.NU] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.NZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.OM] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.PA] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.PE] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.PF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.PG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.PH] = [ constants.x.EN ], _locales[constants.r.PL] = [ constants.x.PL, constants.x.EN ], 
+	                _locales[constants.r.PM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.PN] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.PT] = [ constants.x.PT, constants.x.EN ], _locales[constants.r.PW] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.PY] = [ constants.x.ES, constants.x.EN ], _locales[constants.r.QA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH, constants.x.AR ], 
+	                _locales[constants.r.RE] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.RO] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.RS] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.RU] = [ constants.x.RU, constants.x.EN ], _locales[constants.r.RW] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SA] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SB] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SC] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SE] = [ constants.x.SV, constants.x.EN ], _locales[constants.r.SG] = [ constants.x.EN ], 
+	                _locales[constants.r.SH] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SI] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SJ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SK] = [ constants.x.SK, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SL] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SN] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SO] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SR] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.ST] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.SV] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.SZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TD] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TG] = [ constants.x.FR, constants.x.EN, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TH] = [ constants.x.TH, constants.x.EN ], _locales[constants.r.TJ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TN] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TO] = [ constants.x.EN ], _locales[constants.r.TR] = [ constants.x.TR, constants.x.EN ], 
+	                _locales[constants.r.TT] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TV] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.TW] = [ constants.x.ZH, constants.x.EN ], _locales[constants.r.TZ] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.UA] = [ constants.x.EN, constants.x.RU, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.UG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.US] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.UY] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.VA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.VC] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.VE] = [ constants.x.ES, constants.x.EN, constants.x.FR, constants.x.ZH ], 
+	                _locales[constants.r.VG] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.VN] = [ constants.x.EN ], _locales[constants.r.VU] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.WF] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.WS] = [ constants.x.EN ], _locales[constants.r.YE] = [ constants.x.AR, constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.YT] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.ZA] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.ZM] = [ constants.x.EN, constants.x.FR, constants.x.ES, constants.x.ZH ], 
+	                _locales[constants.r.ZW] = [ constants.x.EN ], _locales)
 	            };
 	            __webpack_require__.d(__webpack_exports__, "a", function() {
 	                return config;
@@ -9974,7 +10635,8 @@
 	                DEFAULT_COUNTRY: "The funding source is enabled by default for the current locale",
 	                DEFAULT: "The funding source is enabled by default for all users",
 	                REMEMBERED: "The funding source was remembered for the current user",
-	                NEED_OPT_IN: "The funding source needs to be allowed in funding.allowed"
+	                NEED_OPT_IN: "The funding source needs to be allowed in funding.allowed",
+	                COMMIT_NOT_SET: "The funding source is not enabled when commit is not set as true"
 	            }, CARD_PRIORITY = [ CARD.VISA, CARD.MASTERCARD, CARD.AMEX, CARD.DISCOVER, CARD.SWITCH, CARD.MAESTRO, CARD.HIPER, CARD.ELO, CARD.JCB, CARD.CUP, CARD.COFINOGA, CARD.COFIDIS, CARD.CETELEM, CARD.CBNATIONALE ], ENV = {
 	                LOCAL: "local",
 	                STAGE: "stage",
@@ -10043,7 +10705,8 @@
 	                },
 	                CONTEXT_TYPE: (_CONTEXT_TYPE = {
 	                    BUTTON_SESSION_ID: "button_session_id"
-	                }, _CONTEXT_TYPE[PAYMENT_TYPE.PAY_ID] = "Pay-ID", _CONTEXT_TYPE[PAYMENT_TYPE.EC_TOKEN] = "EC-Token", _CONTEXT_TYPE[PAYMENT_TYPE.BA_TOKEN] = "EC-Token", _CONTEXT_TYPE),
+	                }, _CONTEXT_TYPE[PAYMENT_TYPE.PAY_ID] = "Pay-ID", _CONTEXT_TYPE[PAYMENT_TYPE.EC_TOKEN] = "EC-Token", 
+	                _CONTEXT_TYPE[PAYMENT_TYPE.BA_TOKEN] = "EC-Token", _CONTEXT_TYPE),
 	                FEED: {
 	                    CHECKOUTJS: "checkoutjs"
 	                },
@@ -10302,7 +10965,20 @@
 	                TH: "th",
 	                TR: "tr",
 	                ZH: "zh"
-	            }, LANG_TO_DEFAULT_COUNTRY = (_LANG_TO_DEFAULT_COUN = {}, _LANG_TO_DEFAULT_COUN[LANG.AR] = COUNTRY.SA, _LANG_TO_DEFAULT_COUN[LANG.CS] = COUNTRY.CZ, _LANG_TO_DEFAULT_COUN[LANG.DA] = COUNTRY.DK, _LANG_TO_DEFAULT_COUN[LANG.DE] = COUNTRY.DE, _LANG_TO_DEFAULT_COUN[LANG.EL] = COUNTRY.GR, _LANG_TO_DEFAULT_COUN[LANG.EN] = COUNTRY.US, _LANG_TO_DEFAULT_COUN[LANG.ES] = COUNTRY.ES, _LANG_TO_DEFAULT_COUN[LANG.FI] = COUNTRY.FI, _LANG_TO_DEFAULT_COUN[LANG.FR] = COUNTRY.FR, _LANG_TO_DEFAULT_COUN[LANG.HE] = COUNTRY.IL, _LANG_TO_DEFAULT_COUN[LANG.HU] = COUNTRY.HU, _LANG_TO_DEFAULT_COUN[LANG.ID] = COUNTRY.ID, _LANG_TO_DEFAULT_COUN[LANG.IT] = COUNTRY.IT, _LANG_TO_DEFAULT_COUN[LANG.JA] = COUNTRY.JP, _LANG_TO_DEFAULT_COUN[LANG.KO] = COUNTRY.KR, _LANG_TO_DEFAULT_COUN[LANG.NL] = COUNTRY.NL, _LANG_TO_DEFAULT_COUN[LANG.NO] = COUNTRY.NO, _LANG_TO_DEFAULT_COUN[LANG.PL] = COUNTRY.PL, _LANG_TO_DEFAULT_COUN[LANG.PT] = COUNTRY.PT, _LANG_TO_DEFAULT_COUN[LANG.RU] = COUNTRY.RU, _LANG_TO_DEFAULT_COUN[LANG.SK] = COUNTRY.SK, _LANG_TO_DEFAULT_COUN[LANG.SV] = COUNTRY.SE, _LANG_TO_DEFAULT_COUN[LANG.TH] = COUNTRY.TH, _LANG_TO_DEFAULT_COUN[LANG.TR] = COUNTRY.TR, _LANG_TO_DEFAULT_COUN[LANG.ZH] = COUNTRY.CN, _LANG_TO_DEFAULT_COUN), ALLOWED_INSTALLMENT_COUNTRIES = [ COUNTRY.BR, COUNTRY.MX ], ALLOWED_INSTALLMENT_PERIOD = {
+	            }, LANG_TO_DEFAULT_COUNTRY = (_LANG_TO_DEFAULT_COUN = {}, _LANG_TO_DEFAULT_COUN[LANG.AR] = COUNTRY.SA, 
+	            _LANG_TO_DEFAULT_COUN[LANG.CS] = COUNTRY.CZ, _LANG_TO_DEFAULT_COUN[LANG.DA] = COUNTRY.DK, 
+	            _LANG_TO_DEFAULT_COUN[LANG.DE] = COUNTRY.DE, _LANG_TO_DEFAULT_COUN[LANG.EL] = COUNTRY.GR, 
+	            _LANG_TO_DEFAULT_COUN[LANG.EN] = COUNTRY.US, _LANG_TO_DEFAULT_COUN[LANG.ES] = COUNTRY.ES, 
+	            _LANG_TO_DEFAULT_COUN[LANG.FI] = COUNTRY.FI, _LANG_TO_DEFAULT_COUN[LANG.FR] = COUNTRY.FR, 
+	            _LANG_TO_DEFAULT_COUN[LANG.HE] = COUNTRY.IL, _LANG_TO_DEFAULT_COUN[LANG.HU] = COUNTRY.HU, 
+	            _LANG_TO_DEFAULT_COUN[LANG.ID] = COUNTRY.ID, _LANG_TO_DEFAULT_COUN[LANG.IT] = COUNTRY.IT, 
+	            _LANG_TO_DEFAULT_COUN[LANG.JA] = COUNTRY.JP, _LANG_TO_DEFAULT_COUN[LANG.KO] = COUNTRY.KR, 
+	            _LANG_TO_DEFAULT_COUN[LANG.NL] = COUNTRY.NL, _LANG_TO_DEFAULT_COUN[LANG.NO] = COUNTRY.NO, 
+	            _LANG_TO_DEFAULT_COUN[LANG.PL] = COUNTRY.PL, _LANG_TO_DEFAULT_COUN[LANG.PT] = COUNTRY.PT, 
+	            _LANG_TO_DEFAULT_COUN[LANG.RU] = COUNTRY.RU, _LANG_TO_DEFAULT_COUN[LANG.SK] = COUNTRY.SK, 
+	            _LANG_TO_DEFAULT_COUN[LANG.SV] = COUNTRY.SE, _LANG_TO_DEFAULT_COUN[LANG.TH] = COUNTRY.TH, 
+	            _LANG_TO_DEFAULT_COUN[LANG.TR] = COUNTRY.TR, _LANG_TO_DEFAULT_COUN[LANG.ZH] = COUNTRY.CN, 
+	            _LANG_TO_DEFAULT_COUN), ALLOWED_INSTALLMENT_COUNTRIES = [ COUNTRY.BR, COUNTRY.MX ], ALLOWED_INSTALLMENT_PERIOD = {
 	                BR: [ 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ],
 	                MX: [ 3, 6, 9, 12 ]
 	            };
@@ -10416,42 +11092,23 @@
 	            function isObject(item) {
 	                return "object" === (void 0 === item ? "undefined" : _typeof(item)) && null !== item;
 	            }
-	            function getGlobal(key, def) {
-	                window[GLOBAL_KEY] = window[GLOBAL_KEY] || {};
-	                if (window[GLOBAL_KEY].hasOwnProperty(key)) return window[GLOBAL_KEY][key];
-	                def = def || {};
-	                window[GLOBAL_KEY][key] = def;
-	                return def;
-	            }
 	            function validateClientOptions(_ref) {
 	                var env = _ref.env, auth = _ref.auth;
 	                if (env && -1 === values(ENV).indexOf(env)) throw new Error("Invalid env: " + env);
 	                if (auth && !isObject(auth)) throw new Error("Expected auth to be passed");
 	                if (auth && env && !auth[env]) throw new Error("Expected auth to be passed for env: " + env);
 	            }
-	            function clientConfig_get(key, def) {
-	                var config = getGlobal("config");
-	                return config.hasOwnProperty(key) ? config[key] : def;
-	            }
-	            function set(key, value) {
-	                getGlobal("config")[key] = value;
-	                return value;
-	            }
-	            function getOrSet(key, value) {
-	                var config = getGlobal("config");
-	                if (config.hasOwnProperty(key)) return config[key];
-	                config[key] = value;
-	                return value;
-	            }
 	            function interface_client() {
 	                var clientOptions = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
 	                validateClientOptions(clientOptions);
-	                for (var xports = {}, i = 0; i < exportBuilders.length; i++) extend(xports, exportBuilders[i]({
-	                    clientOptions: clientOptions,
-	                    clientConfig: clientConfig,
-	                    serverConfig: serverConfig,
-	                    queryOptions: queryOptions
-	                }));
+	                var xports = {};
+	                Object.keys(exportBuilders).forEach(function(moduleName) {
+	                    extend(xports, exportBuilders[moduleName]({
+	                        clientOptions: clientOptions,
+	                        queryOptions: queryOptions,
+	                        serverConfig: serverConfig && serverConfig[moduleName]
+	                    }));
+	                });
 	                return xports;
 	            }
 	            function validateExtraPaymentOptions(options) {
@@ -10506,14 +11163,17 @@
 	                        var match = res.links[i].href.match(/token=((EC-)?[A-Z0-9]{17})/);
 	                        match && (paymentToken = match[1]);
 	                    }
-	                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.BUTTON, _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CREATE_PAYMENT, _track[constants.u.KEY.CONTEXT_TYPE] = constants.u.CONTEXT_TYPE[constants.A.PAY_ID], _track[constants.u.KEY.PAY_ID] = paymentID, _track[constants.u.KEY.TOKEN] = paymentToken, _track[constants.u.KEY.CONTEXT_ID] = paymentID, _track));
+	                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.BUTTON, 
+	                    _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CREATE_PAYMENT, _track[constants.u.KEY.CONTEXT_TYPE] = constants.u.CONTEXT_TYPE[constants.A.PAY_ID], 
+	                    _track[constants.u.KEY.PAY_ID] = paymentID, _track[constants.u.KEY.TOKEN] = paymentToken, 
+	                    _track[constants.u.KEY.CONTEXT_ID] = paymentID, _track));
 	                }
 	            }
 	            function getDefaultReturnUrl() {
 	                return Object(cross_domain_utils_src.q)() ? "https://www.paypal.com" : window.location.protocol + "//" + window.location.host;
 	            }
 	            function createTracking(env, client, merchantID, trackingData) {
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                var trackingID = Object(lib.X)();
 	                return createAccessToken(env, client).then(function(accessToken) {
@@ -10522,7 +11182,7 @@
 	                    };
 	                    return Object(lib.R)({
 	                        method: "put",
-	                        url: src_config.a.trackingApiUrls[env] + "/" + merchantID + "/" + trackingID,
+	                        url: config.a.trackingApiUrls[env] + "/" + merchantID + "/" + trackingID,
 	                        headers: headers,
 	                        json: {
 	                            tracking_id: trackingID,
@@ -10535,7 +11195,7 @@
 	            }
 	            function createPayment(env, client, paymentDetails) {
 	                Object(beaver_logger_client.j)("rest_api_create_checkout_token");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                var payment = paymentDetails.payment, experience = paymentDetails.experience, meta = paymentDetails.meta, tracking = paymentDetails.tracking;
 	                if (!payment) throw new Error("Expected payment details to be passed");
@@ -10571,7 +11231,7 @@
 	                            meta && meta.partner_attribution_id && (headers["PayPal-Partner-Attribution-Id"] = meta.partner_attribution_id);
 	                            return Object(lib.R)({
 	                                method: "post",
-	                                url: src_config.a.paymentApiUrls[env],
+	                                url: config.a.paymentApiUrls[env],
 	                                headers: headers,
 	                                json: removeExtraPaymentOptions(payment)
 	                            });
@@ -10588,7 +11248,7 @@
 	            }
 	            function getPayment(env, client, paymentID) {
 	                Object(beaver_logger_client.j)("rest_api_get_order");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                if (!paymentID) throw new Error("Expected payment id");
 	                return proxyRest.getPayment && !proxyRest.getPayment.source.closed ? proxyRest.getPayment(env, client, paymentID) : createAccessToken(env, client).then(function(accessToken) {
@@ -10597,7 +11257,7 @@
 	                    };
 	                    return Object(lib.R)({
 	                        method: "get",
-	                        url: src_config.a.paymentApiUrls[env] + "/" + paymentID,
+	                        url: config.a.paymentApiUrls[env] + "/" + paymentID,
 	                        headers: headers
 	                    });
 	                }).then(function(payment) {
@@ -10606,7 +11266,7 @@
 	            }
 	            function executePayment(env, client, paymentID, payerID) {
 	                Object(beaver_logger_client.j)("rest_api_get_order");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                if (!paymentID) throw new Error("Expected payment id");
 	                return proxyRest.executePayment && !proxyRest.executePayment.source.closed ? proxyRest.executePayment(env, client, paymentID) : createAccessToken(env, client).then(function(accessToken) {
@@ -10615,7 +11275,7 @@
 	                    };
 	                    return Object(lib.R)({
 	                        method: "post",
-	                        url: src_config.a.paymentApiUrls[env] + "/" + paymentID + "/execute",
+	                        url: config.a.paymentApiUrls[env] + "/" + paymentID + "/execute",
 	                        headers: headers,
 	                        json: {
 	                            payer_id: payerID
@@ -10627,7 +11287,7 @@
 	            }
 	            function createOrder(env, client, paymentDetails) {
 	                Object(beaver_logger_client.j)("rest_api_create_order_token");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                var order = paymentDetails.order, meta = paymentDetails.meta;
 	                if (!order) throw new Error("Expected order details to be passed");
@@ -10652,7 +11312,7 @@
 	                    meta && meta.partner_attribution_id && (headers["PayPal-Partner-Attribution-Id"] = meta.partner_attribution_id);
 	                    return Object(lib.R)({
 	                        method: "post",
-	                        url: src_config.a.orderApiUrls[env],
+	                        url: config.a.orderApiUrls[env],
 	                        headers: headers,
 	                        json: order
 	                    });
@@ -10664,7 +11324,7 @@
 	            }
 	            function getOrder(env, client, orderID) {
 	                Object(beaver_logger_client.j)("rest_api_get_order");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                if (!orderID) throw new Error("Expected order id");
 	                return proxyRest.getOrder && !proxyRest.getOrder.source.closed ? proxyRest.getOrder(env, client, orderID) : createAccessToken(env, client).then(function(accessToken) {
@@ -10673,14 +11333,14 @@
 	                    };
 	                    return Object(lib.R)({
 	                        method: "get",
-	                        url: src_config.a.orderApiUrls[env] + "/" + orderID,
+	                        url: config.a.orderApiUrls[env] + "/" + orderID,
 	                        headers: headers
 	                    });
 	                });
 	            }
 	            function captureOrder(env, client, orderID) {
 	                Object(beaver_logger_client.j)("rest_api_get_order");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                if (!orderID) throw new Error("Expected order id");
 	                return proxyRest.captureOrder && !proxyRest.captureOrder.source.closed ? proxyRest.captureOrder(env, client, orderID) : createAccessToken(env, client).then(function(accessToken) {
@@ -10689,7 +11349,7 @@
 	                    };
 	                    return Object(lib.R)({
 	                        method: "post",
-	                        url: src_config.a.orderApiUrls[env] + "/" + orderID + "/capture",
+	                        url: config.a.orderApiUrls[env] + "/" + orderID + "/capture",
 	                        headers: headers,
 	                        json: {
 	                            is_final_capture: !0
@@ -10699,7 +11359,7 @@
 	            }
 	            function createBillingAgreement(env, client, billingDetails, experienceDetails) {
 	                Object(beaver_logger_client.j)("rest_api_create_billing_token");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                if (proxyRest.createBillingAgreement && !proxyRest.createBillingAgreement.source.closed) return proxyRest.createBillingAgreement(env, client, billingDetails, experienceDetails);
 	                billingDetails = _extends({}, billingDetails);
@@ -10716,7 +11376,7 @@
 	                        experienceID && (billingDetails.experience_profile_id = experienceID);
 	                        return Object(lib.R)({
 	                            method: "post",
-	                            url: src_config.a.billingApiUrls[env],
+	                            url: config.a.billingApiUrls[env],
 	                            headers: {
 	                                Authorization: "Bearer " + accessToken
 	                            },
@@ -10737,7 +11397,11 @@
 	                        loggedEvents.push(event);
 	                        var edge = window.navigator && window.navigator.userAgent && window.navigator.userAgent.match(/Edge\/[0-9]{2}/);
 	                        edge && (event = Object(beaver_logger_client.j)(edge[0].toLowerCase().replace("/", "_") + "_" + event));
-	                        Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, _track[constants.u.KEY.TRANSITION] = state, _track[constants.u.KEY.EXPERIMENT_NAME] = experiment, _track[constants.u.KEY.TREATMENT_NAME] = treatment, _track[constants.u.KEY.TOKEN] = token, _track[constants.u.KEY.CONTEXT_ID] = token, _track[constants.u.KEY.CONTEXT_TYPE] = token ? constants.u.CONTEXT_TYPE[constants.A.EC_TOKEN] : constants.u.CONTEXT_TYPE.BUTTON_SESSION_ID, _track));
+	                        Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, 
+	                        _track[constants.u.KEY.TRANSITION] = state, _track[constants.u.KEY.EXPERIMENT_NAME] = experiment, 
+	                        _track[constants.u.KEY.TREATMENT_NAME] = treatment, _track[constants.u.KEY.TOKEN] = token, 
+	                        _track[constants.u.KEY.CONTEXT_ID] = token, _track[constants.u.KEY.CONTEXT_TYPE] = token ? constants.u.CONTEXT_TYPE[constants.A.EC_TOKEN] : constants.u.CONTEXT_TYPE.BUTTON_SESSION_ID, 
+	                        _track));
 	                        Object(beaver_logger_client.i)();
 	                    }
 	                });
@@ -10786,11 +11450,11 @@
 	            function validateCheckoutProps(props) {
 	                if (!props.payment) throw new Error("Expected props.payment to be passed");
 	                if (!props.onAuthorize) throw new Error("Expected props.onAuthorize to be passed");
-	                if (props.env && !src_config.a.checkoutUrls[props.env]) throw new Error("Invalid props.env: " + props.env);
+	                if (props.env && !config.a.checkoutUrls[props.env]) throw new Error("Invalid props.env: " + props.env);
 	            }
 	            function normalizeCheckoutProps(props) {
 	                return {
-	                    env: props.env = props.env || src_config.a.env,
+	                    env: props.env = props.env || config.a.env,
 	                    payment: props.payment,
 	                    onAuthorize: Object(src_lib.L)(props.onAuthorize),
 	                    onCancel: Object(src_lib.L)(props.onCancel || src_lib.I)
@@ -10803,7 +11467,9 @@
 	                }).then(function(token) {
 	                    var _extendUrl;
 	                    if (!token) throw new Error("Expected props.payment to return a payment id or token");
-	                    return Object(lib.i)(Object(integrations_checkout.b)(env, constants.v.PAYPAL, token), (_extendUrl = {}, _extendUrl[Object(integrations_checkout.a)(token)] = token, _extendUrl.useraction = props.commit ? "commit" : "", _extendUrl.native_xo = "1", _extendUrl));
+	                    return Object(lib.i)(Object(integrations_checkout.b)(env, constants.v.PAYPAL, token), (_extendUrl = {}, 
+	                    _extendUrl[Object(integrations_checkout.a)(token)] = token, _extendUrl.useraction = props.commit ? "commit" : "", 
+	                    _extendUrl.native_xo = "1", _extendUrl));
 	                });
 	            }
 	            function extractDataFromQuery(query) {
@@ -10904,15 +11570,15 @@
 	                return getConfig(CARD_CONFIG, source, key, def);
 	            }
 	            function isFundingIneligible(source, _ref) {
-	                var locale = _ref.locale, funding = _ref.funding;
-	                return getFundingConfig(source, _ref.layout === constants.g.VERTICAL ? "allowVertical" : "allowHorizontal") ? -1 !== funding.disallowed.indexOf(source) && getFundingConfig(source, "allowOptOut") ? constants.w.OPT_OUT : -1 !== funding.disallowed.indexOf(source) && source === constants.v.VENMO ? constants.w.OPT_OUT : -1 === getFundingConfig(source, "allowedCountries", [ locale.country ]).indexOf(locale.country) ? constants.w.DISALLOWED_COUNTRY : void 0 : constants.w.SECONDARY_DISALLOWED;
+	                var locale = _ref.locale, funding = _ref.funding, layout = _ref.layout, commit = _ref.commit;
+	                return getFundingConfig(source, layout === constants.g.VERTICAL ? "allowVertical" : "allowHorizontal") ? -1 !== funding.disallowed.indexOf(source) && getFundingConfig(source, "allowOptOut") ? constants.w.OPT_OUT : -1 !== funding.disallowed.indexOf(source) && source === constants.v.VENMO ? constants.w.OPT_OUT : -1 === getFundingConfig(source, "allowedCountries", [ locale.country ]).indexOf(locale.country) ? constants.w.DISALLOWED_COUNTRY : getFundingConfig(source, "requireCommitAsTrue") && !commit ? constants.w.COMMIT_NOT_SET : void 0 : constants.w.SECONDARY_DISALLOWED;
 	            }
 	            function isFundingAutoEligible(source, _ref2) {
 	                var locale = _ref2.locale, funding = _ref2.funding;
 	                return _ref2.layout === constants.g.VERTICAL && -1 !== getFundingConfig(source, "defaultVerticalCountries", []).indexOf(locale.country) ? constants.w.DEFAULT_COUNTRY : getFundingConfig(source, "default") ? constants.w.DEFAULT : -1 !== funding.allowed.indexOf(source) && getFundingConfig(source, "allowOptIn") ? constants.w.OPT_IN : -1 !== funding.remembered.indexOf(source) && getFundingConfig(source, "allowRemember") ? constants.w.REMEMBERED : void 0;
 	            }
 	            function isFundingEligible(source, _ref3) {
-	                var locale = _ref3.locale, funding = _ref3.funding, env = _ref3.env, layout = _ref3.layout, selected = _ref3.selected;
+	                var locale = _ref3.locale, funding = _ref3.funding, env = _ref3.env, layout = _ref3.layout, selected = _ref3.selected, commit = _ref3.commit;
 	                if (selected && source === selected) return {
 	                    eligible: !0,
 	                    reason: constants.w.PRIMARY
@@ -10924,8 +11590,8 @@
 	                var ineligibleReason = isFundingIneligible(source, {
 	                    locale: locale,
 	                    funding: funding,
-	                    env: env,
-	                    layout: layout
+	                    layout: layout,
+	                    commit: commit
 	                });
 	                if (ineligibleReason) return {
 	                    eligible: !1,
@@ -10934,7 +11600,6 @@
 	                var autoEligibleReason = isFundingAutoEligible(source, {
 	                    locale: locale,
 	                    funding: funding,
-	                    env: env,
 	                    layout: layout
 	                });
 	                return autoEligibleReason ? {
@@ -10946,13 +11611,14 @@
 	                };
 	            }
 	            function determineEligibleFunding(_ref4) {
-	                var funding = _ref4.funding, selected = _ref4.selected, locale = _ref4.locale, env = _ref4.env, layout = _ref4.layout, reasons = {}, eligibleFunding = FUNDING_PRIORITY.filter(function(source) {
+	                var funding = _ref4.funding, selected = _ref4.selected, locale = _ref4.locale, env = _ref4.env, layout = _ref4.layout, commit = _ref4.commit, reasons = {}, eligibleFunding = FUNDING_PRIORITY.filter(function(source) {
 	                    var _isFundingEligible = isFundingEligible(source, {
 	                        selected: selected,
 	                        locale: locale,
 	                        funding: funding,
 	                        env: env,
-	                        layout: layout
+	                        layout: layout,
+	                        commit: commit
 	                    }), eligible = _isFundingEligible.eligible, reason = _isFundingEligible.reason;
 	                    reasons[source] = {
 	                        eligible: eligible,
@@ -11067,7 +11733,7 @@
 	                if (!locale) throw new Error("Expected props.locale to be set");
 	                if (!locale.match(/^[a-z]{2}[_][A-Z][A-Z0-9]$/)) throw new Error("Expected props.locale to be valid, got " + locale);
 	                var _locale$split = locale.split("_"), lang = _locale$split[0], country = _locale$split[1];
-	                if (!src_config.a.locales[country] || -1 === src_config.a.locales[country].indexOf(lang)) throw new Error("Expected props.locale to be valid");
+	                if (!config.a.locales[country] || -1 === config.a.locales[country].indexOf(lang)) throw new Error("Expected props.locale to be valid");
 	            }
 	            function validateRegionSpecificButton() {
 	                var style = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, locale = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "en_US", country = locale.split("_")[1], isInstallmentAllowedCountry = -1 !== constants.a.indexOf(country);
@@ -11252,7 +11918,9 @@
 	                var cards = _ref4.cards, button = _ref4.button;
 	                return cards.map(function(name) {
 	                    var _ref5, logo = resources.a[name];
-	                    return Object(jsx.b)("img", componentTemplate__extends({}, (_ref5 = {}, _ref5[constants.c.BUTTON] = button || !1, _ref5[constants.c.FUNDING_SOURCE] = "" + constants.v.CARD, _ref5[constants.c.CARD] = "" + name, _ref5), {
+	                    return Object(jsx.b)("img", componentTemplate__extends({}, (_ref5 = {}, _ref5[constants.c.BUTTON] = button || !1, 
+	                    _ref5[constants.c.FUNDING_SOURCE] = "" + constants.v.CARD, _ref5[constants.c.CARD] = "" + name, 
+	                    _ref5), {
 	                        class: class_CLASS.CARD + " " + class_CLASS.CARD + "-" + name + " " + (button ? class_CLASS.BUTTON : ""),
 	                        src: "data:image/svg+xml;base64," + Object(base64.btoa)(logo),
 	                        alt: name
@@ -11357,7 +12025,8 @@
 	                    cards: cards,
 	                    dynamicContent: dynamicContent
 	                });
-	                return Object(jsx.b)("div", componentTemplate__extends({}, (_ref10 = {}, _ref10[constants.c.FUNDING_SOURCE] = source, _ref10[constants.c.BUTTON] = !0, _ref10), {
+	                return Object(jsx.b)("div", componentTemplate__extends({}, (_ref10 = {}, _ref10[constants.c.FUNDING_SOURCE] = source, 
+	                _ref10[constants.c.BUTTON] = !0, _ref10), {
 	                    class: class_CLASS.BUTTON + " " + class_CLASS.NUMBER + "-" + i + " " + getCommonButtonClasses({
 	                        layout: layout,
 	                        shape: shape,
@@ -11454,7 +12123,8 @@
 	                    height: height,
 	                    cardNumber: cards.length
 	                }), scriptNode = renderScript();
-	                return Object(jsx.b)("div", componentTemplate__extends({}, (_ref14 = {}, _ref14[constants.c.VERSION] = "4.0.191", _ref14), {
+	                return Object(jsx.b)("div", componentTemplate__extends({}, (_ref14 = {}, _ref14[constants.c.VERSION] = "4.0.195", 
+	                _ref14), {
 	                    class: class_CLASS.CONTAINER + " " + getCommonButtonClasses({
 	                        layout: layout,
 	                        shape: shape,
@@ -11537,7 +12207,9 @@
 	                }, jsxDom("style", null, "\n                    #" + id + " {\n                        font-size: 0;\n                        width: 100%;\n                    }\n\n                    #" + id + "." + tag + "-size-" + constants.l.RESPONSIVE + " {\n                        text-align: center;\n                    }\n\n                    #" + id + " > ." + CLASS.OUTLET + " {\n                        display: inline-block;\n                        min-width: " + BUTTON_STYLE[minimumSize].minWidth + "px;\n                        max-width: " + BUTTON_STYLE[maximumSize].maxWidth + "px;\n                        position: relative;\n                    }\n\n                    #" + id + "." + tag + "-layout-" + constants.g.VERTICAL + " > ." + CLASS.OUTLET + " {\n                        min-width: " + BUTTON_STYLE[minimumSize].minWidth + "px;\n                    }\n\n                    #" + id + " > ." + CLASS.OUTLET + " {\n                        width:  " + width + "px;\n                        height: " + height + "px;\n                    }\n\n                     #" + id + "." + tag + "-size-" + constants.l.RESPONSIVE + " > ." + CLASS.OUTLET + " {\n                        width: 100%;\n                    }\n\n                    #" + id + " > ." + CLASS.OUTLET + " > iframe {\n                        min-width: 100%;\n                        max-width: 100%;\n                        width: " + BUTTON_STYLE[minimumSize].minWidth + "px;\n                        height: 100%;\n                        position: absolute;\n                        top: 0;\n                        left: 0;\n                    }\n\n                    #" + id + " > ." + CLASS.OUTLET + " > iframe." + CLASS.COMPONENT_FRAME + " {\n                        z-index: 100;\n                    }\n\n                    #" + id + " > ." + CLASS.OUTLET + " > iframe." + CLASS.PRERENDER_FRAME + " {\n                        transition: opacity .2s linear;\n                        z-index: 200;\n                    }\n\n                    #" + id + " > ." + CLASS.OUTLET + " > iframe." + CLASS.VISIBLE + " {\n                        opacity: 1;\n                    }\n\n                    #" + id + " > ." + CLASS.OUTLET + " > iframe." + CLASS.INVISIBLE + " {\n                        opacity: 0;\n                        pointer-events: none;\n                    }\n                "), outlet);
 	            }
 	            function isCreditDualEligible(props) {
-	                var _normalizeProps = normalizeProps(props), label = _normalizeProps.label, funding = _normalizeProps.funding, layout = _normalizeProps.layout, _normalizeProps$env = _normalizeProps.env, env = void 0 === _normalizeProps$env ? src_config.a.env : _normalizeProps$env, _normalizeProps$local = _normalizeProps.locale, locale = void 0 === _normalizeProps$local ? src_config.a.locale : _normalizeProps$local, max = _normalizeProps.max, sources = _normalizeProps.sources, allowed = funding.allowed, country = locale.country;
+	                var _normalizeProps = normalizeProps(props, {
+	                    locale: Object(lib.j)()
+	                }), label = _normalizeProps.label, funding = _normalizeProps.funding, layout = _normalizeProps.layout, locale = _normalizeProps.locale, max = _normalizeProps.max, sources = _normalizeProps.sources, allowed = funding.allowed, country = locale.country;
 	                if (allowed && -1 !== allowed.indexOf(constants.v.CREDIT)) return !1;
 	                if (layout !== constants.g.HORIZONTAL) return !1;
 	                if (1 === max) return !1;
@@ -11546,34 +12218,34 @@
 	                if (isFundingIneligible(constants.v.CREDIT, {
 	                    funding: funding,
 	                    locale: locale,
-	                    env: env,
 	                    layout: layout
 	                })) return !1;
 	                if (isFundingAutoEligible(constants.v.CREDIT, {
 	                    funding: funding,
 	                    locale: locale,
-	                    env: env,
 	                    layout: layout
 	                })) return !1;
 	                if (-1 !== sources.indexOf(constants.v.CREDIT)) return !1;
 	                var domain = Object(cross_domain_utils_src.f)().replace(/^https?:\/\//, "").replace(/^www\./, "");
-	                return -1 !== src_config.a.creditTestDomains.indexOf(domain);
+	                return -1 !== config.a.creditTestDomains.indexOf(domain);
 	            }
 	            function createPptmScript() {
 	                var _track;
 	                if (window.location.hostname) if (Boolean(Object(lib.n)(constants.C))) Object(beaver_logger_client.j)("pptm_tried_loading_twice"); else {
-	                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.PPTM, _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.PPTM_LOAD, _track));
-	                    var fullUrl = Object(lib.i)(src_config.a.pptmUrl, {
+	                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.PPTM, 
+	                    _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.PPTM_LOAD, _track));
+	                    var fullUrl = Object(lib.i)(config.a.pptmUrl, {
 	                        t: "xo",
 	                        id: window.location.hostname,
-	                        mrid: src_config.a.merchantID
+	                        mrid: config.a.merchantID
 	                    });
 	                    Object(lib.H)(fullUrl, 0, {
 	                        async: !0,
 	                        id: constants.C
 	                    }).then(function() {
 	                        var _track2;
-	                        Object(beaver_logger_client.o)((_track2 = {}, _track2[constants.u.KEY.STATE] = constants.u.STATE.PPTM, _track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.PPTM_LOADED, _track2));
+	                        Object(beaver_logger_client.o)((_track2 = {}, _track2[constants.u.KEY.STATE] = constants.u.STATE.PPTM, 
+	                        _track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.PPTM_LOADED, _track2));
 	                    }).catch(function(err) {
 	                        Object(beaver_logger_client.j)("pptm_script_error", {
 	                            error: Object(lib.U)(err)
@@ -11582,7 +12254,7 @@
 	                }
 	            }
 	            function domainToEnv(domain) {
-	                for (var _iterator = Object.keys(src_config.a.paypalUrls), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
+	                for (var _iterator = Object.keys(config.a.paypalUrls), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
 	                    var _ref;
 	                    if (_isArray) {
 	                        if (_i >= _iterator.length) break;
@@ -11593,30 +12265,30 @@
 	                        _ref = _i.value;
 	                    }
 	                    var _env = _ref;
-	                    if (src_config.a.paypalUrls[_env] === domain) return _env;
+	                    if (config.a.paypalUrls[_env] === domain) return _env;
 	                }
 	            }
 	            function configure() {
 	                var _ref2 = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {}, env = _ref2.env, stage = _ref2.stage, apiStage = _ref2.apiStage, state = _ref2.state, logLevel = _ref2.logLevel, merchantID = _ref2.merchantID;
 	                if (env) {
-	                    if (!src_config.a.paypalUrls[env]) throw new Error("Invalid env: " + env);
-	                    delete src_config.a.env;
-	                    src_config.a.env = env;
+	                    if (!config.a.paypalUrls[env]) throw new Error("Invalid env: " + env);
+	                    delete config.a.env;
+	                    config.a.env = env;
 	                }
 	                if (stage) {
-	                    delete src_config.a.stage;
-	                    src_config.a.stage = stage;
+	                    delete config.a.stage;
+	                    config.a.stage = stage;
 	                }
 	                if (apiStage) {
-	                    delete src_config.a.apiStage;
-	                    src_config.a.apiStage = apiStage;
+	                    delete config.a.apiStage;
+	                    config.a.apiStage = apiStage;
 	                }
 	                if (state) {
-	                    delete src_config.a.state;
-	                    src_config.a.state = state;
+	                    delete config.a.state;
+	                    config.a.state = state;
 	                }
-	                merchantID && (src_config.a.merchantID = merchantID);
-	                logLevel ? Object(lib.T)(logLevel) : Object(lib.T)(src_config.a.logLevel);
+	                merchantID && (config.a.merchantID = merchantID);
+	                logLevel ? Object(lib.T)(logLevel) : Object(lib.T)(config.a.logLevel);
 	            }
 	            function setup() {
 	                var options = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
@@ -11649,7 +12321,7 @@
 	                return setup;
 	            });
 	            __webpack_require__.d(src_interface_namespaceObject, "config", function() {
-	                return src_config.a;
+	                return config.a;
 	            });
 	            __webpack_require__.d(src_interface_namespaceObject, "ENV", function() {
 	                return constants.t;
@@ -11723,14 +12395,17 @@
 	                SANDBOX: "sandbox",
 	                STAGE: "stage",
 	                LOCAL: "local"
-	            }, clientConfig = {
-	                get: clientConfig_get,
-	                set: set,
-	                getOrSet: getOrSet
-	            }, serverConfig = null, queryOptions = null, exportBuilders = getGlobal("exportBuilders", []);
+	            }, serverConfig = null, queryOptions = null, exportBuilders = function(key, def) {
+	                window[GLOBAL_KEY] = window[GLOBAL_KEY] || {};
+	                if (window[GLOBAL_KEY].hasOwnProperty(key)) return window[GLOBAL_KEY][key];
+	                def = def || {};
+	                window[GLOBAL_KEY][key] = def;
+	                return def;
+	            }("exportBuilders", {});
 	            window.paypal = window.paypal || {};
 	            window.paypal.client = window.paypal.client || interface_client;
-	            var lib = __webpack_require__("./src/lib/index.js"), src_checkout = __webpack_require__("./src/checkout/index.js"), beaver_logger_client = (__webpack_require__("./node_modules/xcomponent/src/component/component/index.js"), __webpack_require__("./node_modules/beaver-logger/client/index.js")), braintree_paypal_client_config = __webpack_require__("./node_modules/braintree-paypal-client-config/index.js"), cross_domain_utils_src = __webpack_require__("./node_modules/cross-domain-utils/src/index.js"), src_config = __webpack_require__("./src/config/index.js"), constants = __webpack_require__("./src/constants/index.js"), base64 = __webpack_require__("./node_modules/Base64/base64.js"), SHIPPING_OPTIONS_TYPES = [ "SHIP_TO_HOME", "SHIP_TO_STORE" ], payments = {}, _extends = Object.assign || function(target) {
+	            var lib = __webpack_require__("./src/lib/index.js"), src_checkout = __webpack_require__("./src/checkout/index.js"), beaver_logger_client = (__webpack_require__("./node_modules/xcomponent/src/component/component/index.js"), 
+	            __webpack_require__("./node_modules/beaver-logger/client/index.js")), cross_domain_utils_src = __webpack_require__("./node_modules/cross-domain-utils/src/index.js"), config = __webpack_require__("./src/config/index.js"), constants = __webpack_require__("./src/constants/index.js"), base64 = __webpack_require__("./node_modules/Base64/base64.js"), SHIPPING_OPTIONS_TYPES = [ "SHIP_TO_HOME", "SHIP_TO_STORE" ], payments = {}, _extends = Object.assign || function(target) {
 	                for (var i = 1; i < arguments.length; i++) {
 	                    var source = arguments[i];
 	                    for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
@@ -11738,14 +12413,14 @@
 	                return target;
 	            }, proxyRest = {}, createAccessToken = Object(lib.I)(function(env, client) {
 	                Object(beaver_logger_client.j)("rest_api_create_access_token");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                var clientID = client[env];
 	                if (!clientID) throw new Error("Client ID not found for env: " + env);
 	                if (proxyRest.createAccessToken && !proxyRest.createAccessToken.source.closed) return proxyRest.createAccessToken(env, client);
 	                var basicAuth = Object(base64.btoa)(clientID + ":");
 	                return Object(lib.R)({
 	                    method: "post",
-	                    url: src_config.a.authApiUrls[env],
+	                    url: config.a.authApiUrls[env],
 	                    headers: {
 	                        Authorization: "Basic " + basicAuth
 	                    },
@@ -11762,7 +12437,7 @@
 	            }), createExperienceProfile = Object(lib.I)(function(env, client) {
 	                var experienceDetails = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : {};
 	                Object(beaver_logger_client.j)("rest_api_create_experience_profile");
-	                env = env || src_config.a.env;
+	                env = env || config.a.env;
 	                if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                if (proxyRest.createExperienceProfile && !proxyRest.createExperienceProfile.source.closed) return proxyRest.createExperienceProfile(env, client, experienceDetails);
 	                experienceDetails.temporary = !0;
@@ -11770,7 +12445,7 @@
 	                return createAccessToken(env, client).then(function(accessToken) {
 	                    return Object(lib.R)({
 	                        method: "post",
-	                        url: src_config.a.experienceApiUrls[env],
+	                        url: config.a.experienceApiUrls[env],
 	                        headers: {
 	                            Authorization: "Bearer " + accessToken
 	                        },
@@ -11802,7 +12477,7 @@
 	                }
 	            }, parentWin = Object(cross_domain_utils_src.d)();
 	            Object(post_robot_src.on)("proxy_rest", {
-	                domain: src_config.a.paypal_domain_regex
+	                domain: config.a.paypal_domain_regex
 	            }, function(_ref) {
 	                var data = _ref.data;
 	                proxyRest = data;
@@ -11836,13 +12511,15 @@
 	                CANCEL: "cancel"
 	            }, CONTINGENCY = {
 	                PAYMENT_CANCELLED: "PAYMENT_CANCELLED"
-	            }, FUNDING_PRIORITY = [ constants.v.PAYPAL, constants.v.VENMO, constants.v.CREDIT, constants.v.IDEAL, constants.v.ELV, constants.v.BANCONTACT, constants.v.GIROPAY, constants.v.EPS, constants.v.MYBANK, constants.v.CARD ], FUNDING_CONFIG = (_FUNDING_CONFIG = {}, _FUNDING_CONFIG[constants.s] = {
+	            }, FUNDING_PRIORITY = [ constants.v.PAYPAL, constants.v.VENMO, constants.v.CREDIT, constants.v.IDEAL, constants.v.ELV, constants.v.BANCONTACT, constants.v.GIROPAY, constants.v.EPS, constants.v.MYBANK, constants.v.CARD ], FUNDING_CONFIG = (_FUNDING_CONFIG = {}, 
+	            _FUNDING_CONFIG[constants.s] = {
 	                enabled: !0,
 	                allowOptIn: !0,
 	                allowOptOut: !0,
 	                allowRemember: !0,
 	                allowHorizontal: !0,
-	                allowVertical: !0
+	                allowVertical: !0,
+	                requireCommitAsTrue: !1
 	            }, _FUNDING_CONFIG[constants.v.PAYPAL] = {
 	                default: !0,
 	                allowOptIn: !1,
@@ -11867,7 +12544,8 @@
 	            }, _FUNDING_CONFIG[constants.v.IDEAL] = {
 	                allowedCountries: [ constants.r.NL ],
 	                allowHorizontal: !0,
-	                allowVertical: !0
+	                allowVertical: !0,
+	                requireCommitAsTrue: !0
 	            }, _FUNDING_CONFIG[constants.v.ELV] = {
 	                allowedCountries: [ constants.r.DE, constants.r.AT ],
 	                defaultVerticalCountries: [ constants.r.DE, constants.r.AT ],
@@ -11876,19 +12554,23 @@
 	            }, _FUNDING_CONFIG[constants.v.BANCONTACT] = {
 	                allowedCountries: [ constants.r.BE ],
 	                allowHorizontal: !0,
-	                allowVertical: !0
+	                allowVertical: !0,
+	                requireCommitAsTrue: !0
 	            }, _FUNDING_CONFIG[constants.v.GIROPAY] = {
 	                allowedCountries: [ constants.r.DE ],
 	                allowHorizontal: !0,
-	                allowVertical: !0
+	                allowVertical: !0,
+	                requireCommitAsTrue: !0
 	            }, _FUNDING_CONFIG[constants.v.EPS] = {
 	                allowedCountries: [ constants.r.AT ],
 	                allowHorizontal: !0,
-	                allowVertical: !0
+	                allowVertical: !0,
+	                requireCommitAsTrue: !0
 	            }, _FUNDING_CONFIG[constants.v.MYBANK] = {
 	                allowedCountries: [ constants.r.IT ],
 	                allowHorizontal: !0,
-	                allowVertical: !0
+	                allowVertical: !0,
+	                requireCommitAsTrue: !0
 	            }, _FUNDING_CONFIG), CARD_CONFIG = (_CARD_CONFIG = {}, _CARD_CONFIG[constants.s] = {
 	                priority: [ constants.o.VISA, constants.o.MASTERCARD, constants.o.AMEX ]
 	            }, _CARD_CONFIG[constants.r.US] = {
@@ -11897,14 +12579,24 @@
 	                priority: [ constants.o.VISA, constants.o.MASTERCARD, constants.o.AMEX, constants.o.HIPER, constants.o.ELO ]
 	            }, _CARD_CONFIG[constants.r.JP] = {
 	                priority: [ constants.o.VISA, constants.o.MASTERCARD, constants.o.AMEX, constants.o.JCB ]
-	            }, _CARD_CONFIG), fundingEligibilityReasons = [], BUTTON_CONFIG = (_BUTTON_CONFIG = {}, _BUTTON_CONFIG[constants.s] = {
+	            }, _CARD_CONFIG), fundingEligibilityReasons = [], BUTTON_CONFIG = (_BUTTON_CONFIG = {}, 
+	            _BUTTON_CONFIG[constants.s] = {
 	                colors: [ constants.e.GOLD, constants.e.BLUE, constants.e.SILVER, constants.e.BLACK ],
 	                sizes: [ constants.l.SMALL, constants.l.MEDIUM, constants.l.LARGE, constants.l.RESPONSIVE ],
 	                shapes: [ constants.k.PILL, constants.k.RECT ],
 	                layouts: [ constants.g.HORIZONTAL, constants.g.VERTICAL ],
-	                logoColors: (_logoColors = {}, _logoColors[constants.e.GOLD] = constants.i.BLUE, _logoColors[constants.e.SILVER] = constants.i.BLUE, _logoColors[constants.e.BLUE] = constants.i.WHITE, _logoColors[constants.e.BLACK] = constants.i.WHITE, _logoColors[constants.e.BLACK] = constants.i.WHITE, _logoColors),
-	                tagLineColors: (_tagLineColors = {}, _tagLineColors[constants.e.GOLD] = constants.n.BLUE, _tagLineColors[constants.e.SILVER] = constants.n.BLUE, _tagLineColors[constants.e.BLUE] = constants.n.BLUE, _tagLineColors[constants.e.BLACK] = constants.n.BLACK, _tagLineColors[constants.e.DARKBLUE] = constants.n.BLUE, _tagLineColors),
-	                secondaryColors: (_secondaryColors = {}, _secondaryColors[constants.e.GOLD] = constants.e.BLUE, _secondaryColors[constants.e.SILVER] = constants.e.BLUE, _secondaryColors[constants.e.BLUE] = constants.e.SILVER, _secondaryColors[constants.e.BLACK] = constants.e.BLACK, _secondaryColors[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors),
+	                logoColors: (_logoColors = {}, _logoColors[constants.e.GOLD] = constants.i.BLUE, 
+	                _logoColors[constants.e.SILVER] = constants.i.BLUE, _logoColors[constants.e.BLUE] = constants.i.WHITE, 
+	                _logoColors[constants.e.BLACK] = constants.i.WHITE, _logoColors[constants.e.BLACK] = constants.i.WHITE, 
+	                _logoColors),
+	                tagLineColors: (_tagLineColors = {}, _tagLineColors[constants.e.GOLD] = constants.n.BLUE, 
+	                _tagLineColors[constants.e.SILVER] = constants.n.BLUE, _tagLineColors[constants.e.BLUE] = constants.n.BLUE, 
+	                _tagLineColors[constants.e.BLACK] = constants.n.BLACK, _tagLineColors[constants.e.DARKBLUE] = constants.n.BLUE, 
+	                _tagLineColors),
+	                secondaryColors: (_secondaryColors = {}, _secondaryColors[constants.e.GOLD] = constants.e.BLUE, 
+	                _secondaryColors[constants.e.SILVER] = constants.e.BLUE, _secondaryColors[constants.e.BLUE] = constants.e.SILVER, 
+	                _secondaryColors[constants.e.BLACK] = constants.e.BLACK, _secondaryColors[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors),
 	                tag: "{ content: safer_tag }",
 	                dualTag: "{ content: dual_tag|safer_tag }",
 	                defaultLocale: "en_US",
@@ -11974,8 +12666,11 @@
 	                logoLabel: "{ logo: " + constants.h.PP + " } { logo: " + constants.h.PAYPAL + " } { logo: " + constants.h.CREDIT + " }",
 	                tag: "{ content: later_tag }",
 	                colors: [ constants.e.DARKBLUE, constants.e.BLACK ],
-	                logoColors: (_logoColors2 = {}, _logoColors2[constants.e.BLACK] = constants.i.WHITE, _logoColors2[constants.e.DARKBLUE] = constants.i.WHITE, _logoColors2),
-	                secondaryColors: (_secondaryColors2 = {}, _secondaryColors2[constants.e.GOLD] = constants.e.DARKBLUE, _secondaryColors2[constants.e.BLUE] = constants.e.DARKBLUE, _secondaryColors2[constants.e.SILVER] = constants.e.DARKBLUE, _secondaryColors2[constants.e.BLACK] = constants.e.BLACK, _secondaryColors2),
+	                logoColors: (_logoColors2 = {}, _logoColors2[constants.e.BLACK] = constants.i.WHITE, 
+	                _logoColors2[constants.e.DARKBLUE] = constants.i.WHITE, _logoColors2),
+	                secondaryColors: (_secondaryColors2 = {}, _secondaryColors2[constants.e.GOLD] = constants.e.DARKBLUE, 
+	                _secondaryColors2[constants.e.BLUE] = constants.e.DARKBLUE, _secondaryColors2[constants.e.SILVER] = constants.e.DARKBLUE, 
+	                _secondaryColors2[constants.e.BLACK] = constants.e.BLACK, _secondaryColors2),
 	                defaultColor: constants.e.DARKBLUE,
 	                allowPrimary: !0,
 	                allowPrimaryVertical: !1,
@@ -11986,8 +12681,13 @@
 	                logoLabel: "{ logo: " + constants.h.VENMO + " }",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.BLUE, constants.e.SILVER, constants.e.BLACK ],
-	                logoColors: (_logoColors3 = {}, _logoColors3[constants.e.BLUE] = constants.i.WHITE, _logoColors3[constants.e.SILVER] = constants.i.BLUE, _logoColors3[constants.e.BLACK] = constants.i.WHITE, _logoColors3),
-	                secondaryColors: (_secondaryColors3 = {}, _secondaryColors3[constants.e.GOLD] = constants.e.BLUE, _secondaryColors3[constants.e.BLUE] = constants.e.SILVER, _secondaryColors3[constants.e.SILVER] = constants.e.BLUE, _secondaryColors3[constants.e.BLACK] = constants.e.BLACK, _secondaryColors3[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors3),
+	                logoColors: (_logoColors3 = {}, _logoColors3[constants.e.BLUE] = constants.i.WHITE, 
+	                _logoColors3[constants.e.SILVER] = constants.i.BLUE, _logoColors3[constants.e.BLACK] = constants.i.WHITE, 
+	                _logoColors3),
+	                secondaryColors: (_secondaryColors3 = {}, _secondaryColors3[constants.e.GOLD] = constants.e.BLUE, 
+	                _secondaryColors3[constants.e.BLUE] = constants.e.SILVER, _secondaryColors3[constants.e.SILVER] = constants.e.BLUE, 
+	                _secondaryColors3[constants.e.BLACK] = constants.e.BLACK, _secondaryColors3[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors3),
 	                allowPrimary: !0,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !0
@@ -11996,8 +12696,12 @@
 	                logoLabel: "{ logo: " + constants.h.IDEAL + " } Online betalen",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.SILVER, constants.e.BLACK ],
-	                logoColors: (_logoColors4 = {}, _logoColors4[constants.e.SILVER] = constants.i.BLACK, _logoColors4[constants.e.BLACK] = constants.i.WHITE, _logoColors4),
-	                secondaryColors: (_secondaryColors4 = {}, _secondaryColors4[constants.e.GOLD] = constants.e.SILVER, _secondaryColors4[constants.e.BLUE] = constants.e.SILVER, _secondaryColors4[constants.e.SILVER] = constants.e.SILVER, _secondaryColors4[constants.e.BLACK] = constants.e.BLACK, _secondaryColors4[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors4),
+	                logoColors: (_logoColors4 = {}, _logoColors4[constants.e.SILVER] = constants.i.BLACK, 
+	                _logoColors4[constants.e.BLACK] = constants.i.WHITE, _logoColors4),
+	                secondaryColors: (_secondaryColors4 = {}, _secondaryColors4[constants.e.GOLD] = constants.e.SILVER, 
+	                _secondaryColors4[constants.e.BLUE] = constants.e.SILVER, _secondaryColors4[constants.e.SILVER] = constants.e.SILVER, 
+	                _secondaryColors4[constants.e.BLACK] = constants.e.BLACK, _secondaryColors4[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors4),
 	                allowPrimary: !1,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !1
@@ -12006,8 +12710,12 @@
 	                logoLabel: "{ logo: " + constants.h.ELV + " }",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.SILVER, constants.e.BLACK ],
-	                logoColors: (_logoColors5 = {}, _logoColors5[constants.e.SILVER] = constants.i.BLACK, _logoColors5[constants.e.BLACK] = constants.i.WHITE, _logoColors5),
-	                secondaryColors: (_secondaryColors5 = {}, _secondaryColors5[constants.e.GOLD] = constants.e.SILVER, _secondaryColors5[constants.e.BLUE] = constants.e.SILVER, _secondaryColors5[constants.e.SILVER] = constants.e.SILVER, _secondaryColors5[constants.e.BLACK] = constants.e.BLACK, _secondaryColors5[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors5),
+	                logoColors: (_logoColors5 = {}, _logoColors5[constants.e.SILVER] = constants.i.BLACK, 
+	                _logoColors5[constants.e.BLACK] = constants.i.WHITE, _logoColors5),
+	                secondaryColors: (_secondaryColors5 = {}, _secondaryColors5[constants.e.GOLD] = constants.e.SILVER, 
+	                _secondaryColors5[constants.e.BLUE] = constants.e.SILVER, _secondaryColors5[constants.e.SILVER] = constants.e.SILVER, 
+	                _secondaryColors5[constants.e.BLACK] = constants.e.BLACK, _secondaryColors5[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors5),
 	                allowPrimary: !1,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !1
@@ -12016,8 +12724,12 @@
 	                logoLabel: "{ logo: " + constants.h.BANCONTACT + " }",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.SILVER, constants.e.BLACK ],
-	                logoColors: (_logoColors6 = {}, _logoColors6[constants.e.SILVER] = constants.i.BLACK, _logoColors6[constants.e.BLACK] = constants.i.WHITE, _logoColors6),
-	                secondaryColors: (_secondaryColors6 = {}, _secondaryColors6[constants.e.GOLD] = constants.e.SILVER, _secondaryColors6[constants.e.BLUE] = constants.e.SILVER, _secondaryColors6[constants.e.SILVER] = constants.e.SILVER, _secondaryColors6[constants.e.BLACK] = constants.e.BLACK, _secondaryColors6[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors6),
+	                logoColors: (_logoColors6 = {}, _logoColors6[constants.e.SILVER] = constants.i.BLACK, 
+	                _logoColors6[constants.e.BLACK] = constants.i.WHITE, _logoColors6),
+	                secondaryColors: (_secondaryColors6 = {}, _secondaryColors6[constants.e.GOLD] = constants.e.SILVER, 
+	                _secondaryColors6[constants.e.BLUE] = constants.e.SILVER, _secondaryColors6[constants.e.SILVER] = constants.e.SILVER, 
+	                _secondaryColors6[constants.e.BLACK] = constants.e.BLACK, _secondaryColors6[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors6),
 	                allowPrimary: !1,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !1
@@ -12026,8 +12738,12 @@
 	                logoLabel: "{ logo: " + constants.h.GIROPAY + " }",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.SILVER, constants.e.BLACK ],
-	                logoColors: (_logoColors7 = {}, _logoColors7[constants.e.SILVER] = constants.i.BLACK, _logoColors7[constants.e.BLACK] = constants.i.WHITE, _logoColors7),
-	                secondaryColors: (_secondaryColors7 = {}, _secondaryColors7[constants.e.GOLD] = constants.e.SILVER, _secondaryColors7[constants.e.BLUE] = constants.e.SILVER, _secondaryColors7[constants.e.SILVER] = constants.e.SILVER, _secondaryColors7[constants.e.BLACK] = constants.e.BLACK, _secondaryColors7[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors7),
+	                logoColors: (_logoColors7 = {}, _logoColors7[constants.e.SILVER] = constants.i.BLACK, 
+	                _logoColors7[constants.e.BLACK] = constants.i.WHITE, _logoColors7),
+	                secondaryColors: (_secondaryColors7 = {}, _secondaryColors7[constants.e.GOLD] = constants.e.SILVER, 
+	                _secondaryColors7[constants.e.BLUE] = constants.e.SILVER, _secondaryColors7[constants.e.SILVER] = constants.e.SILVER, 
+	                _secondaryColors7[constants.e.BLACK] = constants.e.BLACK, _secondaryColors7[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors7),
 	                allowPrimary: !1,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !1
@@ -12036,8 +12752,12 @@
 	                logoLabel: "{ logo: " + constants.h.EPS + " }",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.SILVER, constants.e.BLACK ],
-	                logoColors: (_logoColors8 = {}, _logoColors8[constants.e.SILVER] = constants.i.BLACK, _logoColors8[constants.e.BLACK] = constants.i.WHITE, _logoColors8),
-	                secondaryColors: (_secondaryColors8 = {}, _secondaryColors8[constants.e.GOLD] = constants.e.SILVER, _secondaryColors8[constants.e.BLUE] = constants.e.SILVER, _secondaryColors8[constants.e.SILVER] = constants.e.SILVER, _secondaryColors8[constants.e.BLACK] = constants.e.BLACK, _secondaryColors8[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors8),
+	                logoColors: (_logoColors8 = {}, _logoColors8[constants.e.SILVER] = constants.i.BLACK, 
+	                _logoColors8[constants.e.BLACK] = constants.i.WHITE, _logoColors8),
+	                secondaryColors: (_secondaryColors8 = {}, _secondaryColors8[constants.e.GOLD] = constants.e.SILVER, 
+	                _secondaryColors8[constants.e.BLUE] = constants.e.SILVER, _secondaryColors8[constants.e.SILVER] = constants.e.SILVER, 
+	                _secondaryColors8[constants.e.BLACK] = constants.e.BLACK, _secondaryColors8[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors8),
 	                allowPrimary: !1,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !1
@@ -12046,8 +12766,12 @@
 	                logoLabel: "{ logo: " + constants.h.MYBANK + " }",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.SILVER, constants.e.BLACK ],
-	                logoColors: (_logoColors9 = {}, _logoColors9[constants.e.SILVER] = constants.i.BLACK, _logoColors9[constants.e.BLACK] = constants.i.WHITE, _logoColors9),
-	                secondaryColors: (_secondaryColors9 = {}, _secondaryColors9[constants.e.GOLD] = constants.e.SILVER, _secondaryColors9[constants.e.BLUE] = constants.e.SILVER, _secondaryColors9[constants.e.SILVER] = constants.e.SILVER, _secondaryColors9[constants.e.BLACK] = constants.e.BLACK, _secondaryColors9[constants.e.DARKBLUE] = constants.e.SILVER, _secondaryColors9),
+	                logoColors: (_logoColors9 = {}, _logoColors9[constants.e.SILVER] = constants.i.BLACK, 
+	                _logoColors9[constants.e.BLACK] = constants.i.WHITE, _logoColors9),
+	                secondaryColors: (_secondaryColors9 = {}, _secondaryColors9[constants.e.GOLD] = constants.e.SILVER, 
+	                _secondaryColors9[constants.e.BLUE] = constants.e.SILVER, _secondaryColors9[constants.e.SILVER] = constants.e.SILVER, 
+	                _secondaryColors9[constants.e.BLACK] = constants.e.BLACK, _secondaryColors9[constants.e.DARKBLUE] = constants.e.SILVER, 
+	                _secondaryColors9),
 	                allowPrimary: !1,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !1
@@ -12056,12 +12780,28 @@
 	                logoLabel: "{ cards }",
 	                defaultColor: constants.e.SILVER,
 	                colors: [ constants.e.TRANSPARENT ],
-	                logoColors: (_logoColors10 = {}, _logoColors10[constants.e.TRANSPARENT] = constants.i.BLACK, _logoColors10),
-	                secondaryColors: (_secondaryColors10 = {}, _secondaryColors10[constants.e.GOLD] = constants.e.TRANSPARENT, _secondaryColors10[constants.e.BLUE] = constants.e.TRANSPARENT, _secondaryColors10[constants.e.SILVER] = constants.e.TRANSPARENT, _secondaryColors10[constants.e.BLACK] = constants.e.TRANSPARENT, _secondaryColors10[constants.e.DARKBLUE] = constants.e.TRANSPARENT, _secondaryColors10),
+	                logoColors: (_logoColors10 = {}, _logoColors10[constants.e.TRANSPARENT] = constants.i.BLACK, 
+	                _logoColors10),
+	                secondaryColors: (_secondaryColors10 = {}, _secondaryColors10[constants.e.GOLD] = constants.e.TRANSPARENT, 
+	                _secondaryColors10[constants.e.BLUE] = constants.e.TRANSPARENT, _secondaryColors10[constants.e.SILVER] = constants.e.TRANSPARENT, 
+	                _secondaryColors10[constants.e.BLACK] = constants.e.TRANSPARENT, _secondaryColors10[constants.e.DARKBLUE] = constants.e.TRANSPARENT, 
+	                _secondaryColors10),
 	                allowPrimary: !1,
 	                allowPrimaryVertical: !1,
 	                allowPrimaryHorizontal: !1
-	            }, _BUTTON_CONFIG), FUNDING_TO_DEFAULT_LABEL = (_FUNDING_TO_DEFAULT_L = {}, _FUNDING_TO_DEFAULT_L[constants.v.PAYPAL] = constants.f.PAYPAL, _FUNDING_TO_DEFAULT_L[constants.v.VENMO] = constants.f.VENMO, _FUNDING_TO_DEFAULT_L[constants.v.CARD] = constants.f.CARD, _FUNDING_TO_DEFAULT_L[constants.v.CREDIT] = constants.f.CREDIT, _FUNDING_TO_DEFAULT_L[constants.v.IDEAL] = constants.f.IDEAL, _FUNDING_TO_DEFAULT_L[constants.v.ELV] = constants.f.ELV, _FUNDING_TO_DEFAULT_L[constants.v.BANCONTACT] = constants.f.BANCONTACT, _FUNDING_TO_DEFAULT_L[constants.v.GIROPAY] = constants.f.GIROPAY, _FUNDING_TO_DEFAULT_L[constants.v.EPS] = constants.f.EPS, _FUNDING_TO_DEFAULT_L[constants.v.MYBANK] = constants.f.MYBANK, _FUNDING_TO_DEFAULT_L), LABEL_TO_FUNDING = (_LABEL_TO_FUNDING = {}, _LABEL_TO_FUNDING[constants.f.PAYPAL] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.CHECKOUT] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.PAY] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.BUYNOW] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.INSTALLMENT] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.CARD] = constants.v.CARD, _LABEL_TO_FUNDING[constants.f.CREDIT] = constants.v.CREDIT, _LABEL_TO_FUNDING[constants.f.VENMO] = constants.v.VENMO, _LABEL_TO_FUNDING[constants.f.IDEAL] = constants.v.IDEAL, _LABEL_TO_FUNDING[constants.f.BANCONTACT] = constants.v.BANCONTACT, _LABEL_TO_FUNDING[constants.f.GIROPAY] = constants.v.GIROPAY, _LABEL_TO_FUNDING[constants.f.GIROPAY] = constants.v.EPS, _LABEL_TO_FUNDING[constants.f.MYBANK] = constants.v.MYBANK, _LABEL_TO_FUNDING), BUTTON_RELATIVE_STYLE = {
+	            }, _BUTTON_CONFIG), FUNDING_TO_DEFAULT_LABEL = (_FUNDING_TO_DEFAULT_L = {}, _FUNDING_TO_DEFAULT_L[constants.v.PAYPAL] = constants.f.PAYPAL, 
+	            _FUNDING_TO_DEFAULT_L[constants.v.VENMO] = constants.f.VENMO, _FUNDING_TO_DEFAULT_L[constants.v.CARD] = constants.f.CARD, 
+	            _FUNDING_TO_DEFAULT_L[constants.v.CREDIT] = constants.f.CREDIT, _FUNDING_TO_DEFAULT_L[constants.v.IDEAL] = constants.f.IDEAL, 
+	            _FUNDING_TO_DEFAULT_L[constants.v.ELV] = constants.f.ELV, _FUNDING_TO_DEFAULT_L[constants.v.BANCONTACT] = constants.f.BANCONTACT, 
+	            _FUNDING_TO_DEFAULT_L[constants.v.GIROPAY] = constants.f.GIROPAY, _FUNDING_TO_DEFAULT_L[constants.v.EPS] = constants.f.EPS, 
+	            _FUNDING_TO_DEFAULT_L[constants.v.MYBANK] = constants.f.MYBANK, _FUNDING_TO_DEFAULT_L), LABEL_TO_FUNDING = (_LABEL_TO_FUNDING = {}, 
+	            _LABEL_TO_FUNDING[constants.f.PAYPAL] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.CHECKOUT] = constants.v.PAYPAL, 
+	            _LABEL_TO_FUNDING[constants.f.PAY] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.BUYNOW] = constants.v.PAYPAL, 
+	            _LABEL_TO_FUNDING[constants.f.INSTALLMENT] = constants.v.PAYPAL, _LABEL_TO_FUNDING[constants.f.CARD] = constants.v.CARD, 
+	            _LABEL_TO_FUNDING[constants.f.CREDIT] = constants.v.CREDIT, _LABEL_TO_FUNDING[constants.f.VENMO] = constants.v.VENMO, 
+	            _LABEL_TO_FUNDING[constants.f.IDEAL] = constants.v.IDEAL, _LABEL_TO_FUNDING[constants.f.BANCONTACT] = constants.v.BANCONTACT, 
+	            _LABEL_TO_FUNDING[constants.f.GIROPAY] = constants.v.GIROPAY, _LABEL_TO_FUNDING[constants.f.GIROPAY] = constants.v.EPS, 
+	            _LABEL_TO_FUNDING[constants.f.MYBANK] = constants.v.MYBANK, _LABEL_TO_FUNDING), BUTTON_RELATIVE_STYLE = {
 	                FUNDINGICONS: 100,
 	                TAGLINE: 50,
 	                VERTICAL_MARGIN: 30
@@ -12111,8 +12851,8 @@
 	                allowFunding: !0,
 	                allowTagline: !0
 	            }, _BUTTON_STYLE), util = __webpack_require__("./src/lib/util.js"), normalizeProps = Object(util.j)(function(props) {
-	                var env = props.env, _props$locale = props.locale, locale = void 0 === _props$locale ? getButtonConfig("DEFAULT", "defaultLocale") : _props$locale, _props$style = props.style, style = void 0 === _props$style ? {} : _props$style, funding = props.funding;
-	                locale = parseLocale(locale);
+	                var defs = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {}, env = props.env, locale = props.locale, _props$style = props.style, style = void 0 === _props$style ? {} : _props$style, funding = props.funding, commit = props.commit;
+	                locale = locale ? parseLocale(locale) : defs.locale || getButtonConfig("DEFAULT", "defaultLocale");
 	                funding = funding || {};
 	                funding.allowed = funding.allowed || [];
 	                funding.disallowed = funding.disallowed || [];
@@ -12128,7 +12868,8 @@
 	                    selected: selected,
 	                    locale: locale,
 	                    env: env,
-	                    layout: layout
+	                    layout: layout,
+	                    commit: commit
 	                }).slice(0, max), multiple = sources.length > 1;
 	                multiple && (branding = !0);
 	                tagline = enableTagline({
@@ -12193,8 +12934,8 @@
 	                tag: "paypal-button",
 	                name: "ppbutton",
 	                buildUrl: function(props) {
-	                    var env = props.env || src_config.a.env;
-	                    return src_config.a.buttonUrls[env];
+	                    var env = props.env || config.a.env;
+	                    return config.a.buttonUrls[env];
 	                },
 	                contexts: {
 	                    iframe: !0,
@@ -12213,7 +12954,7 @@
 	                        if (Object(lib.m)("allow_full_page_fallback")) {
 	                            Object(beaver_logger_client.j)("pre_template_force_full_page");
 	                            _this.props.payment().then(function(token) {
-	                                window.top.location = Object(lib.i)(src_config.a.checkoutUrl, {
+	                                window.top.location = Object(lib.i)(config.a.checkoutUrl, {
 	                                    token: token
 	                                });
 	                            });
@@ -12225,7 +12966,7 @@
 	                    return Object(lib.u)();
 	                },
 	                get domain() {
-	                    return src_config.a.paypalDomains;
+	                    return config.a.paypalDomains;
 	                },
 	                attributes: {
 	                    iframe: {
@@ -12258,10 +12999,10 @@
 	                        required: !1,
 	                        queryParam: !0,
 	                        def: function() {
-	                            return src_config.a.env;
+	                            return config.a.env;
 	                        },
 	                        validate: function(env) {
-	                            if (env && !src_config.a.paypalUrls[env]) throw new Error("Invalid env: " + env);
+	                            if (env && !config.a.paypalUrls[env]) throw new Error("Invalid env: " + env);
 	                        }
 	                    },
 	                    meta: {
@@ -12279,7 +13020,7 @@
 	                        },
 	                        sendToChild: !1,
 	                        validate: function(client, props) {
-	                            var env = props.env || src_config.a.env;
+	                            var env = props.env || config.a.env;
 	                            if (!client[env]) throw new Error("Client ID not found for env: " + env);
 	                            if ("string" == typeof client[env]) {
 	                                if (client[env].match(/^(.)\1+$/)) throw new Error("Invalid client ID: " + client[env]);
@@ -12320,8 +13061,8 @@
 	                        required: !1,
 	                        queryParam: !0,
 	                        def: function(props) {
-	                            var env = props.env || src_config.a.env;
-	                            if (env === constants.t.STAGE || env === constants.t.LOCAL) return src_config.a.stage;
+	                            var env = props.env || config.a.env;
+	                            if (env === constants.t.STAGE || env === constants.t.LOCAL) return config.a.stage;
 	                        }
 	                    },
 	                    braintree: {
@@ -12332,7 +13073,7 @@
 	                            if (!props.client) throw new Error("Expected client prop to be passed with Braintree authorization keys");
 	                        },
 	                        decorate: function(braintree, props) {
-	                            var env = props.env || src_config.a.env;
+	                            var env = props.env || config.a.env;
 	                            return zalgo_promise_src.a.hash(props.client).then(function(client) {
 	                                return Object(integrations.a)(braintree, client[env]);
 	                            });
@@ -12382,7 +13123,10 @@
 	                                        Object(beaver_logger_client.f)("no_token_passed_to_payment");
 	                                        throw new Error("No value passed to payment");
 	                                    }
-	                                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.RECIEVE_PAYMENT, _track[constants.u.KEY.CONTEXT_TYPE] = constants.u.CONTEXT_TYPE[Object(integrations.d)(token)], _track[constants.u.KEY.CONTEXT_ID] = token, _track[constants.u.KEY.BUTTON_SESSION_UID] = _this2.props.buttonSessionID, _track));
+	                                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, 
+	                                    _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.RECIEVE_PAYMENT, _track[constants.u.KEY.CONTEXT_TYPE] = constants.u.CONTEXT_TYPE[Object(integrations.d)(token)], 
+	                                    _track[constants.u.KEY.CONTEXT_ID] = token, _track[constants.u.KEY.BUTTON_SESSION_UID] = _this2.props.buttonSessionID, 
+	                                    _track));
 	                                    Object(beaver_logger_client.g)();
 	                                    return token;
 	                                });
@@ -12419,19 +13163,6 @@
 	                                remembered && -1 !== remembered.indexOf(constants.v.VENMO) && remembered.splice(remembered.indexOf(constants.v.VENMO), 1);
 	                                disallowed && -1 === disallowed.indexOf(constants.v.VENMO) && disallowed.push(constants.v.VENMO);
 	                            }
-	                            for (var _iterator = Object(braintree_paypal_client_config.get)(braintree_paypal_client_config.KEY.PAYPAL_FUNDING_DISALLOW, []), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator](); ;) {
-	                                var _ref4;
-	                                if (_isArray) {
-	                                    if (_i >= _iterator.length) break;
-	                                    _ref4 = _iterator[_i++];
-	                                } else {
-	                                    _i = _iterator.next();
-	                                    if (_i.done) break;
-	                                    _ref4 = _i.value;
-	                                }
-	                                var source = _ref4;
-	                                -1 === disallowed.indexOf(source) && disallowed.push(source);
-	                            }
 	                            return {
 	                                allowed: allowed,
 	                                disallowed: disallowed,
@@ -12444,7 +13175,8 @@
 	                    },
 	                    commit: {
 	                        type: "boolean",
-	                        required: !1
+	                        required: !1,
+	                        queryParam: !0
 	                    },
 	                    onRender: {
 	                        type: "function",
@@ -12454,10 +13186,14 @@
 	                        decorate: function(original) {
 	                            return function() {
 	                                var _track2;
-	                                Object(beaver_logger_client.o)((_track2 = {}, _track2[constants.u.KEY.STATE] = constants.u.STATE.LOAD, _track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_RENDER, _track2[constants.u.KEY.BUTTON_TYPE] = constants.u.BUTTON_TYPE.IFRAME, _track2[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _track2[constants.u.KEY.BUTTON_SOURCE] = this.props.source, _track2));
+	                                Object(beaver_logger_client.o)((_track2 = {}, _track2[constants.u.KEY.STATE] = constants.u.STATE.LOAD, 
+	                                _track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_RENDER, _track2[constants.u.KEY.BUTTON_TYPE] = constants.u.BUTTON_TYPE.IFRAME, 
+	                                _track2[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _track2[constants.u.KEY.BUTTON_SOURCE] = this.props.source, 
+	                                _track2));
 	                                if (creditThrottle) {
 	                                    var _creditThrottle$logSt;
-	                                    creditThrottle.logStart((_creditThrottle$logSt = {}, _creditThrottle$logSt[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _creditThrottle$logSt));
+	                                    creditThrottle.logStart((_creditThrottle$logSt = {}, _creditThrottle$logSt[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, 
+	                                    _creditThrottle$logSt));
 	                                }
 	                                Object(beaver_logger_client.g)();
 	                                return original.apply(this, arguments);
@@ -12475,7 +13211,9 @@
 	                                    token: data.paymentToken
 	                                });
 	                                Object(beaver_logger_client.j)("button_authorize");
-	                                Object(beaver_logger_client.o)((_track3 = {}, _track3[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, _track3[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CHECKOUT_AUTHORIZE, _track3[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _track3));
+	                                Object(beaver_logger_client.o)((_track3 = {}, _track3[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, 
+	                                _track3[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CHECKOUT_AUTHORIZE, 
+	                                _track3[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _track3));
 	                                Object(lib.B)() || Object(beaver_logger_client.j)("button_authorize_ineligible");
 	                                Object(lib.d)("authorize");
 	                                Object(beaver_logger_client.g)();
@@ -12514,11 +13252,12 @@
 	                                });
 	                                if (creditThrottle) {
 	                                    var _creditThrottle$logCo;
-	                                    creditThrottle.logComplete((_creditThrottle$logCo = {}, _creditThrottle$logCo[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _creditThrottle$logCo));
+	                                    creditThrottle.logComplete((_creditThrottle$logCo = {}, _creditThrottle$logCo[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, 
+	                                    _creditThrottle$logCo));
 	                                }
 	                                return zalgo_promise_src.a.try(function() {
-	                                    if (_this3.props.braintree) return actions.payment.tokenize().then(function(_ref5) {
-	                                        var nonce = _ref5.nonce;
+	                                    if (_this3.props.braintree) return actions.payment.tokenize().then(function(_ref4) {
+	                                        var nonce = _ref4.nonce;
 	                                        Object.defineProperty(data, "nonce", {
 	                                            get: function() {
 	                                                Object(beaver_logger_client.j)("nonce_getter");
@@ -12544,7 +13283,9 @@
 	                            return function(data, actions) {
 	                                var _track4;
 	                                Object(beaver_logger_client.j)("button_cancel");
-	                                Object(beaver_logger_client.o)((_track4 = {}, _track4[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, _track4[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CHECKOUT_CANCEL, _track4[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _track4));
+	                                Object(beaver_logger_client.o)((_track4 = {}, _track4[constants.u.KEY.STATE] = constants.u.STATE.CHECKOUT, 
+	                                _track4[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.CHECKOUT_CANCEL, _track4[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, 
+	                                _track4));
 	                                Object(beaver_logger_client.g)();
 	                                var redirect = function(win, url) {
 	                                    return zalgo_promise_src.a.all([ Object(lib.P)(win || window.top, url || data.cancelUrl), actions.close() ]);
@@ -12563,10 +13304,14 @@
 	                            return function(data) {
 	                                var _track5;
 	                                Object(beaver_logger_client.j)("button_click");
-	                                Object(beaver_logger_client.o)((_track5 = {}, _track5[constants.u.KEY.STATE] = constants.u.STATE.BUTTON, _track5[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_CLICK, _track5[constants.u.KEY.BUTTON_TYPE] = constants.u.BUTTON_TYPE.IFRAME, _track5[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _track5[constants.u.KEY.CHOSEN_FUNDING] = data && (data.card || data.fundingSource), _track5));
+	                                Object(beaver_logger_client.o)((_track5 = {}, _track5[constants.u.KEY.STATE] = constants.u.STATE.BUTTON, 
+	                                _track5[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_CLICK, _track5[constants.u.KEY.BUTTON_TYPE] = constants.u.BUTTON_TYPE.IFRAME, 
+	                                _track5[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _track5[constants.u.KEY.CHOSEN_FUNDING] = data && (data.card || data.fundingSource), 
+	                                _track5));
 	                                if (creditThrottle) {
 	                                    var _creditThrottle$log;
-	                                    creditThrottle.log("click", (_creditThrottle$log = {}, _creditThrottle$log[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, _creditThrottle$log));
+	                                    creditThrottle.log("click", (_creditThrottle$log = {}, _creditThrottle$log[constants.u.KEY.BUTTON_SESSION_UID] = this.props.buttonSessionID, 
+	                                    _creditThrottle$log));
 	                                }
 	                                Object(beaver_logger_client.g)();
 	                                return original.apply(this, arguments);
@@ -12616,7 +13361,7 @@
 	                        type: "string",
 	                        required: !1,
 	                        get value() {
-	                            return src_config.a.logLevel;
+	                            return config.a.logLevel;
 	                        }
 	                    },
 	                    awaitPopupBridge: {
@@ -12651,7 +13396,11 @@
 	                    }).filter(function(source) {
 	                        return source && source !== constants.v.CARD;
 	                    }), xprops = ButtonComponent.xprops;
-	                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.BUTTON, _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_LOAD, _track[constants.u.KEY.BUTTON_TYPE] = constants.u.BUTTON_TYPE.IFRAME, _track[constants.u.KEY.FUNDING_LIST] = fundingSources.join(":"), _track[constants.u.KEY.FUNDING_COUNT] = fundingSources.length, _track[constants.u.KEY.PAGE_LOAD_TIME] = pageRenderTime, _track[constants.u.KEY.BUTTON_LAYOUT] = xprops && xprops.style && xprops.style.layout || constants.g.HORIZONTAL, _track));
+	                    Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.BUTTON, 
+	                    _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_LOAD, _track[constants.u.KEY.BUTTON_TYPE] = constants.u.BUTTON_TYPE.IFRAME, 
+	                    _track[constants.u.KEY.FUNDING_LIST] = fundingSources.join(":"), _track[constants.u.KEY.FUNDING_COUNT] = fundingSources.length, 
+	                    _track[constants.u.KEY.PAGE_LOAD_TIME] = pageRenderTime, _track[constants.u.KEY.BUTTON_LAYOUT] = xprops && xprops.style && xprops.style.layout || constants.g.HORIZONTAL, 
+	                    _track));
 	                    Object(beaver_logger_client.g)();
 	                });
 	                var xprops = ButtonComponent.xprops || src_checkout.a.xprops;
@@ -12669,7 +13418,7 @@
 	                    checkout.showContainer();
 	                });
 	                Button.xprops.payment().then(function(token) {
-	                    window.top.location = Object(lib.i)(src_config.a.checkoutUrl, {
+	                    window.top.location = Object(lib.i)(config.a.checkoutUrl, {
 	                        token: token
 	                    });
 	                }).catch(function(err) {
@@ -12696,7 +13445,7 @@
 	                        console.error(err && err.stack);
 	                    } catch (err2) {}
 	                    return Button.xprops.payment().then(function(token) {
-	                        window.top.location = Object(lib.i)(src_config.a.checkoutUrl, {
+	                        window.top.location = Object(lib.i)(config.a.checkoutUrl, {
 	                            token: token
 	                        });
 	                    });
@@ -12802,7 +13551,7 @@
 	            Button.isChild() && (window.Promise || (window.Promise = zalgo_promise_src.a));
 	            !function(domain) {
 	                var currentDomainEnv = domainToEnv(domain);
-	                currentDomainEnv && "test" !== currentDomainEnv && (src_config.a.env = currentDomainEnv);
+	                currentDomainEnv && "test" !== currentDomainEnv && (config.a.env = currentDomainEnv);
 	            }(window.location.protocol + "//" + window.location.host);
 	            zalgo_promise_src.a.onPossiblyUnhandledException(function(err) {
 	                var _track;
@@ -12810,7 +13559,8 @@
 	                    stack: Object(lib.U)(err),
 	                    errtype: {}.toString.call(err)
 	                });
-	                Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.ERROR_CODE] = "checkoutjs_error", _track[constants.u.KEY.ERROR_DESC] = Object(lib.V)(err), _track));
+	                Object(beaver_logger_client.o)((_track = {}, _track[constants.u.KEY.ERROR_CODE] = "checkoutjs_error", 
+	                _track[constants.u.KEY.ERROR_DESC] = Object(lib.V)(err), _track));
 	                return Object(beaver_logger_client.g)().catch(function(err2) {
 	                    if (window.console) try {
 	                        window.console.error ? window.console.error("Error flushing:", err2.stack || err2.toString()) : window.console.log && window.console.log("Error flushing:", err2.stack || err2.toString());
@@ -12828,8 +13578,8 @@
 	                Object(lib.y)();
 	                Object(lib.G)() || createPptmScript();
 	                precacheRemembered && Object(lib.O)();
-	                Object(lib.m)("force_bridge") && !Object(lib.G)() && Object(lib.M)(src_config.a.env);
-	                Object(beaver_logger_client.j)("setup_" + src_config.a.env);
+	                Object(lib.m)("force_bridge") && !Object(lib.G)() && Object(lib.M)(config.a.env);
+	                Object(beaver_logger_client.j)("setup_" + config.a.env);
 	                Object(beaver_logger_client.e)("current_protocol_" + currentProtocol);
 	            });
 	            currentScript ? setup({
@@ -12845,22 +13595,26 @@
 	                var setup__track2, scriptProtocol = currentScript.src.split(":")[0], loadTime = Object(lib.s)(currentScript.src);
 	                Object(beaver_logger_client.e)("current_script_protocol_" + scriptProtocol);
 	                Object(beaver_logger_client.e)("current_script_protocol_" + (currentProtocol === scriptProtocol ? "match" : "mismatch"));
-	                Object(beaver_logger_client.e)("current_script_version_" + src_config.a.version.replace(/[^0-9a-zA-Z]+/g, "_"));
+	                Object(beaver_logger_client.e)("current_script_version_" + config.a.version.replace(/[^0-9a-zA-Z]+/g, "_"));
 	                if (loadTime) {
 	                    Object(beaver_logger_client.e)("current_script_time", {
 	                        loadTime: loadTime
 	                    });
 	                    Object(beaver_logger_client.e)("current_script_time_" + Math.floor(loadTime / 1e3));
 	                }
-	                Object(beaver_logger_client.o)((setup__track2 = {}, setup__track2[constants.u.KEY.STATE] = constants.u.STATE.LOAD, setup__track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.SCRIPT_LOAD, setup__track2[constants.u.KEY.TRANSITION_TIME] = loadTime, setup__track2));
+	                Object(beaver_logger_client.o)((setup__track2 = {}, setup__track2[constants.u.KEY.STATE] = constants.u.STATE.LOAD, 
+	                setup__track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.SCRIPT_LOAD, 
+	                setup__track2[constants.u.KEY.TRANSITION_TIME] = loadTime, setup__track2));
 	            } else {
 	                var setup__track3;
 	                Object(beaver_logger_client.e)("no_current_script");
-	                Object(beaver_logger_client.e)("no_current_script_version_" + src_config.a.version.replace(/[^0-9a-zA-Z]+/g, "_"));
+	                Object(beaver_logger_client.e)("no_current_script_version_" + config.a.version.replace(/[^0-9a-zA-Z]+/g, "_"));
 	                document.currentScript && Object(beaver_logger_client.e)("current_script_not_recognized", {
 	                    src: document.currentScript.src
 	                });
-	                Object(beaver_logger_client.o)((setup__track3 = {}, setup__track3[constants.u.KEY.STATE] = constants.u.STATE.LOAD, setup__track3[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.SCRIPT_LOAD, setup__track3));
+	                Object(beaver_logger_client.o)((setup__track3 = {}, setup__track3[constants.u.KEY.STATE] = constants.u.STATE.LOAD, 
+	                setup__track3[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.SCRIPT_LOAD, 
+	                setup__track3));
 	            }
 	            var interface__extends = Object.assign || function(target) {
 	                for (var i = 1; i < arguments.length; i++) {
@@ -12868,12 +13622,13 @@
 	                    for (var key in source) Object.prototype.hasOwnProperty.call(source, key) && (target[key] = source[key]);
 	                }
 	                return target;
-	            }, postRobot = post_robot_src, onPossiblyUnhandledException = zalgo_promise_src.a.onPossiblyUnhandledException, version = "4.0.191", interface_checkout = void 0, apps = void 0, legacy = __webpack_require__("./src/legacy/index.js");
+	            }, postRobot = post_robot_src, onPossiblyUnhandledException = zalgo_promise_src.a.onPossiblyUnhandledException, version = "4.0.195", interface_checkout = void 0, apps = void 0, legacy = __webpack_require__("./src/legacy/index.js");
 	            interface_checkout = legacy.checkout;
 	            apps = legacy.apps;
-	            !function(exportBuilder) {
-	                exportBuilders.push(exportBuilder);
-	            }(function(_ref) {
+	            !function(moduleName, exportBuilder) {
+	                if (exportBuilders[moduleName]) throw new Error("Already attached " + moduleName);
+	                exportBuilders[moduleName] = exportBuilder;
+	            }("buttons", function(_ref) {
 	                var clientOptions = _ref.clientOptions;
 	                return {
 	                    Button: {
@@ -12912,7 +13667,7 @@
 	                return setup;
 	            });
 	            __webpack_require__.d(__webpack_exports__, "config", function() {
-	                return src_config.a;
+	                return config.a;
 	            });
 	            __webpack_require__.d(__webpack_exports__, "ENV", function() {
 	                return constants.t;
@@ -12984,7 +13739,8 @@
 	                return token && 0 === token.indexOf("BA-") ? "ba_token" : "token";
 	            }
 	            function getPaymentType(payment) {
-	                return 0 === payment.indexOf("BA-") ? __WEBPACK_IMPORTED_MODULE_1__constants__.A.BA_TOKEN : 0 === payment.indexOf("PAY-") || 0 === payment.indexOf("PAYID-") ? __WEBPACK_IMPORTED_MODULE_1__constants__.A.PAY_ID : (payment.indexOf("EC-"), __WEBPACK_IMPORTED_MODULE_1__constants__.A.EC_TOKEN);
+	                return 0 === payment.indexOf("BA-") ? __WEBPACK_IMPORTED_MODULE_1__constants__.A.BA_TOKEN : 0 === payment.indexOf("PAY-") || 0 === payment.indexOf("PAYID-") ? __WEBPACK_IMPORTED_MODULE_1__constants__.A.PAY_ID : (payment.indexOf("EC-"), 
+	                __WEBPACK_IMPORTED_MODULE_1__constants__.A.EC_TOKEN);
 	            }
 	            function determineUrl(env, fundingSource, payment) {
 	                return getPaymentType(payment) === __WEBPACK_IMPORTED_MODULE_1__constants__.A.BA_TOKEN ? __WEBPACK_IMPORTED_MODULE_0__config__.a.billingUrls[env] : fundingSource === __WEBPACK_IMPORTED_MODULE_1__constants__.v.CARD || fundingSource === __WEBPACK_IMPORTED_MODULE_1__constants__.v.ELV ? __WEBPACK_IMPORTED_MODULE_0__config__.a.guestUrls[env] : fundingSource === __WEBPACK_IMPORTED_MODULE_1__constants__.v.IDEAL || fundingSource === __WEBPACK_IMPORTED_MODULE_1__constants__.v.BANCONTACT || fundingSource === __WEBPACK_IMPORTED_MODULE_1__constants__.v.GIROPAY || fundingSource === __WEBPACK_IMPORTED_MODULE_1__constants__.v.EPS || fundingSource === __WEBPACK_IMPORTED_MODULE_1__constants__.v.MYBANK ? __WEBPACK_IMPORTED_MODULE_0__config__.a.altpayUrls[env] : __WEBPACK_IMPORTED_MODULE_0__config__.a.checkoutUrls[env];
@@ -13306,7 +14062,11 @@
 	                            });
 	                            Object(lib.o)(button.container || button.button).forEach(function(element) {
 	                                var _buttons$push;
-	                                buttons.push((_buttons$push = {}, _buttons$push[button.container ? "container" : "button"] = element, _buttons$push.click = button.click || options.click, _buttons$push.condition = button.condition || options.condition, _buttons$push.type = button.type || options.type, _buttons$push.locale = button.locale || options.locale, _buttons$push.color = button.color || options.color, _buttons$push.shape = button.shape || options.shape, _buttons$push.size = button.size || options.size, _buttons$push));
+	                                buttons.push((_buttons$push = {}, _buttons$push[button.container ? "container" : "button"] = element, 
+	                                _buttons$push.click = button.click || options.click, _buttons$push.condition = button.condition || options.condition, 
+	                                _buttons$push.type = button.type || options.type, _buttons$push.locale = button.locale || options.locale, 
+	                                _buttons$push.color = button.color || options.color, _buttons$push.shape = button.shape || options.shape, 
+	                                _buttons$push.size = button.size || options.size, _buttons$push));
 	                            });
 	                        }
 	                    });
@@ -13582,12 +14342,14 @@
 	            function instrumentButtonRender(type) {
 	                var _track;
 	                interface_info("render_" + type + "_button");
-	                track((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.LOAD, _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_RENDER, _track[constants.u.KEY.BUTTON_TYPE] = type, _track));
+	                track((_track = {}, _track[constants.u.KEY.STATE] = constants.u.STATE.LOAD, _track[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_RENDER, 
+	                _track[constants.u.KEY.BUTTON_TYPE] = type, _track));
 	                Object(client.g)();
 	            }
 	            function instrumentButtonClick(type) {
 	                var _track2;
-	                track((_track2 = {}, _track2[constants.u.KEY.STATE] = constants.u.STATE.LOAD, _track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_CLICK, _track2[constants.u.KEY.BUTTON_TYPE] = type, _track2));
+	                track((_track2 = {}, _track2[constants.u.KEY.STATE] = constants.u.STATE.LOAD, _track2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.BUTTON_CLICK, 
+	                _track2[constants.u.KEY.BUTTON_TYPE] = type, _track2));
 	                Object(client.g)();
 	            }
 	            function setup(id) {
@@ -14161,7 +14923,7 @@
 	                        country: config.a.locale.country,
 	                        lang: config.a.locale.lang,
 	                        uid: getSessionID(),
-	                        ver: "4.0.191"
+	                        ver: "4.0.195"
 	                    };
 	                });
 	                Object(client.a)(function() {
@@ -14181,7 +14943,12 @@
 	                        contextType = payload[constants.u.KEY.CONTEXT_TYPE];
 	                        contextID = payload[constants.u.KEY.CONTEXT_ID];
 	                    }
-	                    return _ref = {}, _ref[constants.u.KEY.FEED] = constants.u.FEED.CHECKOUTJS, _ref[constants.u.KEY.DATA_SOURCE] = constants.u.DATA_SOURCE.CHECKOUT, _ref[constants.u.KEY.CONTEXT_TYPE] = contextType, _ref[constants.u.KEY.CONTEXT_ID] = contextID, _ref[constants.u.KEY.SELLER_ID] = config.a.merchantID, _ref[constants.u.KEY.SESSION_UID] = sessionID, _ref[constants.u.KEY.BUTTON_SESSION_UID] = buttonSessionID, _ref[constants.u.KEY.VERSION] = config.a.version, _ref[constants.u.KEY.TOKEN] = paymentToken, _ref[constants.u.KEY.REFERER] = getRefererDomain(), _ref;
+	                    return _ref = {}, _ref[constants.u.KEY.FEED] = constants.u.FEED.CHECKOUTJS, _ref[constants.u.KEY.DATA_SOURCE] = constants.u.DATA_SOURCE.CHECKOUT, 
+	                    _ref[constants.u.KEY.CONTEXT_TYPE] = contextType, _ref[constants.u.KEY.CONTEXT_ID] = contextID, 
+	                    _ref[constants.u.KEY.SELLER_ID] = config.a.merchantID, _ref[constants.u.KEY.SESSION_UID] = sessionID, 
+	                    _ref[constants.u.KEY.BUTTON_SESSION_UID] = buttonSessionID, _ref[constants.u.KEY.VERSION] = config.a.version, 
+	                    _ref[constants.u.KEY.TOKEN] = paymentToken, _ref[constants.u.KEY.REFERER] = getRefererDomain(), 
+	                    _ref;
 	                });
 	                var prefix = "ppxo";
 	                Object(util.e)("log_domain_prefix") && (prefix = prefix + "_" + window.location.host.replace(/[^a-zA-Z0-9_]/g, "_").replace(/^www_/, "").replace(/_com$/, ""));
@@ -14367,7 +15134,7 @@
 	                var payload = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : {};
 	                try {
 	                    payload.event = "ppxo_" + event;
-	                    payload.version = "4.0.191";
+	                    payload.version = "4.0.195";
 	                    payload.host = window.location.host;
 	                    payload.uid = getSessionID();
 	                    var query = [];
@@ -14394,7 +15161,7 @@
 	                try {
 	                    var checkpointName = name;
 	                    if (options.version) {
-	                        checkpointName = "4.0.191".replace(/[^0-9]+/g, "_") + "_" + checkpointName;
+	                        checkpointName = "4.0.195".replace(/[^0-9]+/g, "_") + "_" + checkpointName;
 	                    }
 	                    if (!isCheckpointUnique(checkpointName)) return;
 	                    return beacon(checkpointName, payload);
@@ -14402,7 +15169,7 @@
 	            }
 	            function buildPayload() {
 	                return {
-	                    v: "checkout.js.4.0.191",
+	                    v: "checkout.js.4.0.195",
 	                    t: Date.now(),
 	                    g: new Date().getTimezoneOffset(),
 	                    flnm: "ec:hermes:",
@@ -14462,7 +15229,9 @@
 	                        if (!started) return this;
 	                        if (throttle_isCheckpointUnique(name + "_" + treatment)) {
 	                            var _extends2;
-	                            Object(client.o)(throttle__extends((_extends2 = {}, _extends2[constants.u.KEY.STATE] = constants.u.STATE.PXP, _extends2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.PXP, _extends2[constants.u.KEY.EXPERIMENT_NAME] = name, _extends2[constants.u.KEY.TREATMENT_NAME] = treatment, _extends2), payload));
+	                            Object(client.o)(throttle__extends((_extends2 = {}, _extends2[constants.u.KEY.STATE] = constants.u.STATE.PXP, 
+	                            _extends2[constants.u.KEY.TRANSITION] = constants.u.TRANSITION.PXP, _extends2[constants.u.KEY.EXPERIMENT_NAME] = name, 
+	                            _extends2[constants.u.KEY.TREATMENT_NAME] = treatment, _extends2), payload));
 	                        }
 	                        var event = name + "_" + treatment + "_" + checkpointName;
 	                        throttle_isCheckpointUnique(event) && Object(client.j)(event, throttle__extends({}, payload, {
@@ -14510,7 +15279,8 @@
 	                        }
 	                        var childname = _ref3, childnamespace = xports[childname];
 	                        namespace[childname] && (childnamespace = namespace__extends({}, namespace[childname], childnamespace));
-	                        xports = namespace__extends({}, namespace, xports, (_extends2 = {}, _extends2[childname] = childnamespace, _extends2));
+	                        xports = namespace__extends({}, namespace, xports, (_extends2 = {}, _extends2[childname] = childnamespace, 
+	                        _extends2));
 	                    }
 	                }
 	                for (var _iterator2 = namespaces, _isArray2 = Array.isArray(_iterator2), _i2 = 0, _iterator2 = _isArray2 ? _iterator2 : _iterator2[Symbol.iterator](); ;) {
@@ -14532,7 +15302,7 @@
 	                return Boolean(getCurrentScript());
 	            }
 	            function getScriptVersion() {
-	                return "4.0.191";
+	                return "4.0.195";
 	            }
 	            function getRememberedFunding(handler) {
 	                return getStorageState(function(storage) {
@@ -14778,7 +15548,7 @@
 	                            domain: metaFrameDomain
 	                        });
 	                        return post_robot_src.bridge.openBridge(extendUrl(metaFrameUrl, {
-	                            version: "4.0.191"
+	                            version: "4.0.195"
 	                        }), metaFrameDomain).then(function() {
 	                            return metaListener;
 	                        }).then(function(_ref) {
@@ -15450,7 +16220,28 @@
 	            module.exports = '<svg width="101" height="32" viewBox="0 0 101 32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet">\n    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\n        <g id="White" fill="#FFFFFF">\n            <g id="Logo" transform="translate(0.000000, 6.000000)">\n                <path d="M16.6660484,0.18 C17.3466626,1.3390991 17.6535069,2.53297297 17.6535069,4.04108108 C17.6535069,8.85117117 13.671346,15.0998198 10.439346,19.4875676 L3.05725952,19.4875676 L0.0966314879,1.23315315 L6.56045675,0.60036036 L8.12578201,13.5895495 C9.58835986,11.1326126 11.3932543,7.27153153 11.3932543,4.6390991 C11.3932543,3.1981982 11.1538599,2.21675676 10.7797405,1.40864865 L16.6660484,0.18 Z M24.9071592,11.6938739 C24.9071592,13.8367568 26.062718,14.6774775 27.5946678,14.6774775 C29.2629152,14.6774775 30.860218,14.2571171 32.9363097,13.1691892 L32.154346,18.6445045 C30.6915934,19.3814414 28.4119291,19.8731532 26.1991903,19.8731532 C20.5863512,19.8731532 18.5775346,16.3632432 18.5775346,11.9753153 C18.5775346,6.28810811 21.8451817,0.249369369 28.5819516,0.249369369 C32.2909931,0.249369369 34.3649879,2.39207207 34.3649879,5.37567568 C34.3653374,10.1855856 28.3783789,11.6590991 24.9071592,11.6938739 Z M25.0434567,8.2181982 C26.2329152,8.2181982 29.2274429,7.65711712 29.2274429,5.90216216 C29.2274429,5.05945946 28.6495761,4.6390991 27.9686125,4.6390991 C26.7772318,4.6390991 25.2138287,6.11225225 25.0434567,8.2181982 Z M53.0187093,4.4636036 C53.0187093,5.16558559 52.9154377,6.18378378 52.8126903,6.84918919 L50.8730709,19.4873874 L44.5790934,19.4873874 L46.3483408,7.90216216 C46.381891,7.58792793 46.4849879,6.95531532 46.4849879,6.60432432 C46.4849879,5.76162162 45.9743962,5.55135135 45.3605329,5.55135135 C44.5451938,5.55135135 43.7279325,5.93711712 43.1836159,6.21873874 L41.1768962,19.4875676 L34.8474464,19.4875676 L37.7390519,0.565945946 L43.2171661,0.565945946 L43.2865381,2.07621622 C44.5789187,1.19873874 46.2807163,0.24972973 48.6952803,0.24972973 C51.8942543,0.249369369 53.0187093,1.93495495 53.0187093,4.4636036 Z M71.7037093,2.32072072 C73.5063322,0.988108108 75.2084792,0.249369369 77.5554187,0.249369369 C80.7872439,0.249369369 81.9113495,1.93495495 81.9113495,4.4636036 C81.9113495,5.16558559 81.8084273,6.18378378 81.7056799,6.84918919 L79.7683322,19.4873874 L73.4726073,19.4873874 L75.2755796,7.6572973 C75.3087803,7.34108108 75.3785017,6.95531532 75.3785017,6.71063063 C75.3785017,5.7618018 74.8677353,5.55135135 74.2540467,5.55135135 C73.4722578,5.55135135 72.6908183,5.90234234 72.1106799,6.21873874 L70.1043097,19.4875676 L63.8101574,19.4875676 L65.6131298,7.65747748 C65.6463304,7.34126126 65.713955,6.9554955 65.713955,6.71081081 C65.713955,5.76198198 65.2030138,5.55153153 64.5914221,5.55153153 C63.7743356,5.55153153 62.9588218,5.9372973 62.4145052,6.21891892 L60.4062128,19.4877477 L54.0788599,19.4877477 L56.9701159,0.566126126 L62.3813045,0.566126126 L62.551327,2.14576577 C63.8101574,1.1990991 65.5105571,0.25009009 67.7900467,0.25009009 C69.7637405,0.249369369 71.0559464,1.12702703 71.7037093,2.32072072 Z M83.55059,11.7998198 C83.55059,5.83279279 86.6120433,0.249369369 93.6558322,0.249369369 C98.9633997,0.249369369 100.903543,3.47981982 100.903543,7.93873874 C100.903543,13.8365766 97.8751159,19.9443243 90.6614792,19.9443243 C85.3196626,19.9443243 83.55059,16.3281081 83.55059,11.7998198 Z M94.4374464,7.83279279 C94.4374464,6.28810811 94.0628028,5.23495495 92.9409689,5.23495495 C90.4570329,5.23495495 89.9469654,9.76306306 89.9469654,12.0794595 C89.9469654,13.8367568 90.4238322,14.9243243 91.5453166,14.9243243 C93.8931298,14.9243243 94.4374464,10.149009 94.4374464,7.83279279 Z"></path>\n            </g>\n        </g>\n    </g>\n</svg>\n';
 	        },
 	        "./src/resources/index.js": function(module, __webpack_exports__, __webpack_require__) {
-	            var _BUTTON_LOGO$PP, _BUTTON_LOGO$PAYPAL, _BUTTON_LOGO$CREDIT, _BUTTON_LOGO$VENMO, _BUTTON_LOGO$IDEAL, _BUTTON_LOGO$ELV, _BUTTON_LOGO$BANCONTA, _BUTTON_LOGO$GIROPAY, _BUTTON_LOGO$EPS, _BUTTON_LOGO$MYBANK, _fundingLogos, _cardLogos, constants = __webpack_require__("./src/constants/index.js"), pp_white = __webpack_require__("./src/resources/fundingLogos/pp_white.svg"), pp_white_default = __webpack_require__.n(pp_white), pp_blue = __webpack_require__("./src/resources/fundingLogos/pp_blue.svg"), pp_blue_default = __webpack_require__.n(pp_blue), pp_black = __webpack_require__("./src/resources/fundingLogos/pp_black.svg"), pp_black_default = __webpack_require__.n(pp_black), paypal_white = __webpack_require__("./src/resources/fundingLogos/paypal_white.svg"), paypal_white_default = __webpack_require__.n(paypal_white), paypal_blue = __webpack_require__("./src/resources/fundingLogos/paypal_blue.svg"), paypal_blue_default = __webpack_require__.n(paypal_blue), paypal_black = __webpack_require__("./src/resources/fundingLogos/paypal_black.svg"), paypal_black_default = __webpack_require__.n(paypal_black), credit_white = __webpack_require__("./src/resources/fundingLogos/credit_white.svg"), credit_white_default = __webpack_require__.n(credit_white), venmo_white = __webpack_require__("./src/resources/fundingLogos/venmo_white.svg"), venmo_white_default = __webpack_require__.n(venmo_white), venmo_blue = __webpack_require__("./src/resources/fundingLogos/venmo_blue.svg"), venmo_blue_default = __webpack_require__.n(venmo_blue), ideal = __webpack_require__("./src/resources/fundingLogos/ideal.svg"), ideal_default = __webpack_require__.n(ideal), elv = __webpack_require__("./src/resources/fundingLogos/elv.svg"), elv_default = __webpack_require__.n(elv), elv_white = __webpack_require__("./src/resources/fundingLogos/elv_white.svg"), elv_white_default = __webpack_require__.n(elv_white), bancontact = __webpack_require__("./src/resources/fundingLogos/bancontact.svg"), bancontact_default = __webpack_require__.n(bancontact), giropay = __webpack_require__("./src/resources/fundingLogos/giropay.svg"), giropay_default = __webpack_require__.n(giropay), eps = __webpack_require__("./src/resources/fundingLogos/eps.svg"), eps_default = __webpack_require__.n(eps), mybank = __webpack_require__("./src/resources/fundingLogos/mybank.svg"), mybank_default = __webpack_require__.n(mybank), fundingLogos = (_fundingLogos = {}, _fundingLogos[constants.h.PP] = (_BUTTON_LOGO$PP = {}, _BUTTON_LOGO$PP[constants.i.WHITE] = pp_white_default.a, _BUTTON_LOGO$PP[constants.i.BLUE] = pp_blue_default.a, _BUTTON_LOGO$PP[constants.i.BLACK] = pp_black_default.a, _BUTTON_LOGO$PP), _fundingLogos[constants.h.PAYPAL] = (_BUTTON_LOGO$PAYPAL = {}, _BUTTON_LOGO$PAYPAL[constants.i.WHITE] = paypal_white_default.a, _BUTTON_LOGO$PAYPAL[constants.i.BLUE] = paypal_blue_default.a, _BUTTON_LOGO$PAYPAL[constants.i.BLACK] = paypal_black_default.a, _BUTTON_LOGO$PAYPAL), _fundingLogos[constants.h.CREDIT] = (_BUTTON_LOGO$CREDIT = {}, _BUTTON_LOGO$CREDIT[constants.i.WHITE] = credit_white_default.a, _BUTTON_LOGO$CREDIT), _fundingLogos[constants.h.VENMO] = (_BUTTON_LOGO$VENMO = {}, _BUTTON_LOGO$VENMO[constants.i.WHITE] = venmo_white_default.a, _BUTTON_LOGO$VENMO[constants.i.BLUE] = venmo_blue_default.a, _BUTTON_LOGO$VENMO), _fundingLogos[constants.h.IDEAL] = (_BUTTON_LOGO$IDEAL = {}, _BUTTON_LOGO$IDEAL[constants.i.ANY] = ideal_default.a, _BUTTON_LOGO$IDEAL), _fundingLogos[constants.h.ELV] = (_BUTTON_LOGO$ELV = {}, _BUTTON_LOGO$ELV[constants.i.ANY] = elv_default.a, _BUTTON_LOGO$ELV[constants.i.WHITE] = elv_white_default.a, _BUTTON_LOGO$ELV), _fundingLogos[constants.h.BANCONTACT] = (_BUTTON_LOGO$BANCONTA = {}, _BUTTON_LOGO$BANCONTA[constants.i.ANY] = bancontact_default.a, _BUTTON_LOGO$BANCONTA), _fundingLogos[constants.h.GIROPAY] = (_BUTTON_LOGO$GIROPAY = {}, _BUTTON_LOGO$GIROPAY[constants.i.ANY] = giropay_default.a, _BUTTON_LOGO$GIROPAY), _fundingLogos[constants.h.EPS] = (_BUTTON_LOGO$EPS = {}, _BUTTON_LOGO$EPS[constants.i.ANY] = eps_default.a, _BUTTON_LOGO$EPS), _fundingLogos[constants.h.MYBANK] = (_BUTTON_LOGO$MYBANK = {}, _BUTTON_LOGO$MYBANK[constants.i.ANY] = mybank_default.a, _BUTTON_LOGO$MYBANK), _fundingLogos), visa = __webpack_require__("./src/resources/cardLogos/visa.svg"), visa_default = __webpack_require__.n(visa), amex = __webpack_require__("./src/resources/cardLogos/amex.svg"), amex_default = __webpack_require__.n(amex), mastercard = __webpack_require__("./src/resources/cardLogos/mastercard.svg"), mastercard_default = __webpack_require__.n(mastercard), discover = __webpack_require__("./src/resources/cardLogos/discover.svg"), discover_default = __webpack_require__.n(discover), hiper = __webpack_require__("./src/resources/cardLogos/hiper.svg"), hiper_default = __webpack_require__.n(hiper), elo = __webpack_require__("./src/resources/cardLogos/elo.svg"), elo_default = __webpack_require__.n(elo), jcb = __webpack_require__("./src/resources/cardLogos/jcb.svg"), jcb_default = __webpack_require__.n(jcb), cardLogos = (_cardLogos = {}, _cardLogos[constants.o.VISA] = visa_default.a, _cardLogos[constants.o.AMEX] = amex_default.a, _cardLogos[constants.o.MASTERCARD] = mastercard_default.a, _cardLogos[constants.o.DISCOVER] = discover_default.a, _cardLogos[constants.o.HIPER] = hiper_default.a, _cardLogos[constants.o.ELO] = elo_default.a, _cardLogos[constants.o.JCB] = jcb_default.a, _cardLogos);
+	            var _BUTTON_LOGO$PP, _BUTTON_LOGO$PAYPAL, _BUTTON_LOGO$CREDIT, _BUTTON_LOGO$VENMO, _BUTTON_LOGO$IDEAL, _BUTTON_LOGO$ELV, _BUTTON_LOGO$BANCONTA, _BUTTON_LOGO$GIROPAY, _BUTTON_LOGO$EPS, _BUTTON_LOGO$MYBANK, _fundingLogos, _cardLogos, constants = __webpack_require__("./src/constants/index.js"), pp_white = __webpack_require__("./src/resources/fundingLogos/pp_white.svg"), pp_white_default = __webpack_require__.n(pp_white), pp_blue = __webpack_require__("./src/resources/fundingLogos/pp_blue.svg"), pp_blue_default = __webpack_require__.n(pp_blue), pp_black = __webpack_require__("./src/resources/fundingLogos/pp_black.svg"), pp_black_default = __webpack_require__.n(pp_black), paypal_white = __webpack_require__("./src/resources/fundingLogos/paypal_white.svg"), paypal_white_default = __webpack_require__.n(paypal_white), paypal_blue = __webpack_require__("./src/resources/fundingLogos/paypal_blue.svg"), paypal_blue_default = __webpack_require__.n(paypal_blue), paypal_black = __webpack_require__("./src/resources/fundingLogos/paypal_black.svg"), paypal_black_default = __webpack_require__.n(paypal_black), credit_white = __webpack_require__("./src/resources/fundingLogos/credit_white.svg"), credit_white_default = __webpack_require__.n(credit_white), venmo_white = __webpack_require__("./src/resources/fundingLogos/venmo_white.svg"), venmo_white_default = __webpack_require__.n(venmo_white), venmo_blue = __webpack_require__("./src/resources/fundingLogos/venmo_blue.svg"), venmo_blue_default = __webpack_require__.n(venmo_blue), ideal = __webpack_require__("./src/resources/fundingLogos/ideal.svg"), ideal_default = __webpack_require__.n(ideal), elv = __webpack_require__("./src/resources/fundingLogos/elv.svg"), elv_default = __webpack_require__.n(elv), elv_white = __webpack_require__("./src/resources/fundingLogos/elv_white.svg"), elv_white_default = __webpack_require__.n(elv_white), bancontact = __webpack_require__("./src/resources/fundingLogos/bancontact.svg"), bancontact_default = __webpack_require__.n(bancontact), giropay = __webpack_require__("./src/resources/fundingLogos/giropay.svg"), giropay_default = __webpack_require__.n(giropay), eps = __webpack_require__("./src/resources/fundingLogos/eps.svg"), eps_default = __webpack_require__.n(eps), mybank = __webpack_require__("./src/resources/fundingLogos/mybank.svg"), mybank_default = __webpack_require__.n(mybank), fundingLogos = (_fundingLogos = {}, 
+	            _fundingLogos[constants.h.PP] = (_BUTTON_LOGO$PP = {}, _BUTTON_LOGO$PP[constants.i.WHITE] = pp_white_default.a, 
+	            _BUTTON_LOGO$PP[constants.i.BLUE] = pp_blue_default.a, _BUTTON_LOGO$PP[constants.i.BLACK] = pp_black_default.a, 
+	            _BUTTON_LOGO$PP), _fundingLogos[constants.h.PAYPAL] = (_BUTTON_LOGO$PAYPAL = {}, 
+	            _BUTTON_LOGO$PAYPAL[constants.i.WHITE] = paypal_white_default.a, _BUTTON_LOGO$PAYPAL[constants.i.BLUE] = paypal_blue_default.a, 
+	            _BUTTON_LOGO$PAYPAL[constants.i.BLACK] = paypal_black_default.a, _BUTTON_LOGO$PAYPAL), 
+	            _fundingLogos[constants.h.CREDIT] = (_BUTTON_LOGO$CREDIT = {}, _BUTTON_LOGO$CREDIT[constants.i.WHITE] = credit_white_default.a, 
+	            _BUTTON_LOGO$CREDIT), _fundingLogos[constants.h.VENMO] = (_BUTTON_LOGO$VENMO = {}, 
+	            _BUTTON_LOGO$VENMO[constants.i.WHITE] = venmo_white_default.a, _BUTTON_LOGO$VENMO[constants.i.BLUE] = venmo_blue_default.a, 
+	            _BUTTON_LOGO$VENMO), _fundingLogos[constants.h.IDEAL] = (_BUTTON_LOGO$IDEAL = {}, 
+	            _BUTTON_LOGO$IDEAL[constants.i.ANY] = ideal_default.a, _BUTTON_LOGO$IDEAL), _fundingLogos[constants.h.ELV] = (_BUTTON_LOGO$ELV = {}, 
+	            _BUTTON_LOGO$ELV[constants.i.ANY] = elv_default.a, _BUTTON_LOGO$ELV[constants.i.WHITE] = elv_white_default.a, 
+	            _BUTTON_LOGO$ELV), _fundingLogos[constants.h.BANCONTACT] = (_BUTTON_LOGO$BANCONTA = {}, 
+	            _BUTTON_LOGO$BANCONTA[constants.i.ANY] = bancontact_default.a, _BUTTON_LOGO$BANCONTA), 
+	            _fundingLogos[constants.h.GIROPAY] = (_BUTTON_LOGO$GIROPAY = {}, _BUTTON_LOGO$GIROPAY[constants.i.ANY] = giropay_default.a, 
+	            _BUTTON_LOGO$GIROPAY), _fundingLogos[constants.h.EPS] = (_BUTTON_LOGO$EPS = {}, 
+	            _BUTTON_LOGO$EPS[constants.i.ANY] = eps_default.a, _BUTTON_LOGO$EPS), _fundingLogos[constants.h.MYBANK] = (_BUTTON_LOGO$MYBANK = {}, 
+	            _BUTTON_LOGO$MYBANK[constants.i.ANY] = mybank_default.a, _BUTTON_LOGO$MYBANK), _fundingLogos), visa = __webpack_require__("./src/resources/cardLogos/visa.svg"), visa_default = __webpack_require__.n(visa), amex = __webpack_require__("./src/resources/cardLogos/amex.svg"), amex_default = __webpack_require__.n(amex), mastercard = __webpack_require__("./src/resources/cardLogos/mastercard.svg"), mastercard_default = __webpack_require__.n(mastercard), discover = __webpack_require__("./src/resources/cardLogos/discover.svg"), discover_default = __webpack_require__.n(discover), hiper = __webpack_require__("./src/resources/cardLogos/hiper.svg"), hiper_default = __webpack_require__.n(hiper), elo = __webpack_require__("./src/resources/cardLogos/elo.svg"), elo_default = __webpack_require__.n(elo), jcb = __webpack_require__("./src/resources/cardLogos/jcb.svg"), jcb_default = __webpack_require__.n(jcb), cardLogos = (_cardLogos = {}, 
+	            _cardLogos[constants.o.VISA] = visa_default.a, _cardLogos[constants.o.AMEX] = amex_default.a, 
+	            _cardLogos[constants.o.MASTERCARD] = mastercard_default.a, _cardLogos[constants.o.DISCOVER] = discover_default.a, 
+	            _cardLogos[constants.o.HIPER] = hiper_default.a, _cardLogos[constants.o.ELO] = elo_default.a, 
+	            _cardLogos[constants.o.JCB] = jcb_default.a, _cardLogos);
 	            __webpack_require__.d(__webpack_exports__, "b", function() {
 	                return fundingLogos;
 	            });
@@ -15463,55 +16254,104 @@
 
 	});
 
-	unwrapExports(checkout_lib);
+	var checkout_lib$1 = unwrapExports(checkout_lib);
 	var checkout_lib_1 = checkout_lib.paypal;
 
+	var checkout_lib$2 = /*#__PURE__*/Object.freeze({
+		default: checkout_lib$1,
+		__moduleExports: checkout_lib,
+		paypal: checkout_lib_1
+	});
+
+	var require$$0$10 = ( checkout_lib$2 && checkout_lib$1 ) || checkout_lib$2;
+
 	var paypalCheckout = createCommonjsModule(function (module) {
-	module.exports = checkout_lib;
+	module.exports = require$$0$10;
 	module.exports.default = module.exports;
+	});
+
+	var _addToUnscopables = function () { /* empty */ };
+
+	var _addToUnscopables$1 = /*#__PURE__*/Object.freeze({
+		default: _addToUnscopables,
+		__moduleExports: _addToUnscopables
 	});
 
 	var _iterStep = function (done, value) {
 	  return { value: value, done: !!done };
 	};
 
+	var _iterStep$1 = /*#__PURE__*/Object.freeze({
+		default: _iterStep,
+		__moduleExports: _iterStep
+	});
+
 	var _iterators = {};
+
+	var _iterators$1 = /*#__PURE__*/Object.freeze({
+		default: _iterators,
+		__moduleExports: _iterators
+	});
 
 	var _library = true;
 
-	var _redefine = _hide;
+	var _library$1 = /*#__PURE__*/Object.freeze({
+		default: _library,
+		__moduleExports: _library
+	});
 
-	var _objectDps = _descriptors ? Object.defineProperties : function defineProperties(O, Properties) {
-	  _anObject(O);
-	  var keys = _objectKeys(Properties);
+	var _redefine = require$$0$5;
+
+	var _redefine$1 = /*#__PURE__*/Object.freeze({
+		default: _redefine,
+		__moduleExports: _redefine
+	});
+
+	var _objectDps = require$$0$4 ? Object.defineProperties : function defineProperties(O, Properties) {
+	  anObject(O);
+	  var keys = getKeys(Properties);
 	  var length = keys.length;
 	  var i = 0;
 	  var P;
-	  while (length > i) _objectDp.f(O, P = keys[i++], Properties[P]);
+	  while (length > i) dP$1.f(O, P = keys[i++], Properties[P]);
 	  return O;
 	};
 
-	var document$2 = _global.document;
+	var _objectDps$1 = /*#__PURE__*/Object.freeze({
+		default: _objectDps,
+		__moduleExports: _objectDps
+	});
+
+	var document$2 = require$$0.document;
 	var _html = document$2 && document$2.documentElement;
+
+	var _html$1 = /*#__PURE__*/Object.freeze({
+		default: _html,
+		__moduleExports: _html
+	});
+
+	var dPs = ( _objectDps$1 && _objectDps ) || _objectDps$1;
+
+	var require$$2 = ( _html$1 && _html ) || _html$1;
 
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 
 
 
-	var IE_PROTO$1 = _sharedKey('IE_PROTO');
+	var IE_PROTO$1 = require$$0$3('IE_PROTO');
 	var Empty = function () { /* empty */ };
 	var PROTOTYPE$1 = 'prototype';
 
 	// Create object with fake `null` prototype: use iframe Object with cleared prototype
 	var createDict = function () {
 	  // Thrash, waste and sodomy: IE GC bug
-	  var iframe = _domCreate('iframe');
-	  var i = _enumBugKeys.length;
+	  var iframe = require$$1$1('iframe');
+	  var i = enumBugKeys.length;
 	  var lt = '<';
 	  var gt = '>';
 	  var iframeDocument;
 	  iframe.style.display = 'none';
-	  _html.appendChild(iframe);
+	  require$$2.appendChild(iframe);
 	  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
 	  // createDict = iframe.contentWindow.Object;
 	  // html.removeChild(iframe);
@@ -15520,69 +16360,110 @@
 	  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
 	  iframeDocument.close();
 	  createDict = iframeDocument.F;
-	  while (i--) delete createDict[PROTOTYPE$1][_enumBugKeys[i]];
+	  while (i--) delete createDict[PROTOTYPE$1][enumBugKeys[i]];
 	  return createDict();
 	};
 
 	var _objectCreate = Object.create || function create(O, Properties) {
 	  var result;
 	  if (O !== null) {
-	    Empty[PROTOTYPE$1] = _anObject(O);
+	    Empty[PROTOTYPE$1] = anObject(O);
 	    result = new Empty();
 	    Empty[PROTOTYPE$1] = null;
 	    // add "__proto__" for Object.getPrototypeOf polyfill
 	    result[IE_PROTO$1] = O;
 	  } else result = createDict();
-	  return Properties === undefined ? result : _objectDps(result, Properties);
+	  return Properties === undefined ? result : dPs(result, Properties);
 	};
 
-	var _wks = createCommonjsModule(function (module) {
-	var store = _shared('wks');
+	var _objectCreate$1 = /*#__PURE__*/Object.freeze({
+		default: _objectCreate,
+		__moduleExports: _objectCreate
+	});
 
-	var Symbol = _global.Symbol;
+	var _wks = createCommonjsModule(function (module) {
+	var store = require$$0$1('wks');
+
+	var Symbol = require$$0.Symbol;
 	var USE_SYMBOL = typeof Symbol == 'function';
 
 	var $exports = module.exports = function (name) {
 	  return store[name] || (store[name] =
-	    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : _uid)('Symbol.' + name));
+	    USE_SYMBOL && Symbol[name] || (USE_SYMBOL ? Symbol : uid)('Symbol.' + name));
 	};
 
 	$exports.store = store;
 	});
 
-	var def = _objectDp.f;
+	var _wks$1 = /*#__PURE__*/Object.freeze({
+		default: _wks,
+		__moduleExports: _wks
+	});
 
-	var TAG = _wks('toStringTag');
+	var require$$1$2 = ( _wks$1 && _wks ) || _wks$1;
+
+	var def = dP$1.f;
+
+	var TAG = require$$1$2('toStringTag');
 
 	var _setToStringTag = function (it, tag, stat) {
-	  if (it && !_has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
+	  if (it && !has(it = stat ? it : it.prototype, TAG)) def(it, TAG, { configurable: true, value: tag });
 	};
+
+	var _setToStringTag$1 = /*#__PURE__*/Object.freeze({
+		default: _setToStringTag,
+		__moduleExports: _setToStringTag
+	});
+
+	var create = ( _objectCreate$1 && _objectCreate ) || _objectCreate$1;
+
+	var setToStringTag = ( _setToStringTag$1 && _setToStringTag ) || _setToStringTag$1;
 
 	var IteratorPrototype = {};
 
 	// 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-	_hide(IteratorPrototype, _wks('iterator'), function () { return this; });
+	require$$0$5(IteratorPrototype, require$$1$2('iterator'), function () { return this; });
 
 	var _iterCreate = function (Constructor, NAME, next) {
-	  Constructor.prototype = _objectCreate(IteratorPrototype, { next: _propertyDesc(1, next) });
-	  _setToStringTag(Constructor, NAME + ' Iterator');
+	  Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
+	  setToStringTag(Constructor, NAME + ' Iterator');
 	};
+
+	var _iterCreate$1 = /*#__PURE__*/Object.freeze({
+		default: _iterCreate,
+		__moduleExports: _iterCreate
+	});
 
 	// 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 
 
-	var IE_PROTO$2 = _sharedKey('IE_PROTO');
+	var IE_PROTO$2 = require$$0$3('IE_PROTO');
 	var ObjectProto = Object.prototype;
 
 	var _objectGpo = Object.getPrototypeOf || function (O) {
-	  O = _toObject(O);
-	  if (_has(O, IE_PROTO$2)) return O[IE_PROTO$2];
+	  O = toObject(O);
+	  if (has(O, IE_PROTO$2)) return O[IE_PROTO$2];
 	  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
 	    return O.constructor.prototype;
 	  } return O instanceof Object ? ObjectProto : null;
 	};
 
-	var ITERATOR = _wks('iterator');
+	var _objectGpo$1 = /*#__PURE__*/Object.freeze({
+		default: _objectGpo,
+		__moduleExports: _objectGpo
+	});
+
+	var LIBRARY = ( _library$1 && _library ) || _library$1;
+
+	var redefine = ( _redefine$1 && _redefine ) || _redefine$1;
+
+	var Iterators = ( _iterators$1 && _iterators ) || _iterators$1;
+
+	var $iterCreate = ( _iterCreate$1 && _iterCreate ) || _iterCreate$1;
+
+	var getPrototypeOf = ( _objectGpo$1 && _objectGpo ) || _objectGpo$1;
+
+	var ITERATOR = require$$1$2('iterator');
 	var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 	var FF_ITERATOR = '@@iterator';
 	var KEYS = 'keys';
@@ -15591,7 +16472,7 @@
 	var returnThis = function () { return this; };
 
 	var _iterDefine = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED) {
-	  _iterCreate(Constructor, NAME, next);
+	  $iterCreate(Constructor, NAME, next);
 	  var getMethod = function (kind) {
 	    if (!BUGGY && kind in proto) return proto[kind];
 	    switch (kind) {
@@ -15610,12 +16491,12 @@
 	  var methods, key, IteratorPrototype;
 	  // Fix native
 	  if ($anyNative) {
-	    IteratorPrototype = _objectGpo($anyNative.call(new Base()));
+	    IteratorPrototype = getPrototypeOf($anyNative.call(new Base()));
 	    if (IteratorPrototype !== Object.prototype && IteratorPrototype.next) {
 	      // Set @@toStringTag to native iterators
-	      _setToStringTag(IteratorPrototype, TAG, true);
+	      setToStringTag(IteratorPrototype, TAG, true);
 	      // fix for some old engines
-	      if (!_library && typeof IteratorPrototype[ITERATOR] != 'function') _hide(IteratorPrototype, ITERATOR, returnThis);
+	      if (!LIBRARY && typeof IteratorPrototype[ITERATOR] != 'function') require$$0$5(IteratorPrototype, ITERATOR, returnThis);
 	    }
 	  }
 	  // fix Array#{values, @@iterator}.name in V8 / FF
@@ -15624,12 +16505,12 @@
 	    $default = function values() { return $native.call(this); };
 	  }
 	  // Define iterator
-	  if ((!_library || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
-	    _hide(proto, ITERATOR, $default);
+	  if ((!LIBRARY || FORCED) && (BUGGY || VALUES_BUG || !proto[ITERATOR])) {
+	    require$$0$5(proto, ITERATOR, $default);
 	  }
 	  // Plug for library
-	  _iterators[NAME] = $default;
-	  _iterators[TAG] = returnThis;
+	  Iterators[NAME] = $default;
+	  Iterators[TAG] = returnThis;
 	  if (DEFAULT) {
 	    methods = {
 	      values: DEF_VALUES ? $default : getMethod(VALUES),
@@ -15637,18 +16518,29 @@
 	      entries: $entries
 	    };
 	    if (FORCED) for (key in methods) {
-	      if (!(key in proto)) _redefine(proto, key, methods[key]);
-	    } else _export(_export.P + _export.F * (BUGGY || VALUES_BUG), NAME, methods);
+	      if (!(key in proto)) redefine(proto, key, methods[key]);
+	    } else $export$1($export$1.P + $export$1.F * (BUGGY || VALUES_BUG), NAME, methods);
 	  }
 	  return methods;
 	};
+
+	var _iterDefine$1 = /*#__PURE__*/Object.freeze({
+		default: _iterDefine,
+		__moduleExports: _iterDefine
+	});
+
+	var addToUnscopables = ( _addToUnscopables$1 && _addToUnscopables ) || _addToUnscopables$1;
+
+	var step = ( _iterStep$1 && _iterStep ) || _iterStep$1;
+
+	var require$$0$11 = ( _iterDefine$1 && _iterDefine ) || _iterDefine$1;
 
 	// 22.1.3.4 Array.prototype.entries()
 	// 22.1.3.13 Array.prototype.keys()
 	// 22.1.3.29 Array.prototype.values()
 	// 22.1.3.30 Array.prototype[@@iterator]()
-	var es6_array_iterator = _iterDefine(Array, 'Array', function (iterated, kind) {
-	  this._t = _toIobject(iterated); // target
+	var es6_array_iterator = require$$0$11(Array, 'Array', function (iterated, kind) {
+	  this._t = toIObject(iterated); // target
 	  this._i = 0;                   // next index
 	  this._k = kind;                // kind
 	// 22.1.5.2.1 %ArrayIteratorPrototype%.next()
@@ -15658,17 +16550,21 @@
 	  var index = this._i++;
 	  if (!O || index >= O.length) {
 	    this._t = undefined;
-	    return _iterStep(1);
+	    return step(1);
 	  }
-	  if (kind == 'keys') return _iterStep(0, index);
-	  if (kind == 'values') return _iterStep(0, O[index]);
-	  return _iterStep(0, [index, O[index]]);
+	  if (kind == 'keys') return step(0, index);
+	  if (kind == 'values') return step(0, O[index]);
+	  return step(0, [index, O[index]]);
 	}, 'values');
 
 	// argumentsList[@@iterator] is %ArrayProto_values% (9.4.4.6, 9.4.4.7)
-	_iterators.Arguments = _iterators.Array;
+	Iterators.Arguments = Iterators.Array;
 
-	var TO_STRING_TAG = _wks('toStringTag');
+	addToUnscopables('keys');
+	addToUnscopables('values');
+	addToUnscopables('entries');
+
+	var TO_STRING_TAG = require$$1$2('toStringTag');
 
 	var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
 	  'DOMTokenList,DataTransferItemList,FileList,HTMLAllCollection,HTMLCollection,HTMLFormElement,HTMLSelectElement,' +
@@ -15678,18 +16574,18 @@
 
 	for (var i = 0; i < DOMIterables.length; i++) {
 	  var NAME = DOMIterables[i];
-	  var Collection = _global[NAME];
+	  var Collection = require$$0[NAME];
 	  var proto = Collection && Collection.prototype;
-	  if (proto && !proto[TO_STRING_TAG]) _hide(proto, TO_STRING_TAG, NAME);
-	  _iterators[NAME] = _iterators.Array;
+	  if (proto && !proto[TO_STRING_TAG]) require$$0$5(proto, TO_STRING_TAG, NAME);
+	  Iterators[NAME] = Iterators.Array;
 	}
 
 	// true  -> String#at
 	// false -> String#codePointAt
 	var _stringAt = function (TO_STRING) {
 	  return function (that, pos) {
-	    var s = String(_defined(that));
-	    var i = _toInteger(pos);
+	    var s = String(defined(that));
+	    var i = toInteger(pos);
 	    var l = s.length;
 	    var a, b;
 	    if (i < 0 || i >= l) return TO_STRING ? '' : undefined;
@@ -15700,10 +16596,17 @@
 	  };
 	};
 
-	var $at = _stringAt(true);
+	var _stringAt$1 = /*#__PURE__*/Object.freeze({
+		default: _stringAt,
+		__moduleExports: _stringAt
+	});
+
+	var require$$0$12 = ( _stringAt$1 && _stringAt ) || _stringAt$1;
+
+	var $at = require$$0$12(true);
 
 	// 21.1.3.27 String.prototype[@@iterator]()
-	_iterDefine(String, 'String', function (iterated) {
+	require$$0$11(String, 'String', function (iterated) {
 	  this._t = String(iterated); // target
 	  this._i = 0;                // next index
 	// 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -15719,9 +16622,9 @@
 
 	// getting tag from 19.1.3.6 Object.prototype.toString()
 
-	var TAG$1 = _wks('toStringTag');
+	var TAG$1 = require$$1$2('toStringTag');
 	// ES3 wrong here
-	var ARG = _cof(function () { return arguments; }()) == 'Arguments';
+	var ARG = cof(function () { return arguments; }()) == 'Arguments';
 
 	// fallback for IE11 Script Access Denied error
 	var tryGet = function (it, key) {
@@ -15736,50 +16639,106 @@
 	    // @@toStringTag case
 	    : typeof (T = tryGet(O = Object(it), TAG$1)) == 'string' ? T
 	    // builtinTag case
-	    : ARG ? _cof(O)
+	    : ARG ? cof(O)
 	    // ES3 arguments fallback
-	    : (B = _cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
+	    : (B = cof(O)) == 'Object' && typeof O.callee == 'function' ? 'Arguments' : B;
 	};
 
-	var ITERATOR$1 = _wks('iterator');
+	var _classof$1 = /*#__PURE__*/Object.freeze({
+		default: _classof,
+		__moduleExports: _classof
+	});
 
-	var core_isIterable = _core.isIterable = function (it) {
+	var classof = ( _classof$1 && _classof ) || _classof$1;
+
+	var ITERATOR$1 = require$$1$2('iterator');
+
+	var core_isIterable = core.isIterable = function (it) {
 	  var O = Object(it);
 	  return O[ITERATOR$1] !== undefined
 	    || '@@iterator' in O
 	    // eslint-disable-next-line no-prototype-builtins
-	    || _iterators.hasOwnProperty(_classof(O));
+	    || Iterators.hasOwnProperty(classof(O));
 	};
 
-	var isIterable = core_isIterable;
-
-	var isIterable$1 = createCommonjsModule(function (module) {
-	module.exports = { "default": isIterable, __esModule: true };
+	var core_isIterable$1 = /*#__PURE__*/Object.freeze({
+		default: core_isIterable,
+		__moduleExports: core_isIterable
 	});
 
-	unwrapExports(isIterable$1);
+	var require$$2$1 = ( core_isIterable$1 && core_isIterable ) || core_isIterable$1;
 
-	var ITERATOR$2 = _wks('iterator');
+	var isIterable = require$$2$1;
 
-	var core_getIteratorMethod = _core.getIteratorMethod = function (it) {
+	var isIterable$1 = /*#__PURE__*/Object.freeze({
+		default: isIterable,
+		__moduleExports: isIterable
+	});
+
+	var require$$0$13 = ( isIterable$1 && isIterable ) || isIterable$1;
+
+	var isIterable$2 = createCommonjsModule(function (module) {
+	module.exports = { "default": require$$0$13, __esModule: true };
+	});
+
+	var isIterable$3 = unwrapExports(isIterable$2);
+
+	var isIterable$4 = /*#__PURE__*/Object.freeze({
+		default: isIterable$3,
+		__moduleExports: isIterable$2
+	});
+
+	var ITERATOR$2 = require$$1$2('iterator');
+
+	var core_getIteratorMethod = core.getIteratorMethod = function (it) {
 	  if (it != undefined) return it[ITERATOR$2]
 	    || it['@@iterator']
-	    || _iterators[_classof(it)];
+	    || Iterators[classof(it)];
 	};
 
-	var core_getIterator = _core.getIterator = function (it) {
-	  var iterFn = core_getIteratorMethod(it);
-	  if (typeof iterFn != 'function') throw TypeError(it + ' is not iterable!');
-	  return _anObject(iterFn.call(it));
-	};
-
-	var getIterator = core_getIterator;
-
-	var getIterator$1 = createCommonjsModule(function (module) {
-	module.exports = { "default": getIterator, __esModule: true };
+	var core_getIteratorMethod$1 = /*#__PURE__*/Object.freeze({
+		default: core_getIteratorMethod,
+		__moduleExports: core_getIteratorMethod
 	});
 
-	unwrapExports(getIterator$1);
+	var get = ( core_getIteratorMethod$1 && core_getIteratorMethod ) || core_getIteratorMethod$1;
+
+	var core_getIterator = core.getIterator = function (it) {
+	  var iterFn = get(it);
+	  if (typeof iterFn != 'function') throw TypeError(it + ' is not iterable!');
+	  return anObject(iterFn.call(it));
+	};
+
+	var core_getIterator$1 = /*#__PURE__*/Object.freeze({
+		default: core_getIterator,
+		__moduleExports: core_getIterator
+	});
+
+	var require$$2$2 = ( core_getIterator$1 && core_getIterator ) || core_getIterator$1;
+
+	var getIterator = require$$2$2;
+
+	var getIterator$1 = /*#__PURE__*/Object.freeze({
+		default: getIterator,
+		__moduleExports: getIterator
+	});
+
+	var require$$0$14 = ( getIterator$1 && getIterator ) || getIterator$1;
+
+	var getIterator$2 = createCommonjsModule(function (module) {
+	module.exports = { "default": require$$0$14, __esModule: true };
+	});
+
+	var getIterator$3 = unwrapExports(getIterator$2);
+
+	var getIterator$4 = /*#__PURE__*/Object.freeze({
+		default: getIterator$3,
+		__moduleExports: getIterator$2
+	});
+
+	var _isIterable2 = ( isIterable$4 && isIterable$3 ) || isIterable$4;
+
+	var _getIterator2 = ( getIterator$4 && getIterator$3 ) || getIterator$4;
 
 	var slicedToArray = createCommonjsModule(function (module, exports) {
 
@@ -15787,11 +16746,11 @@
 
 
 
-	var _isIterable3 = _interopRequireDefault(isIterable$1);
+	var _isIterable3 = _interopRequireDefault(_isIterable2);
 
 
 
-	var _getIterator3 = _interopRequireDefault(getIterator$1);
+	var _getIterator3 = _interopRequireDefault(_getIterator2);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
