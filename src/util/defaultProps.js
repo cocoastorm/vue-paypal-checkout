@@ -22,6 +22,7 @@ const specificProps = [
     },
   },
   { name: 'client', type: Object, required: true },
+  { name: 'details', type: Object, required: false, default: {} },
   // eslint-disable-next-line
   { name: 'commit', type: Boolean, required: false, default: true },
 ];

@@ -15,7 +15,7 @@ var specificProps = [{
   validator: function validator(value) {
     return ['sandbox', 'production'].indexOf(value) !== -1;
   }
-}, { name: 'client', type: Object, required: true },
+}, { name: 'client', type: Object, required: true }, { name: 'details', type: Object, required: false, default: {} },
 // eslint-disable-next-line
 { name: 'commit', type: Boolean, required: false, default: true }];
 
@@ -208,7 +208,8 @@ var PayPalCheckout = { render: function render() {
       var transaction = _Object$assign({
         amount: {
           total: this.amount,
-          currency: this.currency
+          currency: this.currency,
+          details: this.details
         }
       }, assignTo(vue, propTypes.TRANSACTION));
 

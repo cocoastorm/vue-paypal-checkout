@@ -23,6 +23,7 @@ export default {
         amount: {
           total: this.amount,
           currency: this.currency,
+          details: this.details,
         },
       }, assignTo(vue, propTypes.TRANSACTION));
 
