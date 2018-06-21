@@ -30,7 +30,9 @@ const specificProps = [
     name: 'details',
     type: Object,
     required: false,
-    default: {},
+    default() {
+      return {};
+    },
   },
   {
     name: 'commit',
