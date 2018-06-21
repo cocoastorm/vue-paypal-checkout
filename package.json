@@ -22,6 +22,7 @@
     "postversion": "git push --tags origin master"
   },
   "dependencies": {
+    "babel-runtime": "^6.26.0",
     "paypal-checkout": "^4.0.191",
     "vue": "^2.5.16"
   },

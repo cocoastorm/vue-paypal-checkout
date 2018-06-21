@@ -3,7 +3,7 @@ import babel from 'rollup-plugin-babel';
 import builtins from 'rollup-plugin-node-builtins';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import uglify from 'rollup-plugin-uglify';
+import { uglify } from 'rollup-plugin-uglify';
 import { rollup } from 'rollup';
 
 import clone from 'lodash/cloneDeep';
