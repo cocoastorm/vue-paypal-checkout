@@ -156,5 +156,15 @@ describe('Methods within PayPalCheckout.vue', () => {
         onCancel: expect.any(Function),
       }));
     });
+
+    it('onAuthorize() returns true and not a promise if commit is false', () => {
+      const component = shallow(PayPalCheckout, {
+        localVue,
+        attachToDocument: true,
+        propsData: { ...getProps(), commit: false },
+      });
+
+      expect(component.vm.onAuthorize()).toEqual(true);
+    });
   });
 });
