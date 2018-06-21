@@ -13,13 +13,10 @@
   },
   "scripts": {
     "build": "rm -rf dist/ && rollup -c",
-    "compile": "rollup -c",
     "lint": "eslint --ext .js,.vue src test",
-    "purge": "rm -rf dist/",
     "test": "eslint --ext .js,.vue src test && jest --config test/unit/jest.conf.js",
     "unit": "jest --config test/unit/jest.conf.js",
-    "version": "rollup -c && git add -A dist",
-    "postversion": "git push --tags origin master"
+    "version": "rollup -c && git add dist"
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
