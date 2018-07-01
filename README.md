@@ -253,6 +253,47 @@ export default {
 </script>
 ```
 
+## Usage with Nuxt JS
+Simply include Vue and `vue-paypal-checkout` into your html file (using unpkg cdn or npm)
+
+``` html
+<script src="https://unpkg.com/vue"></script>
+<script src="https://unpkg.com/vue-paypal-checkout@2.0.0/dist/vue-paypal-checkout.min.js"></script>
+```
+
+By including vue-paypal-checkout in a script tag, it will automagically register the component into Nuxt js
+
+create a plugins called paypal.js
+``` html
+import Vue from 'vue'
+import PayPal from 'vue-paypal-checkout'
+Vue.component('paypal-checkout', PayPal)
+```
+
+
+in nuxt-config don't forget to add it on plugins, and make sure you disable SSR
+``` html
+  plugins: [
+    { src: '~/plugins/paypal.js', ssr: false }
+  ],
+</script>
+```
+
+
+and use it like this
+``` html
+ <no-ssr>
+	<paypal-checkout
+	env="sandbox"
+	amount="10000"
+	currency="IDR"
+	locale="fr_FR"
+	:client="paypal"
+	:invoice-number="'201705051001'">
+	</paypal-checkout>
+</no-ssr>
+```
+
 #### Changing Locale (v2.3.3+)
 `paypal-checkout` allows changing the locale of the button via a `locale` parameter. There's a `locale` prop you can use to accomplish the same:
 
