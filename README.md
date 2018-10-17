@@ -254,15 +254,24 @@ export default {
 ```
 
 ## Usage with Nuxt JS
-Simply include Vue and `vue-paypal-checkout` into your html file (using unpkg cdn or npm)
+Simply add the script at nuxt.config.js head property
 
-``` html
-<script src="https://unpkg.com/vue"></script>
-<script src="https://unpkg.com/vue-paypal-checkout@2.0.0/dist/vue-paypal-checkout.min.js"></script>
+```
+export default {
+  head: {
+    script: [
+      { src: 'https://unpkg.com/vue-paypal-checkout@2.0.0/dist/vue-paypal-checkout.min.js' }
+    ]
+  }
+ }
 ```
 
 By including vue-paypal-checkout in a script tag, it will automagically register the component into Nuxt js
 
+## Usage with Nuxt JS - NPM
+```
+npm install vue-paypal-checkout
+```
 create a plugins called paypal.js
 ``` html
 import Vue from 'vue'
