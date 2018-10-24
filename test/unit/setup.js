@@ -2,6 +2,10 @@ import Vue from 'vue';
 
 Vue.config.productionTip = false;
 
-global.jsdom.reconfigure({
-  url: 'http://localhost',
-});
+// polyfill matchMedia
+window.matchMedia = window.matchMedia ||
+  (() => ({
+    matches: false,
+    addListener: () => {},
+    removeListener: () => {},
+  }));
