@@ -1,7 +1,7 @@
 import defaultProps from '@/util/defaultProps';
 
 describe('defaultProps.js', () => {
-  it('has the required props', () => {
+  test('has the required props', () => {
     const props = defaultProps();
 
     expect(props).toEqual(expect.objectContaining({
@@ -21,7 +21,7 @@ describe('defaultProps.js', () => {
     });
   });
 
-  it('has the optional props', () => {
+  test('has the optional props', () => {
     const props = defaultProps();
 
     expect(props).toEqual(expect.objectContaining({
@@ -40,7 +40,7 @@ describe('defaultProps.js', () => {
     });
   });
 
-  it('has the specific props', () => {
+  test('has the specific props', () => {
     const props = defaultProps();
 
     expect(props).toEqual(expect.objectContaining({

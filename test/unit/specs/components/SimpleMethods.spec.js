@@ -1,4 +1,4 @@
-import { createLocalVue, shallow } from '@vue/test-utils';
+import { createLocalVue, shallowMount } from '@vue/test-utils';
 import PayPalCheckout from '@/components/PayPalCheckout.vue';
 
 const credentials = {
@@ -54,52 +54,56 @@ jest.mock('paypal-checkout', () => ({
 }));
 
 describe('Methods within PayPalCheckout.vue', () => {
-  const localVue = createLocalVue();
-  const checkout = shallow(PayPalCheckout, {
-    localVue,
-    attachToDocument: true,
-    propsData: getProps(),
+  let checkout;
+
+  beforeEach(() => {
+    const localVue = createLocalVue();
+    checkout = shallowMount(PayPalCheckout, {
+      localVue,
+      attachToDocument: true,
+      propsData: getProps(),
+    });
   });
 
   describe('Environment', () => {
-    it('env prop is true', () => {
+    test('env prop is true', () => {
       expect(checkout.props().env).toEqual('sandbox');
     });
   });
 
   describe('vue.payment()', () => {
-    it('has payment()', () => {
+    test('has payment()', () => {
       expect(checkout.vm).toEqual(expect.objectContaining({
         payment: expect.any(Function),
       }));
     });
 
-    it('returns a payment object', () => (
+    test('returns a payment object', () => (
       checkout.vm.payment().then((p) => {
         expect(p).toBeInstanceOf(Object);
       })
     ));
 
-    it('payment object has experience object', () => {
+    test('payment object has experience object', () => {
       checkout.vm.payment().then((p) => {
         expect(p.experience).toEqual(checkout.vm.experience);
       });
     });
 
-    it('payment object has transactions array', () => (
+    test('payment object has transactions array', () => (
       checkout.vm.payment().then((p) => {
         expect(p.payment).toEqual(expect.objectContaining({
           transactions: expect.any(Array),
         }));
       })));
 
-    it('payment object has one single transaction', () => (
+    test('payment object has one single transaction', () => (
       checkout.vm.payment().then((p) => {
         expect(p.payment.transactions.length).toBe(1);
       })
     ));
 
-    it('transaction has the right amount', () => (
+    test('transaction has the right amount', () => (
       checkout.vm.payment().then((p) => {
         const transaction = p.payment.transactions[0];
         expect(transaction.amount).toEqual(expect.objectContaining({
@@ -109,7 +113,7 @@ describe('Methods within PayPalCheckout.vue', () => {
       })
     ));
 
-    it('transaction has the right currency', () => (
+    test('transaction has the right currency', () => (
       checkout.vm.payment().then((p) => {
         const transaction = p.payment.transactions[0];
         expect(transaction.amount).toEqual(expect.objectContaining({
@@ -119,7 +123,7 @@ describe('Methods within PayPalCheckout.vue', () => {
       })
     ));
 
-    it('transaction has the right invoice number', () => (
+    test('transaction has the right invoice number', () => (
       checkout.vm.payment().then((p) => {
         const transaction = p.payment.transactions[0];
         expect(transaction).toEqual(expect.objectContaining({
@@ -129,7 +133,7 @@ describe('Methods within PayPalCheckout.vue', () => {
       })
     ));
 
-    it('transaction has a item_list', () => (
+    test('transaction has a item_list', () => (
       checkout.vm.payment().then((p) => {
         const transaction = p.payment.transactions[0];
         expect(transaction).toEqual(expect.objectContaining({
@@ -138,7 +142,7 @@ describe('Methods within PayPalCheckout.vue', () => {
       })
     ));
 
-    it('transaction has items array', () => (
+    test('transaction has items array', () => (
       checkout.vm.payment().then((p) => {
         const itemList = p.payment.transactions[0].item_list;
         expect(itemList).toEqual(expect.objectContaining({
@@ -150,16 +154,16 @@ describe('Methods within PayPalCheckout.vue', () => {
   });
 
   describe('action methods', () => {
-    it('has onAuthorize() and onCancel()', () => {
+    test('has onAuthorize() and onCancel()', () => {
       expect(checkout.vm).toEqual(expect.objectContaining({
         onAuthorize: expect.any(Function),
         onCancel: expect.any(Function),
       }));
     });
 
-    it('onAuthorize() returns true and not a promise if commit is false', () => {
-      const component = shallow(PayPalCheckout, {
-        localVue,
+    test('onAuthorize() returns true and not a promise if commit is false', () => {
+      const component = shallowMount(PayPalCheckout, {
+        localVue: createLocalVue(),
         attachToDocument: true,
         propsData: { ...getProps(), commit: false },
       });
