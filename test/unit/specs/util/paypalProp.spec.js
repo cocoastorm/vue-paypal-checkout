@@ -2,7 +2,7 @@ import PayPalProp from '@/util/paypalProp';
 
 describe('paypalProp.js', () => {
   describe('new paypalProp()', () => {
-    it('construct with most options specified', () => {
+    test('construct with most options specified', () => {
       const paypal = new PayPalProp({
         name: 'some-name',
         paypalName: 'somePaypal',
@@ -16,7 +16,7 @@ describe('paypalProp.js', () => {
       }));
     });
 
-    it('construct with just name specified', () => {
+    test('construct with just name specified', () => {
       const paypal = new PayPalProp({ name: 'some-name' });
 
       expect(paypal).toEqual(expect.objectContaining({
@@ -27,7 +27,7 @@ describe('paypalProp.js', () => {
     });
   });
 
-  it('getVmProp()', () => {
+  test('getVmProp()', () => {
     const paypal = new PayPalProp({
       name: 'some-name',
       paypalName: 'somePaypal',
@@ -42,7 +42,7 @@ describe('paypalProp.js', () => {
     });
   });
 
-  it('change()', () => {
+  test('change()', () => {
     const paypal = new PayPalProp({
       name: 'some-name',
       paypalName: 'somePaypal',

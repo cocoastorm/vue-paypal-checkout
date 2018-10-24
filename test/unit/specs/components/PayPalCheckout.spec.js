@@ -1,4 +1,4 @@
-import { createLocalVue, shallow } from '@vue/test-utils';
+import { createLocalVue, shallowMount } from '@vue/test-utils';
 import { createRenderer } from 'vue-server-renderer';
 import PayPalCheckout from '@/components/PayPalCheckout.vue';
 
@@ -40,41 +40,45 @@ function getProps() {
 }
 
 describe('PayPalCheckout.vue', () => {
-  const localVue = createLocalVue();
-  const checkout = shallow(PayPalCheckout, {
-    attachToDocument: true,
-    propsData: getProps(),
-    localVue,
+  let checkout;
+
+  beforeEach(() => {
+    const localVue = createLocalVue();
+    checkout = shallowMount(PayPalCheckout, {
+      attachToDocument: true,
+      propsData: getProps(),
+      localVue,
+    });
   });
 
-  it('should have the amount prop', () => {
+  test('should have the amount prop', () => {
     expect(checkout.props().amount).toEqual('30.00');
   });
 
-  it('should have the client prop with production and sandbox', () => {
+  test('should have the client prop with production and sandbox', () => {
     expect(checkout.vm.client).toEqual(credentials);
   });
 
-  it('should have the currency prop', () => {
+  test('should have the currency prop', () => {
     expect(checkout.vm).toEqual(expect.objectContaining({
       currency: expect.any(String),
     }));
     expect(checkout.vm.currency.length).toBeGreaterThan(2);
   });
 
-  it('should have the commit prop', () => {
+  test('should have the commit prop', () => {
     expect(checkout.props().commit).toBe(true);
   });
 
-  it('should have the env prop', () => {
+  test('should have the env prop', () => {
     expect(checkout.props().env).toBeTruthy();
   });
 
-  it('should have the invoiceNumber prop', () => {
+  test('should have the invoiceNumber prop', () => {
     expect(checkout.props().invoiceNumber).toEqual('201705051001');
   });
 
-  it('should have the items prop', () => {
+  test('should have the items prop', () => {
     expect(checkout.vm).toEqual(expect.objectContaining({
       items: expect.any(Array),
     }));
@@ -82,16 +86,16 @@ describe('PayPalCheckout.vue', () => {
 
   // TODO: renable after jsdom fixes css parsing
   describe('iframe rendering', () => {
-    it('div', () => {
+    test('div', () => {
       const div = checkout.find('div');
       expect(div.is('div')).toBe(true);
     });
 
-    it('has xcomponent class', () => {
+    test('has xcomponent class', () => {
       expect(checkout.contains('.xcomponent-visible')).toBe(true);
     });
 
-    it('has same HTML structure', () => {
+    test('has same HTML structure', () => {
       const renderer = createRenderer();
       renderer.renderToString(checkout.vm, (err, str) => {
         if (err) throw new Error(err);
