@@ -1,0 +1,75 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Vue PayPal Checkout</title>
+  <meta name="description" content="PayPal with Vue">
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <script src="https://unpkg.com/vue@^2.5/dist/vue.js"></script>
+  <!-- <script src="https://unpkg.com/vue-paypal-checkout@beta/dist/vue-paypal-checkout.min.js"></script> -->
+  <script src="../dist/vue-paypal-checkout.min.js"></script>
+
+  <div id="app">
+    <div class="content">
+      <p>Pay with USD $10.00</p>
+      <paypal-checkout
+        env="sandbox"
+        amount="10.00"
+        currency="USD"
+        :items="items"
+        :shipping-address="shipping"
+        :client="paypal"
+      >
+      </paypal-checkout>
+    </div>
+  </div>
+
+  <script>
+    // eslint-disable-next-line
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          paypal: {
+            sandbox: 'Ad1voWYq3VL8J4jy6zWARKwz4tjbuDl_TFBa3WQqy_DwAFWd7hkU4i99jijGqaoqU3E-ODqXDayVnOdl',
+            production: '',
+          },
+          shipping: {
+            recipient_name: 'Brian Robinson',
+            line1: '4th Floor',
+            line2: 'Unit #34',
+            city: 'San Jose',
+            country_code: 'US',
+            postal_code: '95131',
+            phone: '011862212345678',
+            state: 'CA',
+          },
+          items: [
+            {
+              name: 'hat',
+              description: 'Brown hat.',
+              quantity: '1',
+              price: '5',
+              currency: 'USD',
+            },
+            {
+              name: 'handbag',
+              description: 'Black handbag.',
+              quantity: '1',
+              price: '5',
+              currency: 'USD',
+            },
+          ],
+        };
+      },
+    });
+  </script>
+</body>
+</html>
