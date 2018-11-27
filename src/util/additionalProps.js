@@ -1,6 +1,6 @@
 import PayPalProp, { propTypes } from './paypalProp';
 
-// TODO: add item validator thanks
+// TODO: add item validator
 const itemsPayPalProp = new PayPalProp({
   name: 'items',
   paypalName: 'item_list',
@@ -9,6 +9,13 @@ const itemsPayPalProp = new PayPalProp({
 });
 
 itemsPayPalProp.addChangeTransform(items => ({ items }));
+
+const shippingAddressProp = new PayPalProp({
+  name: 'shippingAddress',
+  paypalName: 'shipping_address',
+  type: Object,
+  injection: propTypes.TRANSACTION,
+});
 
 const props = [
   // Button Props
@@ -34,6 +41,7 @@ const props = [
     injection: propTypes.TRANSACTION,
   }),
   itemsPayPalProp,
+  shippingAddressProp,
 ];
 
 function vmProps() {

@@ -27,6 +27,12 @@ export default {
         },
       }, assignTo(vue, propTypes.TRANSACTION));
 
+      // TODO: clean this up
+      if (transaction.shipping_address && transaction.item_list) {
+        transaction.item_list.shipping_address = transaction.shipping_address;
+        delete transaction.shipping_address;
+      }
+
       const payment = {
         transactions: [transaction],
       };
