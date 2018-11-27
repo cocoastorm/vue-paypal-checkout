@@ -5,7 +5,6 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 var _slicedToArray = _interopDefault(require('babel-runtime/helpers/slicedToArray'));
 var _Object$assign = _interopDefault(require('babel-runtime/core-js/object/assign'));
 var paypal = _interopDefault(require('paypal-checkout'));
-require('babel-runtime/core-js/json/stringify');
 var _Object$keys = _interopDefault(require('babel-runtime/core-js/object/keys'));
 
 var requiredProps = [['amount'], ['currency', 'USD']];
@@ -157,7 +156,7 @@ function assignToPropertyObject(props) {
   };
 }
 
-// TODO: add item validator thanks
+// TODO: add item validator
 var itemsPayPalProp = new paypalProp({
   name: 'items',
   paypalName: 'item_list',
@@ -167,6 +166,13 @@ var itemsPayPalProp = new paypalProp({
 
 itemsPayPalProp.addChangeTransform(function (items) {
   return { items: items };
+});
+
+var shippingAddressProp = new paypalProp({
+  name: 'shippingAddress',
+  paypalName: 'shipping_address',
+  type: Object,
+  injection: propTypes.TRANSACTION
 });
 
 var props = [
@@ -191,7 +197,7 @@ new paypalProp({
     );
   },
   injection: propTypes.TRANSACTION
-}), itemsPayPalProp];
+}), itemsPayPalProp, shippingAddressProp];
 
 function vmProps() {
   var vm = {};
@@ -229,6 +235,12 @@ var script = {
           details: this.details
         }
       }, assignTo(vue, propTypes.TRANSACTION));
+
+      // TODO: clean this up
+      if (transaction.shipping_address && transaction.item_list) {
+        transaction.item_list.shipping_address = transaction.shipping_address;
+        delete transaction.shipping_address;
+      }
 
       var payment = {
         transactions: [transaction]
@@ -281,6 +293,7 @@ var script = {
   }
 };
 
+/* script */
 var __vue_script__ = script;
 
 /* template */
@@ -293,7 +306,6 @@ var __vue_render__ = function __vue_render__() {
 var __vue_staticRenderFns__ = [];
 __vue_render__._withStripped = true;
 
-var __vue_template__ = typeof __vue_render__ !== 'undefined' ? { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ } : {};
 /* style */
 var __vue_inject_styles__ = undefined;
 /* scoped */
@@ -306,9 +318,8 @@ var __vue_is_functional_template__ = false;
 function __vue_normalize__(template, style, script$$1, scope, functional, moduleIdentifier, createInjector, createInjectorSSR) {
   var component = (typeof script$$1 === 'function' ? script$$1.options : script$$1) || {};
 
-  {
-    component.__file = "/home/khoa/Code/paypal/src/components/PayPalCheckout.vue";
-  }
+  // For security concerns, we use only base name in production mode.
+  component.__file = "/home/khoa/src/github.com/khoanguyen96/paypal/src/components/PayPalCheckout.vue";
 
   if (!component.render) {
     component.render = template.render;
@@ -323,60 +334,10 @@ function __vue_normalize__(template, style, script$$1, scope, functional, module
   return component;
 }
 /* style inject */
-function __vue_create_injector__() {
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var styles = __vue_create_injector__.styles || (__vue_create_injector__.styles = {});
-  var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
 
-  return function addStyle(id, css) {
-    if (document.querySelector('style[data-vue-ssr-id~="' + id + '"]')) return; // SSR styles are present.
-
-    var group = isOldIE ? css.media || 'default' : id;
-    var style = styles[group] || (styles[group] = { ids: [], parts: [], element: undefined });
-
-    if (!style.ids.includes(id)) {
-      var code = css.source;
-      var index = style.ids.length;
-
-      style.ids.push(id);
-
-      if (isOldIE) {
-        style.element = style.element || document.querySelector('style[data-group=' + group + ']');
-      }
-
-      if (!style.element) {
-        var el = style.element = document.createElement('style');
-        el.type = 'text/css';
-
-        if (css.media) el.setAttribute('media', css.media);
-        if (isOldIE) {
-          el.setAttribute('data-group', group);
-          el.setAttribute('data-next-index', '0');
-        }
-
-        head.appendChild(el);
-      }
-
-      if (isOldIE) {
-        index = parseInt(style.element.getAttribute('data-next-index'));
-        style.element.setAttribute('data-next-index', index + 1);
-      }
-
-      if (style.element.styleSheet) {
-        style.parts.push(code);
-        style.element.styleSheet.cssText = style.parts.filter(Boolean).join('\n');
-      } else {
-        var textNode = document.createTextNode(code);
-        var nodes = style.element.childNodes;
-        if (nodes[index]) style.element.removeChild(nodes[index]);
-        if (nodes.length) style.element.insertBefore(textNode, nodes[index]);else style.element.appendChild(textNode);
-      }
-    }
-  };
-}
 /* style inject SSR */
 
-var PayPalCheckout = __vue_normalize__(__vue_template__, __vue_inject_styles__, typeof __vue_script__ === 'undefined' ? {} : __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, typeof __vue_create_injector__ !== 'undefined' ? __vue_create_injector__ : function () {}, typeof __vue_create_injector_ssr__ !== 'undefined' ? __vue_create_injector_ssr__ : function () {});
+var PayPalCheckout = __vue_normalize__({ render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ }, __vue_inject_styles__, __vue_script__, __vue_scope_id__, __vue_is_functional_template__, __vue_module_identifier__, undefined, undefined);
 
 var components = {
   'paypal-checkout': PayPalCheckout
