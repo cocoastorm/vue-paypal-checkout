@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "babel-runtime": "^6.26.0",
-    "paypal-checkout": "^4.0.228",
+    "paypal-checkout": "^4.0.238",
     "vue": "^2.5.17"
   },
   "devDependencies": {
