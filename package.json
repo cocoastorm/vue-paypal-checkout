@@ -21,7 +21,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "paypal-checkout": "^4.0.228",
-    "vue": "^2.5.17"
+    "vue": "^2.5.18"
   },
   "devDependencies": {
     "@vue/test-utils": "^1.0.0-beta.25",
