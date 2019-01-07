@@ -40,6 +40,19 @@ const specificProps = [
     required: false,
     default: true,
   },
+  {
+    name: 'intent',
+    type: String,
+    required: false,
+    default: 'sale',
+    validator(value) {
+      return [
+        'authorize',
+        'sale',
+        'order',
+      ].indexOf(value) !== -1;
+    },
+  },
 ];
 
 export default function () {

@@ -24,6 +24,7 @@ const props = [
   new PayPalProp({ name: 'locale', type: String, injection: propTypes.BUTTON }),
 
   // Payment Props
+  new PayPalProp({ name: 'intent', injection: propTypes.PAYMENT }),
   new PayPalProp({ name: 'experience', injection: propTypes.PAYMENT }),
 
   // Transaction Props
