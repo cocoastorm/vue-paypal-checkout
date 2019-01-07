@@ -44,6 +44,7 @@ describe('additionalProps.js', () => {
 
     expect(props).toEqual(expect.objectContaining({
       experience: expect.any(Object),
+      intent: expect.any(Object),
     }));
 
     expect(props).toEqual(expect.objectContaining({

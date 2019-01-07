@@ -34,6 +34,7 @@ function getProps() {
     currency: 'USD',
     commit: true,
     env: 'sandbox',
+    intent: 'sale',
     invoiceNumber: '201705051001',
     items: getItems(),
   };
@@ -72,6 +73,10 @@ describe('PayPalCheckout.vue', () => {
 
   test('should have the env prop', () => {
     expect(checkout.props().env).toBeTruthy();
+  });
+
+  test('should have the intent prop', () => {
+    expect(checkout.props().intent).toEqual('sale');
   });
 
   test('should have the invoiceNumber prop', () => {
