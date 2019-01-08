@@ -19,6 +19,7 @@ export default class paypalProp {
     define('propName', prop.paypalName, prop.name);
     define('injection', prop.injection, 'button');
     define('type', prop.type, Object);
+    define('default', prop.default, undefined);
     define('required', prop.required, false);
     define('validator', prop.validator, undefined);
 
@@ -28,6 +29,7 @@ export default class paypalProp {
   getVmProp() {
     return {
       type: this.type,
+      default: this.default,
       required: this.required,
       validator: this.validator,
     };
@@ -57,6 +59,7 @@ export default class paypalProp {
 export const propTypes = {
   BUTTON: 'button',
   PAYMENT: 'payment',
+  PAYMENTOPTS: 'payment_opts',
   TRANSACTION: 'transaction',
 };
 
