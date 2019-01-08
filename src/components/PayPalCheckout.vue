@@ -36,10 +36,12 @@ export default {
       let payment = { transactions: [transaction] };
       payment = Object.assign(payment, assignTo(vue, propTypes.PAYMENT));
 
+      const paymentOpts = Object.assign({ payment }, assignTo(vue, propTypes.PAYMENTOPTS));
+
       return paypal.rest.payment.create(
         this.env,
         this.client,
-        payment,
+        paymentOpts,
       );
     },
     onAuthorize(data, actions) {
