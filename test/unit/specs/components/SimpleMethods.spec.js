@@ -78,15 +78,23 @@ describe('Methods within PayPalCheckout.vue', () => {
       }));
     });
 
-    test('returns a payment object', () => (
+    test('returns a payment opts object', () => (
       checkout.vm.payment().then((p) => {
         expect(p).toBeInstanceOf(Object);
       })
     ));
 
-    test('payment object has experience object', () => {
+    test('payment opts object has experience object', () => {
       checkout.vm.payment().then((p) => {
         expect(p.experience).toEqual(checkout.vm.experience);
+      });
+    });
+
+    test('payment object has intent', () => {
+      checkout.vm.payment().then((p) => {
+        expect(p.payment).toEqual(expect.objectContaining({
+          intent: expect.any(String),
+        }));
       });
     });
 

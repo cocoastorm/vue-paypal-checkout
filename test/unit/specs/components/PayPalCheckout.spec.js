@@ -34,7 +34,6 @@ function getProps() {
     currency: 'USD',
     commit: true,
     env: 'sandbox',
-    intent: 'sale',
     invoiceNumber: '201705051001',
     items: getItems(),
   };
