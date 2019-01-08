@@ -1,57 +1,58 @@
-function paypalProp(prop) {
-  /* eslint-disable no-param-reassign */
-  const define = (function getDefine(object) {
-    return function def(name, param, defaultParam) {
-      const isDefined = typeof param !== 'undefined'
+export default class paypalProp {
+  constructor(prop) {
+    const define = (name, param, defaultParam) => {
+      const isDefined = param !== undefined
         && param !== null;
-      const hasDefault = typeof defaultParam !== 'undefined'
+      const hasDefault = defaultParam !== undefined
         && defaultParam !== null;
 
-      if (isDefined) object[name] = param;
-      else if (hasDefault) object[name] = defaultParam;
-      else object[name] = undefined; // TODO: throw err?
+      if (isDefined) {
+        this[name] = param;
+      } else if (hasDefault) {
+        this[name] = defaultParam;
+      } else {
+        this[name] = undefined; // TODO: throw err?
+      }
     };
-  }(this));
 
-  define('name', prop.name);
-  define('propName', prop.paypalName, prop.name);
-  define('injection', prop.injection, 'button');
-  define('type', prop.type, Object);
-  define('required', prop.required, false);
-  define('validator', prop.validator, undefined);
+    define('name', prop.name);
+    define('propName', prop.paypalName, prop.name);
+    define('injection', prop.injection, 'button');
+    define('type', prop.type, Object);
+    define('required', prop.required, false);
+    define('validator', prop.validator, undefined);
 
-  this.transforms = [];
-}
-
-paypalProp.prototype.getVmProp = function getVmProp() {
-  return {
-    type: this.type,
-    required: this.required,
-    validator: this.validator,
-  };
-};
-
-paypalProp.prototype.addChangeTransform = function addChangeTransform(callable) {
-  this.transforms.push(callable);
-};
-
-paypalProp.prototype.getChange = function getChange(src) {
-  let value = src[this.name];
-
-  // change the value if necessary...
-  if (value !== undefined && value !== null) {
-    this.transforms.forEach((transform) => {
-      value = transform(value);
-    });
+    this.transforms = [];
   }
 
-  return {
-    name: this.propName,
-    value,
-  };
-};
+  getVmProp() {
+    return {
+      type: this.type,
+      required: this.required,
+      validator: this.validator,
+    };
+  }
 
-export default paypalProp;
+  addChangeTransform(callable) {
+    this.transforms.push(callable);
+  }
+
+  getChange(src) {
+    let value = src[this.name];
+
+    // change the value if necessary
+    if (value !== undefined && value !== null) {
+      this.transforms.forEach((transform) => {
+        value = transform(value);
+      });
+    }
+
+    return {
+      name: this.propName,
+      value,
+    };
+  }
+}
 
 export const propTypes = {
   BUTTON: 'button',
