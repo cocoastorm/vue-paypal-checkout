@@ -33,10 +33,8 @@ export default {
         delete transaction.shipping_address;
       }
 
-      let payment = {
-        transactions: [transaction],
-      };
-      payment = Object.assign({ payment }, assignTo(vue, propTypes.PAYMENT));
+      let payment = { transactions: [transaction] };
+      payment = Object.assign(payment, assignTo(vue, propTypes.PAYMENT));
 
       return paypal.rest.payment.create(
         this.env,
