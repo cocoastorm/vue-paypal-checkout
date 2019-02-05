@@ -6294,10 +6294,10 @@ vue-jest@^3.0.0:
     tsconfig "^7.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-server-renderer@^2.5.17:
-  version "2.5.17"
-  resolved "https://registry.yarnpkg.com/vue-server-renderer/-/vue-server-renderer-2.5.17.tgz#c1f24815a4b12a2797c154549b29b44b6be004b5"
-  integrity sha512-n62Fg4xv9ouxNloW2U3Bru2Jj+DkbnnrlzwuTkaU1o7CIDifG+r0+ILLMW0eVjgCjhKefHTYjwJ49RJ3bCjv1Q==
+vue-server-renderer@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/vue-server-renderer/-/vue-server-renderer-2.6.1.tgz#a5076076ea1b1cd517e8556ea5362232d042606f"
+  integrity sha512-fpKjWYYqKceiJIJGigTcXBabbMi6g3KANhf64Gn4AzFo7bS/wzZkqCQYLRMjAjj6LQzfa7sPJBPSpMdpq/UAfg==
   dependencies:
     chalk "^1.1.3"
     hash-sum "^1.0.2"
