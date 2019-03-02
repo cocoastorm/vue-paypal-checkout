@@ -34,7 +34,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "camelcase": "^5.0.0",
-    "eslint": "^5.7.0",
+    "eslint": "^5.15.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-import-resolver-jest": "^2.1.1",
     "eslint-plugin-html": "^4.0.6",
