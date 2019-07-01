@@ -2104,10 +2104,10 @@ eslint-config-airbnb-base@^13.1.0:
     object.assign "^4.1.0"
     object.entries "^1.0.4"
 
-eslint-import-resolver-jest@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-jest/-/eslint-import-resolver-jest-2.1.1.tgz#78c1934e3b5b77283326f036e089cc3b9fae6346"
-  integrity sha512-yzzZFN37CaMaCjmUZ4Zo7Pw5qCG/hDklVzxIeHYJZkbcdg0sL5MeLaOG8s3ndVBvv1PSdSq4jfkY0QXt/KPbTg==
+eslint-import-resolver-jest@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-jest/-/eslint-import-resolver-jest-2.1.2.tgz#8720fbe8b8498e95cb2bc6ef52b46b713aedaa59"
+  integrity sha512-gKEHNW02XGzbj6nr6xPwI5bsUgAXFsJZZQwqRJQV8Xw2XJe6pxd1cvo9bCVCwx3xolvmQ4eWcw8Xlf8UICX41A==
   dependencies:
     find-root "^1.0.0"
     micromatch "^3.1.6"
