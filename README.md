@@ -1,6 +1,7 @@
 # vue-paypal-checkout
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/khoanguyen96/vue-paypal-checkout.svg)](https://greenkeeper.io/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkhoanguyen96%2Fvue-paypal-checkout.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkhoanguyen96%2Fvue-paypal-checkout?ref=badge_shield)
 
 > A simple Vue.js wrapper component for `paypal-checkout`
 
@@ -434,3 +435,6 @@ vue-paypal-checkout is available under the [MIT license](http://opensource.org/l
 vue-paypal-checkout is a wrapper Vue component that uses `paypal-checkout` which is under the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
 
 For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fkhoanguyen96%2Fvue-paypal-checkout.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fkhoanguyen96%2Fvue-paypal-checkout?ref=badge_large)
