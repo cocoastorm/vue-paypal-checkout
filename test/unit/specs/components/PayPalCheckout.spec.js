@@ -91,8 +91,8 @@ describe('PayPalCheckout.vue', () => {
       expect(div.is('div')).toBe(true);
     });
 
-    test('has zoid class', () => {
-      expect(checkout.contains('.zoid-visible')).toBe(true);
+    test('has xcomponent class', () => {
+      expect(checkout.contains('.xcomponent-visible')).toBe(true);
     });
 
     test('has same HTML structure', () => {
