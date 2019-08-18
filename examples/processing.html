@@ -26,6 +26,7 @@
         v-on:payment-authorized="paymentAuthorized"
         v-on:payment-completed="paymentCompleted"
         v-on:payment-cancelled="paymentCancelled"
+        v-on:payment-error="paymentError"
         :client="paypal">
       </paypal-checkout>
     </div>
@@ -53,6 +54,9 @@
         paymentCancelled: function (data) {
           console.log(data);
         },
+        paymentError: function (err) {
+          console.error(err);
+        }
       },
     });
   </script>
