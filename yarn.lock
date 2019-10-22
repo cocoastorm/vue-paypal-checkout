@@ -1110,12 +1110,28 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-beaver-logger@^3.0.11, beaver-logger@^3.0.6:
+beaver-logger@^3.0.17:
+  version "3.0.19"
+  resolved "https://registry.yarnpkg.com/beaver-logger/-/beaver-logger-3.0.19.tgz#1d9d95ec67acb62c70cde0a284395a6e07e6ca79"
+  integrity sha512-hfBwPUD8PeE6mFSTtWAYd/wI8AzaoeRGNIpWGZWJGZBLyl7Fb7n6PL33JujUzWKWDsIi9V3HoppqIyM/CeeSnw==
+  dependencies:
+    zalgo-promise "^1.0.26"
+
+beaver-logger@^3.0.6:
   version "3.0.11"
   resolved "https://registry.yarnpkg.com/beaver-logger/-/beaver-logger-3.0.11.tgz#52db6b349e51aeaff07aa00f4144bcc7d224a222"
   integrity sha1-UttrNJ5Rrq/weqAPQUS8x9IkoiI=
   dependencies:
     zalgo-promise "^1.0.3"
+
+belter@^1.0.77, belter@^1.0.96:
+  version "1.0.110"
+  resolved "https://registry.yarnpkg.com/belter/-/belter-1.0.110.tgz#0407f2595258039feb19d8e899abdca884f901ea"
+  integrity sha512-bEoTOmK1JgVTvCgrY0PouVCEqrBq5yxbTMVY2Gwe7kNeocvOirnS0B8Tz6xLzKMkZNLsxjJCCqrGcxEWdlpv8g==
+  dependencies:
+    cross-domain-safe-weakmap "^1.0.20"
+    cross-domain-utils "^2.0.10"
+    zalgo-promise "^1.0.28"
 
 big.js@^3.1.3:
   version "3.2.0"
@@ -1665,17 +1681,31 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-domain-safe-weakmap@^1.0.1, cross-domain-safe-weakmap@^1.0.19:
+cross-domain-safe-weakmap@^1.0.1:
   version "1.0.19"
   resolved "https://registry.yarnpkg.com/cross-domain-safe-weakmap/-/cross-domain-safe-weakmap-1.0.19.tgz#b5b903f094b9618ddc6fe0d3507d63c36cf2a4c8"
   integrity sha1-tbkD8JS5YY3cb+DTUH1jw2zypMg=
   dependencies:
     cross-domain-utils "^2.0.0"
 
-cross-domain-utils@^2.0.0, cross-domain-utils@^2.0.1, cross-domain-utils@^2.0.3:
+cross-domain-safe-weakmap@^1.0.20, cross-domain-safe-weakmap@^1.0.22:
+  version "1.0.27"
+  resolved "https://registry.yarnpkg.com/cross-domain-safe-weakmap/-/cross-domain-safe-weakmap-1.0.27.tgz#81a5eae012b3cfb7e7e5ca3d737a6c94c3499bab"
+  integrity sha512-f5etDzszteeGh99Dzd7o72FGwd8rLGzgEv50Vk0r8mLzPdQEzcb7Vmx3PfKWD4k66Hp8vN0BLPuBmmMs4UxseQ==
+  dependencies:
+    cross-domain-utils "^2.0.0"
+
+cross-domain-utils@^2.0.0, cross-domain-utils@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/cross-domain-utils/-/cross-domain-utils-2.0.3.tgz#1378d2ab235e83eb1f4760ef3ffe8c0b94529897"
   integrity sha1-E3jSqyNeg+sfR2DvP/6MC5RSmJc=
+  dependencies:
+    zalgo-promise "^1.0.11"
+
+cross-domain-utils@^2.0.10, cross-domain-utils@^2.0.16:
+  version "2.0.28"
+  resolved "https://registry.yarnpkg.com/cross-domain-utils/-/cross-domain-utils-2.0.28.tgz#e1d613d3bded499a69b2f1ae2b5be7ffb09e70de"
+  integrity sha512-L0IKicdAOpQa4llcJdVXGfGQQDa5/awYOPdlPO1yGIObcPX6lo6FMlPGNOJvZ/n89+WqIOcxEY5MTGEMFhCSJw==
   dependencies:
     zalgo-promise "^1.0.11"
 
@@ -2575,6 +2605,11 @@ form-data@~2.3.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
+form-serialize@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/form-serialize/-/form-serialize-0.7.2.tgz#b0a2ff0c22026fb6d3d15c9d33f6de6a432e4732"
+  integrity sha1-sKL/DCICb7bT0VydM/beakMuRzI=
+
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"
@@ -2897,11 +2932,6 @@ he@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
   integrity sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
-
-hi-base32@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.1.1.tgz#a30fcb56e7362cf5ef6f543e4c280d50647e5e80"
-  integrity sha1-ow/LVuc2LPXvb1Q+TCgNUGR+XoA=
 
 hi-base32@^0.5.0:
   version "0.5.0"
@@ -4794,19 +4824,21 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
-paypal-checkout@^4.0.228:
-  version "4.0.228"
-  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.228.tgz#dde7d06af7d29b19daeb8dd957a819713d2d4029"
-  integrity sha512-HNVs+e/5rJgGZmef2Vk3ixMcuyo0Sl2Pddmu/Zs2rEu8Q0jNrXyjExVOscGc3EMfPShWzZCLM8VDmI6U2A56Vg==
+paypal-checkout@^4.0.299:
+  version "4.0.299"
+  resolved "https://registry.yarnpkg.com/paypal-checkout/-/paypal-checkout-4.0.299.tgz#00bc510564ecbf79694ca8f38cc31c6f7cf53ff7"
+  integrity sha512-3AvQDHu2CpwJCJv+d5VQj+wrXcX7cl3bclTxdhjii1N6MCt4oGN3eI1vahA87zZfEbUG5xGld8RDqeqrXktU+g==
   dependencies:
     Base64 "^1.0.0"
     beaver-logger "^3.0.6"
+    belter "^1.0.96"
     bowser "^1.7.1"
     cross-domain-utils "^2.0.1"
+    form-serialize "^0.7.2"
     hi-base32 "^0.5.0"
     post-robot "^8.0.0"
-    xcomponent "^6.0.0"
     zalgo-promise "^1.0.10"
+    zoid "^6.0.67"
 
 pbkdf2@^3.0.3:
   version "3.0.14"
@@ -4882,10 +4914,19 @@ posix-character-classes@^0.1.0:
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
   integrity sha1-AerA/jta9xoqbAL+q7jB/vfgDqs=
 
-post-robot@^8.0.0, post-robot@^8.0.14:
+post-robot@^8.0.0:
   version "8.0.15"
   resolved "https://registry.yarnpkg.com/post-robot/-/post-robot-8.0.15.tgz#3207891ece6c95b78ce0df8a11da0e74de06c281"
   integrity sha1-MgeJHs5slbeM4N+KEdoOdN4GwoE=
+  dependencies:
+    cross-domain-safe-weakmap "^1.0.1"
+    cross-domain-utils "^2.0.0"
+    zalgo-promise "^1.0.3"
+
+post-robot@^8.0.29:
+  version "8.0.30"
+  resolved "https://registry.yarnpkg.com/post-robot/-/post-robot-8.0.30.tgz#5aac91bb996751549a3c273507b6448a293f6c1f"
+  integrity sha512-xo4TudIX85q2vKehlGcVlbYJyrG+2CU+s5zXDpxAba8RzjGPAT2GXpCzNI2TDaiB+UH1Y/rgSNC9tKSyVNwW8g==
   dependencies:
     cross-domain-safe-weakmap "^1.0.1"
     cross-domain-utils "^2.0.0"
@@ -6446,18 +6487,6 @@ ws@^4.0.0:
     safe-buffer "~5.1.0"
     ultron "~1.1.0"
 
-xcomponent@^6.0.0:
-  version "6.0.40"
-  resolved "https://registry.yarnpkg.com/xcomponent/-/xcomponent-6.0.40.tgz#dcb94039ba4829e459538b4479bb9529095669bf"
-  integrity sha1-3LlAObpIKeRZU4tEebuVKQlWab8=
-  dependencies:
-    beaver-logger "^3.0.11"
-    cross-domain-safe-weakmap "^1.0.19"
-    cross-domain-utils "^2.0.3"
-    hi-base32 "^0.1.1"
-    post-robot "^8.0.14"
-    zalgo-promise "^1.0.22"
-
 xml-name-validator@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xml-name-validator/-/xml-name-validator-3.0.0.tgz#6ae73e06de4d8c6e47f9fb181f78d648ad457c6a"
@@ -6533,7 +6562,25 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-zalgo-promise@^1.0.10, zalgo-promise@^1.0.11, zalgo-promise@^1.0.22, zalgo-promise@^1.0.3:
+zalgo-promise@^1.0.10, zalgo-promise@^1.0.11, zalgo-promise@^1.0.3:
   version "1.0.22"
   resolved "https://registry.yarnpkg.com/zalgo-promise/-/zalgo-promise-1.0.22.tgz#e9342c9f7f7f47f3ee4f9a028f767996403d3481"
   integrity sha1-6TQsn39/R/PuT5oCj3Z5lkA9NIE=
+
+zalgo-promise@^1.0.26, zalgo-promise@^1.0.28, zalgo-promise@^1.0.34:
+  version "1.0.44"
+  resolved "https://registry.yarnpkg.com/zalgo-promise/-/zalgo-promise-1.0.44.tgz#10b6888def701abc0681ec760d73e2bfd2448ae2"
+  integrity sha512-CSQ1xh0vVwgrohObNdysPANonBV+3yl1Xy+qrtMWBvb/a0D/2OUNqb0GJvaAgGtP/gQawtiQAFil2bGSq8aoMA==
+
+zoid@^6.0.67:
+  version "6.0.77"
+  resolved "https://registry.yarnpkg.com/zoid/-/zoid-6.0.77.tgz#103fe01e44081c7eaa97f0da5050a02fda60b99c"
+  integrity sha512-NxLfIF0xSQvPzwJbhiGrJRmmGTgd2Zb/7e5OIv3J7XAG10fSG0e+eK1fjV3nbbJQ2Kuy5Uk8kRX0/0/RWt4WVg==
+  dependencies:
+    beaver-logger "^3.0.17"
+    belter "^1.0.77"
+    cross-domain-safe-weakmap "^1.0.22"
+    cross-domain-utils "^2.0.16"
+    hi-base32 "^0.5.0"
+    post-robot "^8.0.29"
+    zalgo-promise "^1.0.34"
