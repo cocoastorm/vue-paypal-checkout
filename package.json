@@ -8,7 +8,7 @@
   "author": "Khoa Nguyen <khoa.tan.nguyen.96@gmail.com>",
   "license": "MIT",
   "repository": {
-    "url": "https://github.com/khoanguyen96/vue-paypal-checkout.git",
+    "url": "https://github.com/VladislavGroniuk/vue-paypal-checkout.git",
     "type": "git"
   },
   "scripts": {
