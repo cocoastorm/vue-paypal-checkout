@@ -16,6 +16,9 @@ export default {
     additionalProps.vmProps(),
   ),
   methods: {
+    validate(actions) {
+      this.$emit('send-paypal-actions', actions);
+    },
     payment() {
       const vue = this;
 
@@ -82,6 +85,9 @@ export default {
 
       // Pass a function to be called when the customer cancels the payment
       onCancel: vue.onCancel,
+
+      // Pass a function to be called when the page load
+      validate: vue.validate,
     }, assignTo(vue, propTypes.BUTTON));
 
     paypal.Button.render(button, vue.$el);
