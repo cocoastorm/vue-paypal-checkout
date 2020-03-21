@@ -1,5 +1,8 @@
 # vue-paypal-checkout
 
+## Deprecated
+Please use the official PayPal Checkout Components: https://github.com/paypal/paypal-checkout-components
+
 [![Greenkeeper badge](https://badges.greenkeeper.io/khoanguyen96/vue-paypal-checkout.svg)](https://greenkeeper.io/)
 
 > A simple Vue.js wrapper component for `paypal-checkout`
