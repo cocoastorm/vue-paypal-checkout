@@ -81,5 +81,7 @@ export default function () {
     }
   });
 
+  props['send-paypal-actions'] = { type: Function, required: false, default: undefined };
+
   return props;
 }

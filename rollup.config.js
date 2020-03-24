@@ -5,7 +5,6 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import { uglify } from 'rollup-plugin-uglify';
 import { rollup } from 'rollup';
-
 import clone from 'lodash/cloneDeep';
 import camelcase from 'camelcase';
 import chalk from 'chalk';
@@ -22,6 +21,7 @@ const config = {
     { format: 'cjs', file: `dist/${pack.name}.common.js` },
   ],
   plugins: [
+    commonjs(),
     vue(vueConfig),
     babel(babelConfig),
   ],
@@ -40,7 +40,6 @@ if (vueConfig.standalone) {
       main: true,
       browser: true,
     }),
-    commonjs(),
   ].concat(options.plugins);
 
   let promise = Promise.resolve();
