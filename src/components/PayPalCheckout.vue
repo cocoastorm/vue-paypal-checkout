@@ -59,6 +59,10 @@ export default {
       const vue = this;
       vue.$emit('payment-cancelled', data);
     },
+    onError(err) {
+      const vue = this;
+      vue.$emit('payment-error', err);
+    },
   },
   mounted() {
     const vue = this;
@@ -82,6 +86,9 @@ export default {
 
       // Pass a function to be called when the customer cancels the payment
       onCancel: vue.onCancel,
+
+      // Pass a function to be called if an error occurs
+      onError: vue.onError,
     }, assignTo(vue, propTypes.BUTTON));
 
     paypal.Button.render(button, vue.$el);
