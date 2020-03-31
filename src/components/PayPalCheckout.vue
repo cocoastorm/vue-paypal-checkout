@@ -32,6 +32,10 @@ export default {
         transaction.item_list.shipping_address = transaction.shipping_address;
         delete transaction.shipping_address;
       }
+      if (transaction.shipping_options && transaction.item_list) {
+        transaction.item_list.shipping_options = transaction.shipping_options;
+        delete transaction.shipping_options;
+      }
 
       const payment = {
         transactions: [transaction],

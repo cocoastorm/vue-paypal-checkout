@@ -174,6 +174,12 @@ var shippingAddressProp = new paypalProp({
   type: Object,
   injection: propTypes.TRANSACTION
 });
+var shippingOptionsProp = new paypalProp({
+  name: 'shippingOptions',
+  paypalName: 'shipping_options',
+  type: Array,
+  injection: propTypes.TRANSACTION
+});
 
 var props = [
 // Button Props
@@ -197,7 +203,10 @@ new paypalProp({
     );
   },
   injection: propTypes.TRANSACTION
-}), itemsPayPalProp, shippingAddressProp];
+}), itemsPayPalProp, 
+  shippingOptionsProp,
+  
+  AddressProp];
 
 function vmProps() {
   var vm = {};
@@ -240,6 +249,10 @@ var script = {
       if (transaction.shipping_address && transaction.item_list) {
         transaction.item_list.shipping_address = transaction.shipping_address;
         delete transaction.shipping_address;
+      }
+      if (transaction.shipping_options && transaction.item_list) {
+        transaction.item_list.shipping_options = transaction.shipping_options;
+        delete transaction.shipping_options;
       }
 
       var payment = {

@@ -16,6 +16,12 @@ const shippingAddressProp = new PayPalProp({
   type: Object,
   injection: propTypes.TRANSACTION,
 });
+const shippingOptionsProp = new PayPalProp({
+  name: 'shippingOptions',
+  paypalName: 'shipping_options',
+  type: Array,
+  injection: propTypes.TRANSACTION,
+});
 
 const props = [
   // Button Props
@@ -42,6 +48,7 @@ const props = [
   }),
   itemsPayPalProp,
   shippingAddressProp,
+  shippingOptionsProp
 ];
 
 function vmProps() {
