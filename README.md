@@ -283,11 +283,23 @@ Vue.component('paypal-checkout', PayPal)
 ```
 
 
-in nuxt-config don't forget to add it on plugins, and make sure you disable SSR
+in nuxt-config don't forget to add it on plugins & build vendor, and make sure you disable SSR
 ``` html
   plugins: [
     { src: '~/plugins/paypal.js', ssr: false }
   ],
+
+  build: {
+    vendor: [
+      'vue-paypal-checkout'
+    ],
+    /*
+    ** You can extend webpack config here
+    */
+    extend(config, ctx) {
+      
+    }
+  }
 </script>
 ```
 
@@ -305,6 +317,8 @@ and use it like this
 	</paypal-checkout>
 </no-ssr>
 ```
+
+For more detail example, please see in examples folder
 
 #### Changing Locale (v2.3.3+)
 `paypal-checkout` allows changing the locale of the button via a `locale` parameter. There's a `locale` prop you can use to accomplish the same:
